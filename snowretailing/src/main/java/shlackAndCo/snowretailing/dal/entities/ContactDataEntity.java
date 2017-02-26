@@ -1,4 +1,4 @@
-package shlackAndCo.snowretailing.dao;
+package shlackAndCo.snowretailing.dal.entities;
 
 import javax.persistence.*;
 

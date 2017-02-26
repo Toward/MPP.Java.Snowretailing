@@ -11,20 +11,20 @@
         <property name="connection.username">root</property>
         <property name="connection.password">root</property>
 
-        <mapping class="shlackAndCo.snowretailing.dao.BrandEntity"/>
-        <mapping class="shlackAndCo.snowretailing.dao.CharacteristicsEntity"/>
-        <mapping class="shlackAndCo.snowretailing.dao.ContactDataEntity"/>
-        <mapping class="shlackAndCo.snowretailing.dao.CredentialEntity"/>
-        <mapping class="shlackAndCo.snowretailing.dao.EquipmentEntity"/>
-        <mapping class="shlackAndCo.snowretailing.dao.EquipmentFeatureEntity"/>
-        <mapping class="shlackAndCo.snowretailing.dao.EquipmentItemEntity"/>
-        <mapping class="shlackAndCo.snowretailing.dao.OrderEntity"/>
-        <mapping class="shlackAndCo.snowretailing.dao.PToREntity"/>
-        <mapping class="shlackAndCo.snowretailing.dao.PermissionsEntity"/>
-        <mapping class="shlackAndCo.snowretailing.dao.RentEntity"/>
-        <mapping class="shlackAndCo.snowretailing.dao.ReviewEntity"/>
-        <mapping class="shlackAndCo.snowretailing.dao.RoleEntity"/>
-        <mapping class="shlackAndCo.snowretailing.dao.TypeEntity"/>
-        <mapping class="shlackAndCo.snowretailing.dao.UserEntity"/>
+        <mapping class="shlackAndCo.snowretailing.dal.entities.BrandEntity"/>
+        <mapping class="shlackAndCo.snowretailing.dal.entities.CharacteristicsEntity"/>
+        <mapping class="shlackAndCo.snowretailing.dal.entities.ContactDataEntity"/>
+        <mapping class="shlackAndCo.snowretailing.dal.entities.CredentialEntity"/>
+        <mapping class="shlackAndCo.snowretailing.dal.entities.EquipmentEntity"/>
+        <mapping class="shlackAndCo.snowretailing.dal.entities.EquipmentFeatureEntity"/>
+        <mapping class="shlackAndCo.snowretailing.dal.entities.EquipmentItemEntity"/>
+        <mapping class="shlackAndCo.snowretailing.dal.entities.OrderEntity"/>
+        <mapping class="shlackAndCo.snowretailing.dal.entities.PToREntity"/>
+        <mapping class="shlackAndCo.snowretailing.dal.entities.PermissionsEntity"/>
+        <mapping class="shlackAndCo.snowretailing.dal.entities.RentEntity"/>
+        <mapping class="shlackAndCo.snowretailing.dal.entities.ReviewEntity"/>
+        <mapping class="shlackAndCo.snowretailing.dal.entities.RoleEntity"/>
+        <mapping class="shlackAndCo.snowretailing.dal.entities.TypeEntity"/>
+        <mapping class="shlackAndCo.snowretailing.dal.entities.UserEntity"/>
     </session-factory>
 </hibernate-configuration>

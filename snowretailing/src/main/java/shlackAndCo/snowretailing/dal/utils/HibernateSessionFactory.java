@@ -1,4 +1,4 @@
-package shlackAndCo.snowretailing.utils;
+package shlackAndCo.snowretailing.dal.utils;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;

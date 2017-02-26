@@ -1,30 +1,78 @@
 package shlackAndCo.snowretailing.controllers;
 
-import org.hibernate.Session;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-import shlackAndCo.snowretailing.dao.BrandEntity;
-import shlackAndCo.snowretailing.utils.HibernateSessionFactory;
-import java.util.List;
+import shlackAndCo.snowretailing.core.contracts.models.IBrandModel;
+import shlackAndCo.snowretailing.core.contracts.services.IBrandService;
+import shlackAndCo.snowretailing.core.models.BrandModel;
+
+import java.util.Collection;
 
 @Controller
 public class BrandController {
+    private final IBrandService brandService;
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @Autowired
+    public BrandController(@Qualifier("brandService") IBrandService brandService){
+
+        this.brandService = brandService;
+    }
+
+    @RequestMapping(value = "/brands", method = RequestMethod.GET)
     public ModelAndView getBrands() {
-        ModelAndView model = new ModelAndView("brandView");
+        ModelAndView view = new ModelAndView("brands/brandsView");
 
-        Session session = HibernateSessionFactory.getSessionFactory().openSession();
+        Collection<IBrandModel> brandModels = brandService.getAll();
+        view.addObject("brands", brandModels);
 
-        session.beginTransaction();
+        return view;
+    }
 
-        List<BrandEntity> brands = (List<BrandEntity>)session.createCriteria(BrandEntity.class).list();
-        session.getTransaction().commit();
-        session.close();
+    @RequestMapping(value = "/brands/{id}", method = RequestMethod.GET)
+    public ModelAndView getBrand(@PathVariable("id") int id) {
+        ModelAndView view = new ModelAndView("brands/brandView");
 
-        model.addObject("brands", brands);
-        return model;
+        IBrandModel brandModel = brandService.getById(id);
+        view.addObject("brand", brandModel);
+
+        return view;
+    }
+
+    @RequestMapping(value = "/brands/create", method = RequestMethod.GET)
+    public ModelAndView createBrand() {
+        return new ModelAndView("brands/createBrand", "brand", new BrandModel());
+    }
+
+    @RequestMapping(value = "/brands/create", method = RequestMethod.POST)
+    public String createBrand(BrandModel brand) {
+        brandService.create(brand);
+
+        return "redirect:/brands";
+    }
+
+    @RequestMapping(value = "/brands/{id}/edit", method = RequestMethod.GET)
+    public ModelAndView editBrand(@PathVariable("id") int id) {
+        IBrandModel brand = brandService.getById(id);
+
+        return new ModelAndView("brands/editBrand", "brand", brand);
+    }
+
+    @RequestMapping(value = "/brands/{id}/edit", method = RequestMethod.POST)
+    public String editBrand(@PathVariable("id") int id, BrandModel model) {
+        brandService.edit(id, model);
+
+        return "redirect:/brands";
+    }
+
+    @RequestMapping(value = "/brands/{id}/delete")
+    public String removeBrand(@PathVariable("id") int id) {
+        brandService.delete(id);
+
+        return "redirect:/brands";
     }
 }
