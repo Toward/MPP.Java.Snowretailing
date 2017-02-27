@@ -18,7 +18,10 @@ public class BrandService implements IBrandService {
     private final IBrandRepository brandRepository;
 
     @Autowired
-    public BrandService(@Qualifier("brandRepository") IBrandRepository brandRepository){
+    public BrandService(@Qualifier("brandRepository") IBrandRepository brandRepository) throws IllegalArgumentException {
+        if (brandRepository == null)
+            throw new IllegalArgumentException("brandRepository is null");
+
         this.brandRepository = brandRepository;
     }
 
@@ -29,24 +32,42 @@ public class BrandService implements IBrandService {
     }
 
     @Override
-    public IBrandModel getById(int id) {
+    public IBrandModel getById(int id) throws IllegalArgumentException {
+        if (id <= 0)
+            throw new IllegalArgumentException("id must be greater than zero");
+
         IBrandEntity brandEntity = brandRepository.getById(id);
-        return new BrandModel(brandEntity);
+        return brandEntity == null ? null : new BrandModel(brandEntity);
     }
 
     @Override
-    public int create(IBrandModel model) {
+    public int create(IBrandModel model) throws IllegalArgumentException {
+        if (model == null)
+            throw new IllegalArgumentException("brandModel is null");
+
         return brandRepository.create(Map(model));
     }
 
-    public void edit(int brandId, IBrandModel model) {
+    public void edit(int id, IBrandModel model) throws IllegalArgumentException {
+        if (id <= 0)
+            throw new IllegalArgumentException("id must be greater than zero");
+        if (model == null)
+            throw new IllegalArgumentException("brandModel is null");
+        if (getById(id) == null)
+            throw new IllegalArgumentException("brandModel with id: "+id+" not exist");
+
         IBrandEntity entity = Map(model);
-        entity.setId(brandId);
+        entity.setId(id);
         brandRepository.update(entity);
     }
 
-    public void delete(int brandId) {
-        brandRepository.delete(brandId);
+    public void delete(int id) throws IllegalArgumentException {
+        if (id <= 0)
+            throw new IllegalArgumentException("id must be greater than zero");
+        if (getById(id) == null)
+            throw new IllegalArgumentException("brandModel with id: "+id+" not exist");
+
+        brandRepository.delete(id);
     }
 
     private IBrandEntity Map(IBrandModel model){

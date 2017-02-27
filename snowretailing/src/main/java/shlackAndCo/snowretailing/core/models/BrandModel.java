@@ -1,10 +1,17 @@
 package shlackAndCo.snowretailing.core.models;
 
-import shlackAndCo.snowretailing.dal.contracts.entities.IBrandEntity;
+
+import org.hibernate.validator.constraints.NotEmpty;
 import shlackAndCo.snowretailing.core.contracts.models.IBrandModel;
+import shlackAndCo.snowretailing.dal.contracts.entities.IBrandEntity;
+
+import javax.validation.constraints.Size;
 
 public class BrandModel implements IBrandModel{
     private int id;
+
+    @NotEmpty
+    @Size(max = 30)
     private String brandName;
 
     public BrandModel(){
@@ -26,9 +33,5 @@ public class BrandModel implements IBrandModel{
 
     public void setBrandName(String brandName) {
         this.brandName = brandName;
-    }
-
-    public Boolean isValid() {
-        return true;
     }
 }

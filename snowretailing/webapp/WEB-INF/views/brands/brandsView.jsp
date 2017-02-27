@@ -6,8 +6,8 @@
 </head>
 <table class="tg">
     <tr>
-        <th>Person ID</th>
-        <th>Person Name</th>
+        <th>Brand ID</th>
+        <th>Brand Name</th>
         <th>Edit</th>
         <th>Delete</th>
     </tr>

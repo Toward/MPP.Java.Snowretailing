@@ -13,11 +13,14 @@ public class BaseRepository <T> implements IBaseRepository<T> {
     protected final SessionFactory sessionFactory = HibernateSessionFactory.getSessionFactory();
     private final Class entityType;
 
-    public BaseRepository(Class entityType){
+    public BaseRepository(Class entityType) throws IllegalArgumentException {
+        if (entityType == null)
+            throw new IllegalArgumentException("entityType is null");
+
         this.entityType = entityType;
     }
 
-    public Collection<T> getAll() {
+    public Collection<T> getAll() throws HibernateException {
         Collection<T> result;
         Transaction transaction = null;
         try(Session session = sessionFactory.openSession()){
@@ -32,7 +35,10 @@ public class BaseRepository <T> implements IBaseRepository<T> {
         return result;
     }
 
-    public T getById(int id) {
+    public T getById(int id) throws HibernateException, IllegalArgumentException {
+        if (id <= 0 )
+            throw new IllegalArgumentException("id must be greater than zero");
+
         T result;
         Transaction transaction = null;
         try(Session session = sessionFactory.openSession()){
@@ -47,7 +53,9 @@ public class BaseRepository <T> implements IBaseRepository<T> {
         return result;
     }
 
-    public int create(T entity) {
+    public int create(T entity) throws HibernateException, IllegalArgumentException {
+        if (entity == null)
+            throw new IllegalArgumentException("entity is null");
         Transaction transaction = null;
         int newBrandId;
         try (Session session = sessionFactory.openSession()) {
@@ -62,7 +70,9 @@ public class BaseRepository <T> implements IBaseRepository<T> {
         return newBrandId;
     }
 
-    public void update(T entity) {
+    public void update(T entity) throws HibernateException, IllegalArgumentException {
+        if (entity == null)
+            throw new IllegalArgumentException("entity is null");
         Transaction transaction = null;
         try (Session session = sessionFactory.openSession()) {
             transaction = session.beginTransaction();
@@ -75,11 +85,13 @@ public class BaseRepository <T> implements IBaseRepository<T> {
         }
     }
 
-    public void delete(int brandId) {
+    public void delete(int id) throws HibernateException, IllegalArgumentException {
+        if (id <= 0 )
+            throw new IllegalArgumentException("id must be greater than zero");
         Transaction transaction = null;
         try(Session session = sessionFactory.openSession()){
             transaction = session.beginTransaction();
-            T entity = (T)session.get(entityType,brandId);
+            T entity = (T)session.get(entityType,id);
             session.delete(entity);
             transaction.commit();
         }catch (HibernateException e) {

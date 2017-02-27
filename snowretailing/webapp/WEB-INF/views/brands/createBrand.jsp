@@ -11,6 +11,7 @@
         <tr>
             <td><form:label path="brand.brandName">Brand Name</form:label></td>
             <td><form:input path="brand.brandName" /></td>
+            <td><form:errors path="brand.brandName"/></td>
         </tr>
         <tr>
             <td colspan="2">

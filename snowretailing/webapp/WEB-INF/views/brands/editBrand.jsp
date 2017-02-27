@@ -6,11 +6,12 @@
 <body>
 
 <h2>Edit brand</h2>
-<form method="post" action="/brands/${brand.id}/edit">
+<form:form modelAttribute="brand" method="post" action="/brands/${brand.id}/edit">
     <table>
         <tr>
-            <td><form:label path="brand.brandName">Brand Name</form:label></td>
-            <td><form:input path="brand.brandName" /></td>
+            <td><form:label path="brandName">Brand Name</form:label></td>
+            <td><form:input path="brandName" /></td>
+            <td><form:errors path="brandName"/></td>
         </tr>
         <tr>
             <td colspan="2">
@@ -18,6 +19,6 @@
             </td>
         </tr>
     </table>
-</form>
+</form:form>
 </body>
 </html>
