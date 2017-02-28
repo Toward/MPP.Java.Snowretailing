@@ -1,11 +1,13 @@
 package shlackAndCo.snowretailing.dal.entities;
 
+import shlackAndCo.snowretailing.dal.contracts.entities.IReviewEntity;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
 @Table(name = "review", schema = "snowretailing_db")
-public class ReviewEntity {
+public class ReviewEntity implements IReviewEntity{
     private int id;
     private String review;
     private Timestamp dateReview;

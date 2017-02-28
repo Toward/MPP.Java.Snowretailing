@@ -1,11 +1,13 @@
 package shlackAndCo.snowretailing.dal.entities;
 
+import shlackAndCo.snowretailing.dal.contracts.entities.IUserEntity;
+
 import javax.persistence.*;
 import java.util.Collection;
 
 @Entity
 @Table(name = "user", schema = "snowretailing_db")
-public class UserEntity {
+public class UserEntity implements IUserEntity {
     private int id;
     private String login;
     private String passwordhash;

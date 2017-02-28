@@ -1,10 +1,12 @@
 package shlackAndCo.snowretailing.dal.entities;
 
+import shlackAndCo.snowretailing.dal.contracts.entities.IPToREntityPK;
+
 import javax.persistence.Column;
 import javax.persistence.Id;
 import java.io.Serializable;
 
-public class PToREntityPK implements Serializable {
+public class PToREntityPK implements IPToREntityPK {
     private int roleId;
     private int permissionId;
 

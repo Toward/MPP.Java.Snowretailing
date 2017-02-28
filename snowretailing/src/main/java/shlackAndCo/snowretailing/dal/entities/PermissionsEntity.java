@@ -1,11 +1,13 @@
 package shlackAndCo.snowretailing.dal.entities;
 
+import shlackAndCo.snowretailing.dal.contracts.entities.IPermissionsEntity;
+
 import javax.persistence.*;
 import java.util.Collection;
 
 @Entity
 @Table(name = "permissions", schema = "snowretailing_db")
-public class PermissionsEntity {
+public class PermissionsEntity implements IPermissionsEntity {
     private int id;
     private String description;
     private Collection<PToREntity> pToRSById;

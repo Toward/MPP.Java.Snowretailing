@@ -1,11 +1,13 @@
 package shlackAndCo.snowretailing.dal.entities;
 
+import shlackAndCo.snowretailing.dal.contracts.entities.IRoleEntity;
+
 import javax.persistence.*;
 import java.util.Collection;
 
 @Entity
 @Table(name = "role", schema = "snowretailing_db")
-public class RoleEntity {
+public class RoleEntity implements IRoleEntity {
     private int id;
     private String roleName;
     private Collection<PToREntity> pToRSById;

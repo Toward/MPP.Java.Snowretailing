@@ -1,10 +1,12 @@
 package shlackAndCo.snowretailing.dal.entities;
 
+import shlackAndCo.snowretailing.dal.contracts.entities.IEquipmentFeatureEntityPK;
+
 import javax.persistence.Column;
 import javax.persistence.Id;
 import java.io.Serializable;
 
-public class EquipmentFeatureEntityPK implements Serializable {
+public class EquipmentFeatureEntityPK implements IEquipmentFeatureEntityPK {
     private int idEquipment;
     private int idCharacteristics;
 

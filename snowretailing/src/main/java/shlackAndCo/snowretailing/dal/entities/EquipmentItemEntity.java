@@ -1,11 +1,13 @@
 package shlackAndCo.snowretailing.dal.entities;
 
+import shlackAndCo.snowretailing.dal.contracts.entities.IEquipmentItemEntity;
+
 import javax.persistence.*;
 import java.util.Collection;
 
 @Entity
 @Table(name = "equipment_item", schema = "snowretailing_db")
-public class EquipmentItemEntity {
+public class EquipmentItemEntity implements IEquipmentItemEntity{
     private int id;
     private byte deleted;
     private EquipmentEntity equipmentByEquipmentId;

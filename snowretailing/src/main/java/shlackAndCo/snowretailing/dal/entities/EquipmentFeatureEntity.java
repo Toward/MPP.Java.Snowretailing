@@ -1,11 +1,13 @@
 package shlackAndCo.snowretailing.dal.entities;
 
+import shlackAndCo.snowretailing.dal.contracts.entities.IEquipmentFeatureEntity;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "equipment_feature", schema = "snowretailing_db")
 @IdClass(EquipmentFeatureEntityPK.class)
-public class EquipmentFeatureEntity {
+public class EquipmentFeatureEntity implements IEquipmentFeatureEntity {
     private int idEquipment;
     private int idCharacteristics;
     private String value;

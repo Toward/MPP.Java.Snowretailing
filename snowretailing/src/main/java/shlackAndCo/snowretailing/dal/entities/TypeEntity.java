@@ -1,11 +1,13 @@
 package shlackAndCo.snowretailing.dal.entities;
 
+import shlackAndCo.snowretailing.dal.contracts.entities.ITypeEntity;
+
 import javax.persistence.*;
 import java.util.Collection;
 
 @Entity
 @Table(name = "type", schema = "snowretailing_db")
-public class TypeEntity {
+public class TypeEntity implements ITypeEntity {
     private int id;
     private Enum name;
     private int cost;

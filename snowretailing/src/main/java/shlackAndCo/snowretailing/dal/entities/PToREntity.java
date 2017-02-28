@@ -1,11 +1,13 @@
 package shlackAndCo.snowretailing.dal.entities;
 
+import shlackAndCo.snowretailing.dal.contracts.entities.IPToREntity;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "p_to_r", schema = "snowretailing_db")
 @IdClass(PToREntityPK.class)
-public class PToREntity {
+public class PToREntity implements IPToREntity{
     private int roleId;
     private int permissionId;
     private RoleEntity roleByRoleId;

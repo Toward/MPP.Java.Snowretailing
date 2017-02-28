@@ -1,5 +1,7 @@
 package shlackAndCo.snowretailing.dal.entities;
 
+import shlackAndCo.snowretailing.dal.contracts.entities.ICredentialEntity;
+
 import javax.persistence.*;
 import java.sql.Date;
 import java.sql.Timestamp;
@@ -7,7 +9,7 @@ import java.util.Collection;
 
 @Entity
 @Table(name = "credential", schema = "snowretailing_db")
-public class CredentialEntity {
+public class CredentialEntity implements ICredentialEntity {
     private String name;
     private String surname;
     private String patronymyc;

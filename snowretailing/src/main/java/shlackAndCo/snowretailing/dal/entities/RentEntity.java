@@ -1,11 +1,13 @@
 package shlackAndCo.snowretailing.dal.entities;
 
+import shlackAndCo.snowretailing.dal.contracts.entities.IRentEntity;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
 @Table(name = "rent", schema = "snowretailing_db")
-public class RentEntity {
+public class RentEntity implements IRentEntity {
     private Timestamp dateExpectedReturn;
     private Timestamp dateFactReturn;
     private Timestamp dateGet;

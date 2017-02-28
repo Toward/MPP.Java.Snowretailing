@@ -1,11 +1,13 @@
 package shlackAndCo.snowretailing.dal.entities;
 
+import shlackAndCo.snowretailing.dal.contracts.entities.ICharacteristicsEntity;
+
 import javax.persistence.*;
 import java.util.Collection;
 
 @Entity
 @Table(name = "characteristics", schema = "snowretailing_db")
-public class CharacteristicsEntity {
+public class CharacteristicsEntity implements ICharacteristicsEntity {
     private int id;
     private Enum name;
     private Enum measurment;

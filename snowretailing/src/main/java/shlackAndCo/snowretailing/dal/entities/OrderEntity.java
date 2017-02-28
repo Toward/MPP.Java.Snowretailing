@@ -1,11 +1,13 @@
 package shlackAndCo.snowretailing.dal.entities;
 
+import shlackAndCo.snowretailing.dal.contracts.entities.IOrderEntity;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
 @Table(name = "order", schema = "snowretailing_db")
-public class OrderEntity {
+public class OrderEntity implements IOrderEntity{
     private int id;
     private Timestamp dateOrderExpire;
     private Timestamp dateOrder;
