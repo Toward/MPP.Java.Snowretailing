@@ -4,7 +4,6 @@ package shlackAndCo.snowretailing.core.contracts.models;
  * Created by Владелец on 28/02/2017.
  */
 public interface ITypeModel extends IBaseModel {
-    public int getId();
 
     public Enum getName();
 
