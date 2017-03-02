@@ -1,5 +1,6 @@
 package shlackAndCo.snowretailing.dal.entities;
 
+import org.hibernate.annotations.GenericGenerator;
 import shlackAndCo.snowretailing.dal.contracts.entities.IPermissionsEntity;
 
 import javax.persistence.*;
@@ -14,6 +15,8 @@ public class PermissionsEntity implements IPermissionsEntity {
 
     @Id
     @Column(name = "ID", nullable = false)
+    @GenericGenerator(name="generator", strategy="increment")
+    @GeneratedValue(generator="generator")
     public int getId() {
         return id;
     }
