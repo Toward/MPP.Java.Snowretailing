@@ -27,6 +27,8 @@ public class BrandModel implements IBrandModel{
         return id;
     }
 
+    public void setId(int id){this.id = id;}
+
     public String getBrandName() {
         return brandName;
     }

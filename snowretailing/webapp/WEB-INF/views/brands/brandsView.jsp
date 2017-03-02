@@ -16,7 +16,7 @@
             <td>><a href="<c:url value='/brands/${brand.id}' />" >${brand.id}</a></td>
             <td>${brand.brandName}</td>
             <td><a href="<c:url value='/brands/${brand.id}/edit' />"  >Edit</a></td>
-            <td><a href="<c:url value='/brands/${brand.id}/delete' />"  data-method="delete">Delete</a></td>
+            <td><a href="<c:url value='/brands/${brand.id}/delete' />" >Delete</a></td>
         </tr>
     </c:forEach>
 </table>

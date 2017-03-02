@@ -2,6 +2,7 @@ package shlackAndCo.snowretailing.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -16,7 +17,7 @@ import shlackAndCo.snowretailing.core.models.TypeModel;
 import javax.validation.Valid;
 import java.util.Collection;
 
-@Service
+@Controller
 public class TypeController {
     private final ITypeService typeService;
 
@@ -65,9 +66,9 @@ public class TypeController {
 
     @RequestMapping(value = "/types/{id}/edit", method = RequestMethod.GET)
     public ModelAndView editBrand(@PathVariable("id") int id) {
-        ITypeModel brand = typeService.getById(id);
+        ITypeModel type = typeService.getById(id);
 
-        return new ModelAndView("types/editType", "type", brand);
+        return new ModelAndView("types/editType", "type", type);
     }
 
     @RequestMapping(value = "/types/{id}/edit", method = RequestMethod.POST)

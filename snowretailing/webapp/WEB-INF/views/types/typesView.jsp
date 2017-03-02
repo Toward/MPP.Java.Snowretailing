@@ -18,7 +18,7 @@
             <td>${type.name}</td>
             <td>${type.cost}</td>
             <td><a href="<c:url value='/types/${type.id}/edit' />"  >Edit</a></td>
-            <td><a href="<c:url value='/types/${type.id}/delete' />"  data-method="delete">Delete</a></td>
+            <td><a href="<c:url value='/types/${type.id}/delete' />" >Delete</a></td>
         </tr>
     </c:forEach>
 </table>

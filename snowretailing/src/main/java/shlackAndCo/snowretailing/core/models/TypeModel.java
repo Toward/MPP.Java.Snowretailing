@@ -1,16 +1,11 @@
 package shlackAndCo.snowretailing.core.models;
 
-import org.hibernate.validator.constraints.NotEmpty;
 import shlackAndCo.snowretailing.core.contracts.models.ITypeModel;
 import shlackAndCo.snowretailing.dal.contracts.entities.ITypeEntity;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
-/**
- * Created by Владелец on 28/02/2017.
- */
 public class TypeModel implements ITypeModel {
     private int id;
 
@@ -32,6 +27,11 @@ public class TypeModel implements ITypeModel {
     @Override
     public int getId() {
         return id;
+    }
+
+    @Override
+    public void setId(int id) {
+        this.id = id;
     }
 
     @Override
