@@ -9,7 +9,7 @@ import java.sql.Timestamp;
 import java.util.Collection;
 
 
-public interface ICredentialModel {
+public interface ICredentialModel extends IBaseModel {
     public String getName();
 
     public void setName(String name);
