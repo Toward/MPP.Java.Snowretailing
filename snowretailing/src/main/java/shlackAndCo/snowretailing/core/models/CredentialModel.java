@@ -14,6 +14,7 @@ import java.sql.Timestamp;
  * Created by Владелец on 03/03/2017.
  */
 public class CredentialModel implements ICredentialModel {
+    private int id;
     @NotEmpty
     private String name;
     @NotEmpty
@@ -150,5 +151,15 @@ public class CredentialModel implements ICredentialModel {
     @Override
     public void setType(String type) {
         this.type = type;
+    }
+
+    @Override
+    public int getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(int id) {
+        this.id = id;
     }
 }
