@@ -1,8 +1,7 @@
 package shlackAndCo.snowretailing.dal.contracts.entities;
 
-import shlackAndCo.snowretailing.dal.entities.PToREntity;
+import shlackAndCo.snowretailing.dal.entities.RoleEntity;
 
-import javax.persistence.*;
 import java.util.Collection;
 
 public interface IPermissionsEntity {
@@ -14,7 +13,7 @@ public interface IPermissionsEntity {
 
     public void setDescription(String description);
 
-    public Collection<PToREntity> getpToRSById();
+    public Collection<RoleEntity> getRoles();
 
-    public void setpToRSById(Collection<PToREntity> pToRSById);
+    public void setRoles(Collection<RoleEntity> roles);
 }

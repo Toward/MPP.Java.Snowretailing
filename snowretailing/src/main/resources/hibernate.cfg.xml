@@ -19,7 +19,6 @@
         <mapping class="shlackAndCo.snowretailing.dal.entities.EquipmentFeatureEntity"/>
         <mapping class="shlackAndCo.snowretailing.dal.entities.EquipmentItemEntity"/>
         <mapping class="shlackAndCo.snowretailing.dal.entities.OrderEntity"/>
-        <mapping class="shlackAndCo.snowretailing.dal.entities.PToREntity"/>
         <mapping class="shlackAndCo.snowretailing.dal.entities.PermissionsEntity"/>
         <mapping class="shlackAndCo.snowretailing.dal.entities.RentEntity"/>
         <mapping class="shlackAndCo.snowretailing.dal.entities.ReviewEntity"/>

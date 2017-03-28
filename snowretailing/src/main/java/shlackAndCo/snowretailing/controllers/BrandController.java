@@ -21,7 +21,8 @@ public class BrandController {
     private final IBrandService brandService;
 
     @Autowired
-    public BrandController(@Qualifier("brandService") IBrandService brandService) throws IllegalArgumentException {
+    public BrandController(@Qualifier("brandService") IBrandService brandService)
+            throws IllegalArgumentException {
         if (brandService == null)
             throw new IllegalArgumentException("brandService is null");
 

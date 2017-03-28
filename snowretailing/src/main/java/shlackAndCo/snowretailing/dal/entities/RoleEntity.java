@@ -1,6 +1,7 @@
 package shlackAndCo.snowretailing.dal.entities;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.transaction.annotation.Transactional;
 import shlackAndCo.snowretailing.dal.contracts.entities.IRoleEntity;
 
 import javax.persistence.*;
@@ -11,7 +12,7 @@ import java.util.Collection;
 public class RoleEntity implements IRoleEntity {
     private int id;
     private String roleName;
-    private Collection<PToREntity> pToRSById;
+    private Collection<PermissionsEntity> permissions;
     private Collection<UserEntity> usersById;
 
     @Id
@@ -56,13 +57,19 @@ public class RoleEntity implements IRoleEntity {
         return result;
     }
 
-    @OneToMany(mappedBy = "roleByRoleId")
-    public Collection<PToREntity> getpToRSById() {
-        return pToRSById;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "p_to_r",
+            joinColumns = @JoinColumn(
+                    name = "role_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(
+                    name = "permission_id", referencedColumnName = "id"))
+    public Collection<PermissionsEntity> getPermissions(){
+        return permissions;
     }
 
-    public void setpToRSById(Collection<PToREntity> pToRSById) {
-        this.pToRSById = pToRSById;
+    public void setPermissions(Collection<PermissionsEntity> permissions){
+        this.permissions = permissions;
     }
 
     @OneToMany(mappedBy = "roleByRoleId")

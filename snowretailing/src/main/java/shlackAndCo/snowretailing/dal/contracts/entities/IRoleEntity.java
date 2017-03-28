@@ -1,9 +1,8 @@
 package shlackAndCo.snowretailing.dal.contracts.entities;
 
-import shlackAndCo.snowretailing.dal.entities.PToREntity;
+import shlackAndCo.snowretailing.dal.entities.PermissionsEntity;
 import shlackAndCo.snowretailing.dal.entities.UserEntity;
 
-import javax.persistence.*;
 import java.util.Collection;
 
 public interface IRoleEntity {
@@ -16,9 +15,9 @@ public interface IRoleEntity {
 
     public void setRoleName(String roleName);
 
-    public Collection<PToREntity> getpToRSById();
+    public Collection<PermissionsEntity> getPermissions();
 
-    public void setpToRSById(Collection<PToREntity> pToRSById);
+    public void setPermissions(Collection<PermissionsEntity> permissions);
 
     public Collection<UserEntity> getUsersById();
 

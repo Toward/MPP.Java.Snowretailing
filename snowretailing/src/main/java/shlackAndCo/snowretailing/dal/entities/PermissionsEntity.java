@@ -11,7 +11,7 @@ import java.util.Collection;
 public class PermissionsEntity implements IPermissionsEntity {
     private int id;
     private String description;
-    private Collection<PToREntity> pToRSById;
+    private Collection<RoleEntity> roles;
 
     @Id
     @Column(name = "ID", nullable = false)
@@ -55,12 +55,12 @@ public class PermissionsEntity implements IPermissionsEntity {
         return result;
     }
 
-    @OneToMany(mappedBy = "permissionsByPermissionId")
-    public Collection<PToREntity> getpToRSById() {
-        return pToRSById;
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "permissions")
+    public Collection<RoleEntity> getRoles() {
+        return roles;
     }
 
-    public void setpToRSById(Collection<PToREntity> pToRSById) {
-        this.pToRSById = pToRSById;
+    public void setRoles(Collection<RoleEntity> roles) {
+        this.roles = roles;
     }
 }

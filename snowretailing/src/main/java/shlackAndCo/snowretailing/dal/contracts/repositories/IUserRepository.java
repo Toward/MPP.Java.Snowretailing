@@ -6,4 +6,5 @@ import shlackAndCo.snowretailing.dal.contracts.entities.IUserEntity;
 
 @Component
 public interface IUserRepository extends IBaseRepository<IUserEntity> {
+    IUserEntity getByLogin(String login);
 }
