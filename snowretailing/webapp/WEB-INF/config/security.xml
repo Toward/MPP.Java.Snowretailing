@@ -38,7 +38,8 @@
         <!--<security:logout />-->
     <!--</security:http>-->
 
-    <security:http entry-point-ref="restAuthenticationEntryPoint" use-expressions="true" auto-config="false" create-session="stateless" >
+    <security:http pattern="/**" entry-point-ref="restAuthenticationEntryPoint" use-expressions="true" auto-config="false" create-session="stateless" >
+        <security:csrf disabled="true"/>
         <security:custom-filter ref="authenticationTokenProcessingFilter" position="FORM_LOGIN_FILTER"/>
     </security:http>
 
