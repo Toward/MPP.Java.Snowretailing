@@ -2,6 +2,8 @@ package shlackAndCo.snowretailing.dal.entities;
 
 import org.hibernate.annotations.GenericGenerator;
 import shlackAndCo.snowretailing.dal.contracts.entities.ICharacteristicsEntity;
+import shlackAndCo.snowretailing.dal.enums.CharacteristicsMeasurments;
+import shlackAndCo.snowretailing.dal.enums.CharacteristicsNames;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -10,8 +12,8 @@ import java.util.Collection;
 @Table(name = "characteristics", schema = "snowretailing_db")
 public class CharacteristicsEntity implements ICharacteristicsEntity {
     private int id;
-    private Enum name;
-    private Enum measurment;
+    private CharacteristicsNames name;
+    private CharacteristicsMeasurments measurment;
     private Collection<EquipmentFeatureEntity> equipmentFeaturesById;
 
     @Id
@@ -28,21 +30,21 @@ public class CharacteristicsEntity implements ICharacteristicsEntity {
 
     @Basic
     @Column(name = "NAME", nullable = true)
-    public Enum getName() {
+    public CharacteristicsNames getName() {
         return name;
     }
 
-    public void setName(Enum name) {
+    public void setName(CharacteristicsNames name) {
         this.name = name;
     }
 
     @Basic
     @Column(name = "MEASURMENT", nullable = true)
-    public Enum getMeasurment() {
+    public CharacteristicsMeasurments getMeasurment() {
         return measurment;
     }
 
-    public void setMeasurment(Enum measurment) {
+    public void setMeasurment(CharacteristicsMeasurments measurment) {
         this.measurment = measurment;
     }
 
