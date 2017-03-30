@@ -4,7 +4,7 @@ import shlackAndCo.snowretailing.dal.entities.*;
 
 import java.util.Collection;
 
-public interface IEquipmentModel extends IBaseModel {
+public interface IEquipmentModel extends IBaseModel, ITypeModel {
 
     public String getModel();
 
@@ -17,4 +17,7 @@ public interface IEquipmentModel extends IBaseModel {
     public byte getDeleted();
 
     public void setDeleted(byte deleted);
+
+    public int getQuantity();
+
 }

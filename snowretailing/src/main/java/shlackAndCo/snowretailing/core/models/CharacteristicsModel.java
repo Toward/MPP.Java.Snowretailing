@@ -2,6 +2,8 @@ package shlackAndCo.snowretailing.core.models;
 
 import shlackAndCo.snowretailing.core.contracts.models.ICharacteristicsModel;
 import shlackAndCo.snowretailing.dal.contracts.entities.ICharacteristicsEntity;
+import shlackAndCo.snowretailing.dal.enums.CharacteristicsMeasurments;
+import shlackAndCo.snowretailing.dal.enums.CharacteristicsNames;
 
 import javax.validation.constraints.NotNull;
 
@@ -12,9 +14,9 @@ public class CharacteristicsModel implements ICharacteristicsModel {
 
     private int id;
     @NotNull
-    private Enum name;
+    private CharacteristicsNames name;
     @NotNull
-    private Enum measurment;
+    private CharacteristicsMeasurments measurment;
 
     public CharacteristicsModel(){
         id = 0;
@@ -35,22 +37,22 @@ public class CharacteristicsModel implements ICharacteristicsModel {
     }
 
     @Override
-    public Enum getName() {
+    public CharacteristicsNames getName() {
         return name;
     }
 
     @Override
-    public void setName(Enum name) {
+    public void setName(CharacteristicsNames name) {
         this.name = name;
     }
 
     @Override
-    public Enum getMeasurment() {
+    public CharacteristicsMeasurments getMeasurment() {
         return measurment;
     }
 
     @Override
-    public void setMeasurment(Enum measurment) {
+    public void setMeasurment(CharacteristicsMeasurments measurment) {
         this.measurment = measurment;
     }
 }
