@@ -1,16 +1,35 @@
 package shlackAndCo.snowretailing.core.models;
 
+import shlackAndCo.snowretailing.core.contracts.models.IRoleModel;
 import shlackAndCo.snowretailing.core.contracts.models.IUserModel;
+import shlackAndCo.snowretailing.dal.contracts.entities.IUserEntity;
 
 public class UserModel implements IUserModel {
+    private int id;
     private String login;
-    private String password;
+    private String passwordHash;
+    private IRoleModel role;
 
-    public UserModel(){}
+    public UserModel(IUserEntity user){
+        this.id = user.getId();
+        this.login = user.getLogin();
+        this.passwordHash = user.getPasswordHash();
+        this.role = new RoleModel(user.getRoleByRoleId());
+    }
 
     public UserModel(String login, String password){
         this.login = login;
-        this.password = password;
+        this.passwordHash = password;
+    }
+
+    @Override
+    public int getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getLogin() {
@@ -21,11 +40,21 @@ public class UserModel implements IUserModel {
         this.login = login;
     }
 
-    public String getPassword() {
-        return password;
+    public String getPasswordHash() {
+        return passwordHash;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPasswordHash(String passwordHash) {
+        this.passwordHash = passwordHash;
+    }
+
+    @Override
+    public IRoleModel getRole() {
+        return role;
+    }
+
+    @Override
+    public void setRole(IRoleModel role) {
+        this.role = role;
     }
 }

@@ -7,13 +7,17 @@ import shlackAndCo.snowretailing.dal.entities.RoleEntity;
 
 import java.util.Collection;
 
-public interface IUserModel{
+public interface IUserModel extends IBaseModel{
 
-    public String getLogin();
+    String getLogin();
 
-    public void setLogin(String login);
+    void setLogin(String login);
 
-    public String getPassword();
+    String getPasswordHash();
 
-    public void setPassword(String passwordhash);
+    void setPasswordHash(String passwordHash);
+
+    IRoleModel getRole();
+
+    void setRole(IRoleModel role);
 }

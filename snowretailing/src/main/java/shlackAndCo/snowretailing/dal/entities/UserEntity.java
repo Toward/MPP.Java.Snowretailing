@@ -41,11 +41,11 @@ public class UserEntity implements IUserEntity {
 
     @Basic
     @Column(name = "PASSWORDHASH", nullable = false, length = 50)
-    public String getPasswordhash() {
+    public String getPasswordHash() {
         return passwordhash;
     }
 
-    public void setPasswordhash(String passwordhash) {
+    public void setPasswordHash(String passwordhash) {
         this.passwordhash = passwordhash;
     }
 
@@ -58,9 +58,7 @@ public class UserEntity implements IUserEntity {
 
         if (id != that.id) return false;
         if (login != null ? !login.equals(that.login) : that.login != null) return false;
-        if (passwordhash != null ? !passwordhash.equals(that.passwordhash) : that.passwordhash != null) return false;
-
-        return true;
+        return passwordhash != null ? passwordhash.equals(that.passwordhash) : that.passwordhash == null;
     }
 
     @Override

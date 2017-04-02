@@ -76,7 +76,8 @@ public class TypeController {
         if (result.hasErrors())
             return new ModelAndView("types/editType", result.getModel());
 
-        typeService.edit(id,typeModel);
+        typeModel.setId(id);
+        typeService.edit(typeModel);
 
         return new ModelAndView("redirect:/types");
     }

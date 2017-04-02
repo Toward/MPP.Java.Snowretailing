@@ -16,9 +16,6 @@ import shlackAndCo.snowretailing.dal.entities.CharacteristicsEntity;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
-/**
- * Created by Владелец on 02/03/2017.
- */
 @Service
 public class CharacteristicsService implements ICharacteristicsService {
     private final ICharacteristicsRepository repository;
@@ -34,7 +31,7 @@ public class CharacteristicsService implements ICharacteristicsService {
     @Override
     public Collection<ICharacteristicsModel> getAll() {
         Collection<ICharacteristicsEntity> brandEntities = repository.getAll();
-        return brandEntities.stream().map(x -> new CharacteristicsModel(x)).collect(Collectors.toList());
+        return brandEntities.stream().map(CharacteristicsModel::new).collect(Collectors.toList());
     }
 
     @Override
@@ -54,16 +51,16 @@ public class CharacteristicsService implements ICharacteristicsService {
         return repository.create(Map(model));
     }
 
-    public void edit(int id, ICharacteristicsModel model) throws IllegalArgumentException {
-        if (id <= 0)
+    public void edit(ICharacteristicsModel model) throws IllegalArgumentException {
+        if (model.getId() <= 0)
             throw new IllegalArgumentException("id must be greater than zero");
         if (model == null)
             throw new IllegalArgumentException("Model is null");
-        if (getById(id) == null)
-            throw new IllegalArgumentException("Model with id: "+id+" not exist");
+        if (getById(model.getId()) == null)
+            throw new IllegalArgumentException("Model with id: "+model.getId()+" not exist");
 
         ICharacteristicsEntity entity = Map(model);
-        entity.setId(id);
+        entity.setId(model.getId());
         repository.update(entity);
     }
 

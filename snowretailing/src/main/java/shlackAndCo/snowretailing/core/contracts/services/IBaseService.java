@@ -2,14 +2,14 @@ package shlackAndCo.snowretailing.core.contracts.services;
 
 import java.util.Collection;
 
-public interface IBaseService<T> {
-        Collection<T> getAll();
+public interface IBaseService<TModel,TEntity> {
+        Collection<TModel> getAll();
 
-        T getById(int id) throws IllegalArgumentException;
+        TModel getById(int id);
 
-        int create(T model) throws IllegalArgumentException;
+        int create(TModel model);
 
-        void edit(int id, T model) throws IllegalArgumentException;
+        void edit(TModel model);
 
-        void delete(int id) throws IllegalArgumentException;
+        void delete(int id);
 }

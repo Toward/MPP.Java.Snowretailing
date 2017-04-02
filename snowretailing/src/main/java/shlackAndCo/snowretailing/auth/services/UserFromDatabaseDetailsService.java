@@ -28,7 +28,7 @@ public class UserFromDatabaseDetailsService implements UserDetailsService {
         IUserEntity user = userRepository.getByLogin(login);
         if(user == null)
             throw new UsernameNotFoundException("Username not found");
-        return new User(user.getLogin(),user.getPasswordhash(),true,true,true,
+        return new User(user.getLogin(),user.getPasswordHash(),true,true,true,
                 true,getAuthorities(user.getRoleByRoleId()));
     }
 

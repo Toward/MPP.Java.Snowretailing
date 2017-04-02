@@ -16,9 +16,6 @@ import shlackAndCo.snowretailing.core.models.CharacteristicsModel;
 import javax.validation.Valid;
 import java.util.Collection;
 
-/**
- * Created by Владелец on 03/03/2017.
- */
 @Controller
 public class CharacteristicsController {
     private final ICharacteristicsService service;
@@ -78,7 +75,8 @@ public class CharacteristicsController {
         if (result.hasErrors())
             return new ModelAndView("characteristic/editCharacteristic", result.getModel());
 
-        service.edit(id, model);
+        model.setId(id);
+        service.edit(model);
 
         return new ModelAndView("redirect:/characteristics");
     }

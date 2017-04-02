@@ -9,28 +9,21 @@ import shlackAndCo.snowretailing.auth.contracts.services.IAuthService;
 import shlackAndCo.snowretailing.auth.contracts.services.ICryptographyService;
 import shlackAndCo.snowretailing.auth.models.Token;
 import shlackAndCo.snowretailing.core.contracts.models.IUserModel;
-import shlackAndCo.snowretailing.core.enums.Role;
-import shlackAndCo.snowretailing.dal.contracts.entities.IUserEntity;
-import shlackAndCo.snowretailing.dal.contracts.repositories.IRoleRepository;
-import shlackAndCo.snowretailing.dal.contracts.repositories.IUserRepository;
-import shlackAndCo.snowretailing.dal.entities.RoleEntity;
-import shlackAndCo.snowretailing.dal.entities.UserEntity;
+import shlackAndCo.snowretailing.core.contracts.services.IRoleService;
+import shlackAndCo.snowretailing.core.contracts.services.IUserService;
 
 import java.io.IOException;
 
 @Service
 public class AuthService implements IAuthService {
-    private final IUserRepository userRepository;
-    private final IRoleRepository roleRepository;
+    private final IUserService userService;
     private final ICryptographyService cryptographyService;
     private final ObjectMapper mapper;
 
     @Autowired
-    public AuthService(@Qualifier("userRepository") IUserRepository userRepository,
-                       @Qualifier("roleRepository") IRoleRepository roleRepository,
+    public AuthService(@Qualifier("userService") IUserService userService,
                        @Autowired @Qualifier("cryptographyService") ICryptographyService cryptographyService){
-        this.userRepository = userRepository;
-        this.roleRepository = roleRepository;
+        this.userService = userService;
         this.cryptographyService = cryptographyService;
         mapper = new ObjectMapper();
     }
@@ -40,10 +33,11 @@ public class AuthService implements IAuthService {
         if (user == null)
             throw new IllegalArgumentException("User is null");
 
-        IUserEntity loggingUser = userRepository.getByLogin(user.getLogin());
-        String hashedPassword = DigestUtils.md5Hex(user.getPassword());
-        if(loggingUser == null || !loggingUser.getPasswordhash().equals(hashedPassword))
+        IUserModel loggingUser = userService.getByLogin(user.getLogin());
+        String hashedPassword = DigestUtils.md5Hex(user.getPasswordHash());
+        if(loggingUser == null || !loggingUser.getPasswordHash().equals(hashedPassword))
             throw new IllegalArgumentException("User login or password is incorrect");
+
         Token token = new Token(user.getLogin(), hashedPassword);
         String tokenString;
         try {
@@ -51,29 +45,20 @@ public class AuthService implements IAuthService {
         } catch (IOException e) {
             return null;
         }
-        String encryptedToken = cryptographyService.encrypt(tokenString);
-        return encryptedToken;
+        return cryptographyService.encrypt(tokenString);
     }
 
     @Override
-    public void Register(IUserModel user,Role role) {
+    public void Register(IUserModel user) {
         if (user == null)
             throw new IllegalArgumentException("User is null");
-        if(role == null)
-            throw new IllegalArgumentException("Role is null");
-        if(userRepository.getByLogin(user.getLogin()) != null)
+        if(userService.getByLogin(user.getLogin()) != null)
             throw new IllegalArgumentException("User with such login exists");
 
-        String hashedPassword = DigestUtils.md5Hex(user.getPassword());
-        RoleEntity roleEntity = new RoleEntity();
-        roleEntity.setId(roleRepository.getByRoleName(role.toString()).getId());
+        String hashedPassword = DigestUtils.md5Hex(user.getPasswordHash());
+        user.setPasswordHash(hashedPassword);
 
-        IUserEntity newUser = new UserEntity();
-        newUser.setLogin(user.getLogin());
-        newUser.setPasswordhash(hashedPassword);
-        newUser.setRoleByRoleId(roleEntity);
-
-        userRepository.create(newUser);
+        userService.create(user);
     }
 
     @Override
@@ -83,13 +68,13 @@ public class AuthService implements IAuthService {
         if(newPassword == null || newPassword.isEmpty())
             throw new IllegalArgumentException("New password is empty");
 
-        IUserEntity editedUser = userRepository.getByLogin(user.getLogin());
-        String oldHashedPassword = DigestUtils.md5Hex(user.getPassword());
-        if(editedUser == null || !editedUser.getPasswordhash().equals(oldHashedPassword))
+        IUserModel editedUser = userService.getByLogin(user.getLogin());
+        String oldHashedPassword = DigestUtils.md5Hex(user.getPasswordHash());
+        if(editedUser == null || !editedUser.getPasswordHash().equals(oldHashedPassword))
             throw new IllegalArgumentException("User login or password is incorrect");
 
         String newHashedPassword = DigestUtils.md5Hex(newPassword);
-        editedUser.setPasswordhash(newHashedPassword);
-        userRepository.update(editedUser);
+        editedUser.setPasswordHash(newHashedPassword);
+        userService.edit(editedUser);
     }
 }

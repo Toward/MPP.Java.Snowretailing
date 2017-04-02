@@ -28,7 +28,7 @@ public class BrandService implements IBrandService {
     @Override
     public Collection<IBrandModel> getAll() {
         Collection<IBrandEntity> brandEntities = brandRepository.getAll();
-        return brandEntities.stream().map(x -> new BrandModel(x)).collect(Collectors.toList());
+        return brandEntities.stream().map(BrandModel::new).collect(Collectors.toList());
     }
 
     @Override
@@ -48,16 +48,16 @@ public class BrandService implements IBrandService {
         return brandRepository.create(Map(model));
     }
 
-    public void edit(int id, IBrandModel model) throws IllegalArgumentException {
-        if (id <= 0)
+    public void edit(IBrandModel model) throws IllegalArgumentException {
+        if (model.getId() <= 0)
             throw new IllegalArgumentException("id must be greater than zero");
         if (model == null)
             throw new IllegalArgumentException("brandModel is null");
-        if (getById(id) == null)
-            throw new IllegalArgumentException("brandModel with id: "+id+" not exist");
+        if (getById(model.getId()) == null)
+            throw new IllegalArgumentException("brandModel with id: "+model.getId()+" not exist");
 
         IBrandEntity entity = Map(model);
-        entity.setId(id);
+        entity.setId(model.getId());
         brandRepository.update(entity);
     }
 

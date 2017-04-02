@@ -75,8 +75,8 @@ public class BrandController {
     public ModelAndView editBrand(@PathVariable("id") int id, @Valid @ModelAttribute("brand") BrandModel brandModel, BindingResult result) {
         if (result.hasErrors())
             return new ModelAndView("brands/editBrand", result.getModel());
-
-        brandService.edit(id, brandModel);
+        brandModel.setId(id);
+        brandService.edit(brandModel);
 
         return new ModelAndView("redirect:/brands");
     }

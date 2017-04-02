@@ -15,7 +15,7 @@ import java.util.Collection;
 import java.util.stream.Collectors;
 
 @Service
-public class    TypeService implements ITypeService {
+public class TypeService implements ITypeService {
     private final ITypeRepository typeRepository;
 
     @Autowired
@@ -28,7 +28,7 @@ public class    TypeService implements ITypeService {
     @Override
     public Collection<ITypeModel> getAll() {
         Collection<ITypeEntity> typeEntities = typeRepository.getAll();
-        return typeEntities.stream().map(x -> new TypeModel(x)).collect(Collectors.toList());
+        return typeEntities.stream().map(TypeModel::new).collect(Collectors.toList());
     }
 
     @Override
@@ -50,16 +50,16 @@ public class    TypeService implements ITypeService {
     }
 
     @Override
-    public void edit(int id, ITypeModel model) throws IllegalArgumentException {
-        if (id <= 0)
+    public void edit(ITypeModel model) throws IllegalArgumentException {
+        if (model.getId() <= 0)
             throw new IllegalArgumentException("id must be greater than zero");
         if (model == null)
             throw new IllegalArgumentException("typeModel is null");
-        if (getById(id) == null)
-            throw new IllegalArgumentException("typeModel with id: "+id+" not exist");
+        if (getById(model.getId()) == null)
+            throw new IllegalArgumentException("typeModel with id: "+model.getId()+" not exist");
 
         ITypeEntity entity = Map(model);
-        entity.setId(id);
+        entity.setId(model.getId());
         typeRepository.update(entity);
     }
 

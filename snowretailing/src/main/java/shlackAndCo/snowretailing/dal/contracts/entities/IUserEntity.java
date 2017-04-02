@@ -12,29 +12,29 @@ public interface IUserEntity {
 
     public int getId();
 
-    public void setId(int id) ;
+    void setId(int id) ;
 
-    public String getLogin();
+    String getLogin();
 
-    public void setLogin(String login);
+    void setLogin(String login);
 
-    public String getPasswordhash();
+    String getPasswordHash();
 
-    public void setPasswordhash(String passwordhash);
+    void setPasswordHash(String passwordhash);
 
-    public Collection<CredentialEntity> getCredentialsById();
+    Collection<CredentialEntity> getCredentialsById();
 
-    public void setCredentialsById(Collection<CredentialEntity> credentialsById);
+    void setCredentialsById(Collection<CredentialEntity> credentialsById);
 
-    public Collection<OrderEntity> getOrdersById();
+    Collection<OrderEntity> getOrdersById();
 
-    public void setOrdersById(Collection<OrderEntity> ordersById);
+    void setOrdersById(Collection<OrderEntity> ordersById);
 
-    public Collection<ReviewEntity> getReviewsById();
+    Collection<ReviewEntity> getReviewsById();
 
-    public void setReviewsById(Collection<ReviewEntity> reviewsById);
+    void setReviewsById(Collection<ReviewEntity> reviewsById);
 
-    public RoleEntity getRoleByRoleId();
+    RoleEntity getRoleByRoleId();
 
-    public void setRoleByRoleId(RoleEntity roleByRoleId);
+    void setRoleByRoleId(RoleEntity roleByRoleId);
 }
