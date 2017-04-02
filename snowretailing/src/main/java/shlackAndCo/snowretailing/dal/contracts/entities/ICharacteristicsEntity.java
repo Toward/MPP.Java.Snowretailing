@@ -1,6 +1,8 @@
 package shlackAndCo.snowretailing.dal.contracts.entities;
 
 import shlackAndCo.snowretailing.dal.entities.*;
+import shlackAndCo.snowretailing.dal.enums.CharacteristicsMeasurments;
+import shlackAndCo.snowretailing.dal.enums.CharacteristicsNames;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -16,13 +18,13 @@ public interface ICharacteristicsEntity {
 
     public void setId(int id);
 
-    public Enum getName();
+    public CharacteristicsNames getName();
 
-    public void setName(Enum name);
+    public void setName(CharacteristicsNames name);
 
-    public Enum getMeasurment();
+    public CharacteristicsMeasurments getMeasurment();
 
-    public void setMeasurment(Enum measurment);
+    public void setMeasurment(CharacteristicsMeasurments measurment);
 
     public Collection<EquipmentFeatureEntity> getEquipmentFeaturesById();
 

@@ -1,10 +1,11 @@
 package shlackAndCo.snowretailing.core.contracts.models;
 
+import shlackAndCo.snowretailing.core.utils.CharacteristicsValue;
 import shlackAndCo.snowretailing.dal.entities.*;
 
 import java.util.Collection;
 
-public interface IEquipmentModel extends IBaseModel {
+public interface IEquipmentModel extends IBaseModel, ITypeModel, IBrandModel {
 
     public String getModel();
 
@@ -17,4 +18,7 @@ public interface IEquipmentModel extends IBaseModel {
     public byte getDeleted();
 
     public void setDeleted(byte deleted);
+
+    public int getQuantity();
+    public Collection<CharacteristicsValue> getCharacteristicsValues();
 }

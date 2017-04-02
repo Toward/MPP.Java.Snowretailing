@@ -1,13 +1,15 @@
 package shlackAndCo.snowretailing.core.contracts.models;
 
+import shlackAndCo.snowretailing.dal.enums.EquipmentTypes;
+
 /**
  * Created by Владелец on 28/02/2017.
  */
 public interface ITypeModel extends IBaseModel {
 
-    public Enum getName();
+    public EquipmentTypes getName();
 
-    public void setName(Enum name);
+    public void setName(EquipmentTypes name);
 
     public int getCost();
 

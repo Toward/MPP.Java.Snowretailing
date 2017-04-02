@@ -1,17 +1,20 @@
 package shlackAndCo.snowretailing.core.contracts.models;
 
+import shlackAndCo.snowretailing.dal.enums.CharacteristicsMeasurments;
+import shlackAndCo.snowretailing.dal.enums.CharacteristicsNames;
+
 /**
  * Created by Владелец on 02/03/2017.
  */
 public interface ICharacteristicsModel extends IBaseModel {
 
-        public Enum getName();
+        public CharacteristicsNames getName();
 
-        public void setName(Enum name);
+        public void setName(CharacteristicsNames name);
 
-        public Enum getMeasurment();
+        public CharacteristicsMeasurments getMeasurment();
 
-        public void setMeasurment(Enum measurment);
+        public void setMeasurment(CharacteristicsMeasurments measurment);
 
 
 }

@@ -2,6 +2,7 @@ package shlackAndCo.snowretailing.core.models;
 
 import shlackAndCo.snowretailing.core.contracts.models.ITypeModel;
 import shlackAndCo.snowretailing.dal.contracts.entities.ITypeEntity;
+import shlackAndCo.snowretailing.dal.enums.EquipmentTypes;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -10,7 +11,7 @@ public class TypeModel implements ITypeModel {
     private int id;
 
     @NotNull
-    private Enum name;
+    private EquipmentTypes name;
 
     @NotNull @Min(0)
     private int cost;
@@ -35,12 +36,12 @@ public class TypeModel implements ITypeModel {
     }
 
     @Override
-    public Enum getName() {
+    public EquipmentTypes getName() {
         return name;
     }
 
     @Override
-    public void setName(Enum name) {
+    public void setName(EquipmentTypes name) {
         this.name = name;
     }
 

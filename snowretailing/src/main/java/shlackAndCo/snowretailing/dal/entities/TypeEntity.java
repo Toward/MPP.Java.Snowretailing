@@ -2,6 +2,7 @@ package shlackAndCo.snowretailing.dal.entities;
 
 import org.hibernate.annotations.GenericGenerator;
 import shlackAndCo.snowretailing.dal.contracts.entities.ITypeEntity;
+import shlackAndCo.snowretailing.dal.enums.EquipmentTypes;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -10,7 +11,7 @@ import java.util.Collection;
 @Table(name = "type", schema = "snowretailing_db")
 public class TypeEntity implements ITypeEntity {
     private int id;
-    private Enum name;
+    private EquipmentTypes name;
     private int cost;
     private Collection<EquipmentEntity> equipmentsById;
 
@@ -28,11 +29,11 @@ public class TypeEntity implements ITypeEntity {
 
     @Basic
     @Column(name = "NAME", nullable = true)
-    public Enum getName() {
+    public EquipmentTypes getName() {
         return name;
     }
 
-    public void setName(Enum name) {
+    public void setName(EquipmentTypes name) {
         this.name = name;
     }
 
