@@ -66,16 +66,16 @@ public class EquipmentService implements IEquipmentService {
     }
 
     @Override
-    public void edit(int id, IEquipmentModel model) throws IllegalArgumentException {
-        if (id <= 0)
+    public void edit(IEquipmentModel model) throws IllegalArgumentException {
+        if (model.getId() <= 0)
             throw new IllegalArgumentException("id must be greater than zero");
         if (model == null)
             throw new IllegalArgumentException("equipmentModel is null");
-        if (getById(id) == null)
-            throw new IllegalArgumentException("equipmentModel with id: "+id+" not exist");
+        if (getById(model.getId()) == null)
+            throw new IllegalArgumentException("equipmentModel with id: "+model.getId()+" not exist");
 
         IEquipmentEntity entity = Map(model);
-        entity.setId(id);
+        entity.setId(model.getId());
         equipmentRepository.update(entity);
     }
 
