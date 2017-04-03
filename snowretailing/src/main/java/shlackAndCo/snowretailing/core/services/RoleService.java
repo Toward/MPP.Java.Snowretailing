@@ -6,8 +6,6 @@ import org.springframework.stereotype.Service;
 import shlackAndCo.snowretailing.core.contracts.infastructure.mappers.IMapper;
 import shlackAndCo.snowretailing.core.contracts.models.IRoleModel;
 import shlackAndCo.snowretailing.core.contracts.services.IRoleService;
-import shlackAndCo.snowretailing.core.infastructure.mappers.roles.RoleEntityToModelMapper;
-import shlackAndCo.snowretailing.core.infastructure.mappers.roles.RoleModelToEntityMapper;
 import shlackAndCo.snowretailing.dal.contracts.entities.IRoleEntity;
 import shlackAndCo.snowretailing.dal.contracts.repositories.IRoleRepository;
 
@@ -17,10 +15,12 @@ public class RoleService extends BaseService<IRoleModel, IRoleEntity> implements
     private final IMapper<IRoleEntity, IRoleModel> mapper;
 
     @Autowired
-    public RoleService(@Qualifier("roleRepository")  IRoleRepository roleRepository) {
-        super(roleRepository, RoleModelToEntityMapper.getInstance(), RoleEntityToModelMapper.getInstance());
+    public RoleService(@Qualifier("roleRepository")  IRoleRepository roleRepository,
+                       @Qualifier("roleModelToEntityMapper") IMapper<IRoleModel, IRoleEntity> roleModelToEntityMapper,
+                       @Qualifier("roleEntityToModelMapper") IMapper<IRoleEntity, IRoleModel> roleEntityToModelMapper) {
+        super(roleRepository, roleModelToEntityMapper, roleEntityToModelMapper);
         this.roleRepository = roleRepository;
-        mapper = RoleEntityToModelMapper.getInstance();
+        mapper = roleEntityToModelMapper;
     }
 
     @Override

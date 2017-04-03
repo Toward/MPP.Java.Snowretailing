@@ -6,8 +6,6 @@ import org.springframework.stereotype.Service;
 import shlackAndCo.snowretailing.core.contracts.infastructure.mappers.IMapper;
 import shlackAndCo.snowretailing.core.contracts.models.IUserModel;
 import shlackAndCo.snowretailing.core.contracts.services.IUserService;
-import shlackAndCo.snowretailing.core.infastructure.mappers.users.UserEntityToModelMapper;
-import shlackAndCo.snowretailing.core.infastructure.mappers.users.UserModelToEntityMapper;
 import shlackAndCo.snowretailing.dal.contracts.entities.IUserEntity;
 import shlackAndCo.snowretailing.dal.contracts.repositories.IUserRepository;
 
@@ -17,10 +15,12 @@ public class UserService extends BaseService<IUserModel, IUserEntity> implements
     private final IMapper<IUserEntity, IUserModel> mapper;
 
     @Autowired
-    public UserService(@Qualifier("userRepository") IUserRepository userRepository) {
-        super(userRepository, UserModelToEntityMapper.getInstance(), UserEntityToModelMapper.getInstance());
+    public UserService(@Qualifier("userRepository") IUserRepository userRepository,
+                       @Qualifier("userModelToEntityMapper") IMapper<IUserModel, IUserEntity> userModelToEntityMapper,
+                       @Qualifier("userEntityToModelMapper") IMapper<IUserEntity, IUserModel> userEntityToModelMapper) {
+        super(userRepository, userModelToEntityMapper, userEntityToModelMapper);
         this.userRepository = userRepository;
-        mapper = UserEntityToModelMapper.getInstance();
+        mapper = userEntityToModelMapper;
     }
 
     @Override
