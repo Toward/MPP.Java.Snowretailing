@@ -1,5 +1,6 @@
 package shlackAndCo.snowretailing.core.models;
 
+import shlackAndCo.snowretailing.core.contracts.models.IRoleModel;
 import shlackAndCo.snowretailing.core.contracts.models.IUserModel;
 import shlackAndCo.snowretailing.dal.contracts.entities.IUserEntity;
 
@@ -7,13 +8,13 @@ public class UserModel implements IUserModel {
     private int id;
     private String login;
     private String passwordHash;
-    private int roleId;
+    private IRoleModel role;
 
     public UserModel(IUserEntity user){
         this.id = user.getId();
         this.login = user.getLogin();
         this.passwordHash = user.getPasswordHash();
-        this.roleId = user.getRoleByRoleId().getId();
+        this.role = new RoleModel(user.getRoleByRoleId());
     }
 
     public UserModel(String login, String password){
@@ -48,12 +49,12 @@ public class UserModel implements IUserModel {
     }
 
     @Override
-    public int getRoleId() {
-        return roleId;
+    public IRoleModel getRole() {
+        return role;
     }
 
     @Override
-    public void setRoleId(int roleId) {
-        this.roleId = roleId;
+    public void setRole(IRoleModel role) {
+        this.role = role;
     }
 }

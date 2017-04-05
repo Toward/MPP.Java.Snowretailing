@@ -8,8 +8,11 @@ import java.util.Collection;
 
 public interface IEquipmentItemModel extends IBaseModel {
 
-    public byte getDeleted();
+    byte getDeleted();
 
-    public void setDeleted(byte deleted);
+    void setDeleted(byte deleted);
 
+    void setEquipmentModel(IEquipmentModel equipmentModel);
+
+    IEquipmentModel getEquipmentModel();
 }

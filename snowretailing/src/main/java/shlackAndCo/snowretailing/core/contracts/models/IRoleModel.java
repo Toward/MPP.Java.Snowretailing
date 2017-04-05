@@ -1,6 +1,8 @@
 package shlackAndCo.snowretailing.core.contracts.models;
 
 public interface IRoleModel extends IBaseModel {
-    String getRoleName();
-    void setRoleName(String roleName);
+
+    public String getRoleName();
+
+    public void setRoleName(String roleName);
 }

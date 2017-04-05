@@ -176,7 +176,7 @@ public class CredentialEntity implements ICredentialEntity {
         return result;
     }
 
-    @OneToMany(mappedBy = "credentialByCredentialId",fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "credentialByCredentialId")
     public Collection<ContactDataEntity> getContactDatasById() {
         return contactDatasById;
     }
@@ -199,6 +199,7 @@ public class CredentialEntity implements ICredentialEntity {
     public Collection<RentEntity> getRentsById() {
         return rentsById;
     }
+
     public void setRentsById(Collection<RentEntity> rentsById) {
         this.rentsById = rentsById;
     }

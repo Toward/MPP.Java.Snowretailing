@@ -6,15 +6,20 @@ import shlackAndCo.snowretailing.dal.entities.EquipmentItemEntity;
 import java.sql.Timestamp;
 
 public interface IRentModel extends IBaseModel {
-    public Timestamp getDateExpectedReturn();
+     Timestamp getDateExpectedReturn();
 
-    public void setDateExpectedReturn(Timestamp dateExpectedReturn);
+     void setDateExpectedReturn(Timestamp dateExpectedReturn);
 
-    public Timestamp getDateFactReturn();
+     Timestamp getDateFactReturn();
 
-    public void setDateFactReturn(Timestamp dateFactReturn);
+     void setDateFactReturn(Timestamp dateFactReturn);
 
-    public Timestamp getDateGet();
+     Timestamp getDateGet();
 
-    public void setDateGet(Timestamp dateGet);
+     void setDateGet(Timestamp dateGet);
+
+     IOrderModel getOrderModel();
+
+     void setOrderModel(IOrderModel orderModel);
+
 }
