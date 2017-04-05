@@ -2,6 +2,7 @@ package shlackAndCo.snowretailing.core.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
 import shlackAndCo.snowretailing.core.contracts.models.IBrandModel;
 import shlackAndCo.snowretailing.core.contracts.models.IEquipmentModel;
 import shlackAndCo.snowretailing.core.contracts.services.IEquipmentService;
@@ -20,6 +21,7 @@ import shlackAndCo.snowretailing.dal.enums.EquipmentTypes;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
+@Service
 public class EquipmentService implements IEquipmentService {
     private final IEquipmentRepository equipmentRepository;
     private final IBrandRepository brandRepository;
@@ -94,26 +96,8 @@ public class EquipmentService implements IEquipmentService {
         result.setModel(model.getModel());
         result.setPhoto(model.getPhoto());
         result.setDeleted(model.getDeleted());
-        result.setTypeByTypeId(getTypeEntityByName(model.getName()));
-        result.setBrandByBrandId(getBrandEntityByName(model.getBrandName()));
+        result.setTypeByTypeId((TypeEntity)typeRepository.getByName(model.getName()));
+        result.setBrandByBrandId((BrandEntity)brandRepository.getByName(model.getBrandName()));
         return result;
-    }
-    private TypeEntity getTypeEntityByName(EquipmentTypes name){
-        Collection<ITypeEntity> typeEntities = typeRepository.getAll();
-        for (ITypeEntity typeEntity:typeEntities) {
-            if (typeEntity.getName() == name){
-                return (TypeEntity)typeEntity;
-            }
-        }
-        return null;
-    }
-    private BrandEntity getBrandEntityByName(String name){
-        Collection<IBrandEntity> brandEntities = brandRepository.getAll();
-        for (IBrandEntity brandEntity:brandEntities) {
-            if (brandEntity.getBrandName() == name){
-                return (BrandEntity)brandEntity;
-            }
-        }
-        return null;
     }
 }

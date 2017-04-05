@@ -28,7 +28,7 @@ public class EquipmentModel implements IEquipmentModel {
     }
 
     public EquipmentModel(IEquipmentEntity equipmentEntity){
-        id = 0;
+        id = equipmentEntity.getId();
         model = equipmentEntity.getModel();
         photo = equipmentEntity.getPhoto();
         deleted = equipmentEntity.getDeleted();
@@ -100,6 +100,11 @@ public class EquipmentModel implements IEquipmentModel {
     @Override
     public Collection<CharacteristicsValue> getCharacteristicsValues() {
         return characteristicsValues;
+    }
+
+    @Override
+    public void setCharacteristicsValues(Collection<CharacteristicsValue> characteristicsValues) {
+        this.characteristicsValues = characteristicsValues;
     }
 
     @Override

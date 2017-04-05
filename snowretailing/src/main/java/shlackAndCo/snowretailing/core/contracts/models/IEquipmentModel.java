@@ -7,18 +7,21 @@ import java.util.Collection;
 
 public interface IEquipmentModel extends IBaseModel, ITypeModel, IBrandModel {
 
-    public String getModel();
+     String getModel();
 
-    public void setModel(String model);
+     void setModel(String model);
 
-    public byte[] getPhoto();
+     byte[] getPhoto();
 
-    public void setPhoto(byte[] photo);
+     void setPhoto(byte[] photo);
 
-    public byte getDeleted();
+     byte getDeleted();
 
-    public void setDeleted(byte deleted);
+     void setDeleted(byte deleted);
 
-    public int getQuantity();
-    public Collection<CharacteristicsValue> getCharacteristicsValues();
+     int getQuantity();
+
+     Collection<CharacteristicsValue> getCharacteristicsValues();
+
+     void setCharacteristicsValues(Collection<CharacteristicsValue> characteristicsValues);
 }

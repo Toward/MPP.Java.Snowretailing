@@ -5,4 +5,5 @@ import org.osgi.service.component.annotations.Component;
 
 @Component
 public interface IBrandRepository extends IBaseRepository<IBrandEntity> {
+        IBrandEntity getByName(String brandName);
 }

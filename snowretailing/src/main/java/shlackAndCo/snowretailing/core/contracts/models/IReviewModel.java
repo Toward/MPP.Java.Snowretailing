@@ -5,16 +5,21 @@ import shlackAndCo.snowretailing.dal.entities.UserEntity;
 import java.sql.Timestamp;
 
 public interface IReviewModel extends IBaseModel {
-    public String getReview();
+     String getReview();
 
-    public void setReview(String review);
+     void setReview(String review);
 
-    public Timestamp getDateReview();
+     Timestamp getDateReview();
 
-    public void setDateReview(Timestamp dateReview);
+     void setDateReview(Timestamp dateReview);
 
-    public byte getMark();
+     byte getMark();
 
-    public void setMark(byte mark);
+     void setMark(byte mark);
+
+     String getUserName();
+
+     void setUserName(String name);
+
 
 }

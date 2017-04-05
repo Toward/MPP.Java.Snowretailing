@@ -29,7 +29,7 @@ public class CharacteristicsController {
     }
 
     @RequestMapping(value = "/characteristics", method = RequestMethod.GET)
-    public ModelAndView getBrands() {
+    public ModelAndView getCharacteristics() {
         ModelAndView view = new ModelAndView("characteristics/characteristicsView");
 
         Collection<ICharacteristicsModel> characteristicModels = service.getAll();
@@ -39,7 +39,7 @@ public class CharacteristicsController {
     }
 
     @RequestMapping(value = "/characteristics/{id}", method = RequestMethod.GET)
-    public ModelAndView getBrand(@PathVariable("id") int id) {
+    public ModelAndView getCharacteristic(@PathVariable("id") int id) {
         ModelAndView view = new ModelAndView("characteristics/characteristicView");
 
         ICharacteristicsModel characteristicModel = service.getById(id);
@@ -49,12 +49,12 @@ public class CharacteristicsController {
     }
 
     @RequestMapping(value = "/characteristics/create", method = RequestMethod.GET)
-    public ModelAndView createBrand() {
+    public ModelAndView createCharacteristic() {
         return new ModelAndView("characteristics/createCharacteristic", "characteristic", new CharacteristicsModel());
     }
 
     @RequestMapping(value = "/characteristics/create", method = RequestMethod.POST)
-    public ModelAndView createBrand(@Valid @ModelAttribute("brand") CharacteristicsModel characteristic, BindingResult result) {
+    public ModelAndView createCharacteristic(@Valid @ModelAttribute("brand") CharacteristicsModel characteristic, BindingResult result) {
         if (result.hasErrors())
             return new ModelAndView("characteristics/createCharacteristic", result.getModel());
 
@@ -64,14 +64,14 @@ public class CharacteristicsController {
     }
 
     @RequestMapping(value = "/characteristics/{id}/edit", method = RequestMethod.GET)
-    public ModelAndView editBrand(@PathVariable("id") int id) {
+    public ModelAndView editCharacteristic(@PathVariable("id") int id) {
         ICharacteristicsModel characteristic = service.getById(id);
 
         return new ModelAndView("characteristics/editCharacteristic", "characteristic", characteristic);
     }
 
     @RequestMapping(value = "/characteristics/{id}/edit", method = RequestMethod.POST)
-    public ModelAndView editBrand(@PathVariable("id") int id, @Valid @ModelAttribute("characteristic") CharacteristicsModel model, BindingResult result) {
+    public ModelAndView editCharacteristic(@PathVariable("id") int id, @Valid @ModelAttribute("characteristic") CharacteristicsModel model, BindingResult result) {
         if (result.hasErrors())
             return new ModelAndView("characteristic/editCharacteristic", result.getModel());
 
@@ -82,7 +82,7 @@ public class CharacteristicsController {
     }
 
     @RequestMapping(value = "/characteristics/{id}/delete")
-    public ModelAndView removeBrand(@PathVariable("id") int id) {
+    public ModelAndView removeCharacteristic(@PathVariable("id") int id) {
         service.delete(id);
 
         return new ModelAndView("redirect:/characteristics");
