@@ -1,52 +1,44 @@
 package shlackAndCo.snowretailing.core.contracts.models;
 
-import shlackAndCo.snowretailing.dal.entities.ContactDataEntity;
-import shlackAndCo.snowretailing.dal.entities.RentEntity;
-import shlackAndCo.snowretailing.dal.entities.UserEntity;
-
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.Collection;
 
 
 public interface ICredentialModel extends IBaseModel {
-    public String getName();
+    String getName();
+    void setName(String name);
 
-    public void setName(String name);
+    String getSurname();
+    void setSurname(String surname);
 
-    public String getSurname();
+    String getPatronymyc();
+    void setPatronymyc(String patronymyc);
 
-    public void setSurname(String surname);
+    int getNumber();
+    void setNumber(int number);
 
-    public String getPatronymyc();
+    String getSeries();
+    void setSeries(String series);
 
-    public void setPatronymyc(String patronymyc);
+    String getAgency();
+    void setAgency(String agency);
 
-    public int getNumber();
+    Timestamp getDate();
+    void setDate(Timestamp date);
 
-    public void setNumber(int number);
+    Date getBirthday();
+    void setBirthday(Date birthday);
 
-    public String getSeries();
+    String getIdentifier();
+    void setIdentifier(String identifier);
 
-    public void setSeries(String series);
+    String getType();
+    void setType(String type);
 
-    public String getAgency();
+    Integer getUserId();
+    void setUserId(Integer userId);
 
-    public void setAgency(String agency);
-
-    public Timestamp getDate();
-
-    public void setDate(Timestamp date);
-
-    public Date getBirthday();
-
-    public void setBirthday(Date birthday);
-
-    public String getIdentifier();
-
-    public void setIdentifier(String identifier);
-
-    public String getType();
-
-    public void setType(String type);
+    Collection<String> getPhoneNumbers();
+    void setPhoneNumbers(Collection<String> phoneNumbers);
 }

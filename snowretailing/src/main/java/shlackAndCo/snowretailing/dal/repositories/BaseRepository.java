@@ -1,5 +1,6 @@
 package shlackAndCo.snowretailing.dal.repositories;
 
+import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -25,7 +26,7 @@ public class BaseRepository <T> implements IBaseRepository<T> {
         Transaction transaction = null;
         try(Session session = sessionFactory.openSession()){
             transaction = session.beginTransaction();
-            result = session.createCriteria(entityType).list();
+            result = session.createCriteria(entityType).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
             transaction.commit();
         }catch (HibernateException e){
             if (transaction == null)
@@ -53,6 +54,7 @@ public class BaseRepository <T> implements IBaseRepository<T> {
         return result;
     }
 
+    @Override
     public int create(T entity) throws HibernateException, IllegalArgumentException {
         if (entity == null)
             throw new IllegalArgumentException("entity is null");
