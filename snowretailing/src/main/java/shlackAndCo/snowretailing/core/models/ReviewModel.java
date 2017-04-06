@@ -1,15 +1,26 @@
 package shlackAndCo.snowretailing.core.models;
 
+import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.Range;
+import org.springframework.format.annotation.DateTimeFormat;
 import shlackAndCo.snowretailing.core.contracts.models.IReviewModel;
 import shlackAndCo.snowretailing.dal.contracts.entities.IReviewEntity;
 
+import javax.validation.constraints.*;
 import java.sql.Timestamp;
 
 public class ReviewModel implements IReviewModel{
     private int id;
+    @NotEmpty
+    @Size(min = 5, max = 30)
     private String userName;
+    @NotEmpty
     private String review;
+    @DateTimeFormat(pattern="MM/dd/yyyy")
+    @NotNull
     private Timestamp dateCreate;
+    @NotNull
+    @Min(0)@Max(1)
     private byte mark;
 
     public ReviewModel(){

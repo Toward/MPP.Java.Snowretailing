@@ -1,20 +1,37 @@
 package shlackAndCo.snowretailing.core.models;
 
 
+import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.format.annotation.DateTimeFormat;
 import shlackAndCo.snowretailing.core.contracts.models.*;
 import shlackAndCo.snowretailing.dal.contracts.entities.IOrderEntity;
 import shlackAndCo.snowretailing.dal.entities.EquipmentItemEntity;
 import shlackAndCo.snowretailing.dal.entities.OrderEntity;
 
+import javax.validation.constraints.Future;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.sql.Timestamp;
 
 public class OrderModel implements IOrderModel {
     private int id;
+    @DateTimeFormat(pattern="MM/dd/yyyy")
+    @NotNull
+    @Future
     private Timestamp dateOrderExpire;
+    @DateTimeFormat(pattern="MM/dd/yyyy")
+    @NotNull
     private Timestamp dateOrder;
+    @NotNull
+    @Min(1)
     private int sumPay;
+    @NotNull
     private IEquipmentItemModel equipmentItem;
+    @NotNull
     private IEquipmentModel equipment;
+    @NotEmpty
+    @Size(min = 5, max = 30)
     private String userName;
 
     public OrderModel(){

@@ -4,9 +4,13 @@ import shlackAndCo.snowretailing.core.contracts.models.IEquipmentItemModel;
 import shlackAndCo.snowretailing.core.contracts.models.IEquipmentModel;
 import shlackAndCo.snowretailing.dal.contracts.entities.IEquipmentItemEntity;
 
+import javax.validation.constraints.NotNull;
+
 public class EquipmentItemModel implements IEquipmentItemModel {
     private int id;
+    @NotNull
     private byte deleted;
+    @NotNull
     private IEquipmentModel equipmentModel;
 
     public EquipmentItemModel(){
