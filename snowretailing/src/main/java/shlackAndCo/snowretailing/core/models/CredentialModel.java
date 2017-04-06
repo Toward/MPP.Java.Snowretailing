@@ -7,6 +7,7 @@ import shlackAndCo.snowretailing.dal.entities.ContactDataEntity;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
+import javax.validation.constraints.Size;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -23,8 +24,10 @@ public class CredentialModel implements ICredentialModel {
     @NotNull
     private int number;
     @NotEmpty
+    @Size(max = 10)
     private String series;
     @NotEmpty
+    @Size(max = 100)
     private String agency;
     //@DateTimeFormat(pattern="MM/dd/yyyy")
     @NotNull @Past
@@ -33,8 +36,10 @@ public class CredentialModel implements ICredentialModel {
     @NotNull @Past
     private Date birthday;
     @NotEmpty
+    @Size(max = 50)
     private String identifier;
     @NotEmpty
+    @Size(max = 50)
     private String type;
     private Integer userId;
     Collection<String> phoneNumbers;

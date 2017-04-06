@@ -1,10 +1,10 @@
 package shlackAndCo.snowretailing.core.constants;
 
 public class Permissions {
-    public static final String UserRead = "USER_READ";
-    public static final String UserWrite = "USER_WRITE";
-    public static final String AdminRead = "ADMIN_READ";
-    public static final String AdminWrite = "ADMIN_WRITE";
-    public static final String RootRead = "ROOT_READ";
-    public static final String RootWrite = "ROOT_WRITE";
+    public static final String UserRead = "ROLE_USER_READ";
+    public static final String UserWrite = "ROLE_USER_WRITE";
+    public static final String AdminRead = "ROLE_ADMIN_READ";
+    public static final String AdminWrite = "ROLE_ADMIN_WRITE";
+    public static final String RootRead = "ROLE_ROOT_READ";
+    public static final String RootWrite = "ROLE_ROOT_WRITE";
 }

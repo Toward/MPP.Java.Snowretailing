@@ -9,7 +9,6 @@ import shlackAndCo.snowretailing.auth.contracts.services.IAuthService;
 import shlackAndCo.snowretailing.auth.contracts.services.ICryptographyService;
 import shlackAndCo.snowretailing.auth.models.Token;
 import shlackAndCo.snowretailing.core.contracts.models.IUserModel;
-import shlackAndCo.snowretailing.core.contracts.services.IRoleService;
 import shlackAndCo.snowretailing.core.contracts.services.IUserService;
 
 import java.io.IOException;
