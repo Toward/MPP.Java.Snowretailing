@@ -2,6 +2,7 @@ package shlackAndCo.snowretailing.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import shlackAndCo.snowretailing.core.contracts.models.IOrderModel;
 import shlackAndCo.snowretailing.core.contracts.models.IRentModel;
@@ -74,13 +75,13 @@ public class RentController {
     //TODO validation
     @ResponseBody
     @RequestMapping(value = "/rents/create", method = RequestMethod.POST)
-    public IResultModel<IRentModel> createRent(@RequestBody IRentModel rentModel) {
+    public IResultModel<IRentModel> createRent(@RequestBody @Validated IRentModel rentModel) {
         rentService.create(rentModel);
         return new ResultModel<IRentModel>(ResultStatus.OK, "Rent has been created", rentModel);
     }
     @ResponseBody
     @RequestMapping(value = "/rents/{id}", method = RequestMethod.PUT)
-    public IResultModel<IRentModel> editRent(@PathVariable("id") int id, @RequestBody IRentModel rentModel) {
+    public IResultModel<IRentModel> editRent(@PathVariable("id") int id, @RequestBody @Validated IRentModel rentModel) {
         rentService.edit(rentModel);
         return new ResultModel<IRentModel>(ResultStatus.OK, "Rent has been changed", rentModel);
     }

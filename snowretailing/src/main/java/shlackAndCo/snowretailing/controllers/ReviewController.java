@@ -2,6 +2,7 @@ package shlackAndCo.snowretailing.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import shlackAndCo.snowretailing.core.contracts.models.IResultModel;
 import shlackAndCo.snowretailing.core.contracts.models.IReviewModel;
@@ -50,13 +51,13 @@ public class ReviewController {
     //TODO validation
     @ResponseBody
     @RequestMapping(value = "/reviews/create", method = RequestMethod.POST)
-    public IResultModel<IReviewModel> createBrand(@RequestBody IReviewModel reviewModel) {
+    public IResultModel<IReviewModel> createBrand(@RequestBody @Validated IReviewModel reviewModel) {
         reviewService.create(reviewModel);
         return new ResultModel<IReviewModel>(ResultStatus.OK, "Review has been created", reviewModel);
     }
     @ResponseBody
     @RequestMapping(value = "/reviews/{id}", method = RequestMethod.PUT)
-    public IResultModel<IReviewModel> editBrand(@PathVariable("id") int id, @RequestBody IReviewModel reviewModel) {
+    public IResultModel<IReviewModel> editBrand(@PathVariable("id") int id, @RequestBody @Validated IReviewModel reviewModel) {
         reviewService.edit(reviewModel);
         return new ResultModel<IReviewModel>(ResultStatus.OK, "Review has been changed", reviewModel);
     }

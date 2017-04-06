@@ -1,5 +1,6 @@
 package shlackAndCo.snowretailing.core.models;
 
+import org.hibernate.validator.constraints.NotEmpty;
 import shlackAndCo.snowretailing.core.contracts.models.IEquipmentModel;
 import shlackAndCo.snowretailing.core.utils.CharacteristicsValue;
 import shlackAndCo.snowretailing.dal.contracts.entities.ICharacteristicsEntity;
@@ -9,18 +10,32 @@ import shlackAndCo.snowretailing.dal.entities.EquipmentEntity;
 import shlackAndCo.snowretailing.dal.entities.EquipmentFeatureEntity;
 import shlackAndCo.snowretailing.dal.enums.EquipmentTypes;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.Collection;
 
 public class EquipmentModel implements IEquipmentModel {
     private int id;
+    @NotEmpty
+    @Size(min=2, max=30)
     private String model;
+    @NotNull
     private byte[] photo;
+    @NotNull
     private byte deleted;
     private int quantity;
+    @NotNull
     private EquipmentTypes type;
+    @NotEmpty
+    @Size(min=2, max=30)
     private String brand;
+    @NotNull
+    @Min(1)@Max(Integer.MAX_VALUE)
     private int cost;
+
     private Collection<CharacteristicsValue> characteristicsValues;
 
     public EquipmentModel(){

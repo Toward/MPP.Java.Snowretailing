@@ -1,19 +1,34 @@
 package shlackAndCo.snowretailing.core.models;
 
 
+import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.format.annotation.DateTimeFormat;
 import shlackAndCo.snowretailing.core.contracts.models.*;
 import shlackAndCo.snowretailing.dal.contracts.entities.IRentEntity;
 import shlackAndCo.snowretailing.dal.entities.EquipmentItemEntity;
 
+import javax.validation.constraints.Future;
+import javax.validation.constraints.NotNull;
 import java.sql.Timestamp;
 
 public class RentModel implements IRentModel{
     private int id;
+    @DateTimeFormat(pattern="MM/dd/yyyy")
+    @NotNull
+    @Future
     private Timestamp dateExpectedReturn;
+    @DateTimeFormat(pattern="MM/dd/yyyy")
+    @NotNull
+    @Future
     private Timestamp dateFactReturn;
+    @DateTimeFormat(pattern="MM/dd/yyyy")
+    @NotNull
     private Timestamp dateGet;
+    @NotNull
     private IEquipmentItemModel equipmentItem;
+    @NotNull
     private ICredentialModel passport;
+    @NotNull
     private IEquipmentModel equipment;
 
     public RentModel(){
