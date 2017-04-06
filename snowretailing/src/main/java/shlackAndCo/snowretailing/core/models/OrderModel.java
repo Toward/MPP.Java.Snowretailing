@@ -1,8 +1,10 @@
 package shlackAndCo.snowretailing.core.models;
 
 
-import shlackAndCo.snowretailing.core.contracts.models.IOrderModel;
-import shlackAndCo.snowretailing.core.contracts.models.IRentModel;
+import shlackAndCo.snowretailing.core.contracts.models.*;
+import shlackAndCo.snowretailing.dal.contracts.entities.IOrderEntity;
+import shlackAndCo.snowretailing.dal.entities.EquipmentItemEntity;
+import shlackAndCo.snowretailing.dal.entities.OrderEntity;
 
 import java.sql.Timestamp;
 
@@ -11,8 +13,24 @@ public class OrderModel implements IOrderModel {
     private Timestamp dateOrderExpire;
     private Timestamp dateOrder;
     private int sumPay;
-    private IRentModel rentModel;
+    private IEquipmentItemModel equipmentItem;
+    private IEquipmentModel equipment;
+    private String userName;
 
+    public OrderModel(){
+        id = 0;
+    }
+
+    public OrderModel(IOrderEntity orderEntity){
+        id = orderEntity.getId();
+        dateOrderExpire = orderEntity.getDateOrderExpire();
+        dateOrder = orderEntity.getDateOrder();
+        sumPay = orderEntity.getSumPay();
+        EquipmentItemEntity equipmentItemEntity = orderEntity.getEquipmentItemByItemId();
+        equipmentItem = new EquipmentItemModel(equipmentItemEntity);
+        userName = orderEntity.getUserByUserId().getLogin();
+        equipment = new EquipmentModel(equipmentItemEntity.getEquipmentByEquipmentId());
+    }
 
     @Override
     public int getId() {
@@ -55,12 +73,34 @@ public class OrderModel implements IOrderModel {
     }
 
     @Override
-    public void setRentModel(IRentModel rentModel) {
-        this.rentModel = rentModel;
+    public IEquipmentModel getEquipment() {
+        return equipment;
     }
 
     @Override
-    public IRentModel getRentModel() {
-        return rentModel;
+    public void setEquipment(IEquipmentModel equipment) {
+        this.equipment = equipment;
     }
+
+    @Override
+    public IEquipmentItemModel getEquipmentItem() {
+        return equipmentItem;
+    }
+
+    @Override
+    public void setEquipmentItem(IEquipmentItemModel equipmentItem) {
+        this.equipmentItem = equipmentItem;
+    }
+
+    @Override
+    public String getUserName() {
+        return userName;
+    }
+
+    @Override
+    public void setUserName(String name) {
+        this.userName = userName;
+    }
+
+
 }

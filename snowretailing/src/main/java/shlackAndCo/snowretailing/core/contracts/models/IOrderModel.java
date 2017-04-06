@@ -18,8 +18,16 @@ public interface IOrderModel extends IBaseModel {
     public int getSumPay();
 
     public void setSumPay(int sumPay);
+    IEquipmentItemModel getEquipmentItem();
 
-    void setRentModel(IRentModel rentModel);
+    void setEquipmentItem(IEquipmentItemModel equipmentItem);
 
-    IRentModel getRentModel();
+    String getUserName();
+
+    void setUserName(String name);
+
+     IEquipmentModel getEquipment();
+
+     void setEquipment(IEquipmentModel equipment);
+
 }
