@@ -2,6 +2,8 @@ package shlackAndCo.snowretailing.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import shlackAndCo.snowretailing.core.contracts.models.IOrderModel;
 import shlackAndCo.snowretailing.core.contracts.models.IResultModel;
@@ -65,13 +67,15 @@ public class OrderController {
     //TODO validation
     @ResponseBody
     @RequestMapping(value = "/orders/create", method = RequestMethod.POST)
-    public IResultModel<IOrderModel> createOrder(@RequestBody IOrderModel orderModel) {
+    public IResultModel<IOrderModel> createOrder(@RequestBody @Validated IOrderModel orderModel) {
+        orderModel.setUserName(SecurityContextHolder.getContext().getAuthentication().getName());
         orderService.create(orderModel);
         return new ResultModel<IOrderModel>(ResultStatus.OK, "Order has been created", orderModel);
     }
     @ResponseBody
     @RequestMapping(value = "/orders/{id}", method = RequestMethod.PUT)
-    public IResultModel<IOrderModel> editOrder(@PathVariable("id") int id, @RequestBody IOrderModel orderModel) {
+    public IResultModel<IOrderModel> editOrder(@PathVariable("id") int id, @RequestBody @Validated IOrderModel orderModel) {
+        orderModel.setUserName(SecurityContextHolder.getContext().getAuthentication().getName());
         orderService.edit(orderModel);
         return new ResultModel<IOrderModel>(ResultStatus.OK, "Order has been changed", orderModel);
     }

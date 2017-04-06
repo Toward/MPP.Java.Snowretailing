@@ -79,13 +79,13 @@ public class EquipmentController {
     //TODO validation
     @ResponseBody
     @RequestMapping(value = "/equipments/create", method = RequestMethod.POST)
-    public IResultModel<IEquipmentModel> createEquipment(@RequestBody IEquipmentModel equipmentModel) {
+    public IResultModel<IEquipmentModel> createEquipment(@RequestBody @Validated IEquipmentModel equipmentModel) {
         equipmentService.create(equipmentModel);
         return new ResultModel<IEquipmentModel>(ResultStatus.OK, "Equipment has been created", equipmentModel);
     }
     @ResponseBody
     @RequestMapping(value = "/equipments/{id}", method = RequestMethod.PUT)
-    public IResultModel<IEquipmentModel> editEquipment(@PathVariable("id") int id, @RequestBody IEquipmentModel equipmentModel) {
+    public IResultModel<IEquipmentModel> editEquipment(@PathVariable("id") int id, @RequestBody @Validated IEquipmentModel equipmentModel) {
         equipmentService.edit(equipmentModel);
         return new ResultModel<IEquipmentModel>(ResultStatus.OK, "Equipment has been changed", equipmentModel);
     }
