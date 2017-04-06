@@ -1,18 +1,17 @@
 package shlackAndCo.snowretailing.core.models;
 
 import org.hibernate.validator.constraints.NotEmpty;
-import org.springframework.format.annotation.DateTimeFormat;
 import shlackAndCo.snowretailing.core.contracts.models.ICredentialModel;
 import shlackAndCo.snowretailing.dal.contracts.entities.ICredentialEntity;
+import shlackAndCo.snowretailing.dal.entities.ContactDataEntity;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.Collection;
 
-/**
- * Created by Владелец on 03/03/2017.
- */
 public class CredentialModel implements ICredentialModel {
     private int id;
     @NotEmpty
@@ -27,23 +26,23 @@ public class CredentialModel implements ICredentialModel {
     private String series;
     @NotEmpty
     private String agency;
-    @DateTimeFormat(pattern="MM/dd/yyyy")
+    //@DateTimeFormat(pattern="MM/dd/yyyy")
     @NotNull @Past
     private Timestamp date;
-    @DateTimeFormat(pattern="MM/dd/yyyy")
+    //@DateTimeFormat(pattern="MM/dd/yyyy HH:mm:ss")
     @NotNull @Past
     private Date birthday;
     @NotEmpty
     private String identifier;
     @NotEmpty
     private String type;
+    private Integer userId;
+    Collection<String> phoneNumbers;
 
-
-
-    public CredentialModel() {}
+    public CredentialModel(){}
 
     public CredentialModel(ICredentialEntity entity){
-        this.id = entity.getId();
+        this.setId(entity.getId());
         this.name = entity.getName();
         this.surname = entity.getSurname();
         this.patronymyc = entity.getPatronymyc();
@@ -53,7 +52,25 @@ public class CredentialModel implements ICredentialModel {
         this.date = entity.getDate();
         this.birthday = entity.getBirthday();
         this.identifier = entity.getIdentifier();
+        this.userId = entity.getUserByUserId() == null
+                ? null
+                : entity.getUserByUserId().getId();
+        this.phoneNumbers = new ArrayList<>();
+        for(ContactDataEntity phoneNumber : entity.getContactDatasById()){
+            phoneNumbers.add(phoneNumber.getPhoneNumber());
+        }
     }
+
+    @Override
+    public int getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(int id) {
+        this.id = id;
+    }
+
     @Override
     public String getName() {
         return name;
@@ -155,12 +172,22 @@ public class CredentialModel implements ICredentialModel {
     }
 
     @Override
-    public int getId() {
-        return id;
+    public Integer getUserId() {
+        return userId;
     }
 
     @Override
-    public void setId(int id) {
-        this.id = id;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+    @Override
+    public Collection<String> getPhoneNumbers() {
+        return phoneNumbers;
+    }
+
+    @Override
+    public void setPhoneNumbers(Collection<String> phoneNumbers) {
+        this.phoneNumbers = phoneNumbers;
     }
 }

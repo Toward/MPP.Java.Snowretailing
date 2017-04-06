@@ -73,7 +73,7 @@ public class RentController {
     }
     //TODO validation
     @ResponseBody
-    @RequestMapping(value = "/orders/create", method = RequestMethod.POST)
+    @RequestMapping(value = "/rents/create", method = RequestMethod.POST)
     public IResultModel<IRentModel> createRent(@RequestBody IRentModel rentModel) {
         rentService.create(rentModel);
         return new ResultModel<IRentModel>(ResultStatus.OK, "Rent has been created", rentModel);
@@ -86,7 +86,7 @@ public class RentController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/orders/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/rents/{id}", method = RequestMethod.DELETE)
     public ResultModel<IRentModel> removeRent(@PathVariable("id") int id) {
         rentService.delete(id);
 
