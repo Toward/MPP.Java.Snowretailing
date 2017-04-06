@@ -43,6 +43,7 @@ public class CredentialModel implements ICredentialModel {
     public CredentialModel() {}
 
     public CredentialModel(ICredentialEntity entity){
+        this.id = entity.getId();
         this.name = entity.getName();
         this.surname = entity.getSurname();
         this.patronymyc = entity.getPatronymyc();

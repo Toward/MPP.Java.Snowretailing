@@ -18,8 +18,15 @@ public interface IRentModel extends IBaseModel {
 
      void setDateGet(Timestamp dateGet);
 
-     IOrderModel getOrderModel();
+     IEquipmentItemModel getEquipmentItem();
 
-     void setOrderModel(IOrderModel orderModel);
+     void setEquipmentItem(IEquipmentItemModel equipmentItem);
 
+    IEquipmentModel getEquipment();
+
+    void setEquipment(IEquipmentModel equipment);
+
+    void setPassport(ICredentialModel credentialModel);
+
+    ICredentialModel getPassport();
 }

@@ -1,8 +1,9 @@
 package shlackAndCo.snowretailing.core.models;
 
 
-import shlackAndCo.snowretailing.core.contracts.models.IOrderModel;
-import shlackAndCo.snowretailing.core.contracts.models.IRentModel;
+import shlackAndCo.snowretailing.core.contracts.models.*;
+import shlackAndCo.snowretailing.dal.contracts.entities.IRentEntity;
+import shlackAndCo.snowretailing.dal.entities.EquipmentItemEntity;
 
 import java.sql.Timestamp;
 
@@ -11,7 +12,23 @@ public class RentModel implements IRentModel{
     private Timestamp dateExpectedReturn;
     private Timestamp dateFactReturn;
     private Timestamp dateGet;
-    private IOrderModel orderModel;
+    private IEquipmentItemModel equipmentItem;
+    private ICredentialModel passport;
+    private IEquipmentModel equipment;
+
+    public RentModel(){
+        id =0;
+    }
+    public RentModel(IRentEntity rentEntity){
+        id = rentEntity.getId();
+        dateExpectedReturn = rentEntity.getDateExpectedReturn();
+        dateFactReturn = rentEntity.getDateFactReturn();
+        dateGet = rentEntity.getDateGet();
+        EquipmentItemEntity equipmentItemEntity = rentEntity.getEquipmentItemByEquipmentItemId();
+        equipmentItem = new EquipmentItemModel(equipmentItemEntity);
+        equipment = new EquipmentModel(equipmentItemEntity.getEquipmentByEquipmentId());
+        passport = new CredentialModel(rentEntity.getCredentialByCredentialId());
+    }
 
     @Override
     public int getId() {
@@ -54,12 +71,32 @@ public class RentModel implements IRentModel{
     }
 
     @Override
-    public IOrderModel getOrderModel() {
-        return orderModel;
+    public IEquipmentItemModel getEquipmentItem() {
+        return equipmentItem;
     }
 
     @Override
-    public void setOrderModel(IOrderModel orderModel) {
-        this.orderModel = orderModel;
+    public void setEquipmentItem(IEquipmentItemModel equipmentItem) {
+        this.equipmentItem = equipmentItem;
+    }
+
+    @Override
+    public IEquipmentModel getEquipment() {
+        return equipment;
+    }
+
+    @Override
+    public void setEquipment(IEquipmentModel equipment) {
+        this.equipment = equipment;
+    }
+
+    @Override
+    public void setPassport(ICredentialModel credentialModel) {
+        this.passport = credentialModel;
+    }
+
+    @Override
+    public ICredentialModel getPassport() {
+        return passport;
     }
 }
