@@ -56,9 +56,14 @@ public class EquipmentController {
 
     @ResponseBody
     @RequestMapping(value = "/equipments/{id}", method = RequestMethod.GET)
-    public IResultModel<IEquipmentModel> getEquipment(@PathVariable("id") int id) {
+    public IResultModel<EquipmentCreation> getEquipment(@PathVariable("id") int id) {
         IEquipmentModel equipmentModel = equipmentService.getById(id);
-        return new ResultModel<>(ResultStatus.OK, "Equipment has been successfully got by id", equipmentModel);
+        EquipmentCreation equipmentCreation = new EquipmentCreation();
+        equipmentCreation.setAvailableBrands(brandService.getAll());
+        equipmentCreation.setAvailableTypes(typeService.getAll());
+        equipmentCreation.setEquipmentModel(equipmentModel);
+        equipmentCreation.setAvailableCharacteristics(characteristicsService.getAll());
+        return new ResultModel<>(ResultStatus.OK, "Equipment has been successfully got by id", equipmentCreation);
     }
 
     @ResponseBody
@@ -81,7 +86,7 @@ public class EquipmentController {
     @ResponseBody
     @RequestMapping(value = "/equipments/{id}", method = RequestMethod.PUT)
     public IResultModel<IEquipmentModel> editEquipment(@PathVariable("id") int id, @RequestBody IEquipmentModel equipmentModel) {
-        equipmentService.edit(id, equipmentModel);
+        equipmentService.edit(equipmentModel);
         return new ResultModel<IEquipmentModel>(ResultStatus.OK, "Equipment has been changed", equipmentModel);
     }
 

@@ -46,9 +46,12 @@ public class OrderController {
 
     @ResponseBody
     @RequestMapping(value = "/orders/{id}", method = RequestMethod.GET)
-    public IResultModel<IOrderModel> getOrder(@PathVariable("id") int id) {
+    public IResultModel<OrderCreation> getOrder(@PathVariable("id") int id) {
         IOrderModel orderModel = orderService.getById(id);
-        return new ResultModel<>(ResultStatus.OK, "Order has been successfully got by id", orderModel);
+        OrderCreation orderCreation = new OrderCreation();
+        orderCreation.setOrderModel(orderModel);
+        orderCreation.setAvailableEquipments(equipmentService.getAll());
+        return new ResultModel<>(ResultStatus.OK, "Order has been successfully got by id", orderCreation);
     }
 
     @ResponseBody
