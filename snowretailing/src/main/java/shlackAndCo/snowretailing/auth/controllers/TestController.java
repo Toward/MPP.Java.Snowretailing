@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import shlackAndCo.snowretailing.core.constants.Permissions;
 import shlackAndCo.snowretailing.core.enums.ResultStatus;
-import shlackAndCo.snowretailing.core.enums.Role;
 import shlackAndCo.snowretailing.core.models.ResultModel;
 
 @RestController

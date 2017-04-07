@@ -5,39 +5,42 @@ import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+import shlackAndCo.snowretailing.auth.contracts.models.IAuthModel;
 import shlackAndCo.snowretailing.auth.contracts.services.IAuthService;
 import shlackAndCo.snowretailing.auth.contracts.services.ICryptographyService;
 import shlackAndCo.snowretailing.auth.models.Token;
-import shlackAndCo.snowretailing.core.contracts.models.IUserModel;
-import shlackAndCo.snowretailing.core.contracts.services.IUserService;
+import shlackAndCo.snowretailing.dal.contracts.entities.IUserEntity;
+import shlackAndCo.snowretailing.dal.contracts.repositories.IUserRepository;
+import shlackAndCo.snowretailing.dal.entities.RoleEntity;
+import shlackAndCo.snowretailing.dal.entities.UserEntity;
 
 import java.io.IOException;
 
 @Service
 public class AuthService implements IAuthService {
-    private final IUserService userService;
+    private final IUserRepository userRepository;
     private final ICryptographyService cryptographyService;
     private final ObjectMapper mapper;
 
     @Autowired
-    public AuthService(@Qualifier("userService") IUserService userService,
+    public AuthService(@Qualifier("userRepository") IUserRepository userRepository,
                        @Autowired @Qualifier("cryptographyService") ICryptographyService cryptographyService){
-        this.userService = userService;
+        this.userRepository = userRepository;
         this.cryptographyService = cryptographyService;
         mapper = new ObjectMapper();
     }
 
     @Override
-    public String Login(IUserModel user){
-        if (user == null)
+    public String Login(IAuthModel authModel){
+        if (authModel == null)
             throw new IllegalArgumentException("User is null");
 
-        IUserModel loggingUser = userService.getByLogin(user.getLogin());
-        String hashedPassword = DigestUtils.md5Hex(user.getPasswordHash());
+        IUserEntity loggingUser = userRepository.getByLogin(authModel.getLogin());
+        String hashedPassword = DigestUtils.md5Hex(authModel.getPassword());
         if(loggingUser == null || !loggingUser.getPasswordHash().equals(hashedPassword))
             throw new IllegalArgumentException("User login or password is incorrect");
 
-        Token token = new Token(user.getLogin(), hashedPassword);
+        Token token = new Token(authModel.getLogin(), hashedPassword);
         String tokenString;
         try {
             tokenString = mapper.writeValueAsString(token);
@@ -48,32 +51,43 @@ public class AuthService implements IAuthService {
     }
 
     @Override
-    public void Register(IUserModel user) {
-        if (user == null)
+    public void Register(IAuthModel authModel) {
+        if (authModel == null)
             throw new IllegalArgumentException("User is null");
-        if(userService.getByLogin(user.getLogin()) != null)
+        if(userRepository.getByLogin(authModel.getLogin()) != null)
             throw new IllegalArgumentException("User with such login exists");
 
-        String hashedPassword = DigestUtils.md5Hex(user.getPasswordHash());
-        user.setPasswordHash(hashedPassword);
-
-        userService.create(user);
+        IUserEntity newUser = map(authModel);
+        userRepository.create(newUser);
     }
 
     @Override
-    public void EditPassword(IUserModel user, String newPassword) {
-        if(user == null)
+    public void EditPassword(IAuthModel authModel, String newPassword) {
+        if(authModel == null)
             throw new IllegalArgumentException("User is null");
         if(newPassword == null || newPassword.isEmpty())
             throw new IllegalArgumentException("New password is empty");
 
-        IUserModel editedUser = userService.getByLogin(user.getLogin());
-        String oldHashedPassword = DigestUtils.md5Hex(user.getPasswordHash());
+        IUserEntity editedUser = userRepository.getByLogin(authModel.getLogin());
+        String oldHashedPassword = DigestUtils.md5Hex(authModel.getPassword());
         if(editedUser == null || !editedUser.getPasswordHash().equals(oldHashedPassword))
             throw new IllegalArgumentException("User login or password is incorrect");
 
         String newHashedPassword = DigestUtils.md5Hex(newPassword);
         editedUser.setPasswordHash(newHashedPassword);
-        userService.edit(editedUser);
+        userRepository.update(editedUser);
+    }
+
+    private IUserEntity map(IAuthModel model){
+        String hashedPassword = DigestUtils.md5Hex(model.getPassword());
+
+        RoleEntity role = new RoleEntity();
+        role.setId(model.getRoleId());
+
+        IUserEntity userEntity = new UserEntity();
+        userEntity.setLogin(model.getLogin());
+        userEntity.setPasswordHash(hashedPassword);
+        userEntity.setRoleByRoleId(role);
+        return userEntity;
     }
 }

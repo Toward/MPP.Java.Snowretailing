@@ -8,13 +8,13 @@ import shlackAndCo.snowretailing.dal.contracts.repositories.IBaseRepository;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
-public class BaseService<TModel extends IBaseModel, TEntity> implements IBaseService<TModel, TEntity> {
+public class BaseService<TModel extends IBaseModel, TEntity> implements IBaseService<TModel> {
     private final IBaseRepository<TEntity> repository;
     private final IMapper<TModel,TEntity> modelToEntityMapper;
     private final IMapper<TEntity,TModel> entityToModelMapper;
 
-    public BaseService(IBaseRepository<TEntity> repository,
-                       IMapper<TModel,TEntity> modelToEntityMapper, IMapper<TEntity,TModel> entityToModelMapper){
+    BaseService(IBaseRepository<TEntity> repository,
+                IMapper<TModel, TEntity> modelToEntityMapper, IMapper<TEntity, TModel> entityToModelMapper){
         if(repository == null)
             throw new IllegalArgumentException("repository is null");
         if(modelToEntityMapper == null)
@@ -53,7 +53,7 @@ public class BaseService<TModel extends IBaseModel, TEntity> implements IBaseSer
     @Override
     public void edit(TModel model) {
         if (model == null)
-            throw new IllegalArgumentException("brandModel is null");
+            throw new IllegalArgumentException("model is null");
         if (getById(model.getId()) == null)
             throw new IllegalArgumentException("model with id: "+model.getId()+" not exist");
 

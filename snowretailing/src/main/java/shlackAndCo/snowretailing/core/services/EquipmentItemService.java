@@ -5,10 +5,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import shlackAndCo.snowretailing.core.contracts.infastructure.mappers.IMapper;
 import shlackAndCo.snowretailing.core.contracts.models.IEquipmentItemModel;
-import shlackAndCo.snowretailing.core.contracts.models.IUserModel;
 import shlackAndCo.snowretailing.core.contracts.services.IEquipmentItemService;
 import shlackAndCo.snowretailing.dal.contracts.entities.IEquipmentItemEntity;
-import shlackAndCo.snowretailing.dal.contracts.entities.IUserEntity;
 import shlackAndCo.snowretailing.dal.contracts.repositories.IEquipmentItemRepository;
 
 @Service

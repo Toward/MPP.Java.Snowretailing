@@ -2,7 +2,7 @@ package shlackAndCo.snowretailing.core.contracts.services;
 
 import java.util.Collection;
 
-public interface IBaseService<TModel,TEntity> {
+public interface IBaseService<TModel> {
         Collection<TModel> getAll();
 
         TModel getById(int id);
