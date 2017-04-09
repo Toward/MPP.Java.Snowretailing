@@ -26,7 +26,7 @@ public class CredentialController {
 
     @ResponseBody
     @Secured(Permissions.AdminRead)
-    @RequestMapping(value = "api/credential",method = RequestMethod.GET)
+    @RequestMapping(value = "api/credentials",method = RequestMethod.GET)
     public IResultModel<Collection<ICredentialModel>> GetCredentials(){
         Collection<ICredentialModel> result = credentialService.getAll();
         return new ResultModel<>(ResultStatus.OK, "Successful. Credentials in data", result);
@@ -34,7 +34,7 @@ public class CredentialController {
 
     @ResponseBody
     @Secured(Permissions.AdminRead)
-    @RequestMapping(value = "api/credential/{id}",method = RequestMethod.GET)
+    @RequestMapping(value = "api/credentials/{id}",method = RequestMethod.GET)
     public IResultModel<ICredentialModel> GetCredential(@PathVariable int id){
         ICredentialModel result = credentialService.getById(id);
         return new ResultModel<>(ResultStatus.OK, "Successful. Credential in data", result);
@@ -42,25 +42,25 @@ public class CredentialController {
 
     @ResponseBody
     @Secured(Permissions.AdminWrite)
-    @RequestMapping(value = "api/credential",method = RequestMethod.POST)
-    public IResultModel<ICredentialModel> CreateCredential(@RequestBody @Validated CredentialModel credential){
+    @RequestMapping(value = "api/credentials",method = RequestMethod.POST)
+    public IResultModel CreateCredential(@RequestBody @Validated CredentialModel credential){
         credentialService.create(credential);
-        return new ResultModel<>(ResultStatus.OK, "Successful", null);
+        return new ResultModel(ResultStatus.OK, "Successful", null);
     }
 
     @ResponseBody
     @Secured(Permissions.AdminWrite)
-    @RequestMapping(value = "api/credential",method = RequestMethod.PUT)
-    public IResultModel<ICredentialModel> UpdateCredential(@RequestBody @Validated CredentialModel credential){
+    @RequestMapping(value = "api/credentials",method = RequestMethod.PUT)
+    public IResultModel UpdateCredential(@RequestBody @Validated CredentialModel credential){
         credentialService.edit(credential);
-        return new ResultModel<>(ResultStatus.OK, "Successful", null);
+        return new ResultModel(ResultStatus.OK, "Successful", null);
     }
 
     @ResponseBody
     @Secured(Permissions.AdminWrite)
-    @RequestMapping(value = "api/credential/{id}",method = RequestMethod.DELETE)
-    public IResultModel<ICredentialModel> DeleteCredential(@PathVariable int id){
+    @RequestMapping(value = "api/credentials/{id}",method = RequestMethod.DELETE)
+    public IResultModel DeleteCredential(@PathVariable int id){
         credentialService.delete(id);
-        return new ResultModel<>(ResultStatus.OK, "Successful", null);
+        return new ResultModel(ResultStatus.OK, "Successful", null);
     }
 }

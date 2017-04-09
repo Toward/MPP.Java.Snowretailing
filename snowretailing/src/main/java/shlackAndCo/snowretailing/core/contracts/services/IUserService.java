@@ -6,7 +6,7 @@ import shlackAndCo.snowretailing.core.contracts.models.IUserWriteModel;
 import java.util.Collection;
 
 public interface IUserService {
-    Collection<IUserReadModel> getUsers();
+    Collection<IUserReadModel> getAll();
     IUserReadModel getById(int userId);
     IUserReadModel getByLogin(String login);
     int create(IUserWriteModel model);

@@ -1,6 +1,7 @@
 package shlackAndCo.snowretailing.dal.repositories;
 
 import org.hibernate.HibernateException;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -25,7 +26,7 @@ public class BaseRepository <T> implements IBaseRepository<T> {
         Transaction transaction = null;
         try(Session session = sessionFactory.openSession()){
             transaction = session.beginTransaction();
-            result = session.createCriteria(entityType).list();
+            result = session.createCriteria(entityType).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
             transaction.commit();
         }catch (HibernateException e){
             if (transaction == null)
