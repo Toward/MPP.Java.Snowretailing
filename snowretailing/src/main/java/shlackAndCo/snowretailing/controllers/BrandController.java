@@ -17,7 +17,7 @@ import shlackAndCo.snowretailing.core.models.ResultModel;
 import javax.validation.Valid;
 import java.util.Collection;
 
-@Controller
+@RestController
 public class BrandController {
     private final IBrandService brandService;
 
