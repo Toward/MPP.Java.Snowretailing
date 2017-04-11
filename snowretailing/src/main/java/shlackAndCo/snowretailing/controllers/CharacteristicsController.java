@@ -4,19 +4,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import shlackAndCo.snowretailing.core.contracts.models.ICharacteristicsModel;
+import shlackAndCo.snowretailing.core.contracts.models.IResultModel;
 import shlackAndCo.snowretailing.core.contracts.services.ICharacteristicsService;
+import shlackAndCo.snowretailing.core.enums.ResultStatus;
 import shlackAndCo.snowretailing.core.models.CharacteristicsModel;
+import shlackAndCo.snowretailing.core.models.ResultModel;
 
 import javax.validation.Valid;
 import java.util.Collection;
 
-@Controller
+@RestController
 public class CharacteristicsController {
     private final ICharacteristicsService service;
 
@@ -28,63 +29,44 @@ public class CharacteristicsController {
         this.service = service;
     }
 
+    @ResponseBody
     @RequestMapping(value = "/characteristics", method = RequestMethod.GET)
-    public ModelAndView getCharacteristics() {
-        ModelAndView view = new ModelAndView("characteristics/characteristicsView");
-
-        Collection<ICharacteristicsModel> characteristicModels = service.getAll();
-        view.addObject("characteristics", characteristicModels);
-
-        return view;
+    public IResultModel<Collection<ICharacteristicsModel>> getCharacteristics() {
+        Collection<ICharacteristicsModel> models = service.getAll();
+        return new ResultModel<>(ResultStatus.OK, "All characteristics've been successfully got", models);
     }
 
+    @ResponseBody
     @RequestMapping(value = "/characteristics/{id}", method = RequestMethod.GET)
-    public ModelAndView getCharacteristic(@PathVariable("id") int id) {
-        ModelAndView view = new ModelAndView("characteristics/characteristicView");
-
-        ICharacteristicsModel characteristicModel = service.getById(id);
-        view.addObject("characteristic", characteristicModel);
-
-        return view;
+    public IResultModel<ICharacteristicsModel> getCharacteristic(@PathVariable("id") int id) {
+        ICharacteristicsModel model = service.getById(id);
+        return new ResultModel<>(ResultStatus.OK, "Characteristic has been successfully got by id", model);
     }
 
+    @ResponseBody
     @RequestMapping(value = "/characteristics/create", method = RequestMethod.GET)
-    public ModelAndView createCharacteristic() {
-        return new ModelAndView("characteristics/createCharacteristic", "characteristic", new CharacteristicsModel());
+    public IResultModel<ICharacteristicsModel> createCharacteristic() {
+        return new ResultModel<>(ResultStatus.OK, "All necessary data has been successfully sent", new CharacteristicsModel());
     }
-
+    //TODO validation
+    @ResponseBody
     @RequestMapping(value = "/characteristics/create", method = RequestMethod.POST)
-    public ModelAndView createCharacteristic(@Valid @ModelAttribute("brand") CharacteristicsModel characteristic, BindingResult result) {
-        if (result.hasErrors())
-            return new ModelAndView("characteristics/createCharacteristic", result.getModel());
-
-        service.create(characteristic);
-
-        return new ModelAndView("redirect:/characteristics");
+    public IResultModel<ICharacteristicsModel> createCharacteristic(@RequestBody @Validated ICharacteristicsModel model) {
+        service.create(model);
+        return new ResultModel<ICharacteristicsModel>(ResultStatus.OK, "Characteristic has been created", model);
     }
-
-    @RequestMapping(value = "/characteristics/{id}/edit", method = RequestMethod.GET)
-    public ModelAndView editCharacteristic(@PathVariable("id") int id) {
-        ICharacteristicsModel characteristic = service.getById(id);
-
-        return new ModelAndView("characteristics/editCharacteristic", "characteristic", characteristic);
-    }
-
-    @RequestMapping(value = "/characteristics/{id}/edit", method = RequestMethod.POST)
-    public ModelAndView editCharacteristic(@PathVariable("id") int id, @Valid @ModelAttribute("characteristic") CharacteristicsModel model, BindingResult result) {
-        if (result.hasErrors())
-            return new ModelAndView("characteristic/editCharacteristic", result.getModel());
-
-        model.setId(id);
+    @ResponseBody
+    @RequestMapping(value = "/characteristics/{id}", method = RequestMethod.PUT)
+    public IResultModel<ICharacteristicsModel> editCharacteristic(@PathVariable("id") int id, @RequestBody @Validated ICharacteristicsModel model) {
         service.edit(model);
-
-        return new ModelAndView("redirect:/characteristics");
+        return new ResultModel<ICharacteristicsModel>(ResultStatus.OK, "Characteristic has been changed", model);
     }
 
-    @RequestMapping(value = "/characteristics/{id}/delete")
-    public ModelAndView removeCharacteristic(@PathVariable("id") int id) {
+    @ResponseBody
+    @RequestMapping(value = "/characteristics/{id}", method = RequestMethod.DELETE)
+    public ResultModel<ICharacteristicsModel> removeCharacteristic(@PathVariable("id") int id) {
         service.delete(id);
 
-        return new ModelAndView("redirect:/characteristics");
+        return new ResultModel<ICharacteristicsModel>(ResultStatus.OK, "Characteristics has been changed", null);
     }
 }
