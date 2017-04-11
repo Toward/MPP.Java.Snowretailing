@@ -10,9 +10,18 @@ import shlackAndCo.snowretailing.dal.utils.HibernateSessionFactory;
 
 import java.util.Collection;
 
-public class BaseRepository <T> implements IBaseRepository<T> {
-    protected final SessionFactory sessionFactory = HibernateSessionFactory.getSessionFactory();
+public class BaseRepository <T extends Object> implements IBaseRepository<T> {
     private final Class entityType;
+
+    protected SessionFactory sessionFactory = HibernateSessionFactory.getSessionFactory();
+
+    public SessionFactory getSessionFactory() {
+        return sessionFactory;
+    }
+
+    public void setSessionFactory(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
 
     public BaseRepository(Class entityType) throws IllegalArgumentException {
         if (entityType == null)

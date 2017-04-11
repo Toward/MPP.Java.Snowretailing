@@ -8,9 +8,6 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.util.Collection;
 
-/**
- * Created by Владелец on 28/02/2017.
- */
 @Entity
 @Table(name = "characteristics", schema = "snowretailing_db")
 public interface ICharacteristicsEntity {

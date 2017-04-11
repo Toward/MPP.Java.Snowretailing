@@ -9,6 +9,8 @@ import shlackAndCo.snowretailing.dal.contracts.repositories.ICredentialRepositor
 import shlackAndCo.snowretailing.dal.entities.ContactDataEntity;
 import shlackAndCo.snowretailing.dal.entities.CredentialEntity;
 
+import java.util.Collection;
+
 @Repository
 public class CredentialRepository extends BaseRepository<ICredentialEntity> implements ICredentialRepository {
     private final IContactDataRepository contactDataRepository;
@@ -24,7 +26,12 @@ public class CredentialRepository extends BaseRepository<ICredentialEntity> impl
             throw new IllegalArgumentException("entity is null");
 
         int result = super.create(entity);
-        for (ContactDataEntity phoneNumber : entity.getContactDatasById()){
+
+        Collection<ContactDataEntity> phoneNumbers = entity.getContactDatasById();
+        if(phoneNumbers == null)
+            return result;
+
+        for (ContactDataEntity phoneNumber : phoneNumbers){
             CredentialEntity credentialEntity = new CredentialEntity();
             credentialEntity.setId(result);
             phoneNumber.setCredentialByCredentialId(credentialEntity);
@@ -39,15 +46,23 @@ public class CredentialRepository extends BaseRepository<ICredentialEntity> impl
             throw new IllegalArgumentException("entity is null");
 
         ICredentialEntity updatedEntity = getById(entity.getId());
-        for(IContactDataEntity contactDataEntity : updatedEntity.getContactDatasById()){
-            contactDataRepository.delete(contactDataEntity.getId());
-        }
-        for(IContactDataEntity phoneNumber : entity.getContactDatasById()){
-            CredentialEntity credentialEntity = new CredentialEntity();
-            credentialEntity.setId(updatedEntity.getId());
-            phoneNumber.setCredentialByCredentialId(credentialEntity);
-            contactDataRepository.create(phoneNumber);
-        }
+        if(updatedEntity == null)
+            throw new IllegalArgumentException("entity not found");
+
+        Collection<ContactDataEntity> phoneNumbers = updatedEntity.getContactDatasById();
+        if(phoneNumbers != null)
+            for(IContactDataEntity contactDataEntity : phoneNumbers){
+                contactDataRepository.delete(contactDataEntity.getId());
+            }
+
+        phoneNumbers = entity.getContactDatasById();
+        if(phoneNumbers != null)
+            for(IContactDataEntity phoneNumber : phoneNumbers){
+                CredentialEntity credentialEntity = new CredentialEntity();
+                credentialEntity.setId(updatedEntity.getId());
+                phoneNumber.setCredentialByCredentialId(credentialEntity);
+                contactDataRepository.create(phoneNumber);
+            }
         super.update(entity);
     }
 
@@ -56,10 +71,15 @@ public class CredentialRepository extends BaseRepository<ICredentialEntity> impl
         if(id <= 0)
             throw new IllegalArgumentException("id must be greater than zero");
 
-        ICredentialEntity credentialEntity = getById(id);
-        for(IContactDataEntity contactDataEntity : credentialEntity.getContactDatasById()){
-            contactDataRepository.delete(contactDataEntity.getId());
-        }
+        ICredentialEntity deletedEntity = getById(id);
+        if(deletedEntity == null)
+            throw new IllegalArgumentException("entity not found");
+
+        Collection<ContactDataEntity> phoneNumbers = deletedEntity.getContactDatasById();
+        if(phoneNumbers != null)
+            for(IContactDataEntity contactDataEntity : phoneNumbers){
+                contactDataRepository.delete(contactDataEntity.getId());
+            }
         super.delete(id);
     }
 }

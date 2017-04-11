@@ -22,7 +22,5 @@ public class EquipmentItemService extends BaseService<IEquipmentItemModel, IEqui
         this.equipmentItemRepository = equipmentItemRepository;
         mapper = equipmentItemEntityToModelMapper;
     }
-
-
 }
 

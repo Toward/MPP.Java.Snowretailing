@@ -8,6 +8,8 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 public class HibernateSessionFactory {
     private static SessionFactory sessionFactory = buildSessionFactory();
 
+    private HibernateSessionFactory(){}
+
     protected static SessionFactory buildSessionFactory() {
         final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
                 .configure() // configures settings from hibernate.cfg.xml
