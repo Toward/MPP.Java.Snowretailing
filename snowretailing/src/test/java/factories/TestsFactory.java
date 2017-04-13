@@ -5,6 +5,9 @@ import org.hibernate.criterion.Restrictions;
 import org.mockito.Mockito;
 import shlackAndCo.snowretailing.dal.contracts.repositories.IContactDataRepository;
 import shlackAndCo.snowretailing.dal.entities.BrandEntity;
+import shlackAndCo.snowretailing.dal.entities.RoleEntity;
+import shlackAndCo.snowretailing.dal.entities.TypeEntity;
+import shlackAndCo.snowretailing.dal.entities.UserEntity;
 
 
 import java.util.List;
@@ -62,12 +65,15 @@ public class TestsFactory extends BaseFactory {
     }
 
     @Override
-    public Session createMockSessionWithGetByName(Object deletedObject) {
+    public Session createMockSessionWithGetByName(Object deletedObject, String name) {
         Session session = createMockSession();
         Criteria mockCriteria = Mockito.mock(Criteria.class);
-        when(mockCriteria.add(Restrictions.eq("brandName",anyString()))).thenReturn(mockCriteria);
+        when(mockCriteria.add(Restrictions.eq(name, anyString()))).thenReturn(mockCriteria);
         when(mockCriteria.uniqueResult()).thenReturn(deletedObject);
         when(session.createCriteria(BrandEntity.class)).thenReturn(mockCriteria);
+        when(session.createCriteria(TypeEntity.class)).thenReturn(mockCriteria);
+        when(session.createCriteria(RoleEntity.class)).thenReturn(mockCriteria);
+        when(session.createCriteria(UserEntity.class)).thenReturn(mockCriteria);
         return session;
     }
 

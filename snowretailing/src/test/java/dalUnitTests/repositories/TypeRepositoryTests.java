@@ -1,17 +1,19 @@
 package dalUnitTests.repositories;
 
+
 import factories.TestsFactory;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
-import shlackAndCo.snowretailing.dal.entities.BrandEntity;
-import shlackAndCo.snowretailing.dal.repositories.BrandRepository;
+import shlackAndCo.snowretailing.dal.entities.TypeEntity;
+import shlackAndCo.snowretailing.dal.enums.EquipmentTypes;
+import shlackAndCo.snowretailing.dal.repositories.TypeRepository;
 
-import static junit.framework.Assert.assertEquals;
+import static org.junit.Assert.assertEquals;
 
-public class BrandRepositoryTests {
+public class TypeRepositoryTests {
     private final TestsFactory factory = new TestsFactory();
 
     @Rule
@@ -19,30 +21,30 @@ public class BrandRepositoryTests {
 
     @Test
     public void getByName_loginIsNull_throwIllegalArgumentException(){
-        BrandRepository testedRepository = factory.createBrandRepository();
+        TypeRepository testedRepository = factory.createTypeRepository();
 
         exception.expect(IllegalArgumentException.class);
-        exception.expectMessage("brandName");
+        exception.expectMessage("name is empty");
         testedRepository.getByName(null);
     }
 
     @Test
     public void getByName_errorInTransaction_throwHibernateException(){
-        BrandRepository testedRepository = factory.createBrandRepository();
+        TypeRepository testedRepository = factory.createTypeRepository();
         Session sessionWithException = factory.createMockSessionWithException();
         testedRepository.setSessionFactory(factory.createMockSessionFactory(sessionWithException));
 
         exception.expect(HibernateException.class);
-        testedRepository.getByName("test name");
+        testedRepository.getByName(EquipmentTypes.BOARD);
     }
 
     @Test
     public void getByName_default_returnObject(){
-        BrandEntity expectedObject = new BrandEntity();
-        BrandRepository testedRepository = factory.createBrandRepository();
-        Session mockSession = factory.createMockSessionWithGetByName(expectedObject, "brandName");
+        TypeEntity expectedObject = new TypeEntity();
+        TypeRepository testedRepository = factory.createTypeRepository();
+        Session mockSession = factory.createMockSessionWithGetByName(expectedObject, "name");
         testedRepository.setSessionFactory(factory.createMockSessionFactory(mockSession));
 
-        assertEquals(testedRepository.getByName("test name"),expectedObject);
+        assertEquals(testedRepository.getByName(EquipmentTypes.BOARD),expectedObject);
     }
 }

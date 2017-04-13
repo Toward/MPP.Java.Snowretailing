@@ -1,17 +1,21 @@
 package dalUnitTests.repositories;
 
+
 import factories.TestsFactory;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
-import shlackAndCo.snowretailing.dal.entities.BrandEntity;
-import shlackAndCo.snowretailing.dal.repositories.BrandRepository;
+import shlackAndCo.snowretailing.dal.entities.TypeEntity;
+import shlackAndCo.snowretailing.dal.entities.UserEntity;
+import shlackAndCo.snowretailing.dal.enums.EquipmentTypes;
+import shlackAndCo.snowretailing.dal.repositories.TypeRepository;
+import shlackAndCo.snowretailing.dal.repositories.UserRepository;
 
-import static junit.framework.Assert.assertEquals;
+import static org.junit.Assert.assertEquals;
 
-public class BrandRepositoryTests {
+public class UserRepositoryTests {
     private final TestsFactory factory = new TestsFactory();
 
     @Rule
@@ -19,30 +23,30 @@ public class BrandRepositoryTests {
 
     @Test
     public void getByName_loginIsNull_throwIllegalArgumentException(){
-        BrandRepository testedRepository = factory.createBrandRepository();
+        UserRepository testedRepository = factory.createUserRepository();
 
         exception.expect(IllegalArgumentException.class);
-        exception.expectMessage("brandName");
-        testedRepository.getByName(null);
+        exception.expectMessage("login is empty");
+        testedRepository.getByLogin(null);
     }
 
     @Test
     public void getByName_errorInTransaction_throwHibernateException(){
-        BrandRepository testedRepository = factory.createBrandRepository();
+        UserRepository testedRepository = factory.createUserRepository();
         Session sessionWithException = factory.createMockSessionWithException();
         testedRepository.setSessionFactory(factory.createMockSessionFactory(sessionWithException));
 
         exception.expect(HibernateException.class);
-        testedRepository.getByName("test name");
+        testedRepository.getByLogin("test login");
     }
 
     @Test
     public void getByName_default_returnObject(){
-        BrandEntity expectedObject = new BrandEntity();
-        BrandRepository testedRepository = factory.createBrandRepository();
-        Session mockSession = factory.createMockSessionWithGetByName(expectedObject, "brandName");
+        UserEntity expectedObject = new UserEntity();
+        UserRepository testedRepository = factory.createUserRepository();
+        Session mockSession = factory.createMockSessionWithGetByName(expectedObject, "login");
         testedRepository.setSessionFactory(factory.createMockSessionFactory(mockSession));
 
-        assertEquals(testedRepository.getByName("test name"),expectedObject);
+        assertEquals(testedRepository.getByLogin("test login"),expectedObject);
     }
 }

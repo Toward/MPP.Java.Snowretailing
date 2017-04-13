@@ -6,12 +6,12 @@ import org.hibernate.Session;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
-import shlackAndCo.snowretailing.dal.entities.BrandEntity;
-import shlackAndCo.snowretailing.dal.repositories.BrandRepository;
+import shlackAndCo.snowretailing.dal.entities.RoleEntity;
+import shlackAndCo.snowretailing.dal.repositories.RoleRepository;
 
-import static junit.framework.Assert.assertEquals;
+import static org.junit.Assert.assertEquals;
 
-public class BrandRepositoryTests {
+public class RoleRepositoryTests {
     private final TestsFactory factory = new TestsFactory();
 
     @Rule
@@ -19,30 +19,30 @@ public class BrandRepositoryTests {
 
     @Test
     public void getByName_loginIsNull_throwIllegalArgumentException(){
-        BrandRepository testedRepository = factory.createBrandRepository();
+        RoleRepository testedRepository = factory.createRoleRepository();
 
         exception.expect(IllegalArgumentException.class);
-        exception.expectMessage("brandName");
-        testedRepository.getByName(null);
+        exception.expectMessage("Role name is empty");
+        testedRepository.getByRoleName(null);
     }
 
     @Test
     public void getByName_errorInTransaction_throwHibernateException(){
-        BrandRepository testedRepository = factory.createBrandRepository();
+        RoleRepository testedRepository = factory.createRoleRepository();
         Session sessionWithException = factory.createMockSessionWithException();
         testedRepository.setSessionFactory(factory.createMockSessionFactory(sessionWithException));
 
         exception.expect(HibernateException.class);
-        testedRepository.getByName("test name");
+        testedRepository.getByRoleName("test name");
     }
 
     @Test
     public void getByName_default_returnObject(){
-        BrandEntity expectedObject = new BrandEntity();
-        BrandRepository testedRepository = factory.createBrandRepository();
-        Session mockSession = factory.createMockSessionWithGetByName(expectedObject, "brandName");
+        RoleEntity expectedObject = new RoleEntity();
+        RoleRepository testedRepository = factory.createRoleRepository();
+        Session mockSession = factory.createMockSessionWithGetByName(expectedObject, "roleName");
         testedRepository.setSessionFactory(factory.createMockSessionFactory(mockSession));
 
-        assertEquals(testedRepository.getByName("test name"),expectedObject);
+        assertEquals(testedRepository.getByRoleName("test name"),expectedObject);
     }
 }
