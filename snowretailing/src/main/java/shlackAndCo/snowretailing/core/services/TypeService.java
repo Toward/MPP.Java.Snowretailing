@@ -50,10 +50,10 @@ public class TypeService implements ITypeService {
 
     @Override
     public void edit(ITypeModel model) throws IllegalArgumentException {
-        if (model.getId() <= 0)
-            throw new IllegalArgumentException("id must be greater than zero");
         if (model == null)
             throw new IllegalArgumentException("typeModel is null");
+        if (model.getId() <= 0)
+            throw new IllegalArgumentException("id must be greater than zero");
         if (getById(model.getId()) == null)
             throw new IllegalArgumentException("typeModel with id: "+model.getId()+" not exist");
 

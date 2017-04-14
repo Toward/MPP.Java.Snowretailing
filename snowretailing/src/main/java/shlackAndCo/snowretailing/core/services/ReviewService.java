@@ -57,10 +57,11 @@ public class ReviewService implements IReviewService {
 
     @Override
     public void edit(IReviewModel model) throws IllegalArgumentException {
-        if (model.getId() <= 0)
-            throw new IllegalArgumentException("id must be greater than zero");
         if (model == null)
             throw new IllegalArgumentException("reviewModel is null");
+        if (model.getId() <= 0)
+            throw new IllegalArgumentException("id must be greater than zero");
+
         if (getById(model.getId()) == null)
             throw new IllegalArgumentException("reviewModel with id: "+model.getId()+" not exist");
 
