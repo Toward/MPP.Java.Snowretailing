@@ -6,11 +6,18 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.mockito.Mockito;
 import shlackAndCo.snowretailing.core.contracts.models.IBrandModel;
+import shlackAndCo.snowretailing.core.contracts.models.ICharacteristicsModel;
 import shlackAndCo.snowretailing.core.models.BrandModel;
+import shlackAndCo.snowretailing.core.models.CharacteristicsModel;
 import shlackAndCo.snowretailing.core.services.BrandService;
+import shlackAndCo.snowretailing.core.services.CharacteristicsService;
 import shlackAndCo.snowretailing.dal.contracts.entities.IBrandEntity;
+import shlackAndCo.snowretailing.dal.contracts.entities.ICharacteristicsEntity;
 import shlackAndCo.snowretailing.dal.entities.BrandEntity;
+import shlackAndCo.snowretailing.dal.entities.CharacteristicsEntity;
+import shlackAndCo.snowretailing.dal.enums.CharacteristicsNames;
 import shlackAndCo.snowretailing.dal.repositories.BrandRepository;
+import shlackAndCo.snowretailing.dal.repositories.CharacteristicsRepository;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -26,8 +33,8 @@ public class CharacteristicsServiceTests {
     @Test
     public void ctor_repositoryIsNull_throwIllegalArgumentException(){
         exception.expect(IllegalArgumentException.class);
-        exception.expectMessage("brandRepository is null");
-        BrandService testedService = new BrandService(null);
+        exception.expectMessage("Repository is null");
+        CharacteristicsService testedService = new CharacteristicsService(null);
     }
 
     @Test
@@ -35,27 +42,27 @@ public class CharacteristicsServiceTests {
 //        Collection<IBrandModel> expectedObjects = new ArrayList<>();
 //        expectedObjects.add(new BrandModel());
 //        expectedObjects.add(new BrandModel());
-        Collection<IBrandEntity> brandEntities = new ArrayList<>();
-        brandEntities.add(new BrandEntity());
-        brandEntities.add(new BrandEntity());
+        Collection<ICharacteristicsEntity> entities = new ArrayList<>();
+        entities.add(new CharacteristicsEntity());
+        entities.add(new CharacteristicsEntity());
 //        BrandRepository testedRepository = factory.createBrandRepository();
 //        Session mockSession = factory.createMockSessionWithGetAll(brandEntities, BrandEntity.class);
 //        testedRepository.setSessionFactory(factory.createMockSessionFactory(mockSession));
 //
-       Collection<IBrandModel> expectedObjects = brandEntities.stream().map(BrandModel::new).collect(Collectors.toList());
-        BrandRepository mockRepository = Mockito.mock(BrandRepository.class);
-        BrandService testedService = new BrandService(mockRepository);
+       Collection<ICharacteristicsModel> expectedObjects = entities.stream().map(CharacteristicsModel::new).collect(Collectors.toList());
+        CharacteristicsRepository mockRepository = Mockito.mock(CharacteristicsRepository.class);
+        CharacteristicsService testedService = new CharacteristicsService(mockRepository);
 //        BrandService testedService = new BrandService(testedRepository);
 //        when(testedService.getAll()).thenReturn(brandEntities);
-        doReturn(brandEntities).when(mockRepository).getAll();
-        Collection<IBrandModel> actualObjects = testedService.getAll();
+        doReturn(entities).when(mockRepository).getAll();
+        Collection<ICharacteristicsModel> actualObjects = testedService.getAll();
         assertEquals(expectedObjects.size(), actualObjects.size());
     }
 
     @Test
     public void getById_idLessThanZero_throwIllegalArgumentException(){
-        BrandRepository mockRepository = Mockito.mock(BrandRepository.class);
-        BrandService testedService = new BrandService(mockRepository);
+        CharacteristicsRepository mockRepository = Mockito.mock(CharacteristicsRepository.class);
+        CharacteristicsService testedService = new CharacteristicsService(mockRepository);
 
         exception.expect(IllegalArgumentException.class);
         exception.expectMessage("id must be greater than zero");
@@ -64,110 +71,110 @@ public class CharacteristicsServiceTests {
 
     @Test
     public void getById_idIsGreaterThanZero_returnObject(){
-        BrandEntity expectedEntity = new BrandEntity();
+        CharacteristicsEntity expectedEntity = new CharacteristicsEntity();
         int id = 1;
         expectedEntity.setId(id);
-        expectedEntity.setBrandName("Shlack");
+        expectedEntity.setName(CharacteristicsNames.GEOMETRY);
 
-        BrandRepository mockRepository = Mockito.mock(BrandRepository.class);
+        CharacteristicsRepository mockRepository = Mockito.mock(CharacteristicsRepository.class);
         doReturn(expectedEntity).when(mockRepository).getById(id);
-        BrandService testedService = new BrandService(mockRepository);
+        CharacteristicsService testedService = new CharacteristicsService(mockRepository);
 
-        IBrandModel actualModel = testedService.getById(id);
-        IBrandModel expectedModel = new BrandModel(expectedEntity);
+        ICharacteristicsModel actualModel = testedService.getById(id);
+        ICharacteristicsModel expectedModel = new CharacteristicsModel(expectedEntity);
 
         assertEquals(expectedModel.getId(), actualModel.getId());
-        assertEquals(expectedModel.getBrandName(), actualModel.getBrandName());
+        assertEquals(expectedModel.getName(), actualModel.getName());
     }
 
     @Test
     public void create_createdEntityIsNull_throwIllegalArgumentException(){
-        BrandRepository mockRepository = Mockito.mock(BrandRepository.class);
-        BrandService testedService = new BrandService(mockRepository);
+        CharacteristicsRepository mockRepository = Mockito.mock(CharacteristicsRepository.class);
+        CharacteristicsService testedService = new CharacteristicsService(mockRepository);
 
         exception.expect(IllegalArgumentException.class);
-        exception.expectMessage("brandModel is null");
+        exception.expectMessage("Model is null");
         testedService.create(null);
     }
 
     @Test
     public void create_CreatedEntityNotNull_AddObject(){
-        IBrandModel createdmodel = new BrandModel();
+        ICharacteristicsModel createdmodel = new CharacteristicsModel();
 
-        BrandRepository mockRepository = Mockito.mock(BrandRepository.class);
-        BrandService testedService = new BrandService(mockRepository);
+        CharacteristicsRepository mockRepository = Mockito.mock(CharacteristicsRepository.class);
+        CharacteristicsService testedService = new CharacteristicsService(mockRepository);
 
 
         testedService.create(createdmodel);
 
-        verify(mockRepository).create(any(IBrandEntity.class));
+        verify(mockRepository).create(any(ICharacteristicsEntity.class));
     }
 
     @Test
     public void create_CreatedEntityNotNull_ReturnNewEntityId(){
         int expectedId = 1;
-        IBrandModel brandModel = new BrandModel();
-        BrandRepository mockRepository = Mockito.mock(BrandRepository.class);
-        doReturn(expectedId).when(mockRepository).create(any(BrandEntity.class));
-        BrandService testedService = new BrandService(mockRepository);
+        ICharacteristicsModel model = new CharacteristicsModel();
+        CharacteristicsRepository mockRepository = Mockito.mock(CharacteristicsRepository.class);
+        doReturn(expectedId).when(mockRepository).create(any(CharacteristicsEntity.class));
+        CharacteristicsService testedService = new CharacteristicsService(mockRepository);
 
-        int result = testedService.create(brandModel);
+        int result = testedService.create(model);
 
         assertEquals(expectedId, result);
     }
 
     @Test
     public void update_updatedEntityIsNull_throwIllegalArgumentException(){
-        BrandRepository mockRepository = Mockito.mock(BrandRepository.class);
-        BrandService testedService = new BrandService(mockRepository);
+        CharacteristicsRepository mockRepository = Mockito.mock(CharacteristicsRepository.class);
+        CharacteristicsService testedService = new CharacteristicsService(mockRepository);
 
         exception.expect(IllegalArgumentException.class);
-        exception.expectMessage("brandModel is null");
+        exception.expectMessage("Model is null");
         testedService.edit(null);
     }
 
     @Test
     public void update_updatedEntitiesIdIsZero_throwIllegalArgumentException(){
-        BrandRepository mockRepository = Mockito.mock(BrandRepository.class);
-        BrandService testedService = new BrandService(mockRepository);
+        CharacteristicsRepository mockRepository = Mockito.mock(CharacteristicsRepository.class);
+        CharacteristicsService testedService = new CharacteristicsService(mockRepository);
 
         exception.expect(IllegalArgumentException.class);
         exception.expectMessage("id must be greater than zero");
-        BrandModel brandModel = new BrandModel();
-        brandModel.setId(0);
-        testedService.edit(brandModel);
+        CharacteristicsModel model = new CharacteristicsModel();
+        model.setId(0);
+        testedService.edit(model);
     }
 
     @Test
     public void update_updatedModelDoesNotExist_throwIllegalArgumentException(){
-        BrandRepository mockRepository = Mockito.mock(BrandRepository.class);
-        BrandService testedService = new BrandService(mockRepository);
+        CharacteristicsRepository mockRepository = Mockito.mock(CharacteristicsRepository.class);
+        CharacteristicsService testedService = new CharacteristicsService(mockRepository);
 
-        BrandModel brandModel = new BrandModel();
-        brandModel.setId(42);
+        CharacteristicsModel model = new CharacteristicsModel();
+        model.setId(42);
 
         exception.expect(IllegalArgumentException.class);
-        exception.expectMessage("brandModel with id: "+brandModel.getId()+" not exist");
+        exception.expectMessage("Model with id: "+model.getId()+" not exist");
 
-        testedService.edit(brandModel);
+        testedService.edit(model);
     }
 
 
     @Test
     public void update_UpdatedEntityNotNull_UpdateObject(){
-        BrandEntity expectedEntity = new BrandEntity();
+        CharacteristicsEntity expectedEntity = new CharacteristicsEntity();
         int id = 1;
         expectedEntity.setId(id);
-        expectedEntity.setBrandName("Shlack");
-        BrandModel brandModel = new BrandModel(expectedEntity);
+        expectedEntity.setName(CharacteristicsNames.INFLEXIBILITY);
+        CharacteristicsModel model = new CharacteristicsModel(expectedEntity);
 
-        BrandRepository mockRepository = Mockito.mock(BrandRepository.class);
+        CharacteristicsRepository mockRepository = Mockito.mock(CharacteristicsRepository.class);
         doReturn(expectedEntity).when(mockRepository).getById(id);
-        BrandService testedService = new BrandService(mockRepository);
+        CharacteristicsService testedService = new CharacteristicsService(mockRepository);
 
-        testedService.edit(brandModel);
+        testedService.edit(model);
 
-        verify(mockRepository).update(any(IBrandEntity.class));
+        verify(mockRepository).update(any(ICharacteristicsEntity.class));
     }
 
     @Test
@@ -183,25 +190,25 @@ public class CharacteristicsServiceTests {
     @Test
     public void delete_ModelDoesNotExist_throwIllegalArgumentException(){
         int id = 42;
-        BrandRepository mockRepository = Mockito.mock(BrandRepository.class);
-        BrandService testedService = new BrandService(mockRepository);
+        CharacteristicsRepository mockRepository = Mockito.mock(CharacteristicsRepository.class);
+        CharacteristicsService testedService = new CharacteristicsService(mockRepository);
 
         exception.expect(IllegalArgumentException.class);
-        exception.expectMessage("brandModel with id: "+id+" not exist");
+        exception.expectMessage("Model with id: "+id+" not exist");
         testedService.delete(id);
     }
 
     @Test
     public void delete_idIsGreaterThanZero_deleteObject(){
-        BrandEntity expectedEntity = new BrandEntity();
+        CharacteristicsEntity expectedEntity = new CharacteristicsEntity();
         int id = 1;
         expectedEntity.setId(id);
-        expectedEntity.setBrandName("Shlack");
-        BrandModel brandModel = new BrandModel(expectedEntity);
+        expectedEntity.setName(CharacteristicsNames.GEOMETRY);
+        CharacteristicsModel model = new CharacteristicsModel(expectedEntity);
 
-        BrandRepository mockRepository = Mockito.mock(BrandRepository.class);
+        CharacteristicsRepository mockRepository = Mockito.mock(CharacteristicsRepository.class);
         doReturn(expectedEntity).when(mockRepository).getById(id);
-        BrandService testedService = new BrandService(mockRepository);
+        CharacteristicsService testedService = new CharacteristicsService(mockRepository);
 
         testedService.delete(id);
 

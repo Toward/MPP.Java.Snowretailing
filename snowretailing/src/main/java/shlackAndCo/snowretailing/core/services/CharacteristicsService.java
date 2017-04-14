@@ -49,10 +49,10 @@ public class CharacteristicsService implements ICharacteristicsService {
     }
 
     public void edit(ICharacteristicsModel model) throws IllegalArgumentException {
-        if (model.getId() <= 0)
-            throw new IllegalArgumentException("id must be greater than zero");
         if (model == null)
             throw new IllegalArgumentException("Model is null");
+        if (model.getId() <= 0)
+            throw new IllegalArgumentException("id must be greater than zero");
         if (getById(model.getId()) == null)
             throw new IllegalArgumentException("Model with id: "+model.getId()+" not exist");
 
