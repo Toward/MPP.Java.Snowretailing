@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import shlackAndCo.snowretailing.core.contracts.models.IOrderModel;
 import shlackAndCo.snowretailing.core.contracts.models.IRentModel;
 import shlackAndCo.snowretailing.core.contracts.models.IResultModel;
 import shlackAndCo.snowretailing.core.contracts.services.ICredentialService;

@@ -41,12 +41,12 @@ public class TestsFactory extends BaseFactory {
     }
 
     @Override
-    public Session createMockSessionWithGetAll(List expectedObjects) {
+    public Session createMockSessionWithGetAll(List expectedObjects, Class entityType) {
         Session session = createMockSession();
         Criteria mockCriteria = Mockito.mock(Criteria.class);
         when(mockCriteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY)).thenReturn(mockCriteria);
         when(mockCriteria.list()).thenReturn(expectedObjects);
-        when(session.createCriteria(Object.class)).thenReturn(mockCriteria);
+        when(session.createCriteria(entityType)).thenReturn(mockCriteria);
         return session;
     }
 

@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.*;
 import shlackAndCo.snowretailing.core.contracts.models.IResultModel;
 import shlackAndCo.snowretailing.core.contracts.models.IReviewModel;
 import shlackAndCo.snowretailing.core.contracts.services.IReviewService;
-import shlackAndCo.snowretailing.core.contracts.services.IUserService;
 import shlackAndCo.snowretailing.core.enums.ResultStatus;
 import shlackAndCo.snowretailing.core.models.ResultModel;
 import shlackAndCo.snowretailing.core.models.ReviewModel;

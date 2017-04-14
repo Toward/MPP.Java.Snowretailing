@@ -44,7 +44,7 @@ public class BaseRepositoryTests {
         expectedObjects.add(new Object());
 
         BaseRepository testedRepository = factory.createBaseRepository(Object.class);
-        Session mockSession = factory.createMockSessionWithGetAll(expectedObjects);
+        Session mockSession = factory.createMockSessionWithGetAll(expectedObjects, Object.class);
         testedRepository.setSessionFactory(factory.createMockSessionFactory(mockSession));
 
         assertEquals(testedRepository.getAll(),expectedObjects);

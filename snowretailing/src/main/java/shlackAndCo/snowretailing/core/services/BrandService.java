@@ -49,10 +49,10 @@ public class BrandService implements IBrandService {
     }
 
     public void edit(IBrandModel model) throws IllegalArgumentException {
-        if (model.getId() <= 0)
-            throw new IllegalArgumentException("id must be greater than zero");
         if (model == null)
             throw new IllegalArgumentException("brandModel is null");
+        if (model.getId() <= 0)
+            throw new IllegalArgumentException("id must be greater than zero");
         if (getById(model.getId()) == null)
             throw new IllegalArgumentException("brandModel with id: "+model.getId()+" not exist");
 

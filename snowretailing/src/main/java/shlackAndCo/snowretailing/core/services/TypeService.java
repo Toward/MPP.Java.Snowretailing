@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import shlackAndCo.snowretailing.core.contracts.models.ITypeModel;
 import shlackAndCo.snowretailing.core.contracts.services.ITypeService;
-import shlackAndCo.snowretailing.core.models.BrandModel;
 import shlackAndCo.snowretailing.core.models.TypeModel;
 import shlackAndCo.snowretailing.dal.contracts.entities.ITypeEntity;
 import shlackAndCo.snowretailing.dal.contracts.repositories.ITypeRepository;

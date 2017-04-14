@@ -13,7 +13,7 @@ public class BaseService<TModel extends IBaseModel, TEntity> implements IBaseSer
     private final IMapper<TModel,TEntity> modelToEntityMapper;
     private final IMapper<TEntity,TModel> entityToModelMapper;
 
-    BaseService(IBaseRepository<TEntity> repository,
+    public BaseService(IBaseRepository<TEntity> repository,
                 IMapper<TModel, TEntity> modelToEntityMapper, IMapper<TEntity, TModel> entityToModelMapper){
         if(repository == null)
             throw new IllegalArgumentException("repository is null");

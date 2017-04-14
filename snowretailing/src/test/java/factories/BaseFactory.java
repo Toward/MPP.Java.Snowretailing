@@ -11,7 +11,7 @@ public abstract class BaseFactory {
     public abstract SessionFactory createMockSessionFactory(Session session);
     public abstract Session createMockSession();
     public abstract Session createMockSessionWithException();
-    public abstract Session createMockSessionWithGetAll(List expectedObjects);
+    public abstract Session createMockSessionWithGetAll(List expectedObjects, Class entityType);
     public abstract Session createMockSessionWithGet(Object returnedObject);
     public abstract Session createMockSessionWithSave(int returnedId);
     public abstract Session createMockSessionWithGetByName(Object deletedObject, String name);

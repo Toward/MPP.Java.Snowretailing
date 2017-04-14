@@ -2,11 +2,8 @@ package shlackAndCo.snowretailing.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 import shlackAndCo.snowretailing.core.contracts.models.ICharacteristicsModel;
 import shlackAndCo.snowretailing.core.contracts.models.IResultModel;
 import shlackAndCo.snowretailing.core.contracts.services.ICharacteristicsService;
@@ -14,7 +11,6 @@ import shlackAndCo.snowretailing.core.enums.ResultStatus;
 import shlackAndCo.snowretailing.core.models.CharacteristicsModel;
 import shlackAndCo.snowretailing.core.models.ResultModel;
 
-import javax.validation.Valid;
 import java.util.Collection;
 
 @RestController

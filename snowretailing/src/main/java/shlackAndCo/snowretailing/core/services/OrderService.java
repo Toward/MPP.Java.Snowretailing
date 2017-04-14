@@ -9,6 +9,8 @@ import shlackAndCo.snowretailing.core.contracts.services.IOrderService;
 import shlackAndCo.snowretailing.dal.contracts.entities.IOrderEntity;
 import shlackAndCo.snowretailing.dal.contracts.repositories.IOrderRepository;
 
+import java.util.Collection;
+
 @Service
 public class OrderService extends BaseService<IOrderModel, IOrderEntity> implements IOrderService {
     private final IOrderRepository orderRepository;
@@ -24,4 +26,8 @@ public class OrderService extends BaseService<IOrderModel, IOrderEntity> impleme
     }
 
 
+    @Override
+    public Collection<IOrderModel> getUsersOrders(String userName) {
+        return null;
+    }
 }
