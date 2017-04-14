@@ -12,6 +12,7 @@ import shlackAndCo.snowretailing.core.services.ReviewService;
 import shlackAndCo.snowretailing.dal.contracts.entities.IReviewEntity;
 import shlackAndCo.snowretailing.dal.entities.ReviewEntity;
 import shlackAndCo.snowretailing.dal.enums.CharacteristicsNames;
+import shlackAndCo.snowretailing.dal.enums.EquipmentTypes;
 import shlackAndCo.snowretailing.dal.repositories.BrandRepository;
 import shlackAndCo.snowretailing.dal.repositories.ReviewRepository;
 import shlackAndCo.snowretailing.dal.repositories.UserRepository;
@@ -30,7 +31,7 @@ public class ReviewServiceTests {
     @Test
     public void ctor_repositoryIsNull_throwIllegalArgumentException(){
         exception.expect(IllegalArgumentException.class);
-        exception.expectMessage("reviewRepository is null");
+        exception.expectMessage("Repository is null");
         ReviewService testedService = new ReviewService(null, null);
     }
 
@@ -46,7 +47,7 @@ public class ReviewServiceTests {
 //        Session mockSession = factory.createMockSessionWithGetAll(brandEntities, BrandEntity.class);
 //        testedRepository.setSessionFactory(factory.createMockSessionFactory(mockSession));
 //
-       Collection<IReviewModel> expectedObjects = entities.stream().map(ReviewModel::new).collect(Collectors.toList());
+        Collection<IReviewModel> expectedObjects = entities.stream().map(ReviewModel::new).collect(Collectors.toList());
         ReviewRepository mockRepository = Mockito.mock(ReviewRepository.class);
         UserRepository mockUserRepository = Mockito.mock(UserRepository.class);
         ReviewService testedService = new ReviewService(mockRepository, mockUserRepository);
@@ -73,7 +74,7 @@ public class ReviewServiceTests {
         ReviewEntity expectedEntity = new ReviewEntity();
         int id = 1;
         expectedEntity.setId(id);
-        expectedEntity.setReview("asf");
+        expectedEntity.setReview("df");
 
         ReviewRepository mockRepository = Mockito.mock(ReviewRepository.class);
         doReturn(expectedEntity).when(mockRepository).getById(id);
@@ -171,8 +172,10 @@ public class ReviewServiceTests {
         ReviewEntity expectedEntity = new ReviewEntity();
         int id = 1;
         expectedEntity.setId(id);
-        expectedEntity.setReview("sgsg");
-        ReviewModel model = new ReviewModel(expectedEntity);
+        expectedEntity.setReview("df");
+        ReviewModel model = new ReviewModel();
+        model.setId(id);
+        model.setReview("df");
 
         ReviewRepository mockRepository = Mockito.mock(ReviewRepository.class);
         doReturn(expectedEntity).when(mockRepository).getById(id);
@@ -211,8 +214,10 @@ public class ReviewServiceTests {
         ReviewEntity expectedEntity = new ReviewEntity();
         int id = 1;
         expectedEntity.setId(id);
-        expectedEntity.setReview("sef");
-        ReviewModel model = new ReviewModel(expectedEntity);
+        expectedEntity.setReview("df");
+        ReviewModel model = new ReviewModel();
+        model.setId(id);
+        model.setReview("df");
 
         ReviewRepository mockRepository = Mockito.mock(ReviewRepository.class);
         doReturn(expectedEntity).when(mockRepository).getById(id);
