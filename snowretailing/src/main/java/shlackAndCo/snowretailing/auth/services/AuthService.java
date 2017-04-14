@@ -6,9 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import shlackAndCo.snowretailing.auth.contracts.models.IAuthModel;
+import shlackAndCo.snowretailing.auth.contracts.models.ILoginResultModel;
 import shlackAndCo.snowretailing.auth.contracts.services.IAuthService;
 import shlackAndCo.snowretailing.auth.contracts.services.ICryptographyService;
+import shlackAndCo.snowretailing.auth.models.LoginResultModel;
 import shlackAndCo.snowretailing.auth.models.Token;
+import shlackAndCo.snowretailing.core.contracts.infastructure.mappers.IMapper;
+import shlackAndCo.snowretailing.core.contracts.models.IRoleModel;
+import shlackAndCo.snowretailing.dal.contracts.entities.IRoleEntity;
 import shlackAndCo.snowretailing.dal.contracts.entities.IUserEntity;
 import shlackAndCo.snowretailing.dal.contracts.repositories.IUserRepository;
 import shlackAndCo.snowretailing.dal.entities.RoleEntity;
@@ -20,18 +25,21 @@ import java.io.IOException;
 public class AuthService implements IAuthService {
     private final IUserRepository userRepository;
     private final ICryptographyService cryptographyService;
+    private final IMapper<IRoleEntity,IRoleModel> roleEntityToModelMapper;
     private final ObjectMapper mapper;
 
     @Autowired
     public AuthService(@Qualifier("userRepository") IUserRepository userRepository,
-                       @Autowired @Qualifier("cryptographyService") ICryptographyService cryptographyService){
+                       @Autowired @Qualifier("cryptographyService") ICryptographyService cryptographyService,
+                       @Qualifier("roleEntityToModelMapper") IMapper<IRoleEntity,IRoleModel> roleEntityToModelMapper){
         this.userRepository = userRepository;
         this.cryptographyService = cryptographyService;
+        this.roleEntityToModelMapper = roleEntityToModelMapper;
         mapper = new ObjectMapper();
     }
 
     @Override
-    public String Login(IAuthModel authModel){
+    public ILoginResultModel Login(IAuthModel authModel){
         if (authModel == null)
             throw new IllegalArgumentException("User is null");
 
@@ -47,7 +55,8 @@ public class AuthService implements IAuthService {
         } catch (IOException e) {
             return null;
         }
-        return cryptographyService.encrypt(tokenString);
+        return new LoginResultModel(loggingUser.getId(),loggingUser.getLogin(),
+                roleEntityToModelMapper.Map(loggingUser.getRoleByRoleId()),cryptographyService.encrypt(tokenString));
     }
 
     @Override

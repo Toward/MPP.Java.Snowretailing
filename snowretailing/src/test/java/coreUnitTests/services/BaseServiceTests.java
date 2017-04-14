@@ -1,30 +1,14 @@
 package coreUnitTests.services;
 
 
-import factories.TestsFactory;
-import org.hibernate.Session;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
-import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.runners.MockitoJUnitRunner;
-import repositories.TestRepository;
 import shlackAndCo.snowretailing.core.contracts.infastructure.mappers.IMapper;
 import shlackAndCo.snowretailing.core.contracts.models.IBaseModel;
-import shlackAndCo.snowretailing.core.contracts.models.IBrandModel;
 import shlackAndCo.snowretailing.core.services.BaseService;
-import shlackAndCo.snowretailing.dal.contracts.entities.IBrandEntity;
-import shlackAndCo.snowretailing.dal.contracts.repositories.IBaseRepository;
 import shlackAndCo.snowretailing.dal.repositories.BaseRepository;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.stream.Collectors;
-
-import static junit.framework.Assert.assertEquals;
 
 
 public class BaseServiceTests {

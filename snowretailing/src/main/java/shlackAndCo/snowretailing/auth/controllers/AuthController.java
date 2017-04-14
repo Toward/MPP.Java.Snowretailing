@@ -6,6 +6,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import shlackAndCo.snowretailing.auth.contracts.models.IAuthModel;
+import shlackAndCo.snowretailing.auth.contracts.models.ILoginResultModel;
 import shlackAndCo.snowretailing.auth.contracts.services.IAuthService;
 import shlackAndCo.snowretailing.auth.models.AuthModel;
 import shlackAndCo.snowretailing.auth.models.EditPasswordModel;
@@ -27,23 +28,23 @@ public class AuthController {
 
     @ResponseBody
     @RequestMapping(value = "/auth/login",method = RequestMethod.POST)
-    public IResultModel<String> Login(@RequestBody @Validated LoginModel loginModel){
-        String token = authService.Login(map(loginModel));
-        return new ResultModel<>(ResultStatus.OK, "Login successful.Token in data", token);
+    public IResultModel<ILoginResultModel> Login(@RequestBody @Validated LoginModel loginModel){
+        ILoginResultModel result = authService.Login(map(loginModel));
+        return new ResultModel<>(ResultStatus.OK, "Login successful", result);
     }
 
     @ResponseBody
     @RequestMapping(value = "/auth/register", method = RequestMethod.POST)
-    public IResultModel<String> Register(@RequestBody @Validated RegisterModel registerModel){
+    public IResultModel<ILoginResultModel> Register(@RequestBody @Validated RegisterModel registerModel){
         IAuthModel user = map(registerModel,Role.USER);
         authService.Register(user);
-        String token = authService.Login(user);
-        return new ResultModel<>(ResultStatus.OK, "Register successful.New token in data", token);
+        ILoginResultModel result = authService.Login(user);
+        return new ResultModel<>(ResultStatus.OK, "Register successful", result);
     }
 
     @ResponseBody
     @RequestMapping(value = "/api/auth/editPassword", method = RequestMethod.POST)
-    public IResultModel<String> EditPassword(@RequestBody @Validated EditPasswordModel editPasswordModel){
+    public IResultModel<ILoginResultModel> EditPassword(@RequestBody @Validated EditPasswordModel editPasswordModel){
         if(!editPasswordModel.getLogin().equals(SecurityContextHolder.getContext().getAuthentication().getName()))
             throw new IllegalArgumentException("The login is not equal to the current one");
 
@@ -51,8 +52,8 @@ public class AuthController {
         String newPassword = editPasswordModel.getNewPassword();
         authService.EditPassword(user,newPassword);
         user.setPassword(newPassword);
-        String token = authService.Login(user);
-        return new ResultModel<>(ResultStatus.OK, "Password edit successful.New token in data", token);
+        ILoginResultModel result = authService.Login(user);
+        return new ResultModel<>(ResultStatus.OK, "Password edit successful", result);
     }
 
     private IAuthModel map(LoginModel loginModel){
