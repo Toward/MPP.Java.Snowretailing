@@ -5,6 +5,7 @@ import org.hibernate.validator.constraints.Range;
 import org.springframework.format.annotation.DateTimeFormat;
 import shlackAndCo.snowretailing.core.contracts.models.IReviewModel;
 import shlackAndCo.snowretailing.dal.contracts.entities.IReviewEntity;
+import shlackAndCo.snowretailing.dal.entities.UserEntity;
 
 import javax.validation.constraints.*;
 import java.sql.Timestamp;
@@ -32,7 +33,10 @@ public class ReviewModel implements IReviewModel{
         review = reviewEntity.getReview();
         dateCreate = reviewEntity.getDateReview();
         mark = reviewEntity.getMark();
-        userName = reviewEntity.getUserByUserId().getLogin();
+        UserEntity user = reviewEntity.getUserByUserId();
+        if (user != null) {
+            userName = user.getLogin();
+        }
     }
 
     @Override
