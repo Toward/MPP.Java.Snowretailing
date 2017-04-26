@@ -6,7 +6,7 @@ import shlackAndCo.snowretailing.dal.contracts.entities.IContactDataEntity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "contact data", schema = "snowretailing_db")
+@Table(name = "contact_data", schema = "snowretailing_db")
 public class ContactDataEntity  implements IContactDataEntity{
     private int id;
     private String phoneNumber;

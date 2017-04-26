@@ -1,7 +1,6 @@
 package shlackAndCo.snowretailing.dal.entities;
 
 import org.hibernate.annotations.GenericGenerator;
-import org.springframework.transaction.annotation.Transactional;
 import shlackAndCo.snowretailing.dal.contracts.entities.IRoleEntity;
 
 import javax.persistence.*;
