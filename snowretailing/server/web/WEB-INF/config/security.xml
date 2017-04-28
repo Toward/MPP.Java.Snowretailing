@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:security="http://www.springframework.org/schema/security"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	   http://www.springframework.org/schema/beans/spring-beans.xsd
+	   http://www.springframework.org/schema/security
+	   http://www.springframework.org/schema/security/spring-security.xsd">
+
+    <bean id="restAuthenticationEntryPoint" class="shlackAndCo.snowretailing.auth.RestAuthenticationEntryPoint"/>
+
+    <bean class = "shlackAndCo.snowretailing.auth.services.CryptographyService" id="cryptographyService">
+        <constructor-arg name="key" type="java.lang.String" value="Bar12345Bar12345"/>
+        <constructor-arg name="initVector" type="java.lang.String" value="RandomInitVector"/>
+    </bean>
+
+    <bean class="shlackAndCo.snowretailing.auth.TokenAuthenticationFilter" id="authenticationTokenProcessingFilter">
+        <constructor-arg index="0" type="java.lang.String" value="/api/**"/>
+        <constructor-arg index="1"
+                type="org.springframework.security.authentication.AuthenticationManager" ref="authManager">
+        </constructor-arg>
+        <constructor-arg index="2"
+                type="shlackAndCo.snowretailing.auth.contracts.services.ICryptographyService" ref="cryptographyService">
+        </constructor-arg>
+    </bean>
+
+    <bean class="shlackAndCo.snowretailing.dal.repositories.UserRepository" id="userRepository"/>
+
+    <bean class="shlackAndCo.snowretailing.auth.services.UserFromDatabaseDetailsService" id="userFromDatabaseDetailsService">
+        <constructor-arg index="0" type = "shlackAndCo.snowretailing.dal.contracts.repositories.IUserRepository"
+            ref ="userRepository">
+        </constructor-arg>
+    </bean>
+
+    <!--<security:http pattern="/api/**" entry-point-ref="restAuthenticationEntryPoint" use-expressions="true" auto-config="false" create-session="stateless" >-->
+        <!--<security:custom-filter ref="authenticationTokenProcessingFilter" position="FORM_LOGIN_FILTER"/>-->
+        <!--<security:intercept-url pattern="/api/**" access="isAuthenticated()" />-->
+        <!--<security:logout />-->
+    <!--</security:http>-->
+
+    <security:http pattern="/api/**" entry-point-ref="restAuthenticationEntryPoint" use-expressions="true"
+                   auto-config="false" create-session="stateless" >
+        <security:csrf disabled="true"/>
+        <security:custom-filter ref="authenticationTokenProcessingFilter" position="FORM_LOGIN_FILTER"/>
+    </security:http>
+
+    <security:authentication-manager alias="authManager" erase-credentials="false">
+        <security:authentication-provider user-service-ref="userFromDatabaseDetailsService"/>
+    </security:authentication-manager>
+
+</beans>

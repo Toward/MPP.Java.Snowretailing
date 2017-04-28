@@ -16,4 +16,11 @@ snowretailing/lib/*
 snowretailing/out/*
 snowretailing/target/*
 snowretailing/snowretailing.iml
-snowretailing/classes
+snowretailing/classes/*
+
+snowretailing/server/.idea/*
+snowretailing/server/lib/*
+snowretailing/server/out/*
+snowretailing/server/target/*
+snowretailing/server/snowretailing.iml
+snowretailing/server/classes/*
