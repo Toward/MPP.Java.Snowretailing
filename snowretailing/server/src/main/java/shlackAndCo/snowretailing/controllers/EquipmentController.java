@@ -2,8 +2,10 @@ package shlackAndCo.snowretailing.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import shlackAndCo.snowretailing.core.constants.Permissions;
 import shlackAndCo.snowretailing.core.contracts.models.IEquipmentModel;
 import shlackAndCo.snowretailing.core.contracts.models.IResultModel;
 import shlackAndCo.snowretailing.core.contracts.services.IBrandService;
@@ -11,7 +13,6 @@ import shlackAndCo.snowretailing.core.contracts.services.ICharacteristicsService
 import shlackAndCo.snowretailing.core.contracts.services.IEquipmentService;
 import shlackAndCo.snowretailing.core.contracts.services.ITypeService;
 import shlackAndCo.snowretailing.core.enums.ResultStatus;
-import shlackAndCo.snowretailing.core.models.EquipmentModel;
 import shlackAndCo.snowretailing.core.models.ResultModel;
 import shlackAndCo.snowretailing.core.utils.EquipmentCreation;
 
@@ -64,35 +65,37 @@ public class EquipmentController {
         return new ResultModel<>(ResultStatus.OK, "Equipment has been successfully got by id", equipmentCreation);
     }
 
+//    @ResponseBody
+//    @RequestMapping(value = "api/equipments/create", method = RequestMethod.GET)
+//    public IResultModel<EquipmentCreation> createEquipment() {
+//        EquipmentCreation equipmentCreation = new EquipmentCreation();
+//        equipmentCreation.setAvailableBrands(brandService.getAll());
+//        equipmentCreation.setAvailableTypes(typeService.getAll());
+//        equipmentCreation.setEquipmentModel(new EquipmentModel());
+//        equipmentCreation.setAvailableCharacteristics(characteristicsService.getAll());
+//        return new ResultModel<>(ResultStatus.OK, "All necessary data has been successfully sent", equipmentCreation);
+//    }
+
     @ResponseBody
-    @RequestMapping(value = "/equipments/create", method = RequestMethod.GET)
-    public IResultModel<EquipmentCreation> createEquipment() {
-        EquipmentCreation equipmentCreation = new EquipmentCreation();
-        equipmentCreation.setAvailableBrands(brandService.getAll());
-        equipmentCreation.setAvailableTypes(typeService.getAll());
-        equipmentCreation.setEquipmentModel(new EquipmentModel());
-        equipmentCreation.setAvailableCharacteristics(characteristicsService.getAll());
-        return new ResultModel<>(ResultStatus.OK, "All necessary data has been successfully sent", equipmentCreation);
-    }
-    //TODO validation
-    @ResponseBody
-    @RequestMapping(value = "/equipments/create", method = RequestMethod.POST)
+    @Secured(Permissions.AdminWrite)
+    @RequestMapping(value = "api/equipments", method = RequestMethod.POST)
     public IResultModel<IEquipmentModel> createEquipment(@RequestBody @Validated IEquipmentModel equipmentModel) {
         equipmentService.create(equipmentModel);
-        return new ResultModel<IEquipmentModel>(ResultStatus.OK, "Equipment has been created", equipmentModel);
+        return new ResultModel<>(ResultStatus.OK, "Equipment has been created", equipmentModel);
     }
     @ResponseBody
-    @RequestMapping(value = "/equipments/{id}", method = RequestMethod.PUT)
-    public IResultModel<IEquipmentModel> editEquipment(@PathVariable("id") int id, @RequestBody @Validated IEquipmentModel equipmentModel) {
+    @Secured(Permissions.AdminWrite)
+    @RequestMapping(value = "api/equipments", method = RequestMethod.PUT)
+    public IResultModel<IEquipmentModel> editEquipment(@RequestBody @Validated IEquipmentModel equipmentModel) {
         equipmentService.edit(equipmentModel);
-        return new ResultModel<IEquipmentModel>(ResultStatus.OK, "Equipment has been changed", equipmentModel);
+        return new ResultModel<>(ResultStatus.OK, "Equipment has been changed", equipmentModel);
     }
 
     @ResponseBody
-    @RequestMapping(value = "/equipments/{id}", method = RequestMethod.DELETE)
+    @Secured(Permissions.AdminWrite)
+    @RequestMapping(value = "api/equipments/{id}", method = RequestMethod.DELETE)
     public ResultModel<IEquipmentModel> removeEquipment(@PathVariable("id") int id) {
         equipmentService.delete(id);
-
-        return new ResultModel<IEquipmentModel>(ResultStatus.OK, "Equipment has been changed", null);
+        return new ResultModel<>(ResultStatus.OK, "Equipment has been changed", null);
     }
 }

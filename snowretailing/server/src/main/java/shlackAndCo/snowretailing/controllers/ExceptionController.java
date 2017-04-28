@@ -9,13 +9,6 @@ import shlackAndCo.snowretailing.core.models.ResultModel;
 
 @ControllerAdvice
 public class ExceptionController {
-//    @ExceptionHandler(Exception.class)
-//    public ModelAndView handleException(Exception e) {
-//        ModelAndView errorPage = new ModelAndView("error");
-//        errorPage.addObject("error",e.getMessage());
-//        return errorPage;
-//    }
-
     @ResponseBody
     @ExceptionHandler(Exception.class)
     public IResultModel handleException(Exception e) {

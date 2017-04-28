@@ -2,9 +2,11 @@ package shlackAndCo.snowretailing.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import shlackAndCo.snowretailing.core.constants.Permissions;
 import shlackAndCo.snowretailing.core.contracts.models.IOrderModel;
 import shlackAndCo.snowretailing.core.contracts.models.IResultModel;
 import shlackAndCo.snowretailing.core.contracts.services.IEquipmentItemService;
@@ -40,14 +42,16 @@ public class OrderController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/orders", method = RequestMethod.GET)
+    @Secured(Permissions.AdminRead)
+    @RequestMapping(value = "api/orders", method = RequestMethod.GET)
     public IResultModel<Collection<IOrderModel>> getOrders() {
         Collection<IOrderModel> orderModels = orderService.getAll();
         return new ResultModel<>(ResultStatus.OK, "All orders've been successfully got",  orderModels);
     }
 
     @ResponseBody
-    @RequestMapping(value = "/orders/{id}", method = RequestMethod.GET)
+    @Secured(Permissions.AdminRead)
+    @RequestMapping(value = "api/orders/{id}", method = RequestMethod.GET)
     public IResultModel<OrderCreation> getOrder(@PathVariable("id") int id) {
         IOrderModel orderModel = orderService.getById(id);
         OrderCreation orderCreation = new OrderCreation();
@@ -56,35 +60,38 @@ public class OrderController {
         return new ResultModel<>(ResultStatus.OK, "Order has been successfully got by id", orderCreation);
     }
 
+//    @ResponseBody
+//    @RequestMapping(value = "/orders/create", method = RequestMethod.GET)
+//    public IResultModel<OrderCreation> createOrder() {
+//        OrderCreation orderCreation = new OrderCreation();
+//        orderCreation.setOrderModel(new OrderModel());
+//        orderCreation.setAvailableEquipments(equipmentService.getAll());
+//        return new ResultModel<>(ResultStatus.OK, "All necessary data has been successfully sent", orderCreation);
+//    }
+
     @ResponseBody
-    @RequestMapping(value = "/orders/create", method = RequestMethod.GET)
-    public IResultModel<OrderCreation> createOrder() {
-        OrderCreation orderCreation = new OrderCreation();
-        orderCreation.setOrderModel(new OrderModel());
-        orderCreation.setAvailableEquipments(equipmentService.getAll());
-        return new ResultModel<>(ResultStatus.OK, "All necessary data has been successfully sent", orderCreation);
-    }
-    //TODO validation
-    @ResponseBody
-    @RequestMapping(value = "/orders/create", method = RequestMethod.POST)
+    @Secured(Permissions.AdminWrite)
+    @RequestMapping(value = "api/orders/create", method = RequestMethod.POST)
     public IResultModel<IOrderModel> createOrder(@RequestBody @Validated IOrderModel orderModel) {
         orderModel.setUserName(SecurityContextHolder.getContext().getAuthentication().getName());
         orderService.create(orderModel);
-        return new ResultModel<IOrderModel>(ResultStatus.OK, "Order has been created", orderModel);
+        return new ResultModel<>(ResultStatus.OK, "Order has been created", orderModel);
     }
     @ResponseBody
-    @RequestMapping(value = "/orders/{id}", method = RequestMethod.PUT)
-    public IResultModel<IOrderModel> editOrder(@PathVariable("id") int id, @RequestBody @Validated IOrderModel orderModel) {
+    @Secured(Permissions.AdminWrite)
+    @RequestMapping(value = "api/orders}", method = RequestMethod.PUT)
+    public IResultModel<IOrderModel> editOrder(@RequestBody @Validated IOrderModel orderModel) {
         orderModel.setUserName(SecurityContextHolder.getContext().getAuthentication().getName());
         orderService.edit(orderModel);
-        return new ResultModel<IOrderModel>(ResultStatus.OK, "Order has been changed", orderModel);
+        return new ResultModel<>(ResultStatus.OK, "Order has been changed", orderModel);
     }
 
     @ResponseBody
+    @Secured(Permissions.AdminWrite)
     @RequestMapping(value = "/orders/{id}", method = RequestMethod.DELETE)
     public ResultModel<IOrderModel> removeOrder(@PathVariable("id") int id) {
         orderService.delete(id);
 
-        return new ResultModel<IOrderModel>(ResultStatus.OK, "Order has been changed", null);
+        return new ResultModel<>(ResultStatus.OK, "Order has been changed", null);
     }
 }

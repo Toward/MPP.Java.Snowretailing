@@ -2,13 +2,14 @@ package shlackAndCo.snowretailing.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import shlackAndCo.snowretailing.core.constants.Permissions;
 import shlackAndCo.snowretailing.core.contracts.models.IBrandModel;
 import shlackAndCo.snowretailing.core.contracts.models.IResultModel;
 import shlackAndCo.snowretailing.core.contracts.services.IBrandService;
 import shlackAndCo.snowretailing.core.enums.ResultStatus;
-import shlackAndCo.snowretailing.core.models.BrandModel;
 import shlackAndCo.snowretailing.core.models.ResultModel;
 
 import java.util.Collection;
@@ -27,43 +28,41 @@ public class BrandController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/brands", method = RequestMethod.GET)
+    @Secured(Permissions.AdminRead)
+    @RequestMapping(value = "api/brands", method = RequestMethod.GET)
     public IResultModel<Collection<IBrandModel>> getBrands() {
         Collection<IBrandModel> brandModels = brandService.getAll();
         return new ResultModel<>(ResultStatus.OK, "All brands've been successfully got", brandModels);
     }
 
     @ResponseBody
-    @RequestMapping(value = "/brands/{id}", method = RequestMethod.GET)
+    @Secured(Permissions.AdminRead)
+    @RequestMapping(value = "api/brands/{id}", method = RequestMethod.GET)
     public IResultModel<IBrandModel> getBrand(@PathVariable("id") int id) {
         IBrandModel brandModel = brandService.getById(id);
         return new ResultModel<>(ResultStatus.OK, "Brand has been successfully got by id", brandModel);
     }
 
     @ResponseBody
-    @RequestMapping(value = "/brands/create", method = RequestMethod.GET)
-    public IResultModel<IBrandModel> createBrand() {
-        return new ResultModel<>(ResultStatus.OK, "All necessary data has been successfully sent", new BrandModel());
-    }
-    //TODO validation
-    @ResponseBody
-    @RequestMapping(value = "/brands/create", method = RequestMethod.POST)
+    @Secured(Permissions.AdminWrite)
+    @RequestMapping(value = "api/brands", method = RequestMethod.POST)
     public IResultModel<IBrandModel> createBrand(@RequestBody @Validated IBrandModel brandModel) {
         brandService.create(brandModel);
-        return new ResultModel<IBrandModel>(ResultStatus.OK, "Brand has been created", brandModel);
+        return new ResultModel<>(ResultStatus.OK, "Brand has been created", brandModel);
     }
     @ResponseBody
-    @RequestMapping(value = "/brands/{id}", method = RequestMethod.PUT)
-    public IResultModel<IBrandModel> editBrand(@PathVariable("id") int id, @RequestBody @Validated IBrandModel brandModel) {
+    @Secured(Permissions.AdminWrite)
+    @RequestMapping(value = "api/brands", method = RequestMethod.PUT)
+    public IResultModel<IBrandModel> editBrand(@RequestBody @Validated IBrandModel brandModel) {
         brandService.edit(brandModel);
-        return new ResultModel<IBrandModel>(ResultStatus.OK, "Brand has been changed", brandModel);
+        return new ResultModel<>(ResultStatus.OK, "Brand has been changed", brandModel);
     }
 
     @ResponseBody
-    @RequestMapping(value = "/brands/{id}", method = RequestMethod.DELETE)
+    @Secured(Permissions.AdminWrite)
+    @RequestMapping(value = "api/brands/{id}", method = RequestMethod.DELETE)
     public ResultModel<IBrandModel> removeEquipment(@PathVariable("id") int id) {
         brandService.delete(id);
-
-        return new ResultModel<IBrandModel>(ResultStatus.OK, "Brand has been changed", null);
+        return new ResultModel<>(ResultStatus.OK, "Brand has been changed", null);
     }
 }

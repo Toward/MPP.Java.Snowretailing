@@ -2,8 +2,10 @@ package shlackAndCo.snowretailing.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import shlackAndCo.snowretailing.core.constants.Permissions;
 import shlackAndCo.snowretailing.core.contracts.models.IRentModel;
 import shlackAndCo.snowretailing.core.contracts.models.IResultModel;
 import shlackAndCo.snowretailing.core.contracts.services.ICredentialService;
@@ -11,7 +13,6 @@ import shlackAndCo.snowretailing.core.contracts.services.IEquipmentItemService;
 import shlackAndCo.snowretailing.core.contracts.services.IEquipmentService;
 import shlackAndCo.snowretailing.core.contracts.services.IRentService;
 import shlackAndCo.snowretailing.core.enums.ResultStatus;
-import shlackAndCo.snowretailing.core.models.RentModel;
 import shlackAndCo.snowretailing.core.models.ResultModel;
 import shlackAndCo.snowretailing.core.utils.RentCreation;
 
@@ -45,14 +46,16 @@ public class RentController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/rents", method = RequestMethod.GET)
+    @Secured(Permissions.AdminRead)
+    @RequestMapping(value = "api/rents", method = RequestMethod.GET)
     public IResultModel<Collection<IRentModel>> getRents() {
         Collection<IRentModel> rentModels = rentService.getAll();
         return new ResultModel<>(ResultStatus.OK, "All rents've been successfully got",  rentModels);
     }
 
     @ResponseBody
-    @RequestMapping(value = "/rents/{id}", method = RequestMethod.GET)
+    @Secured(Permissions.AdminRead)
+    @RequestMapping(value = "api/rents/{id}", method = RequestMethod.GET)
     public IResultModel<RentCreation> getRent(@PathVariable("id") int id) {
         IRentModel rentModel = rentService.getById(id);
         RentCreation rentCreation = new RentCreation();
@@ -62,34 +65,39 @@ public class RentController {
         return new ResultModel<>(ResultStatus.OK, "Rent has been successfully got by id", rentCreation);
     }
 
+//    @ResponseBody
+//    @Secured(Permissions.AdminRead)
+//    @RequestMapping(value = "api/rents/create", method = RequestMethod.GET)
+//    public IResultModel<RentCreation> createRent() {
+//        RentCreation rentCreation = new RentCreation();
+//        rentCreation.setRentModel(new RentModel());
+//        rentCreation.setAvailableEquipments(equipmentService.getAll());
+//        rentCreation.setAvailablePassports(credentialService.getAll());
+//        return new ResultModel<>(ResultStatus.OK, "All necessary data has been successfully sent", rentCreation);
+//    }
+
     @ResponseBody
-    @RequestMapping(value = "/rents/create", method = RequestMethod.GET)
-    public IResultModel<RentCreation> createRent() {
-        RentCreation rentCreation = new RentCreation();
-        rentCreation.setRentModel(new RentModel());
-        rentCreation.setAvailableEquipments(equipmentService.getAll());
-        rentCreation.setAvailablePassports(credentialService.getAll());
-        return new ResultModel<>(ResultStatus.OK, "All necessary data has been successfully sent", rentCreation);
-    }
-    //TODO validation
-    @ResponseBody
-    @RequestMapping(value = "/rents/create", method = RequestMethod.POST)
+    @Secured(Permissions.AdminWrite)
+    @RequestMapping(value = "api/rents", method = RequestMethod.POST)
     public IResultModel<IRentModel> createRent(@RequestBody @Validated IRentModel rentModel) {
         rentService.create(rentModel);
-        return new ResultModel<IRentModel>(ResultStatus.OK, "Rent has been created", rentModel);
-    }
-    @ResponseBody
-    @RequestMapping(value = "/rents/{id}", method = RequestMethod.PUT)
-    public IResultModel<IRentModel> editRent(@PathVariable("id") int id, @RequestBody @Validated IRentModel rentModel) {
-        rentService.edit(rentModel);
-        return new ResultModel<IRentModel>(ResultStatus.OK, "Rent has been changed", rentModel);
+        return new ResultModel<>(ResultStatus.OK, "Rent has been created", rentModel);
     }
 
     @ResponseBody
-    @RequestMapping(value = "/rents/{id}", method = RequestMethod.DELETE)
+    @Secured(Permissions.AdminWrite)
+    @RequestMapping(value = "api/rents", method = RequestMethod.PUT)
+    public IResultModel<IRentModel> editRent(@RequestBody @Validated IRentModel rentModel) {
+        rentService.edit(rentModel);
+        return new ResultModel<>(ResultStatus.OK, "Rent has been changed", rentModel);
+    }
+
+    @ResponseBody
+    @Secured(Permissions.AdminWrite)
+    @RequestMapping(value = "api/rents/{id}", method = RequestMethod.DELETE)
     public ResultModel<IRentModel> removeRent(@PathVariable("id") int id) {
         rentService.delete(id);
 
-        return new ResultModel<IRentModel>(ResultStatus.OK, "Rent has been changed", null);
+        return new ResultModel<>(ResultStatus.OK, "Rent has been changed", null);
     }
 }
