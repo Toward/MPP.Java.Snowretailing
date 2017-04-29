@@ -42,19 +42,12 @@ public class TypeController {
         return new ResultModel<>(ResultStatus.OK, "Type has been successfully got by id", model);
     }
 
-//    @ResponseBody
-//    @Secured(Permissions.AdminWrite)
-//    @RequestMapping(value = "/types/create", method = RequestMethod.GET)
-//    public IResultModel<ITypeModel> createType() {
-//        return new ResultModel<>(ResultStatus.OK, "All necessary data has been successfully sent", new TypeModel());
-//    }
-
     @ResponseBody
     @Secured(Permissions.AdminWrite)
     @RequestMapping(value = "api/types", method = RequestMethod.POST)
     public IResultModel<ITypeModel> createType(@RequestBody @Validated ITypeModel model) {
         service.create(model);
-        return new ResultModel<>(ResultStatus.OK, "Characteristic has been created", model);
+        return new ResultModel<>(ResultStatus.OK, "Characteristic has been created", null);
     }
 
     @ResponseBody
@@ -62,7 +55,7 @@ public class TypeController {
     @RequestMapping(value = "api/type", method = RequestMethod.PUT)
     public IResultModel<ITypeModel> editType(@RequestBody @Validated ITypeModel model) {
         service.edit(model);
-        return new ResultModel<>(ResultStatus.OK, "Type has been changed", model);
+        return new ResultModel<>(ResultStatus.OK, "Type has been changed",  null);
     }
 
     @ResponseBody

@@ -48,14 +48,14 @@ public class BrandController {
     @RequestMapping(value = "api/brands", method = RequestMethod.POST)
     public IResultModel<IBrandModel> createBrand(@RequestBody @Validated IBrandModel brandModel) {
         brandService.create(brandModel);
-        return new ResultModel<>(ResultStatus.OK, "Brand has been created", brandModel);
+        return new ResultModel<>(ResultStatus.OK, "Brand has been created", null);
     }
     @ResponseBody
     @Secured(Permissions.AdminWrite)
     @RequestMapping(value = "api/brands", method = RequestMethod.PUT)
     public IResultModel<IBrandModel> editBrand(@RequestBody @Validated IBrandModel brandModel) {
         brandService.edit(brandModel);
-        return new ResultModel<>(ResultStatus.OK, "Brand has been changed", brandModel);
+        return new ResultModel<>(ResultStatus.OK, "Brand has been changed", null);
     }
 
     @ResponseBody

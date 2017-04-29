@@ -47,7 +47,7 @@ public class CharacteristicsController {
     @RequestMapping(value = "api/characteristics", method = RequestMethod.POST)
     public IResultModel<ICharacteristicsModel> createCharacteristic(@RequestBody @Validated ICharacteristicsModel model) {
         service.create(model);
-        return new ResultModel<>(ResultStatus.OK, "Characteristic has been created", model);
+        return new ResultModel<>(ResultStatus.OK, "Characteristic has been created", null);
     }
 
     @ResponseBody
@@ -55,7 +55,7 @@ public class CharacteristicsController {
     @RequestMapping(value = "api/characteristics", method = RequestMethod.PUT)
     public IResultModel<ICharacteristicsModel> editCharacteristic(@RequestBody @Validated ICharacteristicsModel model) {
         service.edit(model);
-        return new ResultModel<>(ResultStatus.OK, "Characteristic has been changed", model);
+        return new ResultModel<>(ResultStatus.OK, "Characteristic has been changed", null);
     }
 
     @ResponseBody

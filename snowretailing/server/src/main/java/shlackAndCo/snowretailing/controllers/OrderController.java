@@ -52,22 +52,11 @@ public class OrderController {
     @ResponseBody
     @Secured(Permissions.AdminRead)
     @RequestMapping(value = "api/orders/{id}", method = RequestMethod.GET)
-    public IResultModel<OrderCreation> getOrder(@PathVariable("id") int id) {
+    public IResultModel<IOrderModel> getOrder(@PathVariable("id") int id) {
         IOrderModel orderModel = orderService.getById(id);
-        OrderCreation orderCreation = new OrderCreation();
-        orderCreation.setOrderModel(orderModel);
-        orderCreation.setAvailableEquipments(equipmentService.getAll());
-        return new ResultModel<>(ResultStatus.OK, "Order has been successfully got by id", orderCreation);
+        return new ResultModel<>(ResultStatus.OK, "Order has been successfully got by id", orderModel);
     }
 
-//    @ResponseBody
-//    @RequestMapping(value = "/orders/create", method = RequestMethod.GET)
-//    public IResultModel<OrderCreation> createOrder() {
-//        OrderCreation orderCreation = new OrderCreation();
-//        orderCreation.setOrderModel(new OrderModel());
-//        orderCreation.setAvailableEquipments(equipmentService.getAll());
-//        return new ResultModel<>(ResultStatus.OK, "All necessary data has been successfully sent", orderCreation);
-//    }
 
     @ResponseBody
     @Secured(Permissions.AdminWrite)
@@ -75,7 +64,7 @@ public class OrderController {
     public IResultModel<IOrderModel> createOrder(@RequestBody @Validated IOrderModel orderModel) {
         orderModel.setUserName(SecurityContextHolder.getContext().getAuthentication().getName());
         orderService.create(orderModel);
-        return new ResultModel<>(ResultStatus.OK, "Order has been created", orderModel);
+        return new ResultModel<>(ResultStatus.OK, "Order has been created", null);
     }
     @ResponseBody
     @Secured(Permissions.AdminWrite)
@@ -83,7 +72,7 @@ public class OrderController {
     public IResultModel<IOrderModel> editOrder(@RequestBody @Validated IOrderModel orderModel) {
         orderModel.setUserName(SecurityContextHolder.getContext().getAuthentication().getName());
         orderService.edit(orderModel);
-        return new ResultModel<>(ResultStatus.OK, "Order has been changed", orderModel);
+        return new ResultModel<>(ResultStatus.OK, "Order has been changed", null);
     }
 
     @ResponseBody

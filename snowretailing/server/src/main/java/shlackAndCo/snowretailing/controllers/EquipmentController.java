@@ -55,40 +55,24 @@ public class EquipmentController {
 
     @ResponseBody
     @RequestMapping(value = "/equipments/{id}", method = RequestMethod.GET)
-    public IResultModel<EquipmentCreation> getEquipment(@PathVariable("id") int id) {
+    public IResultModel<IEquipmentModel> getEquipment(@PathVariable("id") int id) {
         IEquipmentModel equipmentModel = equipmentService.getById(id);
-        EquipmentCreation equipmentCreation = new EquipmentCreation();
-        equipmentCreation.setAvailableBrands(brandService.getAll());
-        equipmentCreation.setAvailableTypes(typeService.getAll());
-        equipmentCreation.setEquipmentModel(equipmentModel);
-        equipmentCreation.setAvailableCharacteristics(characteristicsService.getAll());
-        return new ResultModel<>(ResultStatus.OK, "Equipment has been successfully got by id", equipmentCreation);
+        return new ResultModel<>(ResultStatus.OK, "Equipment has been successfully got by id", equipmentModel);
     }
-
-//    @ResponseBody
-//    @RequestMapping(value = "api/equipments/create", method = RequestMethod.GET)
-//    public IResultModel<EquipmentCreation> createEquipment() {
-//        EquipmentCreation equipmentCreation = new EquipmentCreation();
-//        equipmentCreation.setAvailableBrands(brandService.getAll());
-//        equipmentCreation.setAvailableTypes(typeService.getAll());
-//        equipmentCreation.setEquipmentModel(new EquipmentModel());
-//        equipmentCreation.setAvailableCharacteristics(characteristicsService.getAll());
-//        return new ResultModel<>(ResultStatus.OK, "All necessary data has been successfully sent", equipmentCreation);
-//    }
 
     @ResponseBody
     @Secured(Permissions.AdminWrite)
     @RequestMapping(value = "api/equipments", method = RequestMethod.POST)
     public IResultModel<IEquipmentModel> createEquipment(@RequestBody @Validated IEquipmentModel equipmentModel) {
         equipmentService.create(equipmentModel);
-        return new ResultModel<>(ResultStatus.OK, "Equipment has been created", equipmentModel);
+        return new ResultModel<>(ResultStatus.OK, "Equipment has been created", null);
     }
     @ResponseBody
     @Secured(Permissions.AdminWrite)
     @RequestMapping(value = "api/equipments", method = RequestMethod.PUT)
     public IResultModel<IEquipmentModel> editEquipment(@RequestBody @Validated IEquipmentModel equipmentModel) {
         equipmentService.edit(equipmentModel);
-        return new ResultModel<>(ResultStatus.OK, "Equipment has been changed", equipmentModel);
+        return new ResultModel<>(ResultStatus.OK, "Equipment has been changed", null);
     }
 
     @ResponseBody

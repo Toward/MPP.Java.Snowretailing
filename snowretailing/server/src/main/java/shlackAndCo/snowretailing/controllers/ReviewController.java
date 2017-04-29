@@ -42,19 +42,12 @@ public class ReviewController {
         return new ResultModel<>(ResultStatus.OK, "Review has been successfully got by id", reviewModel);
     }
 
-//    @ResponseBody
-//    @RequestMapping(value = "/reviews/create", method = RequestMethod.GET)
-//    public IResultModel<IReviewModel> createReview() {
-//        IReviewModel reviewModel = new ReviewModel();
-//        return new ResultModel<>(ResultStatus.OK, "All necessary data has been successfully sent", reviewModel);
-//    }
-
     @ResponseBody
     @Secured(Permissions.UserWrite)
     @RequestMapping(value = "api/reviews", method = RequestMethod.POST)
     public IResultModel<IReviewModel> createBrand(@RequestBody @Validated IReviewModel reviewModel) {
         reviewService.create(reviewModel);
-        return new ResultModel<>(ResultStatus.OK, "Review has been created", reviewModel);
+        return new ResultModel<>(ResultStatus.OK, "Review has been created", null);
     }
 
     @ResponseBody
@@ -62,7 +55,7 @@ public class ReviewController {
     @RequestMapping(value = "api/reviews", method = RequestMethod.PUT)
     public IResultModel<IReviewModel> editBrand(@RequestBody @Validated IReviewModel reviewModel) {
         reviewService.edit(reviewModel);
-        return new ResultModel<>(ResultStatus.OK, "Review has been changed", reviewModel);
+        return new ResultModel<>(ResultStatus.OK, "Review has been changed", null);
     }
 
     @ResponseBody

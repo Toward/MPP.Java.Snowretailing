@@ -56,32 +56,17 @@ public class RentController {
     @ResponseBody
     @Secured(Permissions.AdminRead)
     @RequestMapping(value = "api/rents/{id}", method = RequestMethod.GET)
-    public IResultModel<RentCreation> getRent(@PathVariable("id") int id) {
+    public IResultModel<IRentModel> getRent(@PathVariable("id") int id) {
         IRentModel rentModel = rentService.getById(id);
-        RentCreation rentCreation = new RentCreation();
-        rentCreation.setRentModel(rentModel);
-        rentCreation.setAvailableEquipments(equipmentService.getAll());
-        rentCreation.setAvailablePassports(credentialService.getAll());
-        return new ResultModel<>(ResultStatus.OK, "Rent has been successfully got by id", rentCreation);
+        return new ResultModel<>(ResultStatus.OK, "Rent has been successfully got by id", rentModel);
     }
-
-//    @ResponseBody
-//    @Secured(Permissions.AdminRead)
-//    @RequestMapping(value = "api/rents/create", method = RequestMethod.GET)
-//    public IResultModel<RentCreation> createRent() {
-//        RentCreation rentCreation = new RentCreation();
-//        rentCreation.setRentModel(new RentModel());
-//        rentCreation.setAvailableEquipments(equipmentService.getAll());
-//        rentCreation.setAvailablePassports(credentialService.getAll());
-//        return new ResultModel<>(ResultStatus.OK, "All necessary data has been successfully sent", rentCreation);
-//    }
 
     @ResponseBody
     @Secured(Permissions.AdminWrite)
     @RequestMapping(value = "api/rents", method = RequestMethod.POST)
     public IResultModel<IRentModel> createRent(@RequestBody @Validated IRentModel rentModel) {
         rentService.create(rentModel);
-        return new ResultModel<>(ResultStatus.OK, "Rent has been created", rentModel);
+        return new ResultModel<>(ResultStatus.OK, "Rent has been created", null);
     }
 
     @ResponseBody
@@ -89,7 +74,7 @@ public class RentController {
     @RequestMapping(value = "api/rents", method = RequestMethod.PUT)
     public IResultModel<IRentModel> editRent(@RequestBody @Validated IRentModel rentModel) {
         rentService.edit(rentModel);
-        return new ResultModel<>(ResultStatus.OK, "Rent has been changed", rentModel);
+        return new ResultModel<>(ResultStatus.OK, "Rent has been changed", null);
     }
 
     @ResponseBody
