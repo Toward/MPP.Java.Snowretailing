@@ -29,6 +29,7 @@ public class CharacteristicsEntity implements ICharacteristicsEntity {
     }
 
     @Basic
+    @Enumerated(EnumType.STRING)
     @Column(name = "NAME", nullable = true)
     public CharacteristicsNames getName() {
         return name;
@@ -39,6 +40,7 @@ public class CharacteristicsEntity implements ICharacteristicsEntity {
     }
 
     @Basic
+    @Enumerated(EnumType.STRING)
     @Column(name = "MEASURMENT", nullable = true)
     public CharacteristicsMeasurments getMeasurment() {
         return measurment;

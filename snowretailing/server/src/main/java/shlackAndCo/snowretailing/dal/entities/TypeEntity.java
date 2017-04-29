@@ -28,6 +28,7 @@ public class TypeEntity implements ITypeEntity {
     }
 
     @Basic
+    @Enumerated(EnumType.STRING)
     @Column(name = "NAME", nullable = true)
     public EquipmentTypes getName() {
         return name;
