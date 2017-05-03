@@ -10,6 +10,7 @@ import shlackAndCo.snowretailing.core.contracts.models.IBrandModel;
 import shlackAndCo.snowretailing.core.contracts.models.IResultModel;
 import shlackAndCo.snowretailing.core.contracts.services.IBrandService;
 import shlackAndCo.snowretailing.core.enums.ResultStatus;
+import shlackAndCo.snowretailing.core.models.BrandModel;
 import shlackAndCo.snowretailing.core.models.ResultModel;
 
 import java.util.Collection;
@@ -46,14 +47,14 @@ public class BrandController {
     @ResponseBody
     @Secured(Permissions.AdminWrite)
     @RequestMapping(value = "api/brands", method = RequestMethod.POST)
-    public IResultModel<IBrandModel> createBrand(@RequestBody @Validated IBrandModel brandModel) {
+    public IResultModel<IBrandModel> createBrand(@RequestBody @Validated BrandModel brandModel) {
         brandService.create(brandModel);
         return new ResultModel<>(ResultStatus.OK, "Brand has been created", null);
     }
     @ResponseBody
     @Secured(Permissions.AdminWrite)
     @RequestMapping(value = "api/brands", method = RequestMethod.PUT)
-    public IResultModel<IBrandModel> editBrand(@RequestBody @Validated IBrandModel brandModel) {
+    public IResultModel<IBrandModel> editBrand(@RequestBody @Validated BrandModel brandModel) {
         brandService.edit(brandModel);
         return new ResultModel<>(ResultStatus.OK, "Brand has been changed", null);
     }

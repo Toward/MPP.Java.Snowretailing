@@ -10,6 +10,7 @@ import shlackAndCo.snowretailing.core.contracts.models.ICharacteristicsModel;
 import shlackAndCo.snowretailing.core.contracts.models.IResultModel;
 import shlackAndCo.snowretailing.core.contracts.services.ICharacteristicsService;
 import shlackAndCo.snowretailing.core.enums.ResultStatus;
+import shlackAndCo.snowretailing.core.models.CharacteristicsModel;
 import shlackAndCo.snowretailing.core.models.ResultModel;
 
 import java.util.Collection;
@@ -45,7 +46,7 @@ public class CharacteristicsController {
     @ResponseBody
     @Secured(Permissions.AdminWrite)
     @RequestMapping(value = "api/characteristics", method = RequestMethod.POST)
-    public IResultModel<ICharacteristicsModel> createCharacteristic(@RequestBody @Validated ICharacteristicsModel model) {
+    public IResultModel<ICharacteristicsModel> createCharacteristic(@RequestBody @Validated CharacteristicsModel model) {
         service.create(model);
         return new ResultModel<>(ResultStatus.OK, "Characteristic has been created", null);
     }
@@ -53,7 +54,7 @@ public class CharacteristicsController {
     @ResponseBody
     @Secured(Permissions.AdminWrite)
     @RequestMapping(value = "api/characteristics", method = RequestMethod.PUT)
-    public IResultModel<ICharacteristicsModel> editCharacteristic(@RequestBody @Validated ICharacteristicsModel model) {
+    public IResultModel<ICharacteristicsModel> editCharacteristic(@RequestBody @Validated CharacteristicsModel model) {
         service.edit(model);
         return new ResultModel<>(ResultStatus.OK, "Characteristic has been changed", null);
     }

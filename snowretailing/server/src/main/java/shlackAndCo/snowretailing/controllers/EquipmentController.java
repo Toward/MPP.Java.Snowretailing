@@ -13,6 +13,7 @@ import shlackAndCo.snowretailing.core.contracts.services.ICharacteristicsService
 import shlackAndCo.snowretailing.core.contracts.services.IEquipmentService;
 import shlackAndCo.snowretailing.core.contracts.services.ITypeService;
 import shlackAndCo.snowretailing.core.enums.ResultStatus;
+import shlackAndCo.snowretailing.core.models.EquipmentModel;
 import shlackAndCo.snowretailing.core.models.ResultModel;
 import shlackAndCo.snowretailing.core.utils.EquipmentCreation;
 
@@ -63,14 +64,14 @@ public class EquipmentController {
     @ResponseBody
     @Secured(Permissions.AdminWrite)
     @RequestMapping(value = "api/equipments", method = RequestMethod.POST)
-    public IResultModel<IEquipmentModel> createEquipment(@RequestBody @Validated IEquipmentModel equipmentModel) {
+    public IResultModel<IEquipmentModel> createEquipment(@RequestBody @Validated EquipmentModel equipmentModel) {
         equipmentService.create(equipmentModel);
         return new ResultModel<>(ResultStatus.OK, "Equipment has been created", null);
     }
     @ResponseBody
     @Secured(Permissions.AdminWrite)
     @RequestMapping(value = "api/equipments", method = RequestMethod.PUT)
-    public IResultModel<IEquipmentModel> editEquipment(@RequestBody @Validated IEquipmentModel equipmentModel) {
+    public IResultModel<IEquipmentModel> editEquipment(@RequestBody @Validated EquipmentModel equipmentModel) {
         equipmentService.edit(equipmentModel);
         return new ResultModel<>(ResultStatus.OK, "Equipment has been changed", null);
     }

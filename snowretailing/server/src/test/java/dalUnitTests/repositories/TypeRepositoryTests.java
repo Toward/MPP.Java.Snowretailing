@@ -35,7 +35,7 @@ public class TypeRepositoryTests {
         testedRepository.setSessionFactory(factory.createMockSessionFactory(sessionWithException));
 
         exception.expect(HibernateException.class);
-        testedRepository.getByName(EquipmentTypes.BOARD);
+        testedRepository.getByName(EquipmentTypes.board);
     }
 
     @Test
@@ -45,6 +45,6 @@ public class TypeRepositoryTests {
         Session mockSession = factory.createMockSessionWithGetByName(expectedObject, "name");
         testedRepository.setSessionFactory(factory.createMockSessionFactory(mockSession));
 
-        assertEquals(testedRepository.getByName(EquipmentTypes.BOARD),expectedObject);
+        assertEquals(testedRepository.getByName(EquipmentTypes.board),expectedObject);
     }
 }

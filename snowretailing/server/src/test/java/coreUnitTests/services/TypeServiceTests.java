@@ -71,7 +71,7 @@ public class TypeServiceTests {
         TypeEntity expectedEntity = new TypeEntity();
         int id = 1;
         expectedEntity.setId(id);
-        expectedEntity.setName(EquipmentTypes.BOARD);
+        expectedEntity.setName(EquipmentTypes.board);
 
         TypeRepository mockRepository = Mockito.mock(TypeRepository.class);
         doReturn(expectedEntity).when(mockRepository).getById(id);
@@ -162,7 +162,7 @@ public class TypeServiceTests {
         TypeEntity expectedEntity = new TypeEntity();
         int id = 1;
         expectedEntity.setId(id);
-        expectedEntity.setName(EquipmentTypes.BOARD);
+        expectedEntity.setName(EquipmentTypes.board);
         TypeModel model = new TypeModel(expectedEntity);
 
         TypeRepository mockRepository = Mockito.mock(TypeRepository.class);
@@ -200,7 +200,7 @@ public class TypeServiceTests {
         TypeEntity expectedEntity = new TypeEntity();
         int id = 1;
         expectedEntity.setId(id);
-        expectedEntity.setName(EquipmentTypes.BOARD);
+        expectedEntity.setName(EquipmentTypes.board);
         TypeModel model = new TypeModel(expectedEntity);
 
         TypeRepository mockRepository = Mockito.mock(TypeRepository.class);

@@ -11,6 +11,7 @@ import shlackAndCo.snowretailing.core.contracts.models.ITypeModel;
 import shlackAndCo.snowretailing.core.contracts.services.ITypeService;
 import shlackAndCo.snowretailing.core.enums.ResultStatus;
 import shlackAndCo.snowretailing.core.models.ResultModel;
+import shlackAndCo.snowretailing.core.models.TypeModel;
 
 import java.util.Collection;
 
@@ -45,7 +46,7 @@ public class TypeController {
     @ResponseBody
     @Secured(Permissions.AdminWrite)
     @RequestMapping(value = "api/types", method = RequestMethod.POST)
-    public IResultModel<ITypeModel> createType(@RequestBody @Validated ITypeModel model) {
+    public IResultModel<ITypeModel> createType(@RequestBody @Validated TypeModel model) {
         service.create(model);
         return new ResultModel<>(ResultStatus.OK, "Characteristic has been created", null);
     }
@@ -53,7 +54,7 @@ public class TypeController {
     @ResponseBody
     @Secured(Permissions.AdminWrite)
     @RequestMapping(value = "api/type", method = RequestMethod.PUT)
-    public IResultModel<ITypeModel> editType(@RequestBody @Validated ITypeModel model) {
+    public IResultModel<ITypeModel> editType(@RequestBody @Validated TypeModel model) {
         service.edit(model);
         return new ResultModel<>(ResultStatus.OK, "Type has been changed",  null);
     }

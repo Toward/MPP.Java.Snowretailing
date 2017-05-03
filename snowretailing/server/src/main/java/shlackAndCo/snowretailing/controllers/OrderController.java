@@ -61,7 +61,7 @@ public class OrderController {
     @ResponseBody
     @Secured(Permissions.AdminWrite)
     @RequestMapping(value = "api/orders/create", method = RequestMethod.POST)
-    public IResultModel<IOrderModel> createOrder(@RequestBody @Validated IOrderModel orderModel) {
+    public IResultModel<IOrderModel> createOrder(@RequestBody @Validated OrderModel orderModel) {
         orderModel.setUserName(SecurityContextHolder.getContext().getAuthentication().getName());
         orderService.create(orderModel);
         return new ResultModel<>(ResultStatus.OK, "Order has been created", null);
@@ -69,7 +69,7 @@ public class OrderController {
     @ResponseBody
     @Secured(Permissions.AdminWrite)
     @RequestMapping(value = "api/orders}", method = RequestMethod.PUT)
-    public IResultModel<IOrderModel> editOrder(@RequestBody @Validated IOrderModel orderModel) {
+    public IResultModel<IOrderModel> editOrder(@RequestBody @Validated OrderModel orderModel) {
         orderModel.setUserName(SecurityContextHolder.getContext().getAuthentication().getName());
         orderService.edit(orderModel);
         return new ResultModel<>(ResultStatus.OK, "Order has been changed", null);

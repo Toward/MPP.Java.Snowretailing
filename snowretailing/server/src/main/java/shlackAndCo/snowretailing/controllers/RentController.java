@@ -13,6 +13,7 @@ import shlackAndCo.snowretailing.core.contracts.services.IEquipmentItemService;
 import shlackAndCo.snowretailing.core.contracts.services.IEquipmentService;
 import shlackAndCo.snowretailing.core.contracts.services.IRentService;
 import shlackAndCo.snowretailing.core.enums.ResultStatus;
+import shlackAndCo.snowretailing.core.models.RentModel;
 import shlackAndCo.snowretailing.core.models.ResultModel;
 import shlackAndCo.snowretailing.core.utils.RentCreation;
 
@@ -64,7 +65,7 @@ public class RentController {
     @ResponseBody
     @Secured(Permissions.AdminWrite)
     @RequestMapping(value = "api/rents", method = RequestMethod.POST)
-    public IResultModel<IRentModel> createRent(@RequestBody @Validated IRentModel rentModel) {
+    public IResultModel<IRentModel> createRent(@RequestBody @Validated RentModel rentModel) {
         rentService.create(rentModel);
         return new ResultModel<>(ResultStatus.OK, "Rent has been created", null);
     }
@@ -72,7 +73,7 @@ public class RentController {
     @ResponseBody
     @Secured(Permissions.AdminWrite)
     @RequestMapping(value = "api/rents", method = RequestMethod.PUT)
-    public IResultModel<IRentModel> editRent(@RequestBody @Validated IRentModel rentModel) {
+    public IResultModel<IRentModel> editRent(@RequestBody @Validated RentModel rentModel) {
         rentService.edit(rentModel);
         return new ResultModel<>(ResultStatus.OK, "Rent has been changed", null);
     }

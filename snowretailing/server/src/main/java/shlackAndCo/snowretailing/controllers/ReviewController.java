@@ -11,6 +11,7 @@ import shlackAndCo.snowretailing.core.contracts.models.IReviewModel;
 import shlackAndCo.snowretailing.core.contracts.services.IReviewService;
 import shlackAndCo.snowretailing.core.enums.ResultStatus;
 import shlackAndCo.snowretailing.core.models.ResultModel;
+import shlackAndCo.snowretailing.core.models.ReviewModel;
 
 import java.util.Collection;
 
@@ -45,7 +46,7 @@ public class ReviewController {
     @ResponseBody
     @Secured(Permissions.UserWrite)
     @RequestMapping(value = "api/reviews", method = RequestMethod.POST)
-    public IResultModel<IReviewModel> createBrand(@RequestBody @Validated IReviewModel reviewModel) {
+    public IResultModel<IReviewModel> createBrand(@RequestBody @Validated ReviewModel reviewModel) {
         reviewService.create(reviewModel);
         return new ResultModel<>(ResultStatus.OK, "Review has been created", null);
     }
@@ -53,7 +54,7 @@ public class ReviewController {
     @ResponseBody
     @Secured(Permissions.AdminWrite)
     @RequestMapping(value = "api/reviews", method = RequestMethod.PUT)
-    public IResultModel<IReviewModel> editBrand(@RequestBody @Validated IReviewModel reviewModel) {
+    public IResultModel<IReviewModel> editBrand(@RequestBody @Validated ReviewModel reviewModel) {
         reviewService.edit(reviewModel);
         return new ResultModel<>(ResultStatus.OK, "Review has been changed", null);
     }

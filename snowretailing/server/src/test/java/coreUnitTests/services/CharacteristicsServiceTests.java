@@ -74,7 +74,7 @@ public class CharacteristicsServiceTests {
         CharacteristicsEntity expectedEntity = new CharacteristicsEntity();
         int id = 1;
         expectedEntity.setId(id);
-        expectedEntity.setName(CharacteristicsNames.GEOMETRY);
+        expectedEntity.setName(CharacteristicsNames.geometry);
 
         CharacteristicsRepository mockRepository = Mockito.mock(CharacteristicsRepository.class);
         doReturn(expectedEntity).when(mockRepository).getById(id);
@@ -165,7 +165,7 @@ public class CharacteristicsServiceTests {
         CharacteristicsEntity expectedEntity = new CharacteristicsEntity();
         int id = 1;
         expectedEntity.setId(id);
-        expectedEntity.setName(CharacteristicsNames.INFLEXIBILITY);
+        expectedEntity.setName(CharacteristicsNames.inflexibility);
         CharacteristicsModel model = new CharacteristicsModel(expectedEntity);
 
         CharacteristicsRepository mockRepository = Mockito.mock(CharacteristicsRepository.class);
@@ -203,7 +203,7 @@ public class CharacteristicsServiceTests {
         CharacteristicsEntity expectedEntity = new CharacteristicsEntity();
         int id = 1;
         expectedEntity.setId(id);
-        expectedEntity.setName(CharacteristicsNames.GEOMETRY);
+        expectedEntity.setName(CharacteristicsNames.geometry);
         CharacteristicsModel model = new CharacteristicsModel(expectedEntity);
 
         CharacteristicsRepository mockRepository = Mockito.mock(CharacteristicsRepository.class);
