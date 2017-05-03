@@ -209,7 +209,6 @@
     </dependencies>
 
 <build>
-
     <plugins>
         <plugin>
             <groupId>org.apache.maven.plugins</groupId>
@@ -220,6 +219,16 @@
                 <target>${jdk.version}</target>
                 <showWarnings>true</showWarnings>
                 <showDeprecation>true</showDeprecation>
+            </configuration>
+        </plugin>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-war-plugin</artifactId>
+            <version>2.4</version>
+            <configuration>
+                <warSourceDirectory>../webApp</warSourceDirectory>
+                <warName>Spring4MVCAngularJSExample</warName>
+                <failOnMissingWebXml>false</failOnMissingWebXml>
             </configuration>
         </plugin>
     </plugins>

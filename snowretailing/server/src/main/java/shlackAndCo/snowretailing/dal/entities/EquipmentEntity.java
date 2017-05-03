@@ -1,6 +1,8 @@
 package shlackAndCo.snowretailing.dal.entities;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import shlackAndCo.snowretailing.dal.contracts.entities.IEquipmentEntity;
 
 import javax.persistence.*;
@@ -85,7 +87,7 @@ public class EquipmentEntity implements IEquipmentEntity {
         return result;
     }
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "BRAND_ID", referencedColumnName = "ID", nullable = false)
     public BrandEntity getBrandByBrandId() {
         return brandByBrandId;
@@ -95,7 +97,7 @@ public class EquipmentEntity implements IEquipmentEntity {
         this.brandByBrandId = brandByBrandId;
     }
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "TYPE_ID", referencedColumnName = "ID", nullable = false)
     public TypeEntity getTypeByTypeId() {
         return typeByTypeId;
@@ -105,6 +107,7 @@ public class EquipmentEntity implements IEquipmentEntity {
         this.typeByTypeId = typeByTypeId;
     }
 
+    @LazyCollection(LazyCollectionOption.FALSE)
     @OneToMany(mappedBy = "equipmentByIdEquipment")
     public Collection<EquipmentFeatureEntity> getEquipmentFeaturesById() {
         return equipmentFeaturesById;
@@ -114,6 +117,7 @@ public class EquipmentEntity implements IEquipmentEntity {
         this.equipmentFeaturesById = equipmentFeaturesById;
     }
 
+    @LazyCollection(LazyCollectionOption.FALSE)
     @OneToMany(mappedBy = "equipmentByEquipmentId")
     public Collection<EquipmentItemEntity> getEquipmentItemsById() {
         return equipmentItemsById;

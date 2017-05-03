@@ -83,7 +83,7 @@ public class OrderEntity implements IOrderEntity{
         return result;
     }
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "USER_ID", referencedColumnName = "ID", nullable = false)
     public UserEntity getUserByUserId() {
         return userByUserId;
@@ -93,7 +93,7 @@ public class OrderEntity implements IOrderEntity{
         this.userByUserId = userByUserId;
     }
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "ITEM_ID", referencedColumnName = "ID", nullable = false)
     public EquipmentItemEntity getEquipmentItemByItemId() {
         return equipmentItemByItemId;
