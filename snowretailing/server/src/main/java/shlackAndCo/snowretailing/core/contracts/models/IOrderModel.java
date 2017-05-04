@@ -7,6 +7,10 @@ import java.sql.Timestamp;
 
 public interface IOrderModel extends IBaseModel {
 
+    byte getState();
+
+    void setState(byte state);
+
     public Timestamp getDateOrderExpire();
 
     public void setDateOrderExpire(Timestamp dateOrderExpire);
@@ -25,9 +29,5 @@ public interface IOrderModel extends IBaseModel {
     String getUserName();
 
     void setUserName(String name);
-
-     IEquipmentModel getEquipment();
-
-     void setEquipment(IEquipmentModel equipment);
 
 }

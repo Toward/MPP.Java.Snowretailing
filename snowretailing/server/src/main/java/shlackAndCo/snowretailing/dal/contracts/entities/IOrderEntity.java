@@ -20,6 +20,10 @@ public interface IOrderEntity {
 
     public void setDateOrder(Timestamp dateOrder);
 
+    public byte getState();
+
+    public void setState(byte state);
+
     public int getSumPay();
 
     public void setSumPay(int sumPay);

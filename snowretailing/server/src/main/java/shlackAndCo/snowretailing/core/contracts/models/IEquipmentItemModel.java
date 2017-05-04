@@ -12,7 +12,10 @@ public interface IEquipmentItemModel extends IBaseModel {
 
     void setDeleted(byte deleted);
 
-    void setEquipmentModel(IEquipmentModel equipmentModel);
+    public byte getState();
+    public void setState(byte state);
 
-    IEquipmentModel getEquipmentModel();
+    public String getInventory_number() ;
+
+    public void setInventory_number(String inventory_number);
 }

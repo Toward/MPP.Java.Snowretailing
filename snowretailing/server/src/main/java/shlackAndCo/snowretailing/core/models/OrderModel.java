@@ -29,7 +29,7 @@ public class OrderModel implements IOrderModel {
     @NotNull
     private IEquipmentItemModel equipmentItem;
     @NotNull
-    private IEquipmentModel equipment;
+    private byte state;
     @NotEmpty
     @Size(min = 5, max = 30)
     private String userName;
@@ -46,7 +46,15 @@ public class OrderModel implements IOrderModel {
         EquipmentItemEntity equipmentItemEntity = orderEntity.getEquipmentItemByItemId();
         equipmentItem = new EquipmentItemModel(equipmentItemEntity);
         userName = orderEntity.getUserByUserId().getLogin();
-        equipment = new EquipmentModel(equipmentItemEntity.getEquipmentByEquipmentId());
+        state = orderEntity.getState();
+    }
+    @Override
+    public byte getState() {
+        return state;
+    }
+    @Override
+    public void setState(byte state) {
+        this.state = state;
     }
 
     @Override
@@ -89,15 +97,6 @@ public class OrderModel implements IOrderModel {
         this.sumPay = sumPay;
     }
 
-    @Override
-    public IEquipmentModel getEquipment() {
-        return equipment;
-    }
-
-    @Override
-    public void setEquipment(IEquipmentModel equipment) {
-        this.equipment = equipment;
-    }
 
     @Override
     public IEquipmentItemModel getEquipmentItem() {

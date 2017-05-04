@@ -28,6 +28,7 @@ public class OrderModelToEntityMapper implements IMapper<IOrderModel, IOrderEnti
         entity.setDateOrder(sourceValue.getDateOrder());
         entity.setDateOrderExpire(sourceValue.getDateOrderExpire());
         entity.setSumPay(sourceValue.getSumPay());
+        entity.setState(sourceValue.getState());
         entity.setUserByUserId((UserEntity)new UserRepository().getByLogin(sourceValue.getUserName()));
         entity.setEquipmentItemByItemId((EquipmentItemEntity) new EquipmentItemRepository().getById(sourceValue.getId()));
         return entity;

@@ -15,6 +15,17 @@ public class OrderEntity implements IOrderEntity{
     private int sumPay;
     private UserEntity userByUserId;
     private EquipmentItemEntity equipmentItemByItemId;
+    private byte state;
+
+    @Basic
+    @Column(name = "STATE", nullable = false)
+    public byte getState() {
+        return state;
+    }
+
+    public void setState(byte state) {
+        this.state = state;
+    }
 
     @Id
     @Column(name = "ID", nullable = false)
@@ -70,6 +81,7 @@ public class OrderEntity implements IOrderEntity{
         if (dateOrderExpire != null ? !dateOrderExpire.equals(that.dateOrderExpire) : that.dateOrderExpire != null)
             return false;
         if (dateOrder != null ? !dateOrder.equals(that.dateOrder) : that.dateOrder != null) return false;
+        if (state != that.state) return false;
 
         return true;
     }
@@ -80,6 +92,7 @@ public class OrderEntity implements IOrderEntity{
         result = 31 * result + (dateOrderExpire != null ? dateOrderExpire.hashCode() : 0);
         result = 31 * result + (dateOrder != null ? dateOrder.hashCode() : 0);
         result = 31 * result + sumPay;
+        result = 31 * result + (int)state;
         return result;
     }
 
