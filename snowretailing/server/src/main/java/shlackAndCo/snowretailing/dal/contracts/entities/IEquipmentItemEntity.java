@@ -17,6 +17,14 @@ public interface IEquipmentItemEntity {
 
     public void setDeleted(byte deleted);
 
+    public byte getState();
+
+    public void setState(byte state);
+
+    public String getInventoryNumber();
+
+    public void setInventoryNumber(String inventoryNumber);
+
     public EquipmentEntity getEquipmentByEquipmentId();
 
     public void setEquipmentByEquipmentId(EquipmentEntity equipmentByEquipmentId);

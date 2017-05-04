@@ -11,9 +11,31 @@ import java.util.Collection;
 public class EquipmentItemEntity implements IEquipmentItemEntity{
     private int id;
     private byte deleted;
+    private byte state;
+    private String inventory_number;
     private EquipmentEntity equipmentByEquipmentId;
     private Collection<OrderEntity> ordersById;
     private Collection<RentEntity> rentsById;
+
+    @Basic
+    @Column(name = "STATE", nullable = false)
+    public byte getState() {
+        return state;
+    }
+
+    public void setState(byte state) {
+        this.state = state;
+    }
+    @Basic
+    @Column(name = "INVENTORY_NUMBER", nullable = false)
+    public String getInventoryNumber() {
+        return inventory_number;
+    }
+
+    public void setInventoryNumber(String inventory_number) {
+        this.inventory_number = inventory_number;
+    }
+
 
     @Id
     @Column(name = "ID", nullable = false)
@@ -46,6 +68,8 @@ public class EquipmentItemEntity implements IEquipmentItemEntity{
 
         if (id != that.id) return false;
         if (deleted != that.deleted) return false;
+        if (state != that.state) return false;
+        if (inventory_number != null ? !inventory_number.equals(that.inventory_number) : that.inventory_number != null) return false;
 
         return true;
     }
@@ -54,6 +78,8 @@ public class EquipmentItemEntity implements IEquipmentItemEntity{
     public int hashCode() {
         int result = id;
         result = 31 * result + (int) deleted;
+        result = 31 * result + (inventory_number != null ? inventory_number.hashCode() : 0);
+        result = 31 * result + (int)state;
         return result;
     }
 
