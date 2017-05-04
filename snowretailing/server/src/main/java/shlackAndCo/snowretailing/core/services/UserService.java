@@ -23,7 +23,8 @@ public class UserService implements IUserService {
     @Autowired
     public UserService(@Qualifier("userRepository") IUserRepository userRepository,
                        @Qualifier("userWriteModelToEntityMapper") IMapper<IUserWriteModel, IUserEntity> userWriteModelToEntityMapper,
-                       @Qualifier("userEntityToUserReadModelMapper") IMapper<IUserEntity, IUserReadModel> userEntityToUserReadModelMapper) throws IllegalArgumentException{
+                       @Qualifier("userEntityToUserReadModelMapper") IMapper<IUserEntity, IUserReadModel> userEntityToUserReadModelMapper)
+            throws IllegalArgumentException{
         if (userRepository == null)
             throw new IllegalArgumentException("userRepository is null");
         if (userWriteModelToEntityMapper == null)

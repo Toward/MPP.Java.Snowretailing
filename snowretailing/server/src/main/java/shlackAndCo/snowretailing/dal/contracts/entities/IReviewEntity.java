@@ -2,27 +2,22 @@ package shlackAndCo.snowretailing.dal.contracts.entities;
 
 import shlackAndCo.snowretailing.dal.entities.UserEntity;
 
-import javax.persistence.*;
-import java.sql.Timestamp;
+import java.util.Date;
+
 
 public interface IReviewEntity {
-    public int getId();
+    int getId();
+    void setId(int id);
 
-    public void setId(int id);
+    String getReview();
+    void setReview(String review);
 
-    public String getReview();
+    Date getDateReview();
+    void setDateReview(Date dateReview);
 
-    public void setReview(String review);
+    byte getMark();
+    void setMark(byte mark);
 
-    public Timestamp getDateReview();
-
-    public void setDateReview(Timestamp dateReview);
-
-    public byte getMark();
-
-    public void setMark(byte mark);
-
-    public UserEntity getUserByUserId();
-
-    public void setUserByUserId(UserEntity userByUserId);
+    UserEntity getUserByUserId();
+    void setUserByUserId(UserEntity userByUserId);
 }

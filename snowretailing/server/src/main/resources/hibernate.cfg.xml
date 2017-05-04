@@ -8,8 +8,8 @@
         <property name="connection.url">jdbc:mysql://localhost:3306/snowretailing_db</property>
         <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
 
-        <property name="connection.username">your_login</property>
-        <property name="connection.password">your_too_secret_password</property>
+        <property name="connection.username">root</property>
+        <property name="connection.password">root</property>
 
         <mapping class="shlackAndCo.snowretailing.dal.entities.BrandEntity"/>
         <mapping class="shlackAndCo.snowretailing.dal.entities.CharacteristicsEntity"/>

@@ -8,43 +8,24 @@ import org.springframework.web.bind.annotation.*;
 import shlackAndCo.snowretailing.core.constants.Permissions;
 import shlackAndCo.snowretailing.core.contracts.models.IEquipmentModel;
 import shlackAndCo.snowretailing.core.contracts.models.IResultModel;
-import shlackAndCo.snowretailing.core.contracts.services.IBrandService;
-import shlackAndCo.snowretailing.core.contracts.services.ICharacteristicsService;
 import shlackAndCo.snowretailing.core.contracts.services.IEquipmentService;
-import shlackAndCo.snowretailing.core.contracts.services.ITypeService;
 import shlackAndCo.snowretailing.core.enums.ResultStatus;
 import shlackAndCo.snowretailing.core.models.EquipmentModel;
 import shlackAndCo.snowretailing.core.models.ResultModel;
-import shlackAndCo.snowretailing.core.utils.EquipmentCreation;
 
 import java.util.Collection;
 
 @RestController
 public class EquipmentController {
     private final IEquipmentService equipmentService;
-    private final ITypeService typeService;
-    private final IBrandService brandService;
-    private final ICharacteristicsService characteristicsService;
 
     @Autowired
-    public EquipmentController(@Qualifier("equipmentService") IEquipmentService equipmentService,
-                               @Qualifier("brandService") IBrandService brandService,
-                               @Qualifier("typeService") ITypeService typeService,
-                               @Qualifier("characteristicsService") ICharacteristicsService characteristicsService)
+    public EquipmentController(@Qualifier("equipmentService") IEquipmentService equipmentService)
             throws IllegalArgumentException {
         if (equipmentService == null)
             throw new IllegalArgumentException("equipmentService is null");
-        if (brandService == null)
-            throw new IllegalArgumentException("brandService is null");
-        if (typeService == null)
-            throw new IllegalArgumentException("typeService is null");
-        if (characteristicsService == null)
-            throw new IllegalArgumentException("characteristicsService is null");
 
         this.equipmentService =equipmentService;
-        this.brandService = brandService;
-        this.typeService = typeService;
-        this.characteristicsService = characteristicsService;
     }
 
     @ResponseBody

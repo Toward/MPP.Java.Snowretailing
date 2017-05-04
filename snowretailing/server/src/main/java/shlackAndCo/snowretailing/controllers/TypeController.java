@@ -48,12 +48,12 @@ public class TypeController {
     @RequestMapping(value = "api/types", method = RequestMethod.POST)
     public IResultModel<ITypeModel> createType(@RequestBody @Validated TypeModel model) {
         service.create(model);
-        return new ResultModel<>(ResultStatus.OK, "Characteristic has been created", null);
+        return new ResultModel<>(ResultStatus.OK, "Type has been created", null);
     }
 
     @ResponseBody
     @Secured(Permissions.AdminWrite)
-    @RequestMapping(value = "api/type", method = RequestMethod.PUT)
+    @RequestMapping(value = "api/types", method = RequestMethod.PUT)
     public IResultModel<ITypeModel> editType(@RequestBody @Validated TypeModel model) {
         service.edit(model);
         return new ResultModel<>(ResultStatus.OK, "Type has been changed",  null);

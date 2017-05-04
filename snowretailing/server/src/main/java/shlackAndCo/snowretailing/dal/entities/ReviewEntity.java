@@ -4,14 +4,15 @@ import org.hibernate.annotations.GenericGenerator;
 import shlackAndCo.snowretailing.dal.contracts.entities.IReviewEntity;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
+import java.util.Date;
 
 @Entity
 @Table(name = "review", schema = "snowretailing_db")
 public class ReviewEntity implements IReviewEntity{
     private int id;
     private String review;
-    private Timestamp dateReview;
+    @Temporal(TemporalType.DATE)
+    private Date dateReview;
     private byte mark;
     private UserEntity userByUserId;
 
@@ -39,11 +40,11 @@ public class ReviewEntity implements IReviewEntity{
 
     @Basic
     @Column(name = "DATE_REVIEW", nullable = false)
-    public Timestamp getDateReview() {
+    public Date getDateReview() {
         return dateReview;
     }
 
-    public void setDateReview(Timestamp dateReview) {
+    public void setDateReview(Date dateReview) {
         this.dateReview = dateReview;
     }
 

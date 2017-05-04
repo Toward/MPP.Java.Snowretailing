@@ -7,9 +7,6 @@ import shlackAndCo.snowretailing.dal.enums.CharacteristicsNames;
 
 import javax.validation.constraints.NotNull;
 
-/**
- * Created by Владелец on 02/03/2017.
- */
 public class CharacteristicsModel implements ICharacteristicsModel {
 
     private int id;

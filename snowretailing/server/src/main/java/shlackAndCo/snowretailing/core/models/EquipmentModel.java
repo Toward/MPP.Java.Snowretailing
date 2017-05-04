@@ -5,8 +5,6 @@ import shlackAndCo.snowretailing.core.contracts.models.IEquipmentModel;
 import shlackAndCo.snowretailing.core.utils.CharacteristicsValue;
 import shlackAndCo.snowretailing.dal.contracts.entities.ICharacteristicsEntity;
 import shlackAndCo.snowretailing.dal.contracts.entities.IEquipmentEntity;
-import shlackAndCo.snowretailing.dal.contracts.entities.ITypeEntity;
-import shlackAndCo.snowretailing.dal.entities.EquipmentEntity;
 import shlackAndCo.snowretailing.dal.entities.EquipmentFeatureEntity;
 import shlackAndCo.snowretailing.dal.enums.EquipmentTypes;
 
@@ -22,7 +20,6 @@ public class EquipmentModel implements IEquipmentModel {
     @NotEmpty
     @Size(min=2, max=30)
     private String model;
-    @NotNull
     private byte[] photo;
     @NotNull
     private byte deleted;
