@@ -9,58 +9,54 @@ import org.springframework.web.bind.annotation.*;
 import shlackAndCo.snowretailing.core.constants.Permissions;
 import shlackAndCo.snowretailing.core.contracts.models.IOrderModel;
 import shlackAndCo.snowretailing.core.contracts.models.IResultModel;
-import shlackAndCo.snowretailing.core.contracts.services.IEquipmentItemService;
-import shlackAndCo.snowretailing.core.contracts.services.IEquipmentService;
+import shlackAndCo.snowretailing.core.contracts.models.IUserReadModel;
 import shlackAndCo.snowretailing.core.contracts.services.IOrderService;
+import shlackAndCo.snowretailing.core.contracts.services.IUserService;
 import shlackAndCo.snowretailing.core.enums.ResultStatus;
+import shlackAndCo.snowretailing.core.enums.Role;
 import shlackAndCo.snowretailing.core.models.OrderModel;
 import shlackAndCo.snowretailing.core.models.ResultModel;
-import shlackAndCo.snowretailing.core.utils.OrderCreation;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 @RestController
 public class OrderController {
     private final IOrderService orderService;
-    private final IEquipmentItemService equipmentItemService;
-    private final IEquipmentService equipmentService;
+    private final IUserService userService;
 
     @Autowired
     public OrderController(@Qualifier("orderService") IOrderService orderService,
-                           @Qualifier("equipmentItemService") IEquipmentItemService equipmentItemService,
-                           @Qualifier("equipmentService") IEquipmentService equipmentService)
+                           @Qualifier("userService") IUserService userService)
             throws IllegalArgumentException {
         if (orderService == null)
             throw new IllegalArgumentException("orderService is null");
-        if (equipmentItemService == null)
-            throw new IllegalArgumentException("equipmentItemService is null");
-        if (equipmentService == null)
-            throw new IllegalArgumentException("equipmentService is null");
+        if(userService == null)
+            throw new IllegalArgumentException("userService is null");
         this.orderService =orderService;
-        this.equipmentItemService = equipmentItemService;
-        this.equipmentService = equipmentService;
+        this.userService = userService;
     }
 
     @ResponseBody
-    @Secured(Permissions.AdminRead)
+    @Secured(Permissions.UserRead)
     @RequestMapping(value = "api/orders", method = RequestMethod.GET)
     public IResultModel<Collection<IOrderModel>> getOrders() {
-        Collection<IOrderModel> orderModels = orderService.getAll();
+        Collection<IOrderModel> orderModels = filter(orderService.getAll());
         return new ResultModel<>(ResultStatus.OK, "All orders've been successfully got",  orderModels);
     }
 
     @ResponseBody
-    @Secured(Permissions.AdminRead)
+    @Secured(Permissions.UserRead)
     @RequestMapping(value = "api/orders/{id}", method = RequestMethod.GET)
     public IResultModel<IOrderModel> getOrder(@PathVariable("id") int id) {
-        IOrderModel orderModel = orderService.getById(id);
+        IOrderModel orderModel = filter(orderService.getById(id));
         return new ResultModel<>(ResultStatus.OK, "Order has been successfully got by id", orderModel);
     }
 
 
     @ResponseBody
-    @Secured(Permissions.AdminWrite)
-    @RequestMapping(value = "api/orders/create", method = RequestMethod.POST)
+    @Secured(Permissions.UserWrite)
+    @RequestMapping(value = "api/orders", method = RequestMethod.POST)
     public IResultModel<IOrderModel> createOrder(@RequestBody @Validated OrderModel orderModel) {
         orderModel.setUserName(SecurityContextHolder.getContext().getAuthentication().getName());
         orderService.create(orderModel);
@@ -82,5 +78,27 @@ public class OrderController {
         orderService.delete(id);
 
         return new ResultModel<>(ResultStatus.OK, "Order has been changed", null);
+    }
+
+    private Collection<IOrderModel> filter(Collection<IOrderModel> filteredCollection){
+        IUserReadModel currentUser = userService.getByLogin(SecurityContextHolder.getContext().getAuthentication().getName());
+        if(currentUser.getRole().getId() != Role.USER.getIndex())
+            return filteredCollection;
+
+        Collection<IOrderModel> result = new ArrayList<>();
+        for (IOrderModel orderModel : filteredCollection){
+            if(orderModel.getUserName().equals(currentUser.getLogin()))
+                result.add(orderModel);
+        }
+        return result;
+    }
+
+    private IOrderModel filter(IOrderModel filteredItem) {
+        IUserReadModel currentUser = userService.getByLogin(SecurityContextHolder.getContext().getAuthentication().getName());
+        if (currentUser.getRole().getId() != Role.USER.getIndex())
+            return filteredItem;
+        if (filteredItem.getUserName().equals(currentUser.getLogin()))
+            return filteredItem;
+        return null;
     }
 }

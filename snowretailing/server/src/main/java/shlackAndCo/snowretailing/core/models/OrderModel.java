@@ -2,11 +2,9 @@ package shlackAndCo.snowretailing.core.models;
 
 
 import org.hibernate.validator.constraints.NotEmpty;
-import org.springframework.format.annotation.DateTimeFormat;
 import shlackAndCo.snowretailing.core.contracts.models.*;
 import shlackAndCo.snowretailing.dal.contracts.entities.IOrderEntity;
 import shlackAndCo.snowretailing.dal.entities.EquipmentItemEntity;
-import shlackAndCo.snowretailing.dal.entities.OrderEntity;
 
 import javax.validation.constraints.Future;
 import javax.validation.constraints.Min;
@@ -16,11 +14,11 @@ import java.sql.Timestamp;
 
 public class OrderModel implements IOrderModel {
     private int id;
-    @DateTimeFormat(pattern="MM/dd/yyyy")
+    //@DateTimeFormat(pattern="MM/dd/yyyy")
     @NotNull
     @Future
     private Timestamp dateOrderExpire;
-    @DateTimeFormat(pattern="MM/dd/yyyy")
+    //@DateTimeFormat(pattern="MM/dd/yyyy")
     @NotNull
     private Timestamp dateOrder;
     @NotNull
@@ -116,7 +114,7 @@ public class OrderModel implements IOrderModel {
 
     @Override
     public void setUserName(String name) {
-        this.userName = userName;
+        this.userName = name;
     }
 
 

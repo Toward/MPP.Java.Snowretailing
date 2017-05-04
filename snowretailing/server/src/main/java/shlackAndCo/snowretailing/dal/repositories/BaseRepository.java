@@ -67,17 +67,17 @@ public class BaseRepository <T extends Object> implements IBaseRepository<T> {
         if (entity == null)
             throw new IllegalArgumentException("entity is null");
         Transaction transaction = null;
-        int newBrandId;
+        int newEntityId;
         try (Session session = sessionFactory.openSession()) {
             transaction = session.beginTransaction();
-            newBrandId = (int) session.save(entity);
+            newEntityId = (int) session.save(entity);
             transaction.commit();
         } catch (HibernateException e) {
             if (transaction == null)
                 transaction.rollback();
             throw e;
         }
-        return newBrandId;
+        return newEntityId;
     }
 
     public void update(T entity) throws HibernateException, IllegalArgumentException {

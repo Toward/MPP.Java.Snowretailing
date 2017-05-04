@@ -2,19 +2,19 @@ package shlackAndCo.snowretailing.core.utils;
 
 import shlackAndCo.snowretailing.core.contracts.models.ICredentialModel;
 import shlackAndCo.snowretailing.core.contracts.models.IEquipmentModel;
-import shlackAndCo.snowretailing.core.contracts.models.IRentModel;
+import shlackAndCo.snowretailing.core.contracts.models.IRentReadModel;
 
 import java.util.Collection;
 
 public class RentCreation {
-    private IRentModel rentModel;
+    private IRentReadModel rentModel;
     private Collection<IEquipmentModel> availableEquipments;
     private Collection<ICredentialModel> availablePassports;
-    public void setRentModel(IRentModel rentModel){
+    public void setRentModel(IRentReadModel rentModel){
         this.rentModel = rentModel;
     }
 
-    public IRentModel getRentModel(){
+    public IRentReadModel getRentModel(){
         return rentModel;
     }
 

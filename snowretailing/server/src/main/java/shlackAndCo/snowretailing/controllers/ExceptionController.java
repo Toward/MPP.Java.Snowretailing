@@ -12,6 +12,6 @@ public class ExceptionController {
     @ResponseBody
     @ExceptionHandler(Exception.class)
     public IResultModel handleException(Exception e) {
-        return new ResultModel(ResultStatus.ERROR,e.getMessage());
+        return new ResultModel(ResultStatus.ERROR, e.getMessage());
     }
 }

@@ -1,13 +1,19 @@
 package shlackAndCo.snowretailing.core.contracts.services;
 
 
-import shlackAndCo.snowretailing.core.contracts.models.IRentModel;
-import shlackAndCo.snowretailing.dal.contracts.entities.IRentEntity;
+import shlackAndCo.snowretailing.core.contracts.models.IRentReadModel;
+import shlackAndCo.snowretailing.core.contracts.models.IRentWriteModel;
 
-public interface IRentService extends IBaseService<IRentModel> {
+import java.util.Collection;
 
-    void setDateFactReturn(IRentModel model);
+public interface IRentService {
+    Collection<IRentReadModel> getAll();
 
-    void setPassport(IRentModel model);
+    IRentReadModel getById(int id);
 
+    int create(IRentWriteModel model);
+
+    void edit(IRentWriteModel model);
+
+    void delete(int id);
 }

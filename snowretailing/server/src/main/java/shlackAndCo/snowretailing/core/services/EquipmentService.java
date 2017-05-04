@@ -91,9 +91,14 @@ public class EquipmentService implements IEquipmentService {
         result.setId(model.getId());
         result.setModel(model.getModel());
         result.setPhoto(model.getPhoto());
-        result.setDeleted(model.getDeleted());
-        result.setTypeByTypeId((TypeEntity)typeRepository.getByName(model.getName()));
-        result.setBrandByBrandId((BrandEntity)brandRepository.getByName(model.getBrandName()));
+        TypeEntity type = (TypeEntity)typeRepository.getByName(model.getName());
+        if(type == null)
+            throw new IllegalArgumentException("Type with name" + model.getName()+ "doesn't exist");
+        result.setTypeByTypeId(type);
+        BrandEntity brand = (BrandEntity)brandRepository.getByName(model.getBrandName());
+        if(brand == null)
+            throw new IllegalArgumentException("Brand with name" + model.getBrandName()+ "doesn't exist");
+        result.setBrandByBrandId(brand);
         return result;
     }
 }

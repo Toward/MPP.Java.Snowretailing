@@ -19,7 +19,6 @@ public class EquipmentItemModelToEntityMapper implements IMapper<IEquipmentItemM
 
         IEquipmentItemEntity entity = new EquipmentItemEntity();
         entity.setId(sourceValue.getId());
-        entity.setDeleted(sourceValue.getDeleted());
         entity.setEquipmentByEquipmentId((EquipmentEntity)new EquipmentRepository().getById(sourceValue.getEquipmentModel().getId()));
         return entity;
     }

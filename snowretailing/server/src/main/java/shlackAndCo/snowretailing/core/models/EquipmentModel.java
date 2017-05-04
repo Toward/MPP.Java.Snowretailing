@@ -22,7 +22,6 @@ public class EquipmentModel implements IEquipmentModel {
     private String model;
     private byte[] photo;
     @NotNull
-    private byte deleted;
     private int quantity;
     @NotNull
     private EquipmentTypes type;
@@ -43,7 +42,6 @@ public class EquipmentModel implements IEquipmentModel {
         id = equipmentEntity.getId();
         model = equipmentEntity.getModel();
         photo = equipmentEntity.getPhoto();
-        deleted = equipmentEntity.getDeleted();
         type = equipmentEntity.getTypeByTypeId().getName();
         brand = equipmentEntity.getBrandByBrandId().getBrandName();
         cost = equipmentEntity.getTypeByTypeId().getCost();
@@ -92,16 +90,6 @@ public class EquipmentModel implements IEquipmentModel {
     @Override
     public void setPhoto(byte[] photo) {
         this.photo = photo;
-    }
-
-    @Override
-    public byte getDeleted() {
-        return deleted;
-    }
-
-    @Override
-    public void setDeleted(byte deleted) {
-        this.deleted = deleted;
     }
 
     @Override

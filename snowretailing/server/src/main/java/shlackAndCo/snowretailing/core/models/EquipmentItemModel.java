@@ -7,9 +7,7 @@ import shlackAndCo.snowretailing.dal.contracts.entities.IEquipmentItemEntity;
 import javax.validation.constraints.NotNull;
 
 public class EquipmentItemModel implements IEquipmentItemModel {
-    private int id;
-    @NotNull
-    private byte deleted;
+    private int id;;
     @NotNull
     private IEquipmentModel equipmentModel;
 
@@ -19,7 +17,6 @@ public class EquipmentItemModel implements IEquipmentItemModel {
 
     public EquipmentItemModel(IEquipmentItemEntity equipmentEntity){
         id = equipmentEntity.getId();
-        deleted = equipmentEntity.getDeleted();
         equipmentModel = new EquipmentModel(equipmentEntity.getEquipmentByEquipmentId());
     }
 
@@ -31,16 +28,6 @@ public class EquipmentItemModel implements IEquipmentItemModel {
     @Override
     public void setId(int id) {
         this.id = id;
-    }
-
-    @Override
-    public byte getDeleted() {
-        return deleted;
-    }
-
-    @Override
-    public void setDeleted(byte deleted) {
-        this.deleted = deleted;
     }
 
     @Override

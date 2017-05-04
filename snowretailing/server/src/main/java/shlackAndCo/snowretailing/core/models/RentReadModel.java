@@ -1,48 +1,32 @@
 package shlackAndCo.snowretailing.core.models;
 
 
-import org.hibernate.validator.constraints.NotEmpty;
-import org.springframework.format.annotation.DateTimeFormat;
-import shlackAndCo.snowretailing.core.contracts.models.*;
+import shlackAndCo.snowretailing.core.contracts.models.ICredentialModel;
+import shlackAndCo.snowretailing.core.contracts.models.IEquipmentItemModel;
+import shlackAndCo.snowretailing.core.contracts.models.IRentReadModel;
 import shlackAndCo.snowretailing.dal.contracts.entities.IRentEntity;
-import shlackAndCo.snowretailing.dal.entities.EquipmentItemEntity;
 
-import javax.validation.constraints.Future;
-import javax.validation.constraints.NotNull;
 import java.sql.Timestamp;
 
-public class RentModel implements IRentModel{
+public class RentReadModel implements IRentReadModel {
     private int id;
-    @DateTimeFormat(pattern="MM/dd/yyyy")
-    @NotNull
-    @Future
     private Timestamp dateExpectedReturn;
-    @DateTimeFormat(pattern="MM/dd/yyyy")
-    @NotNull
-    @Future
     private Timestamp dateFactReturn;
-    @DateTimeFormat(pattern="MM/dd/yyyy")
-    @NotNull
     private Timestamp dateGet;
-    @NotNull
     private IEquipmentItemModel equipmentItem;
-    @NotNull
-    private ICredentialModel passport;
-    @NotNull
-    private IEquipmentModel equipment;
+    private ICredentialModel credential;
 
-    public RentModel(){
+    public RentReadModel(){
         id =0;
     }
-    public RentModel(IRentEntity rentEntity){
+
+    public RentReadModel(IRentEntity rentEntity){
         id = rentEntity.getId();
         dateExpectedReturn = rentEntity.getDateExpectedReturn();
         dateFactReturn = rentEntity.getDateFactReturn();
         dateGet = rentEntity.getDateGet();
-        EquipmentItemEntity equipmentItemEntity = rentEntity.getEquipmentItemByEquipmentItemId();
-        equipmentItem = new EquipmentItemModel(equipmentItemEntity);
-        equipment = new EquipmentModel(equipmentItemEntity.getEquipmentByEquipmentId());
-        passport = new CredentialModel(rentEntity.getCredentialByCredentialId());
+        equipmentItem = new EquipmentItemModel(rentEntity.getEquipmentItemByEquipmentItemId());
+        credential = new CredentialModel(rentEntity.getCredentialByCredentialId());
     }
 
     @Override
@@ -96,22 +80,12 @@ public class RentModel implements IRentModel{
     }
 
     @Override
-    public IEquipmentModel getEquipment() {
-        return equipment;
+    public void setCredential(ICredentialModel credentialModel) {
+        this.credential = credentialModel;
     }
 
     @Override
-    public void setEquipment(IEquipmentModel equipment) {
-        this.equipment = equipment;
-    }
-
-    @Override
-    public void setPassport(ICredentialModel credentialModel) {
-        this.passport = credentialModel;
-    }
-
-    @Override
-    public ICredentialModel getPassport() {
-        return passport;
+    public ICredentialModel getCredential() {
+        return credential;
     }
 }

@@ -106,7 +106,9 @@ public class ReviewService implements IReviewService {
         result.setDateReview(model.getDateCreate());
         result.setMark(model.getMark());
         result.setReview(model.getReview());
-        UserEntity user = new UserEntity();
+        UserEntity user = (UserEntity) userRepository.getById(model.getUserId());
+        if(user == null)
+            throw new IllegalArgumentException("User with id" + model.getUserId() + "doesn't exist");
         user.setId(model.getUserId());
         result.setUserByUserId(user);
         return result;
@@ -117,7 +119,10 @@ public class ReviewService implements IReviewService {
         result.setDateReview(new Date());
         result.setMark(model.getMark());
         result.setReview(model.getReview());
-        result.setUserByUserId((UserEntity)userRepository.getByLogin(SecurityContextHolder.getContext().getAuthentication().getName()));
+        UserEntity user = (UserEntity)userRepository.getByLogin(SecurityContextHolder.getContext().getAuthentication().getName());
+        if(user == null)
+            throw new IllegalArgumentException("User with name" + SecurityContextHolder.getContext().getAuthentication().getName()+ "doesn't exist");
+        result.setUserByUserId(user);
         return result;
     }
 
