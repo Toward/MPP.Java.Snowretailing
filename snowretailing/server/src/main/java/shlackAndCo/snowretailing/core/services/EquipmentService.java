@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import shlackAndCo.snowretailing.core.contracts.models.IEquipmentModel;
 import shlackAndCo.snowretailing.core.contracts.services.IEquipmentService;
+import shlackAndCo.snowretailing.core.models.EquipmentItemModel;
 import shlackAndCo.snowretailing.core.models.EquipmentModel;
 import shlackAndCo.snowretailing.dal.contracts.entities.IEquipmentEntity;
 import shlackAndCo.snowretailing.dal.contracts.repositories.IBrandRepository;
@@ -12,6 +13,7 @@ import shlackAndCo.snowretailing.dal.contracts.repositories.IEquipmentRepository
 import shlackAndCo.snowretailing.dal.contracts.repositories.ITypeRepository;
 import shlackAndCo.snowretailing.dal.entities.BrandEntity;
 import shlackAndCo.snowretailing.dal.entities.EquipmentEntity;
+import shlackAndCo.snowretailing.dal.entities.EquipmentItemEntity;
 import shlackAndCo.snowretailing.dal.entities.TypeEntity;
 
 import java.util.Collection;
@@ -100,5 +102,29 @@ public class EquipmentService implements IEquipmentService {
             throw new IllegalArgumentException("Brand with name" + model.getBrandName()+ "doesn't exist");
         result.setBrandByBrandId(brand);
         return result;
+    }
+
+    @Override
+    public EquipmentItemModel getAvailableEquipmentItem(int equipmentId) {
+        if (equipmentId <= 0)
+            throw new IllegalArgumentException("id must be greater than zero");
+
+        IEquipmentEntity equipmentEntity = equipmentRepository.getById(equipmentId);
+        Collection<EquipmentItemEntity> equipmentItems = equipmentEntity.getEquipmentItemsById();
+        EquipmentItemEntity equipmentItem = findAvailableEquipmentItem(equipmentItems);
+        return equipmentItem == null ? null : new EquipmentItemModel(equipmentItem);
+
+
+
+    }
+
+    private EquipmentItemEntity findAvailableEquipmentItem(Collection<EquipmentItemEntity> equipmentItems)
+    {
+        for (EquipmentItemEntity item: equipmentItems) {
+            if ((int)item.getState() == 1 && (int)item.getDeleted() != 1){
+                return item;
+            }
+        }
+        return null;
     }
 }

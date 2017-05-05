@@ -6,6 +6,7 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import shlackAndCo.snowretailing.core.constants.Permissions;
+import shlackAndCo.snowretailing.core.contracts.models.IEquipmentItemModel;
 import shlackAndCo.snowretailing.core.contracts.models.IEquipmentModel;
 import shlackAndCo.snowretailing.core.contracts.models.IResultModel;
 import shlackAndCo.snowretailing.core.contracts.services.IEquipmentService;
@@ -40,6 +41,16 @@ public class EquipmentController {
     public IResultModel<IEquipmentModel> getEquipment(@PathVariable("id") int id) {
         IEquipmentModel equipmentModel = equipmentService.getById(id);
         return new ResultModel<>(ResultStatus.OK, "Equipment has been successfully got by id", equipmentModel);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/equipments/{id}/available_item", method = RequestMethod.GET)
+    public IResultModel<IEquipmentItemModel> getEquipmentItem(@PathVariable("id") int id) {
+        IEquipmentItemModel equipmentItemModel = equipmentService.getAvailableEquipmentItem(id);
+        if (equipmentItemModel == null){
+            return new ResultModel<>(ResultStatus.ERROR, "This equipment isn't available now", null);
+        }
+        return new ResultModel<>(ResultStatus.OK, "Available Equipment Item has been successfully got by equipment id", equipmentItemModel);
     }
 
     @ResponseBody
