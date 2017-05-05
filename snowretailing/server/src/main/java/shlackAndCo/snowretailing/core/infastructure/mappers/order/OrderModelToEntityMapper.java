@@ -2,6 +2,7 @@ package shlackAndCo.snowretailing.core.infastructure.mappers.order;
 
 
 import org.springframework.context.annotation.Scope;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import shlackAndCo.snowretailing.core.contracts.infastructure.mappers.IMapper;
 import shlackAndCo.snowretailing.core.contracts.models.IOrderModel;
@@ -29,8 +30,14 @@ public class OrderModelToEntityMapper implements IMapper<IOrderModel, IOrderEnti
         entity.setDateOrderExpire(sourceValue.getDateOrderExpire());
         entity.setSumPay(sourceValue.getSumPay());
         entity.setState(sourceValue.getState());
-        entity.setUserByUserId((UserEntity)new UserRepository().getByLogin(sourceValue.getUserName()));
-        entity.setEquipmentItemByItemId((EquipmentItemEntity) new EquipmentItemRepository().getById(sourceValue.getId()));
+        UserEntity user = (UserEntity)new UserRepository().getByLogin(sourceValue.getUserName());
+        if(user == null)
+            throw new IllegalArgumentException("User with name" + user.getLogin()+ "doesn't exist");
+        entity.setUserByUserId(user);
+        EquipmentItemEntity item = (EquipmentItemEntity) new EquipmentItemRepository().getById(sourceValue.getEquipmentItem().getId());
+        if(item == null)
+            throw new IllegalArgumentException("Item with id" + item.getId()+ "doesn't exist");
+        entity.setEquipmentItemByItemId(item);
         return entity;
     }
 }

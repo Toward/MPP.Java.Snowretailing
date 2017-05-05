@@ -75,7 +75,7 @@ public class EquipmentModel implements IEquipmentModel {
     }
     @Override
     public int getId() {
-        return 0;
+        return id;
     }
 
     @Override

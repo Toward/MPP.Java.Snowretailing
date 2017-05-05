@@ -46,7 +46,7 @@ public class ReviewController {
     }
 
     @ResponseBody
-    @Secured(Permissions.AdminWrite)
+    @Secured(Permissions.UserWrite)
     @RequestMapping(value = "api/user_reviews", method = RequestMethod.POST)
     public IResultModel<IReviewAdminWriteModel> createReview(@RequestBody @Validated ReviewUserWriteModel reviewModel) {
         reviewService.create(reviewModel);

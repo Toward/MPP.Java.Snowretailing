@@ -64,7 +64,7 @@ public class OrderController {
     }
     @ResponseBody
     @Secured(Permissions.AdminWrite)
-    @RequestMapping(value = "api/orders}", method = RequestMethod.PUT)
+    @RequestMapping(value = "api/orders/{id}", method = RequestMethod.PUT)
     public IResultModel<IOrderModel> editOrder(@RequestBody @Validated OrderModel orderModel) {
         orderModel.setUserName(SecurityContextHolder.getContext().getAuthentication().getName());
         orderService.edit(orderModel);

@@ -45,7 +45,8 @@ public class EquipmentService implements IEquipmentService {
     @Override
     public Collection<IEquipmentModel> getAll() {
         Collection<IEquipmentEntity> equipmentEntities = equipmentRepository.getAll();
-        return equipmentEntities.stream().map(x -> new EquipmentModel(x)).collect(Collectors.toList());
+        //return equipmentEntities.stream().map(x -> new EquipmentModel(x)).collect(Collectors.toList());
+        return equipmentEntities.stream().map(EquipmentModel::new).collect(Collectors.toList());
     }
 
     @Override

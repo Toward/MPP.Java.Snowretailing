@@ -1,6 +1,8 @@
 package shlackAndCo.snowretailing.core.contracts.models;
 
 
+import shlackAndCo.snowretailing.core.models.EquipmentItemModel;
+
 import java.sql.Timestamp;
 
 public interface IOrderModel extends IBaseModel {
@@ -17,7 +19,9 @@ public interface IOrderModel extends IBaseModel {
     void setSumPay(int sumPay);
 
     IEquipmentItemModel getEquipmentItem();
-    void setEquipmentItem(IEquipmentItemModel equipmentItem);
+//    void setEquipmentItem(IEquipmentItemModel equipmentItem);
+
+    void setEquipmentItem(EquipmentItemModel equipmentItem);
 
     String getUserName();
     void setUserName(String name);

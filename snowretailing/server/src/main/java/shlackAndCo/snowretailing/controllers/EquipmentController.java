@@ -62,7 +62,7 @@ public class EquipmentController {
     }
     @ResponseBody
     @Secured(Permissions.AdminWrite)
-    @RequestMapping(value = "api/equipments", method = RequestMethod.PUT)
+    @RequestMapping(value = "api/equipments/{id}", method = RequestMethod.PUT)
     public IResultModel<IEquipmentModel> editEquipment(@RequestBody @Validated EquipmentModel equipmentModel) {
         equipmentService.edit(equipmentModel);
         return new ResultModel<>(ResultStatus.OK, "Equipment has been changed", null);

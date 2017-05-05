@@ -15,21 +15,21 @@ import java.sql.Timestamp;
 public class OrderModel implements IOrderModel {
     private int id;
     //@DateTimeFormat(pattern="MM/dd/yyyy")
-    @NotNull
-    @Future
+//    @NotNull
+//    @Future
     private Timestamp dateOrderExpire;
     //@DateTimeFormat(pattern="MM/dd/yyyy")
-    @NotNull
+//    @NotNull
     private Timestamp dateOrder;
-    @NotNull
-    @Min(1)
+//    @NotNull
+//    @Min(1)
     private int sumPay;
-    @NotNull
-    private IEquipmentItemModel equipmentItem;
-    @NotNull
+//    @NotNull
+    private EquipmentItemModel equipmentItem;
+//    @NotNull
     private byte state;
-    @NotEmpty
-    @Size(min = 5, max = 30)
+//    @NotEmpty
+//    @Size(min = 5, max = 30)
     private String userName;
 
     public OrderModel(){
@@ -97,12 +97,12 @@ public class OrderModel implements IOrderModel {
 
 
     @Override
-    public IEquipmentItemModel getEquipmentItem() {
+    public EquipmentItemModel getEquipmentItem() {
         return equipmentItem;
     }
 
     @Override
-    public void setEquipmentItem(IEquipmentItemModel equipmentItem) {
+    public void setEquipmentItem(EquipmentItemModel equipmentItem) {
         this.equipmentItem = equipmentItem;
     }
 
