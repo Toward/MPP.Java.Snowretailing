@@ -6,6 +6,7 @@ import shlackAndCo.snowretailing.core.utils.CharacteristicsValue;
 import shlackAndCo.snowretailing.dal.contracts.entities.ICharacteristicsEntity;
 import shlackAndCo.snowretailing.dal.contracts.entities.IEquipmentEntity;
 import shlackAndCo.snowretailing.dal.entities.EquipmentFeatureEntity;
+import shlackAndCo.snowretailing.dal.entities.EquipmentItemEntity;
 import shlackAndCo.snowretailing.dal.enums.EquipmentTypes;
 
 import javax.validation.constraints.Max;
@@ -45,8 +46,18 @@ public class EquipmentModel implements IEquipmentModel {
         type = equipmentEntity.getTypeByTypeId().getName();
         brand = equipmentEntity.getBrandByBrandId().getBrandName();
         cost = equipmentEntity.getTypeByTypeId().getCost();
-        quantity = equipmentEntity.getEquipmentItemsById().size();
+        quantity = getAvailableEquipmentItemCount(equipmentEntity.getEquipmentItemsById());
         characteristicsValues = getCharacteristicsValues(equipmentEntity);
+    }
+    private int getAvailableEquipmentItemCount(Collection<EquipmentItemEntity> equipmentItems)
+    {
+        int result = 0;
+        for (EquipmentItemEntity item: equipmentItems) {
+            if ((int)item.getState() == 1 && (int)item.getDeleted() != 1){
+                result += 1;
+            }
+        }
+        return result;
     }
 
     private Collection<CharacteristicsValue> getCharacteristicsValues(IEquipmentEntity equipmentEntity){
