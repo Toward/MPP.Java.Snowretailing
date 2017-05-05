@@ -7,7 +7,9 @@ import shlackAndCo.snowretailing.core.contracts.infastructure.mappers.IMapper;
 import shlackAndCo.snowretailing.core.contracts.models.IRentReadModel;
 import shlackAndCo.snowretailing.core.contracts.models.IRentWriteModel;
 import shlackAndCo.snowretailing.core.contracts.services.IRentService;
+import shlackAndCo.snowretailing.dal.contracts.entities.IEquipmentItemEntity;
 import shlackAndCo.snowretailing.dal.contracts.entities.IRentEntity;
+import shlackAndCo.snowretailing.dal.contracts.repositories.IEquipmentItemRepository;
 import shlackAndCo.snowretailing.dal.contracts.repositories.IRentRepository;
 
 import java.util.Collection;
@@ -16,16 +18,19 @@ import java.util.stream.Collectors;
 @Service
 public class RentService implements IRentService {
     private final IRentRepository rentRepository;
+    private final IEquipmentItemRepository equipmentItemRepository;
     private final IMapper<IRentWriteModel, IRentEntity> rentModelToEntityMapper;
     private final IMapper<IRentEntity, IRentReadModel> rentEntityToModelMapper;
 
     @Autowired
     public RentService(@Qualifier("rentRepository") IRentRepository rentRepository,
+                       @Qualifier("equipmentItemRepository") IEquipmentItemRepository equipmentItemRepository,
                         @Qualifier("rentWriteModelToEntityMapper") IMapper<IRentWriteModel, IRentEntity> rentWriteModelToEntityMapper,
                         @Qualifier("rentEntityToReadModelMapper") IMapper<IRentEntity, IRentReadModel> rentEntityToReadModelMapper) {
         this.rentRepository = rentRepository;
         this.rentModelToEntityMapper = rentWriteModelToEntityMapper;
         this.rentEntityToModelMapper = rentEntityToReadModelMapper;
+        this.equipmentItemRepository = equipmentItemRepository;
     }
 
     @Override
@@ -58,6 +63,13 @@ public class RentService implements IRentService {
 
         IRentEntity entity = rentModelToEntityMapper.Map(model);
         rentRepository.update(entity);
+        int equipmentItemId = model.getEquipmentItemId();
+        if (equipmentItemId <= 0)
+            throw new IllegalArgumentException("id must be greater than zero");
+
+        IEquipmentItemEntity equipmentItemEntity = equipmentItemRepository.getById(equipmentItemId);
+        equipmentItemEntity.setState((byte) 1);
+        equipmentItemRepository.update(equipmentItemEntity);
     }
 
     @Override
