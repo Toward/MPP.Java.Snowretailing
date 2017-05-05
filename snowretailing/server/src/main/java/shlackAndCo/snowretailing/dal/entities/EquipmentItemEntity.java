@@ -18,7 +18,7 @@ public class EquipmentItemEntity implements IEquipmentItemEntity{
     private Collection<RentEntity> rentsById;
 
     @Basic
-    @Column(name = "STATE", nullable = false)
+    @Column(name = "state", nullable = false)
     public byte getState() {
         return state;
     }
@@ -27,7 +27,7 @@ public class EquipmentItemEntity implements IEquipmentItemEntity{
         this.state = state;
     }
     @Basic
-    @Column(name = "INVENTORY_NUMBER", nullable = false)
+    @Column(name = "inventory_number", nullable = false)
     public String getInventoryNumber() {
         return inventory_number;
     }

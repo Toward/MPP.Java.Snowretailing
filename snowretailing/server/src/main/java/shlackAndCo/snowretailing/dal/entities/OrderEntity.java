@@ -18,7 +18,7 @@ public class OrderEntity implements IOrderEntity{
     private byte state;
 
     @Basic
-    @Column(name = "STATE", nullable = false)
+    @Column(name = "state", nullable = false)
     public byte getState() {
         return state;
     }
