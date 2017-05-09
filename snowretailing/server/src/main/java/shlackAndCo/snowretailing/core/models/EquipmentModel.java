@@ -33,6 +33,8 @@ public class EquipmentModel implements IEquipmentModel {
     @Min(1)@Max(Integer.MAX_VALUE)
     private int cost;
 
+    private int itemQuantity;
+
     private Collection<CharacteristicsValue> characteristicsValues;
 
     public EquipmentModel(){
@@ -46,11 +48,13 @@ public class EquipmentModel implements IEquipmentModel {
         type = equipmentEntity.getTypeByTypeId().getName();
         brand = equipmentEntity.getBrandByBrandId().getBrandName();
         cost = equipmentEntity.getTypeByTypeId().getCost();
+
         quantity = getAvailableEquipmentItemCount(equipmentEntity.getEquipmentItemsById());
         characteristicsValues = getCharacteristicsValues(equipmentEntity);
     }
     private int getAvailableEquipmentItemCount(Collection<EquipmentItemEntity> equipmentItems)
     {
+        itemQuantity = equipmentItems.size();
         int result = 0;
         for (EquipmentItemEntity item: equipmentItems) {
             if ((int)item.getState() == 1 && (int)item.getDeleted() != 1){
@@ -58,6 +62,10 @@ public class EquipmentModel implements IEquipmentModel {
             }
         }
         return result;
+    }
+
+    public int getEquipmentItemCount(){
+        return itemQuantity;
     }
 
     private Collection<CharacteristicsValue> getCharacteristicsValues(IEquipmentEntity equipmentEntity){
