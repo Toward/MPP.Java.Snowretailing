@@ -2,6 +2,7 @@ package shlackAndCo.snowretailing.core.documentGenerators;
 
 import au.com.bytecode.opencsv.CSVWriter;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.stereotype.Service;
 import shlackAndCo.snowretailing.core.contracts.documents.IDocumentGenerator;
 import shlackAndCo.snowretailing.core.contracts.models.ICredentialModel;
 import shlackAndCo.snowretailing.core.models.CredentialModel;
@@ -21,6 +22,8 @@ import java.util.Collection;
 
 import static java.lang.String.format;
 
+
+@Service("CSVgenerator")
 public class CSVgenerator implements IDocumentGenerator {
     private final static DateTimeFormatter DTF_FOR_DATE = org.joda.time.format.DateTimeFormat.forPattern("dd.MM.YYYY");
     private final static DateTimeFormatter DTF_FOR_TIMESTAMP = org.joda.time.format.DateTimeFormat.forPattern("HH:mm dd.MM.YYYY");
