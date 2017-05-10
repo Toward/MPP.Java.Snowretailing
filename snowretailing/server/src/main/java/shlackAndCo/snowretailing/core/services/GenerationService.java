@@ -9,6 +9,7 @@ import shlackAndCo.snowretailing.core.contracts.services.*;
 import shlackAndCo.snowretailing.core.enums.DocumentType;
 
 import java.io.OutputStream;
+import java.util.HashMap;
 
 @Service
 public class GenerationService implements IGenerationService {
@@ -19,6 +20,8 @@ public class GenerationService implements IGenerationService {
     private final IDocumentGenerator csvGenerator;
     private final IDocumentGenerator pdfGenerator;
     private final IDocumentGenerator xlsGenerator;
+
+    private HashMap<DocumentType, IDocumentGenerator> GENERATOR_MAP = new HashMap<>();
 
 
     @Autowired
@@ -36,6 +39,10 @@ public class GenerationService implements IGenerationService {
         this.equipmentItemService = equipmentItemService;
         this.equipmentService = equipmentService;
         this.rentService = rentService;
+
+        GENERATOR_MAP.put(DocumentType.CSV, this.csvGenerator);
+        GENERATOR_MAP.put(DocumentType.PDF, this.pdfGenerator);
+        GENERATOR_MAP.put(DocumentType.XLSX, this.xlsGenerator);
     }
 
     @Override
