@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Аренда снаряжения</title>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--CSS-->
 
     <link rel="stylesheet" href="css/main.css">
@@ -15,16 +15,15 @@
 
     <header class="col-lg-12">
 
-        <div id="brand" class="col-lg-5">
+        <div id="brand" class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
             <p>Аренда зимнего снаряжения</p>
         </div>
 
-        <div id="info" class="col-lg-2">
-            <span class="login"></span>
-            <span class="role"></span>
+        <div id="info" class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+            <span class="login-string"></span><span class="role-string">&nbsp;&nbsp;РОЛЬ:&nbsp;</span>
         </div>
 
-        <div id="additional-nav-buttons" class="col-lg-5">
+        <div id="additional-nav-buttons" class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
 
             <button class="positive-button autentication-button">Авторизация</button>
 
@@ -36,18 +35,18 @@
 
     </header>
 
-    <main id="guest-page" class="col-lg-offset-2 col-lg-8">
+    <main id="guest-page" class="col-lg-offset-1 col-lg-10 col-md-offset-1 col-md-10 col-sm-12 col-xs-12">
 
         <p class="title">Добро пожаловать, гость!</p>
         <p class="title">Авторизуйтесь или зарегистрируйтесь, чтобы воспользоваться нашим сервисом.</p>
 
-        <div id="guest-equipments" class="col-lg-12">
+        <div id="guest-equipments" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
             <p class="title-lower">Наше оборудование</p>
 
-            <div class="col-lg-offset-1 col-lg-10">
+            <div class="col-lg-offset-1 col-lg-10 col-md-12 col-sm-12 col-xs-12 consister">
 
-                <table class="equipments consister">
+                <table class="equipments">
 
                     <thead>
                         <td>Название</td>
@@ -66,11 +65,11 @@
 
         </div>
 
-        <div id="guest-reviews" class="col-lg-12">
+        <div id="guest-reviews" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
             <p class="title-lower">Наши отзывы</p>
 
-            <div class="reviews col-lg-offset-1 col-lg-10 consister">
+            <div class="reviews col-lg-offset-1 col-lg-10 col-md-12 col-sm-12 col-xs-12 consister">
 
             </div>
 
@@ -78,21 +77,21 @@
 
     </main>
 
-    <main id="user-page" class="col-lg-offset-2 col-lg-8">
+    <main id="user-page" class="col-lg-offset-1 col-lg-10 col-md-offset-1 col-md-10 col-sm-12 col-xs-12">
 
-        <div class="user-buttons col-lg-offset-1 col-lg-10">
+        <div class="user-buttons col-lg-offset-1 col-lg-10 col-md-offset-1 col-md-10 col-sm-offset-1 col-sm-10  col-xs-offset-1 col-xs-10">
 
             <button class="positive-button add-review-button">Добавить отзыв</button>
-            <button class="positive-button check-state">Состояние брони</button>
+            <button class="positive-button check-status-button">Состояние брони</button>
             <button class="warning-button change-password">Изменить пароль</button>
 
         </div>
 
-        <div id="user-equipments" class="col-lg-12">
+        <div id="user-equipments" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
             <p class="title-lower">Вы можете выбрать себе оборудование</p>
 
-            <div class="col-lg-offset-1 col-lg-10 consister">
+            <div class="col-lg-offset-1 col-lg-10 col-md-12 col-sm-12 col-xs-12 consister">
 
                 <table class="equipments">
                     <thead>
@@ -113,11 +112,11 @@
 
         </div>
 
-        <div id="user-reviews" class="col-lg-12">
+        <div id="user-reviews" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
             <p class="title-lower">Наши отзывы</p>
 
-            <div class="reviews col-lg-offset-1 col-lg-10 consister">
+            <div class="reviews col-lg-offset-1 col-lg-10 col-md-12 col-sm-12 col-xs-12 consister">
 
             </div>
 
@@ -125,21 +124,80 @@
 
     </main>
 
-    <main id="admin-page" class="col-lg-offset-2 col-lg-8">
+    <main id="admin-page" class="col-lg-offset-1 col-lg-10 col-md-offset-1 col-md-10 col-sm-12 col-xs-12">
 
         <p class="title">Добро пожаловать, администратор!</p>
 
-        <div id="admin-equipments" class="col-lg-12">
+        <div class="user-buttons col-lg-offset-1 col-lg-10 col-md-12 col-sm-12 col-xs-12">
+
+            <button class="warning-button change-password-admin">Изменить пароль</button>
+
+        </div>
+
+        <div id="admin-users" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+            <p class="title-lower">Пользователи</p>
+
+            <div class="col-lg-offset-1 col-lg-10 col-md-12 col-sm-12 col-xs-12 consister">
+
+                <table class="users">
+
+                    <thead>
+                    <td>ID</td>
+                    <td>Логин</td>
+                    <td>Права</td>
+                    </thead>
+
+                    <tbody>
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+        <div id="admin-orders" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+            <p class="title-lower">Брони</p>
+
+            <button class="positive-button create-order">Создать бронь</button>
+
+            <div class="col-lg-offset-1 col-lg-10 col-md-12 col-sm-12 col-xs-12 consister">
+
+                <table class="orders">
+
+                    <thead>
+                    <td>Дата истечения</td>
+                    <td>Дата заказа</td>
+                    <td>Номер оборудования</td>
+                    <td>Стоимость</td>
+                    <td>Пользователь</td>
+                    <td></td>
+                    <td></td>
+                    </thead>
+
+                    <tbody>
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+        <div id="admin-equipments" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
             <p class="title-lower">Оборудование</p>
 
             <button class="positive-button create-equipment">Создать категорию</button>
 
-            <div class="col-lg-offset-1 col-lg-10">
+            <div class="col-lg-offset-1 col-lg-10 col-md-12 col-sm-12 col-xs-12 consister">
 
-                <table class="equipments consister">
+                <table class="equipments">
 
                     <thead>
+                        <td>ID</td>
                         <td>Название</td>
                         <td>Модель</td>
                         <td>Бренд</td>
@@ -158,39 +216,15 @@
 
         </div>
 
-
-        <div id="admin-users" class="col-lg-12">
-
-            <p class="title-lower">Пользователи</p>
-
-            <div class="col-lg-offset-1 col-lg-10">
-
-                <table class="users consister">
-
-                    <thead>
-                    <td>ID</td>
-                    <td>Логин</td>
-                    <td>Права</td>
-                    </thead>
-
-                    <tbody>
-                    </tbody>
-
-                </table>
-
-            </div>
-
-        </div>
-
-        <div id="admin-brands" class="col-lg-12">
+        <div id="admin-brands" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
             <p class="title-lower">Бренды</p>
 
             <button class="positive-button create-brand">Создать бренд</button>
 
-            <div class="col-lg-offset-1 col-lg-10">
+            <div class="col-lg-offset-1 col-lg-10 col-md-12 col-sm-12 col-xs-12 consister">
 
-                <table class="brands consister">
+                <table class="brands">
 
                     <thead>
                     <td>ID</td>
@@ -208,25 +242,35 @@
 
         </div>
 
-        <div id="admin-credentials" class="col-lg-12">
 
-            <p class="title-lower">Данные пользователей</p>
+    </main>
 
-            <button class="positive-button create-credential">Создать данные</button>
+    <main id="root-page" class="col-lg-offset-1 col-lg-10 col-md-offset-1 col-md-10 col-sm-12 col-xs-12">
 
-            <div class="col-lg-offset-1 col-lg-10">
+        <p class="title">Добро пожаловать, главный администратор!</p>
 
-                <table class="credentials consister">
+        <div class="user-buttons col-lg-offset-1 col-lg-10 col-md-12 col-sm-12 col-xs-12">
+
+            <button class="warning-button change-password-root">Изменить пароль</button>
+
+        </div>
+
+        <div id="root-users" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+            <p class="title-lower">Пользователи</p>
+
+            <button class="positive-button create-user">Создать пользователя</button>
+
+            <div class="col-lg-offset-1 col-lg-10 col-md-12 col-sm-12 col-xs-12 consister">
+
+                <table class="users">
 
                     <thead>
-                    <td>Birthday</td>
-                    <td>Name</td>
-                    <td>Namber</td>
-                    <td>Surname</td>
-                    <td>Type</td>
-                    <td>UserID</td>
-                    <td></td>
-                    <td></td>
+                        <td>ID</td>
+                        <td>Логин</td>
+                        <td>Права</td>
+                        <td></td>
+                        <td></td>
                     </thead>
 
                     <tbody>
@@ -241,7 +285,9 @@
     </main>
 
     <footer>
-
+        <div class="col-lg-offset-2 col-lg-8" style="color: #fff; margin-top: 5px"><p>
+            Группа 451006 Гайманов Алексей, Смоловский Кирилл, Бирич Сергей</p>
+        </div>
     </footer>
 
 
@@ -254,6 +300,8 @@
     <div id="message">
 
     </div>
+
+
 
 
     <!--REGISTRATION GUEST-->
@@ -284,7 +332,6 @@
 
     </div>
 
-
     <!--AUTENTICATION GUEST-->
 
     <div class="bubble-panel autentication">
@@ -305,6 +352,10 @@
         <button class="danger-button goback">Отмена</button>
 
     </div>
+
+
+
+
 
     <!--ADD REVIEW USER-->
 
@@ -357,6 +408,160 @@
 
     </div>
 
+    <!-- CHECK STATUS USER-->
+
+    <div class="bubble-panel check-status-panel">
+
+        <p class="title">Ваши заказы</p>
+
+        <div id="user-orders" class="col-lg-12">
+
+            <p class="title-lower">Ваши заказы</p>
+
+            <div class="col-lg-12 consister">
+
+                <table class="orders">
+                    <thead>
+                        <td>Истечение брони</td>
+                        <td>Дата создания</td>
+                        <td>Номер снаряжения</td>
+                        <td>Cтоимость</td>
+                    </thead>
+
+                    <tbody>
+                    </tbody>
+
+                </table>
+
+            </div>
+        </div>
+
+        <button class="danger-button goback">Назад</button>
+
+    </div>
+
+
+
+
+    <!--CHANGE PASSWORD ADMIN-->
+
+    <div class="bubble-panel change-password-panel-admin">
+
+        <p class="title">Изменение пароля</p>
+
+        <div class="col-lg-offset-2 col-lg-8">
+            <label for="current-password-admin">Введите текущий пароль</label><br>
+            <input type="password" id="current-password-admin" autocomplete="off">
+        </div>
+
+        <div class="col-lg-offset-2 col-lg-8">
+            <label for="new-password-admin">Новый пароль</label><br>
+            <input type="password" id="new-password-admin" autocomplete="off">
+            <p>От 3 до 20 символов</p>
+        </div>
+
+        <div class="col-lg-offset-2 col-lg-8">
+            <label for="repeat-new-password-admin">Повторите новый пароль</label><br>
+            <input type="password" id="repeat-new-password-admin" autocomplete="off">
+        </div>
+
+        <button class="positive-button send-new-password-admin">Изменить пароль</button>
+
+        <button class="danger-button goback">Назад</button>
+
+    </div>
+
+
+
+
+    <!--EDIT USER FOR ROOT-->
+
+    <div class="bubble-panel edit-user-root">
+
+        <p class="title">Редактирование пользователя</p>
+
+        <div class="col-lg-offset-2 col-lg-8">
+            <label for="update-login-root">Логин</label><br>
+            <input type="text" id="update-login-root" autocomplete="off">
+            <p>От 3 до 20 символов</p>
+        </div>
+
+        <div class="col-lg-offset-2 col-lg-8">
+            <label for="update-password-root">Пароль</label><br>
+            <input type="password" id="update-password-root" autocomplete="off">
+            <p>От 3 до 20 символов</p>
+        </div>
+
+        <div class="col-lg-offset-2 col-lg-8">
+            <label for="update-role-root">Роль</label><br>
+            <input type="number" min="1" max="3" id="update-role-root" autocomplete="off">
+            <p>От 1 до 2 (2-admin, 1-user)</p>
+        </div>
+
+        <button class="positive-button update-user">Обновить пользователя</button>
+
+        <button class="danger-button goback">Назад</button>
+
+    </div>
+
+    <!--СREATE USER FOR ROOT-->
+
+    <div class="bubble-panel create-user-panel">
+
+        <p class="title">Создание пользователя</p>
+
+        <div class="col-lg-offset-2 col-lg-8">
+            <label for="new-login-root">Логин</label><br>
+            <input type="text" id="new-login-root" autocomplete="off">
+            <p>От 3 до 20 символов</p>
+        </div>
+
+        <div class="col-lg-offset-2 col-lg-8">
+            <label for="new-password-root">Пароль</label><br>
+            <input type="password" id="new-password-root" autocomplete="off">
+            <p>От 3 до 20 символов</p>
+        </div>
+
+        <div class="col-lg-offset-2 col-lg-8">
+            <label for="new-login-root">Роль</label><br>
+            <input type="number" min="1" max="3" id="new-role-root" autocomplete="off">
+            <p>От 1 до 2 (2-admin, 1-user)</p>
+        </div>
+
+        <button class="positive-button create-user-button">Создать пользователя</button>
+
+        <button class="danger-button goback">Назад</button>
+
+    </div>
+
+    <!--CHANGE PASSWORD ROOT-->
+
+    <div class="bubble-panel change-password-panel-root">
+
+        <p class="title">Изменение пароля</p>
+
+        <div class="col-lg-offset-2 col-lg-8">
+            <label for="current-password-root">Введите текущий пароль</label><br>
+            <input type="password" id="current-password-root" autocomplete="off">
+        </div>
+
+        <div class="col-lg-offset-2 col-lg-8">
+            <label for="new-password-root-1">Новый пароль</label><br>
+            <input type="password" id="new-password-root-1" autocomplete="off">
+            <p>От 3 до 20 символов</p>
+        </div>
+
+        <div class="col-lg-offset-2 col-lg-8">
+            <label for="repeat-new-password-root">Повторите новый пароль</label><br>
+            <input type="password" id="repeat-new-password-root" autocomplete="off">
+        </div>
+
+        <button class="positive-button send-new-password-root">Изменить пароль</button>
+
+        <button class="danger-button goback">Назад</button>
+
+    </div>
+
 
 
 
@@ -370,6 +575,37 @@
 
         var HOST = 'http://127.0.0.1:8080/';
         var popupMode = false;
+
+        //          HELPERS
+
+        function cleanPanelData($panel) {
+            $panel.find('input').val('');
+            $panel.find('textarea').val('');
+        }
+
+        $('.goback').on('click', function () {
+            var $panel = $(this).parent();
+            $panel.hide();
+            popupMode = false;
+            cleanPanelData($panel)
+        });
+
+        $('.logout-button').on('click', function () {
+            if (!popupMode) {
+                window.localStorage.removeItem('LOGIN');
+                window.localStorage.removeItem('ROLE_NAME');
+                window.localStorage.removeItem('ROLE_ID');
+                window.localStorage.removeItem('USER_ID');
+                window.localStorage.removeItem('token');
+                goToGuestPage();
+
+                $('#message').show().text('Вы вышли');
+                setTimeout(function () {
+                    $('#message').hide();
+                }, 2000);
+            }
+        });
+
 
         //           MAIN
         window.onload = function () {
@@ -392,23 +628,12 @@
 
         };
 
-        //           HELPERS
-
-        function cleanPanelData($panel) {
-            $panel.find('input').val('');
-            $panel.find('textarea').val('');
-        }
-
-        $('.goback').on('click', function () {
-            var $panel = $(this).parent();
-            $panel.hide();
-            popupMode = false;
-            cleanPanelData($panel)
-        });
-
         //          PAGES
 
         function goToGuestPage() {
+
+            $('.login-string').text('');
+            $('.role-string').text('');
 
             $('.logout-button').hide();
             $('.registration-button').show();
@@ -420,10 +645,13 @@
             $('#guest-page').show();
 
             getEquipmentsForGuest();
-            getReviewsForGuest()
+            getReviewsForGuest();
         }
 
         function goToAdminPage() {
+
+            $('.login-string').text('ЛОГИН: ' + window.localStorage.getItem('LOGIN'));
+            $('.role-string').text('     РОЛЬ: ' + window.localStorage.getItem('ROLE_NAME'));
 
             $('.logout-button').show();
             $('.registration-button').hide();
@@ -437,10 +665,15 @@
             getEquipmentsForAdmin();
             getUsersForAdmin();
             getBrandsForAdmin();
-            getCredentialsForAdmin()
+            getOrdersForAdmin();
+            getReviewsForAdmin();
+            getEquipmentItemsForAdmin();
         }
 
         function goToRootPage() {
+
+            $('.login-string').text('ЛОГИН: ' + window.localStorage.getItem('LOGIN'));
+            $('.role-string').text('     РОЛЬ: ' + window.localStorage.getItem('ROLE_NAME'));
 
             $('.logout-button').show();
             $('.registration-button').hide();
@@ -450,9 +683,14 @@
             $('#admin-page').hide();
             $('#user-page').hide();
             $('#guest-page').hide();
+
+            getUsersForRoot();
         }
 
         function goToUserPage() {
+
+            $('.login-string').text('ЛОГИН: ' + window.localStorage.getItem('LOGIN'));
+            $('.role-string').text('     РОЛЬ: ' + window.localStorage.getItem('ROLE_NAME'));
 
             $('.logout-button').show();
             $('.registration-button').hide();
@@ -466,6 +704,9 @@
             getEquipmentsForUser()
             getReviewsForUser()
         }
+
+
+
 
         //        GUEST PAGE
 
@@ -529,13 +770,13 @@
 
                             var date = new Date(item.dateCreate);
 
-                            $('#guest-reviews .reviews').append('<div class="col-lg-12 review"></div>');
+                            $('#guest-reviews .reviews').append('<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 review"></div>');
 
                             var $item = $('#guest-reviews .reviews div.review:last-child');
-                            $item.append('<div class="col-lg-4"><p><span>Пользователь:&nbsp;' + item.user.login + '</span></p></div>');
-                            $item.append('<div class="col-lg-4"><p><span>Дата создания:&nbsp;' + date.getDay() + '.' + date.getMonth() + '.' + date.getFullYear() + '</span></p></div>');
-                            $item.append('<div class="col-lg-4"><p><span>Оценка сервису:&nbsp;' + mark_result + '</span></p></div>');
-                            $item.append('<div class="col-lg-12 text"><p><span>Комментарий:&nbsp;' + item.review + '</span></p></div>');
+                            $item.append('<div class="col-lg-4 col-md-12 col-sm-12 col-xs-12"><p><span>Пользователь:&nbsp;' + item.user.login + '</span></p></div>');
+                            $item.append('<div class="col-lg-4 col-md-12 col-sm-12 col-xs-12"><p><span>Дата создания:&nbsp;' + date.getDay() + '.' + date.getMonth() + '.' + date.getFullYear() + '</span></p></div>');
+                            $item.append('<div class="col-lg-4 col-md-12 col-sm-12 col-xs-12"><p><span>Оценка сервису:&nbsp;' + mark_result + '</span></p></div>');
+                            $item.append('<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text"><p><span>Комментарий:&nbsp;' + item.review + '</span></p></div>');
                         }
 
                     } else {
@@ -554,6 +795,192 @@
             });
 
         }
+
+        //       GUEST AUTENTICATION
+
+        $('.autentication-button').on('click', function () {
+            if (!popupMode) {
+                $('.autentication').show();
+                popupMode = true;
+            }
+        });
+
+        $('.sign-in').on('click', function () {
+
+            var $panel = $(this).parent();
+
+            if ($('.autentication #autentication-login').val() && $('.autentication #autentication-password').val()) {
+
+                var $login = $('.autentication #autentication-login').val();
+                $('.autentication #autentication-login').val('');
+                var $password = $('.autentication #autentication-password').val();
+                $('.autentication #autentication-password').val('');
+
+                $.ajax({
+                    url: HOST + 'auth/login',
+                    type: 'POST',
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    crossDomain: true,
+                    data: JSON.stringify({
+                        'login': $login,
+                        'password': $password,
+                    }),
+                    success: function (data) {
+                        if (data.resultStatus === 'OK') {
+                            $panel.hide();
+                            $('#message').show().text('Аутентифкация прошла успешно.');
+                            setTimeout(function () {
+                                $('#message').hide();
+                            }, 2000);
+                            popupMode = false;
+
+                            window.localStorage.setItem('LOGIN', data.data.login);
+                            window.localStorage.setItem('ROLE_ID', data.data.role.id);
+                            window.localStorage.setItem('ROLE_NAME', data.data.role.roleName);
+                            window.localStorage.setItem('USER_ID', data.data.userId);
+                            window.localStorage.setItem('token', data.data.token);
+
+                            if (data.data.role.roleName === 'ADMIN') {
+                                goToAdminPage();
+                            } else if (data.data.role.roleName === 'ROOT') {
+                                goToRootPage();
+                            } else if (data.data.role.roleName === 'USER') {
+                                goToUserPage();
+                            }
+                        } else {
+                            $panel.hide();
+                            $('#message').show().text('Ошибка аутентификации! Проверьте введенные данные.');
+                            setTimeout(function () {
+                                $('#message').hide();
+                            }, 3000);
+                            popupMode = false;
+                            cleanPanelData($panel);
+                        }
+
+                    },
+                    error: function () {
+                        $panel.hide();
+                        $('#message').show().text('Ошибка аутентификации! Проверьте введенные данные.');
+                        setTimeout(function () {
+                            $('#message').hide();
+                        }, 2000);
+                        popupMode = false;
+                        cleanPanelData($panel);
+                    }
+                });
+            } else {
+                $('#message').show().text('Ошибка аутентификации! Введите логи и пароль для аутентификации.');
+                setTimeout(function () {
+                    $('#message').hide();
+                }, 2000);
+            }
+        });
+
+        //       GUEST REGISTRATION
+
+        $('.registration-button').on('click', function () {
+            if (!popupMode) {
+                $('.registration').show();
+                popupMode = true;
+            }
+        });
+
+        $('.register').on('click', function () {
+            var $panel = $(this).parent();
+
+            if ($('.registration #register-password').val() != $('.registration #register-repeat-password').val()) {
+                $('#message').show().text('Введите пароль правильно');
+                setTimeout(function () {
+                    $('#message').hide();
+                }, 2000);
+            } else if ($('.registration #register-password').val() === '' || $('.registration #register-repeat-password').val() === '' || $('.registration #register-login').val() === '' ) {
+                $('#message').show().text('Введите данные для регистрации');
+                setTimeout(function () {
+                    $('#message').hide();
+                }, 2000);
+            } else if ($('.registration #register-login').val().length < 3 || $('.registration #register-login').val().length > 20) {
+                $('#message').show().text('Логин должен быть от 3 до 20 символов');
+                setTimeout(function () {
+                    $('#message').hide();
+                }, 2000);
+            } else if ($('.registration #register-password').val().length < 3 || $('.registration #register-password').val().length > 20) {
+                $('#message').show().text('Пароль должен быть от 3 до 20 символов');
+                setTimeout(function () {
+                    $('#message').hide();
+                }, 2000);
+            } else {
+
+                var $login = $('.registration #register-login').val();
+                $('.registration #register-login').val('');
+                var $password = $('.registration #register-password').val();
+                $('.registration #register-password').val('');
+                var $repeatpassword = $('.registration #register-repeat-password').val();
+                $('.registration #register-repeat-password').val('');
+
+                $.ajax({
+                    url: HOST + 'auth/register',
+                    type: 'POST',
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    crossDomain: true,
+                    data: JSON.stringify({
+                        'login': $login,
+                        'password': $password,
+                        'confirmedPassword': $repeatpassword
+                    }),
+                    success: function (data) {
+
+                        if (data.resultStatus === 'OK') {
+                            $panel.hide();
+                            $('#message').show().text('Регистрация прошла успешно.');
+                            setTimeout(function () {
+                                $('#message').hide();
+                            }, 2000);
+                            popupMode = false;
+                            cleanPanelData($panel);
+
+                            window.localStorage.setItem('LOGIN', data.data.login);
+                            window.localStorage.setItem('ROLE_ID', data.data.role.id);
+                            window.localStorage.setItem('ROLE_NAME', data.data.role.roleName);
+                            window.localStorage.setItem('USER_ID', data.data.userId);
+                            window.localStorage.setItem('token', data.data.token);
+
+                            if (data.data.role.roleName === 'ADMIN') {
+                                goToAdminPage();
+                            } else if (data.data.role.roleName === 'ROOT') {
+                                goToRootPage();
+                            } else if (data.data.role.roleName === 'USER') {
+                                goToUserPage();
+                            }
+                        } else {
+                            $panel.hide();
+                            $('#message').show().text('Ошибка регистрации! Проверьте введенные данные.');
+                            setTimeout(function () {
+                                $('#message').hide();
+                            }, 2000);
+                            popupMode = false;
+                            cleanPanelData($panel);
+                        }
+                    },
+                    error: function () {
+                        $panel.hide();
+                        $('#message').show().text('Ошибка регистрации!');
+                        setTimeout(function () {
+                            $('#message').hide();
+                        }, 2000);
+                        popupMode = false;
+                        cleanPanelData($panel);
+                    }
+                });
+
+            }
+        });
+
+
+
+
+
 
         //        USER PAGE
 
@@ -579,9 +1006,13 @@
                             $item.append('<td>' + item.name + '</td>');
                             $item.append('<td>' + item.model + '</td>');
                             $item.append('<td>' + item.brandName + '</td>');
-                            $item.append('<td>' + item.cost + '</td>');
+                            $item.append('<td class="cost">' + item.cost + '</td>');
                             $item.append('<td>' + item.quantity + '</td>');
-                            $item.append('<td><button data-id="' + item.id + '" data-address="equipments/" class="positive-button order-equipment-button">Забронировать</button></td>');
+                            if (item.quantity !== 0) {
+                                $item.append('<td><button data-id="' + item.id + '" data-address="equipments/" class="positive-button order-equipment-button">Забронировать</button></td>');
+                            } else {
+                                $item.append('<td><span>Нет оборудования</span></td>');
+                            }
                         }
 
                         //       ORDER EQUIPMENT
@@ -591,6 +1022,48 @@
 
                                 var id = $(this).attr('data-id');
                                 var address = $(this).attr('data-address');
+
+                                function markEquipmentItem(item) {
+                                    $.ajax({
+                                        url: HOST + 'api/equipment_items',
+                                        type: 'PUT',
+                                        dataType: 'json',
+                                        contentType: 'application/json',
+                                        crossDomain: true,
+                                        headers: {
+                                            'Token': window.localStorage.getItem('token')
+                                        },
+                                        data: JSON.stringify({
+                                            'id': item.id,
+                                            'deleted': item.deleted,
+                                            'inventory_number': item.inventory_number,
+                                            'state': 0,
+                                            'equipmentId': item.equipmentId
+                                        }),
+                                        success: function (data) {
+                                            if (data.resultStatus === 'OK') {
+                                                $('#message').show().text('Бронирование успешно завершено!');
+                                                getEquipmentsForUser();
+                                                setTimeout(function () {
+                                                    $('#message').hide();
+                                                }, 2000);
+                                            } else {
+                                                $('#message').show().text('Нет свободного оборудования!');
+                                                setTimeout(function () {
+                                                    $('#message').hide();
+                                                }, 2000);
+                                            }
+
+                                        },
+                                        error: function () {
+                                            $('#message').show().text('Нет свободного оборудования!');
+                                            setTimeout(function () {
+                                                $('#message').hide();
+                                        }, 4000);
+                                        }
+                                    });
+                                }
+
 
                                 function orderEquipment(item_q) {
                                     $.ajax({
@@ -603,19 +1076,21 @@
                                             'Token': window.localStorage.getItem('token')
                                         },
                                         data: JSON.stringify({
-                                            'dateOrder': (new Date()).getSeconds(),
-                                            'dateOrderExpire': (new Date()).getSeconds() + 60*60*24*2,
-                                            'sumPay': Number($('.equipments  tbody  tr:first-child td:nth-child(4)').val()),
+                                            'dateOrder': (new Date()).getTime(),
+                                            'dateOrderExpire': (new Date()).getTime(),
+                                            'sumPay': 4,
                                             'equipmentItem': item_q,
-                                            'state': 0
-//                                            'userName': window.localStorage.getItem('LOGIN')
+                                            'state': 0,
+                                            'userName': window.localStorage.getItem('LOGIN')
                                         }),
                                         success: function (data) {
                                             if (data.resultStatus === 'OK') {
                                                 $('#message').show().text('Бронирование успешно завершено!');
+                                                markEquipmentItem(item_q);
                                                 setTimeout(function () {
                                                     $('#message').hide();
                                                 }, 2000);
+
                                             } else {
                                                 $('#message').show().text('Нет свободного оборудования!');
                                                 setTimeout(function () {
@@ -805,220 +1280,7 @@
 
         }
 
-        //       ADMIN PAGE
-
-        function getEquipmentsForAdmin() {
-            $.ajax({
-                url: HOST + 'equipments',
-                type: 'GET',
-                dataType: 'json',
-                contentType: 'application/json',
-                crossDomain: true,
-                headers: {
-                    'Token': window.localStorage.getItem('token')
-                },
-                success: function (data) {
-                    if (data.resultStatus === 'OK') {
-                        $('#admin-equipments .equipments > tbody').html('')
-                        for (key in data.data) {
-                            var item = data.data[key];
-                            $('#admin-equipments .equipments > tbody').append('<tr>');
-                            var $item = $('.equipments  tbody  tr:last-child');
-                            $item.append('<td>' + item.name + '</td>');
-                            $item.append('<td>' + item.model + '</td>');
-                            $item.append('<td>' + item.brandName + '</td>');
-                            $item.append('<td>' + item.cost + '</td>');
-                            $item.append('<td>' + item.quantity + '</td>');
-                            $item.append('<td><button data-id="' + 6 + '" data-address="api/equipments/" class="positive-button edit-equipment">Редактировать</button></td>');
-                            $item.append('<td><button data-id="' + 6 + '" data-address="api/equipments/" class="positive-button delete-equipment">Удалить</button></td>');
-
-                            $('button.delete-equipment').on('click', function () {
-                                var address = $(this).attr('data-address');
-                                var id = $(this).attr('data-id');
-
-                                $.ajax({
-                                    url: HOST + address + id,
-                                    type: 'PUT',
-                                    dataType: 'json',
-                                    contentType: 'application/json',
-                                    crossDomain: true,
-                                    headers: {
-                                        'Token': window.localStorage.getItem('token')
-                                    },
-                                    data: JSON.stringify({
-                                        'model': $(this).parent().parent().find('td:nth-child(2)').val(),
-                                        'photo': null,
-                                        'quantity': $(this).parent().parent().find('td:nth-child(5)').val(),
-                                        'cost': $(this).parent().parent().find('td:nth-child(4)').val()
-                                    }),
-                                    success: function () {
-                                        $('#message').show().text('Оборудование успешно удалено');
-                                        setTimeout(function () {
-                                            $('#message').hide();
-                                        }, 2000);
-                                        getEquipmentsForAdmin();
-                                    },
-                                    error: function () {
-                                        $('#message').show().text('Произошла ошибка при удалении.');
-                                        setTimeout(function () {
-                                            $('#message').hide();
-                                        }, 2000);
-                                    }
-                                });
-                            });
-                        }
-                    } else {
-                        $('#message').show().text('Ошибка получения данных оборудования');
-                        setTimeout(function () {
-                            $('#message').hide();
-                        }, 2000);
-                    }
-                },
-                error: function (data) {
-                    $('#message').show().text('Ошибка получения данных оборудования');
-                    setTimeout(function () {
-                        $('#message').hide();
-                    }, 2000);
-                }
-            });
-        }
-
-        function getUsersForAdmin() {
-            $.ajax({
-                url: HOST + 'api/users',
-                type: 'GET',
-                dataType: 'json',
-                contentType: 'application/json',
-                crossDomain: true,
-                headers: {
-                    'Token': window.localStorage.getItem('token')
-                },
-                success: function (data) {
-                    if (data.resultStatus === 'OK') {
-                        $('#admin-users .users > tbody').html('')
-                        for (key in data.data) {
-                            var item = data.data[key];
-                            $('#admin-users .users > tbody').append('<tr>');
-                            var $item = $('.users  tbody  tr:last-child');
-                            $item.append('<td>' + item.id + '</td>');
-                            $item.append('<td>' + item.login + '</td>');
-                            $item.append('<td>' + item.role.roleName + '</td>');
-                        }
-                    } else {
-                        $('#message').show().text('Ошибка получения данных пользователей');
-                        setTimeout(function () {
-                            $('#message').hide();
-                        }, 2000);
-                    }
-                },
-                error: function (data) {
-                    $('#message').show().text('Ошибка получения данных пользователей');
-                    setTimeout(function () {
-                        $('#message').hide();
-                    }, 2000);
-                }
-            });
-        }
-
-        function getBrandsForAdmin() {
-            $.ajax({
-                url: HOST + 'api/brands',
-                type: 'GET',
-                dataType: 'json',
-                contentType: 'application/json',
-                crossDomain: true,
-                headers: {
-                    'Token': window.localStorage.getItem('token')
-                },
-                success: function (data) {
-                    if (data.resultStatus === 'OK') {
-                        $('#admin-brands .brands > tbody').html('')
-                        for (key in data.data) {
-                            var item = data.data[key];
-                            $('#admin-brands .brands > tbody').append('<tr>');
-                            var $item = $('.brands  tbody  tr:last-child');
-                            $item.append('<td>' + item.id + '</td>');
-                            $item.append('<td>' + item.brandName + '</td>');
-                            $item.append('<td><button data-id="' + item.id + '" data-address="api/brands/" class="positive-button edit-brands">Редактировать</button></td>');
-                            $item.append('<td><button data-id="' + item.id + '" data-address="api/brands/" class="positive-button delete-brands">Удалить</button></td>');
-                        }
-                    } else {
-                        $('#message').show().text('Ошибка получения данных брендов');
-                        setTimeout(function () {
-                            $('#message').hide();
-                        }, 2000);
-                    }
-                },
-                error: function (data) {
-                    $('#message').show().text('Ошибка получения данных брендов');
-                    setTimeout(function () {
-                        $('#message').hide();
-                    }, 2000);
-                }
-            });
-        }
-
-        function getCredentialsForAdmin() {
-            $.ajax({
-                url: HOST + 'api/credentials',
-                type: 'GET',
-                dataType: 'json',
-                contentType: 'application/json',
-                crossDomain: true,
-                headers: {
-                    'Token': window.localStorage.getItem('token')
-                },
-                success: function (data) {
-                    if (data.resultStatus === 'OK') {
-                        $('#admin-credentials .credentials > tbody').html('')
-                        for (key in data.data) {
-                            var item = data.data[key];
-                            $('#admin-credentials .credentials > tbody').append('<tr>');
-                            var $item = $('.credentials  tbody  tr:last-child');
-                            $item.append('<td>' + item.birthday + '</td>');
-                            $item.append('<td>' + item.name + '</td>');
-                            $item.append('<td>' + item.number + '</td>');
-                            $item.append('<td>' + item.surname + '</td>');
-                            $item.append('<td>' + item.type + '</td>');
-                            $item.append('<td>' + item.userId + '</td>');
-                            $item.append('<td><button data-id="' + item.id + '" data-address="api/credentials/" class="positive-button edit-brands">Редактировать</button></td>');
-                            $item.append('<td><button data-id="' + item.id + '" data-address="api/credentials/" class="positive-button delete-brands">Удалить</button></td>');
-                        }
-                    } else {
-                        $('#message').show().text('Ошибка получения пользовательских данных');
-                        setTimeout(function () {
-                            $('#message').hide();
-                        }, 2000);
-                    }
-                },
-                error: function (data) {
-                    $('#message').show().text('Ошибка получения пользовательских данных');
-                    setTimeout(function () {
-                        $('#message').hide();
-                    }, 2000);
-                }
-            });
-        }
-
-        //         LOGOUT USER/ADMIN/ROOT
-
-        $('.logout-button').on('click', function () {
-            if (!popupMode) {
-                window.localStorage.removeItem('LOGIN');
-                window.localStorage.removeItem('ROLE_NAME');
-                window.localStorage.removeItem('ROLE_ID');
-                window.localStorage.removeItem('USER_ID');
-                window.localStorage.removeItem('token');
-                goToGuestPage();
-
-                $('#message').show().text('Вы вышли');
-                setTimeout(function () {
-                    $('#message').hide();
-                }, 2000);
-            }
-        });
-
-        //       CHANGE PASSWORD USER
+        //       USER CHANGE PASSWORD
 
         $('.change-password').on('click', function () {
             if (!popupMode) {
@@ -1089,107 +1351,56 @@
 
         });
 
-        //        REGISTRATION GUEST
+        //      USER CHECK STATUS
 
-        $('.registration-button').on('click', function () {
+        $('.check-status-button').on('click', function () {
             if (!popupMode) {
-                $('.registration').show();
+                $('.check-status-panel').show();
                 popupMode = true;
-            }
-        });
-
-        $('.register').on('click', function () {
-            var $panel = $(this).parent();
-
-            if ($('.registration #register-password').val() != $('.registration #register-repeat-password').val()) {
-                $('#message').show().text('Введите пароль правильно');
-                setTimeout(function () {
-                    $('#message').hide();
-                }, 2000);
-            } else if ($('.registration #register-password').val() === '' || $('.registration #register-repeat-password').val() === '' || $('.registration #register-login').val() === '' ) {
-                $('#message').show().text('Введите данные для регистрации');
-                setTimeout(function () {
-                    $('#message').hide();
-                }, 2000);
-            } else if ($('.registration #register-login').val().length < 3 || $('.registration #register-login').val().length > 20) {
-                $('#message').show().text('Логин должен быть от 3 до 20 символов');
-                setTimeout(function () {
-                    $('#message').hide();
-                }, 2000);
-            } else if ($('.registration #register-password').val().length < 3 || $('.registration #register-password').val().length > 20) {
-                $('#message').show().text('Пароль должен быть от 3 до 20 символов');
-                setTimeout(function () {
-                    $('#message').hide();
-                }, 2000);
-            } else {
-
-                var $login = $('.registration #register-login').val();
-                $('.registration #register-login').val('');
-                var $password = $('.registration #register-password').val();
-                $('.registration #register-password').val('');
-                var $repeatpassword = $('.registration #register-repeat-password').val();
-                $('.registration #register-repeat-password').val('');
 
                 $.ajax({
-                    url: HOST + 'auth/register',
-                    type: 'POST',
+                    url: HOST + 'api/orders',
+                    type: 'GET',
                     dataType: 'json',
                     contentType: 'application/json',
                     crossDomain: true,
-                    data: JSON.stringify({
-                        'login': $login,
-                        'password': $password,
-                        'confirmedPassword': $repeatpassword
-                    }),
+                    headers: {
+                        'Token': window.localStorage.getItem('token')
+                    },
                     success: function (data) {
-
                         if (data.resultStatus === 'OK') {
-                            $panel.hide();
-                            $('#message').show().text('Регистрация прошла успешно.');
-                            setTimeout(function () {
-                                $('#message').hide();
-                            }, 2000);
-                            popupMode = false;
-                            cleanPanelData($panel);
+                            $('#user-orders .orders > tbody').html('')
+                            for (key in data.data) {
+                                var item = data.data[key];
+                                $('#user-orders .orders > tbody').append('<tr>');
+                                var ex_date = new Date(item.dateOrderExpire);
+                                var date = new Date(item.dateOrder);
 
-                            window.localStorage.setItem('LOGIN', data.data.login);
-                            window.localStorage.setItem('ROLE_ID', data.data.role.id);
-                            window.localStorage.setItem('ROLE_NAME', data.data.role.roleName);
-                            window.localStorage.setItem('USER_ID', data.data.userId);
-                            window.localStorage.setItem('token', data.data.token);
-
-                            if (data.data.role.roleName === 'ADMIN') {
-                                goToAdminPage();
-                            } else if (data.data.role.roleName === 'ROOT') {
-                                goToRootPage();
-                            } else if (data.data.role.roleName === 'USER') {
-                                goToUserPage();
+                                var $item = $('.orders  tbody  tr:last-child');
+                                $item.append('<td>' + ex_date.getDate() + '.' + ex_date.getMonth() + '.' + ex_date.getFullYear() + '</td>');
+                                $item.append('<td>' + date.getDate() + '.' + date.getMonth() + '.' + date.getFullYear() + '</td>');
+                                $item.append('<td>' + item.equipmentItem.inventory_number + '</td>');
+                                $item.append('<td>' + item.sumPay + '</td>');
                             }
                         } else {
-                            $panel.hide();
-                            $('#message').show().text('Ошибка регистрации! Проверьте введенные данные.');
+                            $('#message').show().text('Ошибка получения данных заказов');
                             setTimeout(function () {
                                 $('#message').hide();
                             }, 2000);
-                            popupMode = false;
-                            cleanPanelData($panel);
                         }
                     },
-                    error: function () {
-                        $panel.hide();
-                        $('#message').show().text('Ошибка регистрации!');
+                    error: function (data) {
+                        $('#message').show().text('Ошибка получения данных заказов');
                         setTimeout(function () {
                             $('#message').hide();
                         }, 2000);
-                        popupMode = false;
-                        cleanPanelData($panel);
                     }
                 });
 
             }
         });
 
-        //       ADD REVIEW USER
+        //      USER ADD REVIEW
 
         $('.add-review-button').on('click', function () {
             if (!popupMode) {
@@ -1271,120 +1482,821 @@
 
         });
 
-        //        AUTENTICATION GUEST
 
-        $('.autentication-button').on('click', function () {
+
+
+
+        //       ADMIN PAGE
+
+        function getOrdersForAdmin() {
+            $.ajax({
+                url: HOST + 'api/orders',
+                type: 'GET',
+                dataType: 'json',
+                contentType: 'application/json',
+                crossDomain: true,
+                headers: {
+                    'Token': window.localStorage.getItem('token')
+                },
+                success: function (data) {
+                    if (data.resultStatus === 'OK') {
+                        $('#admin-orders .orders > tbody').html('')
+                        for (key in data.data) {
+                            var item = data.data[key];
+                            $('#admin-orders .orders > tbody').append('<tr>');
+                            var ex_date = new Date(item.dateOrderExpire);
+                            var date = new Date(item.dateOrder);
+
+                            var $item = $('.orders  tbody  tr:last-child');
+                            $item.append('<td>' + ex_date.getDate() + '.' + ex_date.getMonth() + '.' + ex_date.getFullYear() + '</td>');
+                            $item.append('<td>' + date.getDate() + '.' + date.getMonth() + '.' + date.getFullYear() + '</td>');
+                            $item.append('<td>' + item.equipmentItem.inventory_number + '</td>');
+                            $item.append('<td>' + item.sumPay + '</td>');
+                            $item.append('<td>' + item.userName + '</td>');
+                            $item.append('<td><button data-id="' + item.id + '" data-address="api/orders/" class="positive-button edit-order">Редактировать</button></td>');
+                            $item.append('<td><button data-id="' + item.id + '" data-address="api/orders/" class="danger-button delete-order">Удалить</button></td>');
+                        }
+
+                        // ADMIN DELETE ORDER
+
+                        $('button.delete-order').on('click', function () {
+                            var address = $(this).attr('data-address');
+                            var id = $(this).attr('data-id');
+                            $.ajax({
+                                url: HOST + address + id,
+                                type: 'DELETE',
+                                dataType: 'json',
+                                contentType: 'application/json',
+                                crossDomain: true,
+                                headers: {
+                                    'Token': window.localStorage.getItem('token')
+                                },
+                                success: function () {
+                                    if (data.resultStatus == 'OK') {
+                                        $('#message').show().text('Успешно удален.');
+                                        setTimeout(function () {
+                                            $('#message').hide();
+                                        }, 2000);
+                                        getOrdersForAdmin();
+                                    } else {
+                                        $('#message').show().text('Невозможно удалить связанные объекты.');
+                                        setTimeout(function () {
+                                            $('#message').hide();
+                                        }, 2000);
+                                    }
+                                },
+                                error: function () {
+                                    $('#message').show().text('Произошла ошибка при удалении.');
+                                    setTimeout(function () {
+                                        $('#message').hide();
+                                    }, 2000);
+                                }
+                            });
+                        });
+
+                        // ADMIN EDIT ORDER
+
+                        $('button.edit-order').on('click', function () {
+
+                            var address = $(this).attr('data-address');
+                            var id = $(this).attr('data-id');
+
+//                                $('#update-login-root').val($(this).parent().parent().find('td:nth-child(2)').text());
+//                                $('#update-role-root').val(1);
+
+                            $('button.update-order').on('click', function () {
+
+                                var $panel = $(this).parent();
+
+                                $.ajax({
+                                    url: HOST + address,
+                                    type: 'PUT',
+                                    dataType: 'json',
+                                    contentType: 'application/json',
+                                    crossDomain: true,
+                                    headers: {
+                                        'Token': window.localStorage.getItem('token')
+                                    },
+                                    data: JSON.stringify({
+                                        'id': id,
+                                        'login': $('#update-login-root').val(),
+                                        'password': $('#update-password-root').val(),
+                                        'roleId': $('#update-role-root').val()
+                                    }),
+                                    success: function (data) {
+                                        if (data.resultStatus == 'OK') {
+                                            $('#message').show().text('Успешно изменен.');
+                                            $panel.hide();
+                                            popupMode = false;
+                                            setTimeout(function () {
+                                                $('#message').hide();
+                                            }, 2000);
+                                            getOrdersForAdmin();
+                                        } else {
+                                            $('#message').show().text('Ошибка! Вероятно, пользователь с таким логином уже существует.');
+                                            setTimeout(function () {
+                                                $('#message').hide();
+                                            }, 2000);
+                                        }
+                                    },
+                                    error: function () {
+                                        $panel.hide();
+                                        popupMode = false;
+                                        $('#message').show().text('Произошла ошибка при изменении.');
+                                        setTimeout(function () {
+                                            $('#message').hide();
+                                        }, 2000);
+                                    }
+                                });
+                            });
+
+                            if (!popupMode) {
+                                $('.edit-order-admin').show();
+                                popupMode = true;
+
+                            }
+                        });
+
+                    } else {
+                        $('#message').show().text('Ошибка получения данных заказов');
+                        setTimeout(function () {
+                            $('#message').hide();
+                        }, 2000);
+                    }
+                },
+                error: function (data) {
+                    $('#message').show().text('Ошибка получения данных заказов');
+                    setTimeout(function () {
+                        $('#message').hide();
+                    }, 2000);
+                }
+            });
+
+        }
+
+        function getEquipmentsForAdmin() {
+            $.ajax({
+                url: HOST + 'equipments',
+                type: 'GET',
+                dataType: 'json',
+                contentType: 'application/json',
+                crossDomain: true,
+                headers: {
+                    'Token': window.localStorage.getItem('token')
+                },
+                success: function (data) {
+                    if (data.resultStatus === 'OK') {
+                        $('#admin-equipments .equipments > tbody').html('')
+                        for (key in data.data) {
+                            var item = data.data[key];
+                            $('#admin-equipments .equipments > tbody').append('<tr>');
+                            var $item = $('.equipments  tbody  tr:last-child');
+                            $item.append('<td>' + item.id + '</td>')
+                            $item.append('<td>' + item.name + '</td>');
+                            $item.append('<td>' + item.model + '</td>');
+                            $item.append('<td>' + item.brandName + '</td>');
+                            $item.append('<td>' + item.cost + '</td>');
+                            $item.append('<td>' + item.quantity + '</td>');
+                            $item.append('<td><button data-id="' + item.id + '" data-address="api/equipments/" class="positive-button edit-equipment">Редактировать</button></td>');
+                            $item.append('<td><button data-id="' + item.id + '" data-address="api/equipments/" class="positive-button delete-equipment">Удалить</button></td>');
+                        }
+                        // ADMIN DELETE ORDER
+
+                        $('button.delete-equipment').on('click', function () {
+                            var address = $(this).attr('data-address');
+                            var id = $(this).attr('data-id');
+                            $.ajax({
+                                url: HOST + address + id,
+                                type: 'DELETE',
+                                dataType: 'json',
+                                contentType: 'application/json',
+                                crossDomain: true,
+                                headers: {
+                                    'Token': window.localStorage.getItem('token')
+                                },
+                                success: function (data) {
+                                    if (data.resultStatus == 'OK') {
+                                        $('#message').show().text('Успешно удален.');
+                                        setTimeout(function () {
+                                            $('#message').hide();
+                                        }, 2000);
+                                        getEquipmentsForAdmin();
+                                    } else {
+                                        $('#message').show().text('Нельзя удалить связанные объекты.');
+                                        setTimeout(function () {
+                                            $('#message').hide();
+                                        }, 2000);
+                                    }
+                                },
+                                error: function () {
+                                    $('#message').show().text('Произошла ошибка при удалении.');
+                                    setTimeout(function () {
+                                        $('#message').hide();
+                                    }, 2000);
+                                }
+                            });
+                        });
+
+                        // ADMIN EDIT ORDER
+
+                        $('button.edit-order').on('click', function () {
+
+                            var address = $(this).attr('data-address');
+                            var id = $(this).attr('data-id');
+
+//                                $('#update-login-root').val($(this).parent().parent().find('td:nth-child(2)').text());
+//                                $('#update-role-root').val(1);
+
+                            $('button.update-order').on('click', function () {
+
+                                var $panel = $(this).parent();
+
+                                $.ajax({
+                                    url: HOST + address,
+                                    type: 'PUT',
+                                    dataType: 'json',
+                                    contentType: 'application/json',
+                                    crossDomain: true,
+                                    headers: {
+                                        'Token': window.localStorage.getItem('token')
+                                    },
+                                    success: function (data) {
+                                        if (data.resultStatus == 'OK') {
+                                            $('#message').show().text('Успешно изменен.');
+                                            $panel.hide();
+                                            popupMode = false;
+                                            setTimeout(function () {
+                                                $('#message').hide();
+                                            }, 2000);
+                                            getEquipmentsForAdmin();
+                                        } else {
+                                            $('#message').show().text('Ошибка! Вероятно, пользователь с таким логином уже существует.');
+                                            setTimeout(function () {
+                                                $('#message').hide();
+                                            }, 2000);
+                                        }
+                                    },
+                                    error: function () {
+                                        $panel.hide();
+                                        popupMode = false;
+                                        $('#message').show().text('Произошла ошибка при изменении.');
+                                        setTimeout(function () {
+                                            $('#message').hide();
+                                        }, 2000);
+                                    }
+                                });
+                            });
+
+                            if (!popupMode) {
+                                $('.edit-equipment-admin').show();
+                                popupMode = true;
+
+                            }
+                        });
+                    } else {
+                        $('#message').show().text('Ошибка получения данных оборудования');
+                        setTimeout(function () {
+                            $('#message').hide();
+                        }, 2000);
+                    }
+                },
+                error: function (data) {
+                    $('#message').show().text('Ошибка получения данных оборудования');
+                    setTimeout(function () {
+                        $('#message').hide();
+                    }, 2000);
+                }
+            });
+        }
+
+        function getUsersForAdmin() {
+            $.ajax({
+                url: HOST + 'api/users',
+                type: 'GET',
+                dataType: 'json',
+                contentType: 'application/json',
+                crossDomain: true,
+                headers: {
+                    'Token': window.localStorage.getItem('token')
+                },
+                success: function (data) {
+                    if (data.resultStatus === 'OK') {
+                        $('#admin-users .users > tbody').html('')
+                        for (key in data.data) {
+                            var item = data.data[key];
+                            $('#admin-users .users > tbody').append('<tr>');
+                            var $item = $('.users  tbody  tr:last-child');
+                            $item.append('<td>' + item.id + '</td>');
+                            $item.append('<td>' + item.login + '</td>');
+                            $item.append('<td>' + item.role.roleName + '</td>');
+                        }
+                    } else {
+                        $('#message').show().text('Ошибка получения данных пользователей');
+                        setTimeout(function () {
+                            $('#message').hide();
+                        }, 2000);
+                    }
+                },
+                error: function (data) {
+                    $('#message').show().text('Ошибка получения данных пользователей');
+                    setTimeout(function () {
+                        $('#message').hide();
+                    }, 2000);
+                }
+            });
+        }
+
+        function getBrandsForAdmin() {
+            $.ajax({
+                url: HOST + 'api/brands',
+                type: 'GET',
+                dataType: 'json',
+                contentType: 'application/json',
+                crossDomain: true,
+                headers: {
+                    'Token': window.localStorage.getItem('token')
+                },
+                success: function (data) {
+                    if (data.resultStatus === 'OK') {
+                        $('#admin-brands .brands > tbody').html('')
+                        for (key in data.data) {
+                            var item = data.data[key];
+                            $('#admin-brands .brands > tbody').append('<tr>');
+                            var $item = $('.brands  tbody  tr:last-child');
+                            $item.append('<td>' + item.id + '</td>');
+                            $item.append('<td>' + item.brandName + '</td>');
+                            $item.append('<td><button data-id="' + item.id + '" data-address="api/brands/" class="positive-button edit-brand">Редактировать</button></td>');
+                            $item.append('<td><button data-id="' + item.id + '" data-address="api/brands/" class="positive-button delete-brand">Удалить</button></td>');
+                        }
+
+                        // ADMIN DELETE ORDER
+
+                        $('button.delete-brand').on('click', function () {
+                            var address = $(this).attr('data-address');
+                            var id = $(this).attr('data-id');
+                            $.ajax({
+                                url: HOST + address + id,
+                                type: 'DELETE',
+                                dataType: 'json',
+                                contentType: 'application/json',
+                                crossDomain: true,
+                                headers: {
+                                    'Token': window.localStorage.getItem('token')
+                                },
+                                success: function (data) {
+                                    if (data.resultStatus === 'OK') {
+                                        $('#message').show().text('Успешно удален.');
+                                        setTimeout(function () {
+                                            $('#message').hide();
+                                        }, 2000);
+                                        getBrandsForAdmin();
+                                    } else {
+                                        $('#message').show().text('Невозможно удалить связанные объекты.');
+                                        setTimeout(function () {
+                                            $('#message').hide();
+                                        }, 2000);
+                                    }
+                                },
+                                error: function () {
+                                    $('#message').show().text('Произошла ошибка при удалении.');
+                                    setTimeout(function () {
+                                        $('#message').hide();
+                                    }, 2000);
+                                }
+                            });
+                        });
+
+                        // ADMIN EDIT ORDER
+
+                        $('button.edit-order').on('click', function () {
+
+                            var address = $(this).attr('data-address');
+                            var id = $(this).attr('data-id');
+
+//                                $('#update-login-root').val($(this).parent().parent().find('td:nth-child(2)').text());
+//                                $('#update-role-root').val(1);
+
+                            $('button.update-order').on('click', function () {
+
+                                var $panel = $(this).parent();
+
+                                $.ajax({
+                                    url: HOST + address,
+                                    type: 'PUT',
+                                    dataType: 'json',
+                                    contentType: 'application/json',
+                                    crossDomain: true,
+                                    headers: {
+                                        'Token': window.localStorage.getItem('token')
+                                    },
+                                    data: JSON.stringify({
+                                        'id': id,
+                                        'login': $('#update-login-root').val(),
+                                        'password': $('#update-password-root').val(),
+                                        'roleId': $('#update-role-root').val()
+                                    }),
+                                    success: function (data) {
+                                        if (data.resultStatus == 'OK') {
+                                            $('#message').show().text('Успешно изменен.');
+                                            $panel.hide();
+                                            popupMode = false;
+                                            setTimeout(function () {
+                                                $('#message').hide();
+                                            }, 2000);
+                                            getOrdersForAdmin();
+                                        } else {
+                                            $('#message').show().text('Ошибка! Вероятно, пользователь с таким логином уже существует.');
+                                            setTimeout(function () {
+                                                $('#message').hide();
+                                            }, 2000);
+                                        }
+                                    },
+                                    error: function () {
+                                        $panel.hide();
+                                        popupMode = false;
+                                        $('#message').show().text('Произошла ошибка при изменении.');
+                                        setTimeout(function () {
+                                            $('#message').hide();
+                                        }, 2000);
+                                    }
+                                });
+                            });
+
+                            if (!popupMode) {
+                                $('.edit-order-admin').show();
+                                popupMode = true;
+
+                            }
+                        });
+
+
+                    } else {
+                        $('#message').show().text('Ошибка получения данных брендов');
+                        setTimeout(function () {
+                            $('#message').hide();
+                        }, 2000);
+                    }
+                },
+                error: function (data) {
+                    $('#message').show().text('Ошибка получения данных брендов');
+                    setTimeout(function () {
+                        $('#message').hide();
+                    }, 2000);
+                }
+            });
+        }
+
+        function getReviewsForAdmin() {
+
+        }
+
+        function getEquipmentItemsForAdmin() {
+
+        }
+
+        //     ADMIN CHANGE PASSWORD
+
+        $('.change-password-admin').on('click', function () {
             if (!popupMode) {
-                $('.autentication').show();
+                $('.change-password-panel-admin').show();
                 popupMode = true;
             }
         });
 
-        $('.sign-in').on('click', function () {
-
+        $('.send-new-password-admin').on('click', function () {
             var $panel = $(this).parent();
 
-            if ($('.autentication #autentication-login').val() && $('.autentication #autentication-password').val()) {
+            var login = window.localStorage.getItem('LOGIN');
+            var oldPassword = $('#current-password-admin').val();
+            var newPassword = $('#new-password-admin').val();
+            var confirmedNewPassword = $('#repeat-new-password-admin').val();
 
-                var $login = $('.autentication #autentication-login').val();
-                $('.autentication #autentication-login').val('');
-                var $password = $('.autentication #autentication-password').val();
-                $('.autentication #autentication-password').val('');
+            if (newPassword.length >= 3 && newPassword.length <= 20) {
 
                 $.ajax({
-                    url: HOST + 'auth/login',
+                    url: HOST + 'api/auth/editPassword',
                     type: 'POST',
                     dataType: 'json',
                     contentType: 'application/json',
                     crossDomain: true,
+                    headers: {
+                        'Token': window.localStorage.getItem('token')
+                    },
                     data: JSON.stringify({
-                        'login': $login,
-                        'password': $password,
+                        'login': login,
+                        'oldPassword': oldPassword,
+                        'newPassword': newPassword,
+                        'confirmedNewPassword': confirmedNewPassword
                     }),
                     success: function (data) {
                         if (data.resultStatus === 'OK') {
                             $panel.hide();
-                            $('#message').show().text('Аутентифкация прошла успешно.');
+                            $('#message').show().text('Пароль успешно изменен!');
                             setTimeout(function () {
                                 $('#message').hide();
                             }, 2000);
                             popupMode = false;
-
-                            window.localStorage.setItem('LOGIN', data.data.login);
-                            window.localStorage.setItem('ROLE_ID', data.data.role.id);
-                            window.localStorage.setItem('ROLE_NAME', data.data.role.roleName);
-                            window.localStorage.setItem('USER_ID', data.data.userId);
-                            window.localStorage.setItem('token', data.data.token);
-
-                            if (data.data.role.roleName === 'ADMIN') {
-                                goToAdminPage();
-                            } else if (data.data.role.roleName === 'ROOT') {
-                                goToRootPage();
-                            } else if (data.data.role.roleName === 'USER') {
-                                goToUserPage();
-                            }
+                            cleanPanelData($panel);
                         } else {
                             $panel.hide();
-                            $('#message').show().text('Ошибка аутентификации! Проверьте введенные данные.');
+                            $('#message').show().text('Произошла ошибка изменения пароля.');
                             setTimeout(function () {
                                 $('#message').hide();
-                            }, 3000);
+                            }, 2000);
                             popupMode = false;
                             cleanPanelData($panel);
                         }
 
                     },
                     error: function () {
-                        $panel.hide();
-                        $('#message').show().text('Ошибка аутентификации! Проверьте введенные данные.');
+                        $('#message').show().text('Произошла ошибка изменения пароля.');
                         setTimeout(function () {
                             $('#message').hide();
                         }, 2000);
-                        popupMode = false;
-                        cleanPanelData($panel);
                     }
                 });
+
             } else {
-                $('#message').show().text('Ошибка аутентификации! Введите логи и пароль для аутентификации.');
+                $('#message').show().text('Новый пароль должен быть от 3 до 20 символов.');
                 setTimeout(function () {
                     $('#message').hide();
                 }, 2000);
             }
+
         });
 
-        //        function getEquipmentsForAdmin() {
-        //            $.ajax({
-        //                url: HOST + 'equipments',
-        //                type: 'GET',
-        //                dataType: 'json',
-        //                contentType: 'application/json',
-        //                crossDomain: true,
-        //                headers: {
-        //                    'Token': window.localStorage.getItem('token')
-        //                },
-        //                success: function (data) {
-        //                    $('#admin-equipments .equipments > tbody').html('');
-        //                    for (key in data.data) {
-        //                        var item = data.data[key];
-        //                        $('#admin-equipments .equipments > tbody').append('<tr>');
-        //                        var $item = $('.equipments  tbody  tr:last-child');
-        //                        $item.append('<td>' + item.name + '</td>');
-        //                        $item.append('<td>' + item.model + '</td>');
-        //                        $item.append('<td>' + item.brandName + '</td>');
-        //                        $item.append('<td>' + item.cost + '</td>');
-        //                        $item.append('<td>' + item.quantity + '</td>');
-        //                        $item.append('<td><button data="equipments/' + item.id + '" class="button-type-2 edit">EDIT</button></td>');
-        //                        $item.append('<td><button id="equipments/' + item.id + '" class="button-type-3 delete">DELETE</button></td>');
-        //                    }
-        //                },
-        //                error: function () {
-        //                    $('#message').show().text('Ошибка получения данных');
-        //                    setTimeout(function () {
-        //                        $('#message').hide();
-        //                    }, 2000);
-        //                }
-        //            });
-        //        }
+
+
+
+        //       ROOT PAGE
+
+        function getUsersForRoot()  {
+            $.ajax({
+                url: HOST + 'api/users',
+                type: 'GET',
+                dataType: 'json',
+                contentType: 'application/json',
+                crossDomain: true,
+                headers: {
+                    'Token': window.localStorage.getItem('token')
+                },
+                success: function (data) {
+                    if (data.resultStatus === 'OK') {
+                        $('#root-users .users > tbody').html('')
+                        for (key in data.data) {
+                            var item = data.data[key];
+                            $('#root-users .users > tbody').append('<tr>');
+                            var $item = $('.users  tbody  tr:last-child');
+                            $item.append('<td>' + item.id + '</td>');
+                            $item.append('<td>' + item.login + '</td>');
+                            $item.append('<td>' + item.role.roleName + '</td>');
+                            $item.append('<td><button data-id="' + item.id + '" data-address="api/users/" class="positive-button edit-user">Редактировать</button></td>');
+                            $item.append('<td><button data-id="' + item.id + '" data-address="api/users/" class="danger-button delete-user">Удалить</button></td>');
+                        }
+
+                        // ROOT DELETE USER
+
+                        $('button.delete-user').on('click', function () {
+                            var address = $(this).attr('data-address');
+                            var id = $(this).attr('data-id');
+                            $.ajax({
+                                url: HOST + address + id,
+                                type: 'DELETE',
+                                dataType: 'json',
+                                contentType: 'application/json',
+                                crossDomain: true,
+                                headers: {
+                                    'Token': window.localStorage.getItem('token')
+                                },
+                                success: function () {
+                                    $('#message').show().text('Успешно удален.');
+                                    setTimeout(function () {
+                                        $('#message').hide();
+                                    }, 2000);
+                                    getUsersForRoot();
+                                },
+                                error: function () {
+                                    $('#message').show().text('Произошла ошибка при удалении.');
+                                    setTimeout(function () {
+                                        $('#message').hide();
+                                    }, 2000);
+                                }
+                            });
+                        });
+
+                        // ROOT EDIT USER
+
+                        $('button.edit-user').on('click', function () {
+
+                            var address = $(this).attr('data-address');
+                            var id = $(this).attr('data-id');
+
+                            $('#update-login-root').val($(this).parent().parent().find('td:nth-child(2)').text());
+                            $('#update-role-root').val(1);
+
+                            $('button.update-user').on('click', function () {
+
+                                var $panel = $(this).parent();
+
+                                $.ajax({
+                                    url: HOST + address,
+                                    type: 'PUT',
+                                    dataType: 'json',
+                                    contentType: 'application/json',
+                                    crossDomain: true,
+                                    headers: {
+                                        'Token': window.localStorage.getItem('token')
+                                    },
+                                    data: JSON.stringify({
+                                        'id': id,
+                                        'login': $('#update-login-root').val(),
+                                        'password': $('#update-password-root').val(),
+                                        'roleId': $('#update-role-root').val()
+                                    }),
+                                    success: function (data) {
+                                        if (data.resultStatus == 'OK') {
+                                            $('#message').show().text('Успешно изменен.');
+                                            $panel.hide();
+                                            popupMode = false;
+                                            setTimeout(function () {
+                                                $('#message').hide();
+                                            }, 2000);
+                                            getUsersForRoot();
+                                        } else {
+                                            $('#message').show().text('Ошибка! Вероятно, пользователь с таким логином уже существует.');
+                                            setTimeout(function () {
+                                                $('#message').hide();
+                                            }, 2000);
+                                        }
+                                    },
+                                    error: function () {
+                                        $panel.hide();
+                                        popupMode = false;
+                                        $('#message').show().text('Произошла ошибка при изменении.');
+                                        setTimeout(function () {
+                                            $('#message').hide();
+                                        }, 2000);
+                                    }
+                                });
+                            });
+
+                            if (!popupMode) {
+                                $('.edit-user-root').show();
+                                popupMode = true;
+
+                            }
+                        });
+                    }
+                },
+                error: function (data) {
+                    $('#message').show().text('Ошибка получения данных пользователей');
+                    setTimeout(function () {
+                        $('#message').hide();
+                    }, 2000);
+                }
+            });
+        }
+
+        //       ROOT CREATE USER
+
+        $('.create-user').on('click', function () {
+            if (!popupMode) {
+                $('.create-user-panel').show();
+                popupMode = true;
+            }
+        });
+
+        $('.create-user-button').on('click', function () {
+            var $panel = $(this).parent();
+
+            var newlogin = $('#new-login-root').val();
+            var newPassword = $('#new-password-root').val();
+            var newRoleId = $('#new-role-root').val();
+
+            if (newPassword.length >= 3 && newPassword.length <= 20 && newRoleId && newlogin) {
+
+                $.ajax({
+                    url: HOST + 'api/users',
+                    type: 'POST',
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    crossDomain: true,
+                    headers: {
+                        'Token': window.localStorage.getItem('token')
+                    },
+                    data: JSON.stringify({
+                        'login': newlogin,
+                        'password': newPassword,
+                        'roleId': newRoleId
+                    }),
+                    success: function (data) {
+                        if (data.resultStatus === 'OK') {
+                            $panel.hide();
+                            $('#message').show().text('Пользователь создан!');
+                            setTimeout(function () {
+                                $('#message').hide();
+                            }, 2000);
+                            popupMode = false;
+                            cleanPanelData($panel);
+                            getUsersForRoot();
+                        } else {
+                            $panel.hide();
+                            $('#message').show().text('Произошла ошибка создания пользователя.');
+                            setTimeout(function () {
+                                $('#message').hide();
+                            }, 2000);
+                            popupMode = false;
+                            cleanPanelData($panel);
+                        }
+
+                    },
+                    error: function () {
+                        $('#message').show().text('Произошла ошибка создания пользователя.');
+                        setTimeout(function () {
+                            $('#message').hide();
+                        }, 2000);
+                    }
+                });
+
+            } else {
+                $('#message').show().text('Пароль и логин должен быть от 3 до 20 символов. Так же роль должна быть указана.');
+                setTimeout(function () {
+                    $('#message').hide();
+                }, 2000);
+            }
+
+        });
+
+        //       ROOT CHANGE PASSWORD
+
+        $('.change-password-root').on('click', function () {
+            if (!popupMode) {
+                $('.change-password-panel-root').show();
+                popupMode = true;
+            }
+        });
+
+        $('.send-new-password-root').on('click', function () {
+            var $panel = $(this).parent();
+
+            var login = window.localStorage.getItem('LOGIN');
+            var oldPassword = $('#current-password-root').val();
+            var newPassword = $('#new-password-root-1').val();
+            var confirmedNewPassword = $('#repeat-new-password-root').val();
+
+            if (newPassword.length >= 3 && newPassword.length <= 20) {
+
+                $.ajax({
+                    url: HOST + 'api/auth/editPassword',
+                    type: 'POST',
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    crossDomain: true,
+                    headers: {
+                        'Token': window.localStorage.getItem('token')
+                    },
+                    data: JSON.stringify({
+                        'login': login,
+                        'oldPassword': oldPassword,
+                        'newPassword': newPassword,
+                        'confirmedNewPassword': confirmedNewPassword
+                    }),
+                    success: function (data) {
+                        if (data.resultStatus === 'OK') {
+                            $panel.hide();
+                            $('#message').show().text('Пароль успешно изменен!');
+                            setTimeout(function () {
+                                $('#message').hide();
+                            }, 2000);
+                            popupMode = false;
+                            cleanPanelData($panel);
+                        } else {
+                            $panel.hide();
+                            $('#message').show().text('Произошла ошибка изменения пароля.');
+                            setTimeout(function () {
+                                $('#message').hide();
+                            }, 2000);
+                            popupMode = false;
+                            cleanPanelData($panel);
+                        }
+
+                    },
+                    error: function () {
+                        $('#message').show().text('Произошла ошибка изменения пароля.');
+                        setTimeout(function () {
+                            $('#message').hide();
+                        }, 2000);
+                    }
+                });
+
+            } else {
+                $('#message').show().text('Новый пароль должен быть от 3 до 20 символов.');
+                setTimeout(function () {
+                    $('#message').hide();
+                }, 2000);
+            }
+
+        });
 
     </script>
 

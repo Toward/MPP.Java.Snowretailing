@@ -5,6 +5,7 @@ import shlackAndCo.snowretailing.core.contracts.models.IEquipmentItemModel;
 import shlackAndCo.snowretailing.core.contracts.models.IEquipmentModel;
 import shlackAndCo.snowretailing.dal.contracts.entities.IEquipmentItemEntity;
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -17,6 +18,9 @@ public class EquipmentItemModel implements IEquipmentItemModel {
     @NotEmpty
     @Size(min=2, max=20)
     private String inventory_number;
+    @NotNull
+    @Min(1)
+    private int equipmentId;
     public EquipmentItemModel(){
         id = 0;
     }
@@ -26,6 +30,7 @@ public class EquipmentItemModel implements IEquipmentItemModel {
         deleted = equipmentEntity.getDeleted();
         state = equipmentEntity.getState();
         inventory_number = equipmentEntity.getInventoryNumber();
+        equipmentId = equipmentEntity.getEquipmentByEquipmentId().getId();
     }
 
     @Override
@@ -36,6 +41,17 @@ public class EquipmentItemModel implements IEquipmentItemModel {
     public void setState(byte state) {
         this.state = state;
     }
+
+    @Override
+    public int getEquipmentId() {
+        return equipmentId;
+    }
+
+    @Override
+    public void setEquipmentId(int equipmentId) {
+        this.equipmentId = equipmentId;
+    }
+
     @Override
     public String getInventory_number() {
         return inventory_number;

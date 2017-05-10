@@ -12,11 +12,13 @@ import shlackAndCo.snowretailing.core.contracts.models.IResultModel;
 import shlackAndCo.snowretailing.core.contracts.services.IEquipmentItemService;
 import shlackAndCo.snowretailing.core.contracts.services.IEquipmentService;
 import shlackAndCo.snowretailing.core.enums.ResultStatus;
+import shlackAndCo.snowretailing.core.models.EquipmentItemModel;
 import shlackAndCo.snowretailing.core.models.EquipmentModel;
 import shlackAndCo.snowretailing.core.models.ResultModel;
 
 import java.util.Collection;
 
+@RestController
 public class EquipmentItemController {
     private final IEquipmentItemService equipmentService;
 
@@ -48,14 +50,14 @@ public class EquipmentItemController {
     @ResponseBody
     @Secured(Permissions.AdminWrite)
     @RequestMapping(value = "api/equipment_items", method = RequestMethod.POST)
-    public IResultModel<IEquipmentItemModel> createEquipment(@RequestBody @Validated IEquipmentItemModel equipmentModel) {
+    public IResultModel<IEquipmentItemModel> createEquipment(@RequestBody @Validated EquipmentItemModel equipmentModel) {
         equipmentService.create(equipmentModel);
         return new ResultModel<>(ResultStatus.OK, "Equipment Item has been created", null);
     }
     @ResponseBody
-    @Secured(Permissions.AdminWrite)
+    @Secured(Permissions.UserWrite)
     @RequestMapping(value = "api/equipment_items", method = RequestMethod.PUT)
-    public IResultModel<IEquipmentItemModel> editEquipment(@RequestBody @Validated IEquipmentItemModel equipmentModel) {
+    public IResultModel<IEquipmentItemModel> editEquipment(@RequestBody @Validated EquipmentItemModel equipmentModel) {
         equipmentService.edit(equipmentModel);
         return new ResultModel<>(ResultStatus.OK, "Equipment Item has been changed", null);
     }

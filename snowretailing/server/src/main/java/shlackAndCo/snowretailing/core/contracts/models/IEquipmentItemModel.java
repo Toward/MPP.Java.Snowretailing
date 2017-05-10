@@ -7,6 +7,9 @@ public interface IEquipmentItemModel extends IBaseModel {
     byte getState();
     void setState(byte state);
 
+    int getEquipmentId();
+    void setEquipmentId(int equipmentId);
+
     String getInventory_number() ;
     void setInventory_number(String inventory_number);
 }

@@ -73,7 +73,7 @@ public class OrderController {
 
     @ResponseBody
     @Secured(Permissions.AdminWrite)
-    @RequestMapping(value = "/orders/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "api/orders/{id}", method = RequestMethod.DELETE)
     public ResultModel<IOrderModel> removeOrder(@PathVariable("id") int id) {
         orderService.delete(id);
 
