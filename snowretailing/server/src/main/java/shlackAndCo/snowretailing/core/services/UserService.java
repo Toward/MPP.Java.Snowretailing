@@ -75,8 +75,6 @@ public class UserService implements IUserService {
     public void edit(IUserWriteModel model) {
         if (model == null)
             throw new IllegalArgumentException("model is null");
-        if(getByLogin(model.getLogin()) != null)
-            throw new IllegalArgumentException("Can't edit user. User with such login exists");
         IUserReadModel editedUser = getById(model.getId());
         if (editedUser == null)
             throw new IllegalArgumentException("model with id: "+model.getId()+" not exist");

@@ -70,7 +70,7 @@ public class UserController {
     private Collection<IUserReadModel> filter(Collection<IUserReadModel> filteredCollection){
         IUserReadModel currentUser = userService.getByLogin(SecurityContextHolder.getContext().getAuthentication().getName());
         if(currentUser.getRole().getId() == Role.ROOT.getIndex())
-            return filteredCollection;
+            return RemoveRootFromUsers(filteredCollection);
 
         Collection<IUserReadModel> result = new ArrayList<>();
         for (IUserReadModel userReadModel : filteredCollection){
@@ -87,5 +87,16 @@ public class UserController {
         if(filteredItem.getRole().getId() == Role.USER.getIndex())
             return filteredItem;
         return null;
+    }
+
+    private Collection<IUserReadModel> RemoveRootFromUsers(Collection<IUserReadModel> filteredCollection){
+        IUserReadModel root = null;
+        for(IUserReadModel userReadModel: filteredCollection){
+            if(userReadModel.getRole().getId() == Role.ROOT.getIndex()){
+                root = userReadModel;
+            }
+        }
+        filteredCollection.remove(root);
+        return filteredCollection;
     }
 }

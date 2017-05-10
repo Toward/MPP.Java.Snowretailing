@@ -7,7 +7,7 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
-@Table(name = "order", schema = "snowretailing_db")
+@Table(name = "`order`", schema = "snowretailing_db")
 public class OrderEntity implements IOrderEntity{
     private int id;
     private Timestamp dateOrderExpire;
