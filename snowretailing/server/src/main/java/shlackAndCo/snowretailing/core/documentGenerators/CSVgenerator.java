@@ -28,69 +28,6 @@ public class CSVgenerator implements IDocumentGenerator {
     private final static DateTimeFormatter DTF_FOR_DATE = org.joda.time.format.DateTimeFormat.forPattern("dd.MM.YYYY");
     private final static DateTimeFormatter DTF_FOR_TIMESTAMP = org.joda.time.format.DateTimeFormat.forPattern("HH:mm dd.MM.YYYY");
 
-    private static CSVWriter createSimpleWriter(OutputStream os) {
-        final Character SEPARATOR = ';';
-        final Character QUOTECHAR = '\"';
-        return new CSVWriter(new OutputStreamWriter(os), SEPARATOR, QUOTECHAR);
-    }
-
-    private String formatFio(ICredentialModel credential) {
-        final String FIO_FORMAT = "%1s %2s %3s ";
-        return credential != null
-                ? format(FIO_FORMAT, credential.getSurname(), credential.getName(), credential.getPatronymyc())
-                : "";
-    }
-
-    private String formatSeries(ICredentialModel credential) {
-        final String SERIES_FORMAT = "%1s %2s";
-        return credential != null
-                ? format(SERIES_FORMAT, credential.getSeries(), credential.getNumber())
-                : "";
-    }
-
-    private String[] wrapEquipment(EquipmentModel equipment) {
-        return new String[]{
-                equipment.getBrandName(),
-                equipment.getModel(),
-                equipment.getName().getValue(),
-                String.valueOf(equipment.getEquipmentItemCount()),
-                String.valueOf(equipment.getQuantity())
-        };
-    }
-
-    private String[] wrapEquipmentWithCost(EquipmentModel equipment) {
-        return new String[]{
-                equipment.getBrandName(),
-                equipment.getModel(),
-                equipment.getName().getValue(),
-                String.valueOf(equipment.getCost())
-        };
-    }
-
-    private String formatDate(Date date) {
-        return DTF_FOR_DATE.print(date.getTime());
-    }
-
-    private String formatDate(Timestamp date, DateTimeFormatter dtf) {
-        return dtf.print(date.getTime());
-    }
-
-    private String[] wrapCredential(CredentialModel credential) {
-        return new String[]{
-                formatFio(credential),
-                formatDate(credential.getBirthday()),
-                credential.getType(),
-                formatSeries(credential),
-                credential.getIdentifier(),
-                formatDate(credential.getDate(), DTF_FOR_DATE),
-                credential.getAgency(),
-        };
-    }
-
-
-
-
-
     @Override
     public OutputStream generateEquipmentsListDocument(OutputStream os, Collection<EquipmentModel> equipments) {
         CSVWriter writer = createSimpleWriter(os);
@@ -162,7 +99,7 @@ public class CSVgenerator implements IDocumentGenerator {
         final String RentHeader = "История оборудования";
         final String dateGet = "Дата выдачи";
         final String dateFactReturn = "Дата возврата";
-        final String inventoryNumber = "Инвентарный номер оборудования";
+        final String inventoryNumber = "Клиент";
         writer.writeNext(new String[]{RentHeader});
         writer.writeNext(new String[]{inventoryNumber, dateGet, dateFactReturn});
         rents.forEach(rent -> writer.writeNext(wrapRentWithHistory(rent)));
@@ -172,14 +109,6 @@ public class CSVgenerator implements IDocumentGenerator {
 
         }
         return os;
-    }
-
-    private String[] wrapRentWithHistory(RentReadModel rent) {
-        return new String[]{
-                rent.getEquipmentItem().getInventory_number(),
-                formatDate(rent.getDateGet(), DTF_FOR_TIMESTAMP),
-                formatDate(rent.getDateFactReturn(), DTF_FOR_TIMESTAMP)
-        };
     }
 
     @Override
@@ -214,4 +143,75 @@ public class CSVgenerator implements IDocumentGenerator {
                 formatDate(rent.getDateExpectedReturn(), DTF_FOR_TIMESTAMP)
         };
     }
+
+
+    private String[] wrapRentWithHistory(RentReadModel rent) {
+        return new String[]{
+                formatFio(rent.getCredential()),
+                formatDate(rent.getDateGet(), DTF_FOR_TIMESTAMP),
+                formatDate(rent.getDateFactReturn(), DTF_FOR_TIMESTAMP)
+        };
+    }
+
+
+    private static CSVWriter createSimpleWriter(OutputStream os) {
+        final Character SEPARATOR = ';';
+        final Character QUOTECHAR = '\"';
+        return new CSVWriter(new OutputStreamWriter(os), SEPARATOR, QUOTECHAR);
+    }
+
+    private String formatFio(ICredentialModel credential) {
+        final String FIO_FORMAT = "%1s %2s %3s ";
+        return credential != null
+                ? format(FIO_FORMAT, credential.getSurname(), credential.getName(), credential.getPatronymyc())
+                : "";
+    }
+
+    private String formatSeries(ICredentialModel credential) {
+        final String SERIES_FORMAT = "%1s %2s";
+        return credential != null
+                ? format(SERIES_FORMAT, credential.getSeries(), credential.getNumber())
+                : "";
+    }
+
+    private String[] wrapEquipment(EquipmentModel equipment) {
+        return new String[]{
+                equipment.getBrandName(),
+                equipment.getModel(),
+                equipment.getName().getValue(),
+                String.valueOf(equipment.getEquipmentItemCount()),
+                String.valueOf(equipment.getQuantity())
+        };
+    }
+
+    private String[] wrapEquipmentWithCost(EquipmentModel equipment) {
+        return new String[]{
+                equipment.getBrandName(),
+                equipment.getModel(),
+                equipment.getName().getValue(),
+                String.valueOf(equipment.getCost())
+        };
+    }
+
+    private String formatDate(Date date) {
+        return DTF_FOR_DATE.print(date.getTime());
+    }
+
+    private String formatDate(Timestamp date, DateTimeFormatter dtf) {
+        return dtf.print(date.getTime());
+    }
+
+    private String[] wrapCredential(CredentialModel credential) {
+        return new String[]{
+                formatFio(credential),
+                formatDate(credential.getBirthday()),
+                credential.getType(),
+                formatSeries(credential),
+                credential.getIdentifier(),
+                formatDate(credential.getDate(), DTF_FOR_DATE),
+                credential.getAgency(),
+        };
+    }
+
+
 }
