@@ -46,19 +46,20 @@ public class XLSgenerator implements IDocumentGenerator {
 
         style.setFont(headerFont);
         setAligmentToCellStyle(HorizontalAlignment.CENTER,VerticalAlignment.CENTER,style);
-//        cell.setCellValue("Список учеников "+clazz.getNumber().toString()+clazz.getLetterMark());
-//        cell.setCellStyle(style);
-//        rowNum++;
+        cell.setCellValue("Полный список горнолыжного оборудования");
+        cell.setCellStyle(style);
+        rowNum++;
 
         style = workbook.createCellStyle();
         setAligmentToCellStyle(HorizontalAlignment.CENTER,VerticalAlignment.CENTER,style);
         setBordersToCellStyle(true,true,true,true,style,borderColor);
         Row listRow = sheet.createRow(rowNum);
-        createCellWithValue(listRow, "Бренд", 0,style);
-        createCellWithValue(listRow, "Модель", 1,style);
-        createCellWithValue(listRow, "Тип", 2,style);
-        createCellWithValue(listRow, "Всего", 3,style);
-        createCellWithValue(listRow, "Доступно", 4,style);
+        createCellWithValue(listRow, " ", 0,style);
+        createCellWithValue(listRow, "Бренд", 1,style);
+        createCellWithValue(listRow, "Модель", 2,style);
+        createCellWithValue(listRow, "Тип", 3,style);
+        createCellWithValue(listRow, "Всего", 4,style);
+        createCellWithValue(listRow, "Доступно", 5,style);
 
         style = workbook.createCellStyle();
         style.setAlignment(HorizontalAlignment.LEFT);
@@ -127,21 +128,22 @@ public class XLSgenerator implements IDocumentGenerator {
 
         style.setFont(headerFont);
         setAligmentToCellStyle(HorizontalAlignment.CENTER,VerticalAlignment.CENTER,style);
-//        cell.setCellValue("Список учеников "+clazz.getNumber().toString()+clazz.getLetterMark());
-//        cell.setCellStyle(style);
-//        rowNum++;
+        cell.setCellValue("Полный список клиентов");
+        cell.setCellStyle(style);
+        rowNum++;
 
         style = workbook.createCellStyle();
         setAligmentToCellStyle(HorizontalAlignment.CENTER,VerticalAlignment.CENTER,style);
         setBordersToCellStyle(true,true,true,true,style,borderColor);
         Row listRow = sheet.createRow(rowNum);
-        createCellWithValue(listRow, "ФИО", 0,style);
-        createCellWithValue(listRow, "День рождения", 1,style);
-        createCellWithValue(listRow, "Тип", 2,style);
-        createCellWithValue(listRow, "Серия и Номер", 3,style);
-        createCellWithValue(listRow, "Личный номер", 4,style);
-        createCellWithValue(listRow, "Дата выдачи", 5,style);
-        createCellWithValue(listRow, "Агенство", 6,style);
+        createCellWithValue(listRow, " ", 0,style);
+        createCellWithValue(listRow, "ФИО", 1,style);
+        createCellWithValue(listRow, "День рождения", 2,style);
+        createCellWithValue(listRow, "Тип", 3,style);
+        createCellWithValue(listRow, "Серия и Номер", 4,style);
+        createCellWithValue(listRow, "Личный номер", 5,style);
+        createCellWithValue(listRow, "Дата выдачи", 6,style);
+        createCellWithValue(listRow, "Агенство", 7,style);
 
         style = workbook.createCellStyle();
         style.setAlignment(HorizontalAlignment.LEFT);
@@ -220,18 +222,19 @@ public class XLSgenerator implements IDocumentGenerator {
 
         style.setFont(headerFont);
         setAligmentToCellStyle(HorizontalAlignment.CENTER,VerticalAlignment.CENTER,style);
-//        cell.setCellValue("Список учеников "+clazz.getNumber().toString()+clazz.getLetterMark());
-//        cell.setCellStyle(style);
-//        rowNum++;
+        cell.setCellValue("Наименования горнолыжного оборудования с расценками");
+        cell.setCellStyle(style);
+        rowNum++;
 
         style = workbook.createCellStyle();
         setAligmentToCellStyle(HorizontalAlignment.CENTER,VerticalAlignment.CENTER,style);
         setBordersToCellStyle(true,true,true,true,style,borderColor);
         Row listRow = sheet.createRow(rowNum);
-        createCellWithValue(listRow, "Бренд", 0,style);
-        createCellWithValue(listRow, "Модель", 1,style);
-        createCellWithValue(listRow, "Тип", 2,style);
-        createCellWithValue(listRow, "Цена", 3,style);
+        createCellWithValue(listRow, " ", 0,style);
+        createCellWithValue(listRow, "Бренд", 1,style);
+        createCellWithValue(listRow, "Модель", 2,style);
+        createCellWithValue(listRow, "Тип", 3,style);
+        createCellWithValue(listRow, "Цена", 4,style);
 
         style = workbook.createCellStyle();
         style.setAlignment(HorizontalAlignment.LEFT);
@@ -295,17 +298,18 @@ public class XLSgenerator implements IDocumentGenerator {
 
         style.setFont(headerFont);
         setAligmentToCellStyle(HorizontalAlignment.CENTER,VerticalAlignment.CENTER,style);
-//        cell.setCellValue("Список учеников "+clazz.getNumber().toString()+clazz.getLetterMark());
-//        cell.setCellStyle(style);
-//        rowNum++;
+        cell.setCellValue("История оборудования");
+        cell.setCellStyle(style);
+        rowNum++;
 
         style = workbook.createCellStyle();
         setAligmentToCellStyle(HorizontalAlignment.CENTER,VerticalAlignment.CENTER,style);
         setBordersToCellStyle(true,true,true,true,style,borderColor);
         Row listRow = sheet.createRow(rowNum);
-        createCellWithValue(listRow, "Клиент", 0,style);
-        createCellWithValue(listRow, "Дата выдачи", 1,style);
-        createCellWithValue(listRow, "Дата возврата", 2,style);
+        createCellWithValue(listRow, " ", 0,style);
+        createCellWithValue(listRow, "Клиент", 1,style);
+        createCellWithValue(listRow, "Дата выдачи", 2,style);
+        createCellWithValue(listRow, "Дата возврата", 3,style);
 
 
         style = workbook.createCellStyle();
@@ -364,20 +368,21 @@ public class XLSgenerator implements IDocumentGenerator {
 
         style.setFont(headerFont);
         setAligmentToCellStyle(HorizontalAlignment.CENTER,VerticalAlignment.CENTER,style);
-//        cell.setCellValue("Список учеников "+clazz.getNumber().toString()+clazz.getLetterMark());
-//        cell.setCellStyle(style);
-//        rowNum++;
+        cell.setCellValue("Договор");
+        cell.setCellStyle(style);
+        rowNum++;
 
         style = workbook.createCellStyle();
         setAligmentToCellStyle(HorizontalAlignment.CENTER,VerticalAlignment.CENTER,style);
         setBordersToCellStyle(true,true,true,true,style,borderColor);
         Row listRow = sheet.createRow(rowNum);
-        createCellWithValue(listRow, "ФИО", 0,style);
-        createCellWithValue(listRow, "Тип документа", 1,style);
-        createCellWithValue(listRow, "Серия и номер", 2,style);
-        createCellWithValue(listRow, "Инвентарный номер оборудования", 3,style);
-        createCellWithValue(listRow, "Дата выдачи", 4,style);
-        createCellWithValue(listRow, "Дата предполагаемого возврата", 5,style);
+        createCellWithValue(listRow, " ", 0,style);
+        createCellWithValue(listRow, "ФИО", 1,style);
+        createCellWithValue(listRow, "Тип документа", 2,style);
+        createCellWithValue(listRow, "Серия и номер", 3,style);
+        createCellWithValue(listRow, "Инвентарный номер оборудования", 4,style);
+        createCellWithValue(listRow, "Дата выдачи", 5,style);
+        createCellWithValue(listRow, "Дата предполагаемого возврата", 6,style);
 
         style = workbook.createCellStyle();
         style.setAlignment(HorizontalAlignment.LEFT);
@@ -391,6 +396,8 @@ public class XLSgenerator implements IDocumentGenerator {
         setAligmentToCellStyle(HorizontalAlignment.CENTER,VerticalAlignment.CENTER,style);
         setLastTableCellBorder(0,0,style);
         createCellWithValue(row, String.valueOf(1),0,style);
+
+
 
         style = workbook.createCellStyle();
         setAligmentToCellStyle(HorizontalAlignment.LEFT,VerticalAlignment.CENTER,style);
@@ -411,17 +418,17 @@ public class XLSgenerator implements IDocumentGenerator {
         style = workbook.createCellStyle();
         setAligmentToCellStyle(HorizontalAlignment.CENTER,VerticalAlignment.CENTER,style);
         setLastTableCellBorder(0,0,style);
-        createCellWithValue(row,formatDate(rent.getDateGet(), DTF_FOR_TIMESTAMP) ,4,style);
+        createCellWithValue(row, rent.getEquipmentItem().getInventory_number() ,4,style);
 
         style = workbook.createCellStyle();
         setAligmentToCellStyle(HorizontalAlignment.CENTER,VerticalAlignment.CENTER,style);
         setLastTableCellBorder(0,0,style);
-        createCellWithValue(row, formatDate(rent.getDateExpectedReturn(), DTF_FOR_TIMESTAMP),5,style);
+        createCellWithValue(row,formatDate(rent.getDateGet(), DTF_FOR_TIMESTAMP) ,5,style);
 
         style = workbook.createCellStyle();
         setAligmentToCellStyle(HorizontalAlignment.CENTER,VerticalAlignment.CENTER,style);
         setLastTableCellBorder(0, 0,style);
-        createCellWithValue(row, rent.getEquipmentItem().getInventory_number(),6,style);
+        createCellWithValue(row,formatDate(rent.getDateExpectedReturn(), DTF_FOR_TIMESTAMP),6,style);
 
         sheet.setColumnWidth(0, 256*8);
         sheet.setColumnWidth(1, 256*40);

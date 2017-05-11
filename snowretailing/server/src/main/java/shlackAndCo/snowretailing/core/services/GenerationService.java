@@ -6,10 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import shlackAndCo.snowretailing.core.contracts.documents.IDocumentGenerator;
+import shlackAndCo.snowretailing.core.contracts.models.IRentReadModel;
 import shlackAndCo.snowretailing.core.contracts.services.*;
 import shlackAndCo.snowretailing.core.enums.DocumentType;
 
 import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 
 @Service
@@ -93,13 +96,13 @@ public class GenerationService implements IGenerationService {
     @Override
     public OutputStream generateEquipmentsItemHistoryDocument(OutputStream os, DocumentType documentType, int classId) {
         if (documentType.equals(DocumentType.PDF)){
-            return pdfGenerator.generateEquipmentsItemHistoryDocument(os, rentService.getAll());
+            return pdfGenerator.generateEquipmentsItemHistoryDocument(os, getNecessaryRents(rentService.getAll(), classId));
         }
         if (documentType.equals(DocumentType.CSV)){
-            return csvGenerator.generateEquipmentsItemHistoryDocument(os, rentService.getAll());
+            return csvGenerator.generateEquipmentsItemHistoryDocument(os, getNecessaryRents(rentService.getAll(), classId));
         }
         if (documentType.equals(DocumentType.XLSX)){
-            return xlsGenerator.generateEquipmentsItemHistoryDocument(os, rentService.getAll());
+            return xlsGenerator.generateEquipmentsItemHistoryDocument(os, getNecessaryRents(rentService.getAll(), classId));
         }
         return null;
     }
@@ -117,5 +120,16 @@ public class GenerationService implements IGenerationService {
             return csvGenerator.generateRentDocument(os, rentService.getById(classId));
         }
         return null;
+    }
+
+    private Collection<IRentReadModel> getNecessaryRents(Collection<IRentReadModel> rents, int id)
+    {
+        Collection<IRentReadModel> result = new ArrayList<IRentReadModel>();
+        for (IRentReadModel rent: rents) {
+            if (rent.getEquipmentItem().getId() == id){
+                result.add(rent);
+            }
+        }
+        return result;
     }
 }

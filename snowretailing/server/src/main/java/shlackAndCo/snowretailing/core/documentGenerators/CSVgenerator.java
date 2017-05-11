@@ -40,7 +40,6 @@ public class CSVgenerator implements IDocumentGenerator {
         final String model = "Модель";
         final String quantity = "Всего";
         final String availableQuantity = "Доступно";
-        writer.writeNext(new String[]{EquipmentListHeader});
         writer.writeNext(new String[]{brand, model, type, quantity, availableQuantity});
         equipments.forEach(equipment -> writer.writeNext(wrapEquipment(equipment)));
         try {
@@ -63,7 +62,6 @@ public class CSVgenerator implements IDocumentGenerator {
         final String dateOfIssue = "Дата выдачи";
         final String agency = "Агенство";
         final String identifier = "Личный номер";
-        writer.writeNext(new String[]{EquipmentListHeader});
         writer.writeNext(new String[]{fio, birthday, type, series, identifier, dateOfIssue, agency});
         credentials.forEach(credential -> writer.writeNext(wrapCredential(credential)));
         try {
@@ -83,7 +81,6 @@ public class CSVgenerator implements IDocumentGenerator {
         final String type = "Тип";
         final String model = "Модель";
         final String cost = "Цена";
-        writer.writeNext(new String[]{EquipmentsCostsHeader});
         writer.writeNext(new String[]{brand, model, type, cost});
         equipments.forEach(equipment -> writer.writeNext(wrapEquipmentWithCost(equipment)));
         try {
@@ -102,7 +99,6 @@ public class CSVgenerator implements IDocumentGenerator {
         final String dateGet = "Дата выдачи";
         final String dateFactReturn = "Дата возврата";
         final String inventoryNumber = "Клиент";
-        writer.writeNext(new String[]{RentHeader});
         writer.writeNext(new String[]{inventoryNumber, dateGet, dateFactReturn});
         rents.forEach(rent -> writer.writeNext(wrapRentWithHistory(rent)));
         try {
@@ -124,7 +120,6 @@ public class CSVgenerator implements IDocumentGenerator {
         final String dateGet = "Дата выдачи";
         final String dateExpectedReturn = "Дата предполагаемого возврата";
         final String inventoryNumber = "Инвентарный номер оборудования";
-        writer.writeNext(new String[]{RentHeader});
         writer.writeNext(new String[]{fio, type, series, inventoryNumber, dateGet, dateExpectedReturn});
         writer.writeNext(wrapRent(rent));
         try {
