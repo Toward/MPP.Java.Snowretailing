@@ -51,17 +51,24 @@ public class PDFGenerator implements IDocumentGenerator {
     }
 
     @Override
-    public OutputStream generateEquipmentsItemHistoryDocument(OutputStream os, Collection<IRentReadModel> rents) {
-        return null;
+    public OutputStream generateEquipmentsItemHistoryDocument(OutputStream os, Collection<IRentReadModel> rents)
+            throws Exception {
+        Document document = createDocument(os);
+        document.open();
+        document.add(createCenterAlignParagraph("История заказов"));
+        addItemsInHistoryList(document,rents);
+        document.close();
+        return os;
     }
 
     @Override
-    public OutputStream generateRentDocument(OutputStream os, IRentReadModel rent) throws DocumentException {
-//        Document document = createDocument(os);
-//        document.open();
-//        document.add(new Paragraph(MessageFormat.format("Договор",font)));
-//        document.close();
-//        return os;
+    public OutputStream generateRentDocument(OutputStream os, IRentReadModel rent)
+            throws Exception {
+        Document document = createDocument(os);
+        document.open();
+        document.add(createCenterAlignParagraph("Договор"));
+        addRent(document,rent);
+        document.close();
         return null;
     }
 
@@ -167,6 +174,43 @@ public class PDFGenerator implements IDocumentGenerator {
             table.addCell(costCell);
         }
         doc.add(table);
+    }
+
+    private void addItemsInHistoryList(Document doc, Collection<IRentReadModel> rents)
+            throws Exception {
+        PdfPTable table = new PdfPTable(3);
+        table.setSpacingBefore(4f);
+
+        table.addCell(new PdfPCell(new Paragraph("Клиент", createFont())));
+        table.addCell(new PdfPCell(new Paragraph("Дата выдачи", createFont())));
+        table.addCell(new PdfPCell(new Paragraph("Дата возврата", createFont())));
+
+        for(IRentReadModel rent: rents){
+            PdfPCell clientCell = new PdfPCell();
+            PdfPCell receivingDateCell = new PdfPCell();
+            PdfPCell returnDateCell = new PdfPCell();
+
+            clientCell.addElement(new Paragraph(MessageFormat.format("{0} {1} {2}", rent.getCredential().getSurname(),
+                    rent.getCredential().getName(), rent.getCredential().getPatronymyc()),createFont()));
+            receivingDateCell.addElement(new Paragraph(String.valueOf(rent.getDateGet()),createFont()));
+            returnDateCell.addElement(new Paragraph(String.valueOf(rent.getDateFactReturn()), createFont()));
+
+            table.addCell(clientCell);
+            table.addCell(receivingDateCell);
+            table.addCell(returnDateCell);
+        }
+        doc.add(table);
+    }
+
+    private void addRent(Document doc, IRentReadModel rent)
+            throws Exception {
+        doc.add(new Paragraph(MessageFormat.format("ФИО: {0} {1} {2}", rent.getCredential().getSurname(),
+                rent.getCredential().getName(), rent.getCredential().getPatronymyc()),createFont()));
+        doc.add(new Paragraph(MessageFormat.format("Тип: {0}", rent.getCredential().getType()), createFont()));
+        doc.add(new Paragraph(MessageFormat.format("Cерия и номер: {0}{1}",rent.getCredential().getSeries(), rent.getCredential().getNumber()),createFont()));
+        doc.add(new Paragraph(MessageFormat.format("Инвентарный номер оборудования {0}",rent.getEquipmentItem().getInventory_number()), createFont()));
+        doc.add(new Paragraph(MessageFormat.format("Дата выдачи {0}",rent.getDateGet()), createFont()));
+        doc.add(new Paragraph(MessageFormat.format("Дата предполагаемого возврата {0}",rent.getDateFactReturn()),createFont()));
     }
 
     private Font createFont ()

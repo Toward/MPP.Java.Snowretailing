@@ -1,7 +1,5 @@
 package shlackAndCo.snowretailing.core.services;
 
-
-import com.itextpdf.text.DocumentException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -73,7 +71,8 @@ public class GenerationService implements IGenerationService {
     }
 
     @Override
-    public OutputStream generateEquipmentsItemHistoryDocument(OutputStream os, DocumentType documentType, int classId) {
+    public OutputStream generateEquipmentsItemHistoryDocument(OutputStream os, DocumentType documentType, int classId)
+            throws Exception {
         if (documentType.equals(DocumentType.PDF)){
             return pdfGenerator.generateEquipmentsItemHistoryDocument(os, rentService.getAll());
         }
