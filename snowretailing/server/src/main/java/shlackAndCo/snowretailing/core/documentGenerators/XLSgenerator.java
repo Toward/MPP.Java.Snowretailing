@@ -7,9 +7,9 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.joda.time.format.DateTimeFormatter;
 import org.springframework.stereotype.Service;
 import shlackAndCo.snowretailing.core.contracts.documents.IDocumentGenerator;
-import shlackAndCo.snowretailing.core.models.CredentialModel;
-import shlackAndCo.snowretailing.core.models.EquipmentModel;
-import shlackAndCo.snowretailing.core.models.RentReadModel;
+import shlackAndCo.snowretailing.core.contracts.models.ICredentialModel;
+import shlackAndCo.snowretailing.core.contracts.models.IEquipmentModel;
+import shlackAndCo.snowretailing.core.contracts.models.IRentReadModel;
 
 import java.io.OutputStream;
 import java.sql.Date;
@@ -27,8 +27,8 @@ public class XLSgenerator implements IDocumentGenerator {
 
 
     @Override
-    public OutputStream generateEquipmentsListDocument(OutputStream os, Collection<EquipmentModel> equipments) {
-        List<EquipmentModel> equipmentsList = new ArrayList<EquipmentModel>(equipments);
+    public OutputStream generateEquipmentsListDocument(OutputStream os, Collection<IEquipmentModel> equipments) {
+        List<IEquipmentModel> equipmentsList = new ArrayList<>(equipments);
         XSSFWorkbook workbook = new XSSFWorkbook();
         XSSFSheet sheet = workbook.createSheet("Полный список горнолыжного оборудования");
         int rowNum = 0;
@@ -108,8 +108,8 @@ public class XLSgenerator implements IDocumentGenerator {
     }
 
     @Override
-    public OutputStream generateClientsListDocument(OutputStream os, Collection<CredentialModel> credentials) {
-        List<CredentialModel> credentialsList = new ArrayList<CredentialModel>(credentials);
+    public OutputStream generateClientsListDocument(OutputStream os, Collection<ICredentialModel> credentials) {
+        List<ICredentialModel> credentialsList = new ArrayList<>(credentials);
         XSSFWorkbook workbook = new XSSFWorkbook();
         XSSFSheet sheet = workbook.createSheet("Полный список клиентов");
         int rowNum = 0;
@@ -200,8 +200,8 @@ public class XLSgenerator implements IDocumentGenerator {
     }
 
     @Override
-    public OutputStream generateEquipmentsCostsDocument(OutputStream os, Collection<EquipmentModel> equipments) {
-        List<EquipmentModel> equipmentsList = new ArrayList<EquipmentModel>(equipments);
+    public OutputStream generateEquipmentsCostsDocument(OutputStream os, Collection<IEquipmentModel> equipments) {
+        List<IEquipmentModel> equipmentsList = new ArrayList<>(equipments);
         XSSFWorkbook workbook = new XSSFWorkbook();
         XSSFSheet sheet = workbook.createSheet("Наименования горнолыжного оборудования с расценками");
         int rowNum = 0;
@@ -275,8 +275,8 @@ public class XLSgenerator implements IDocumentGenerator {
     }
 
     @Override
-    public OutputStream generateEquipmentsItemHistoryDocument(OutputStream os, Collection<RentReadModel> rents) {
-        List<RentReadModel> rentsList = new ArrayList<RentReadModel>(rents);
+    public OutputStream generateEquipmentsItemHistoryDocument(OutputStream os, Collection<IRentReadModel> rents) {
+        List<IRentReadModel> rentsList = new ArrayList<>(rents);
         XSSFWorkbook workbook = new XSSFWorkbook();
         XSSFSheet sheet = workbook.createSheet("История оборудования");
         int rowNum = 0;
@@ -345,7 +345,7 @@ public class XLSgenerator implements IDocumentGenerator {
     }
 
     @Override
-    public OutputStream generateRentDocument(OutputStream os, RentReadModel rent) {
+    public OutputStream generateRentDocument(OutputStream os, IRentReadModel rent) {
         XSSFWorkbook workbook = new XSSFWorkbook();
         XSSFSheet sheet = workbook.createSheet("Договор");
         int rowNum = 0;

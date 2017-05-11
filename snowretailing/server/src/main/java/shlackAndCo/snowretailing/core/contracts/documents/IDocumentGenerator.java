@@ -1,18 +1,18 @@
 package shlackAndCo.snowretailing.core.contracts.documents;
 
-import shlackAndCo.snowretailing.core.models.CredentialModel;
-import shlackAndCo.snowretailing.core.models.EquipmentItemModel;
-import shlackAndCo.snowretailing.core.models.EquipmentModel;
-import shlackAndCo.snowretailing.core.models.RentReadModel;
+import com.itextpdf.text.DocumentException;
+import shlackAndCo.snowretailing.core.contracts.models.ICredentialModel;
+import shlackAndCo.snowretailing.core.contracts.models.IEquipmentModel;
+import shlackAndCo.snowretailing.core.contracts.models.IRentReadModel;
 
 import java.io.OutputStream;
 import java.util.Collection;
 
 public interface IDocumentGenerator {
-    OutputStream generateEquipmentsListDocument(OutputStream os, Collection<EquipmentModel> equipments);
-    OutputStream generateClientsListDocument(OutputStream os, Collection<CredentialModel> equipments);
-    OutputStream generateEquipmentsCostsDocument(OutputStream os, Collection<EquipmentModel> equipments);
-    OutputStream generateEquipmentsItemHistoryDocument(OutputStream os, Collection<RentReadModel> rents);
-    OutputStream generateRentDocument(OutputStream os, RentReadModel rent);
+    OutputStream generateEquipmentsListDocument(OutputStream os, Collection<IEquipmentModel> equipments) throws DocumentException;
+    OutputStream generateClientsListDocument(OutputStream os, Collection<ICredentialModel> equipments);
+    OutputStream generateEquipmentsCostsDocument(OutputStream os, Collection<IEquipmentModel> equipments) throws Exception;
+    OutputStream generateEquipmentsItemHistoryDocument(OutputStream os, Collection<IRentReadModel> rents);
+    OutputStream generateRentDocument(OutputStream os, IRentReadModel rent) throws Exception;
 
 }

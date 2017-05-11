@@ -5,6 +5,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Service;
 import shlackAndCo.snowretailing.core.contracts.documents.IDocumentGenerator;
 import shlackAndCo.snowretailing.core.contracts.models.ICredentialModel;
+import shlackAndCo.snowretailing.core.contracts.models.IEquipmentModel;
+import shlackAndCo.snowretailing.core.contracts.models.IRentReadModel;
 import shlackAndCo.snowretailing.core.models.CredentialModel;
 import shlackAndCo.snowretailing.core.models.EquipmentItemModel;
 import shlackAndCo.snowretailing.core.models.EquipmentModel;
@@ -29,7 +31,7 @@ public class CSVgenerator implements IDocumentGenerator {
     private final static DateTimeFormatter DTF_FOR_TIMESTAMP = org.joda.time.format.DateTimeFormat.forPattern("HH:mm dd.MM.YYYY");
 
     @Override
-    public OutputStream generateEquipmentsListDocument(OutputStream os, Collection<EquipmentModel> equipments) {
+    public OutputStream generateEquipmentsListDocument(OutputStream os, Collection<IEquipmentModel> equipments) {
         CSVWriter writer = createSimpleWriter(os);
 
         final String EquipmentListHeader = "Полный список горнолыжного оборудования";
@@ -50,7 +52,7 @@ public class CSVgenerator implements IDocumentGenerator {
     }
 
     @Override
-    public OutputStream generateClientsListDocument(OutputStream os, Collection<CredentialModel> credentials) {
+    public OutputStream generateClientsListDocument(OutputStream os, Collection<ICredentialModel> credentials) {
         CSVWriter writer = createSimpleWriter(os);
 
         final String EquipmentListHeader = "Полный список клиентов";
@@ -73,7 +75,7 @@ public class CSVgenerator implements IDocumentGenerator {
     }
 
     @Override
-    public OutputStream generateEquipmentsCostsDocument(OutputStream os, Collection<EquipmentModel> equipments) {
+    public OutputStream generateEquipmentsCostsDocument(OutputStream os, Collection<IEquipmentModel> equipments) {
         CSVWriter writer = createSimpleWriter(os);
 
         final String EquipmentsCostsHeader = "Наименования горнолыжного оборудования с расценками";
@@ -93,7 +95,7 @@ public class CSVgenerator implements IDocumentGenerator {
     }
 
     @Override
-    public OutputStream generateEquipmentsItemHistoryDocument(OutputStream os, Collection<RentReadModel> rents) {
+    public OutputStream generateEquipmentsItemHistoryDocument(OutputStream os, Collection<IRentReadModel> rents) {
         CSVWriter writer = createSimpleWriter(os);
 
         final String RentHeader = "История оборудования";
@@ -112,7 +114,7 @@ public class CSVgenerator implements IDocumentGenerator {
     }
 
     @Override
-    public OutputStream generateRentDocument(OutputStream os, RentReadModel rent) {
+    public OutputStream generateRentDocument(OutputStream os, IRentReadModel rent) {
         CSVWriter writer = createSimpleWriter(os);
 
         final String RentHeader = "Договор";
@@ -133,7 +135,7 @@ public class CSVgenerator implements IDocumentGenerator {
         return os;
     }
 
-    private String[] wrapRent(RentReadModel rent) {
+    private String[] wrapRent(IRentReadModel rent) {
         return new String[]{
                 formatFio(rent.getCredential()),
                 rent.getCredential().getType(),
@@ -145,7 +147,7 @@ public class CSVgenerator implements IDocumentGenerator {
     }
 
 
-    private String[] wrapRentWithHistory(RentReadModel rent) {
+    private String[] wrapRentWithHistory(IRentReadModel rent) {
         return new String[]{
                 formatFio(rent.getCredential()),
                 formatDate(rent.getDateGet(), DTF_FOR_TIMESTAMP),
@@ -174,7 +176,7 @@ public class CSVgenerator implements IDocumentGenerator {
                 : "";
     }
 
-    private String[] wrapEquipment(EquipmentModel equipment) {
+    private String[] wrapEquipment(IEquipmentModel equipment) {
         return new String[]{
                 equipment.getBrandName(),
                 equipment.getModel(),
@@ -184,7 +186,7 @@ public class CSVgenerator implements IDocumentGenerator {
         };
     }
 
-    private String[] wrapEquipmentWithCost(EquipmentModel equipment) {
+    private String[] wrapEquipmentWithCost(IEquipmentModel equipment) {
         return new String[]{
                 equipment.getBrandName(),
                 equipment.getModel(),
@@ -201,7 +203,7 @@ public class CSVgenerator implements IDocumentGenerator {
         return dtf.print(date.getTime());
     }
 
-    private String[] wrapCredential(CredentialModel credential) {
+    private String[] wrapCredential(ICredentialModel credential) {
         return new String[]{
                 formatFio(credential),
                 formatDate(credential.getBirthday()),

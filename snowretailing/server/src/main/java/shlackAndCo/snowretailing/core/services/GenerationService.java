@@ -1,6 +1,7 @@
 package shlackAndCo.snowretailing.core.services;
 
 
+import com.itextpdf.text.DocumentException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -26,7 +27,7 @@ public class GenerationService implements IGenerationService {
 
     @Autowired
     public GenerationService(@Qualifier("CSVgenerator") IDocumentGenerator csvGenerator,
-                        @Qualifier("PDFgenerator") IDocumentGenerator pdfGenerator,
+                        @Qualifier("PDFGenerator") IDocumentGenerator pdfGenerator,
                         @Qualifier("XLSgenerator") IDocumentGenerator xlsGenerator,
                         @Qualifier("equipmentItemService") IEquipmentItemService equipmentItemService,
                         @Qualifier("equipmentService") IEquipmentService equipmentService,
@@ -46,7 +47,7 @@ public class GenerationService implements IGenerationService {
     }
 
     @Override
-    public OutputStream generateEquipmentsListDocument(OutputStream os, DocumentType documentType) {
+    public OutputStream generateEquipmentsListDocument(OutputStream os, DocumentType documentType) throws DocumentException {
         return null;
     }
 
@@ -56,7 +57,10 @@ public class GenerationService implements IGenerationService {
     }
 
     @Override
-    public OutputStream generateEquipmentsCostsDocument(OutputStream os, DocumentType documentType) {
+    public OutputStream generateEquipmentsCostsDocument(OutputStream os, DocumentType documentType) throws Exception {
+        if (documentType.equals(DocumentType.PDF)){
+            return pdfGenerator.generateEquipmentsCostsDocument(os, equipmentService.getAll());
+        }
         return null;
     }
 

@@ -1,6 +1,7 @@
 package shlackAndCo.snowretailing.core.contracts.services;
 
 
+import com.itextpdf.text.DocumentException;
 import shlackAndCo.snowretailing.core.enums.DocumentType;
 import shlackAndCo.snowretailing.core.models.CredentialModel;
 import shlackAndCo.snowretailing.core.models.EquipmentModel;
@@ -10,9 +11,9 @@ import java.io.OutputStream;
 import java.util.Collection;
 
 public interface IGenerationService {
-    OutputStream generateEquipmentsListDocument(OutputStream os, DocumentType documentType);
+    OutputStream generateEquipmentsListDocument(OutputStream os, DocumentType documentType) throws DocumentException;
     OutputStream generateClientsListDocument(OutputStream os, DocumentType documentType);
-    OutputStream generateEquipmentsCostsDocument(OutputStream os, DocumentType documentType);
+    OutputStream generateEquipmentsCostsDocument(OutputStream os, DocumentType documentType) throws Exception;
     OutputStream generateEquipmentsItemHistoryDocument(OutputStream os, DocumentType documentType, int classId);
     OutputStream generateRentDocument(OutputStream os, DocumentType documentType, int classId);
 }

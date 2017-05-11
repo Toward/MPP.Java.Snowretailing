@@ -17,4 +17,7 @@ public interface IEquipmentModel extends IBaseModel, ITypeModel, IBrandModel {
 
      Collection<CharacteristicsValue> getCharacteristicsValues();
      void setCharacteristicsValues(Collection<CharacteristicsValue> characteristicsValues);
+
+     public int getEquipmentItemCount();
+
 }
