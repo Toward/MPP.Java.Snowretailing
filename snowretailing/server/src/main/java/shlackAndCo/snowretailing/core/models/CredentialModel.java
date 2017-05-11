@@ -55,6 +55,7 @@ public class CredentialModel implements ICredentialModel {
         this.series = entity.getSeries();
         this.agency = entity.getAgency();
         this.date = entity.getDate();
+        this.type = entity.getType();
         this.birthday = entity.getBirthday();
         this.identifier = entity.getIdentifier();
         this.userId = entity.getUserByUserId() == null

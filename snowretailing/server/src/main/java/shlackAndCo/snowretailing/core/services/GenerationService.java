@@ -47,12 +47,20 @@ public class GenerationService implements IGenerationService {
     }
 
     @Override
-    public OutputStream generateEquipmentsListDocument(OutputStream os, DocumentType documentType) throws DocumentException {
+    public OutputStream generateEquipmentsListDocument(OutputStream os, DocumentType documentType)
+            throws Exception {
+        if (documentType.equals(DocumentType.PDF)){
+            return pdfGenerator.generateEquipmentsListDocument(os, equipmentService.getAll());
+        }
         return null;
     }
 
     @Override
-    public OutputStream generateClientsListDocument(OutputStream os, DocumentType documentType) {
+    public OutputStream generateClientsListDocument(OutputStream os, DocumentType documentType)
+            throws Exception {
+        if (documentType.equals(DocumentType.PDF)){
+            return pdfGenerator.generateClientsListDocument(os, credentialService.getAll());
+        }
         return null;
     }
 
@@ -66,11 +74,18 @@ public class GenerationService implements IGenerationService {
 
     @Override
     public OutputStream generateEquipmentsItemHistoryDocument(OutputStream os, DocumentType documentType, int classId) {
+        if (documentType.equals(DocumentType.PDF)){
+            return pdfGenerator.generateEquipmentsItemHistoryDocument(os, rentService.getAll());
+        }
         return null;
     }
 
     @Override
-    public OutputStream generateRentDocument(OutputStream os, DocumentType documentType, int classId) {
+    public OutputStream generateRentDocument(OutputStream os, DocumentType documentType, int classId)
+            throws Exception {
+        if (documentType.equals(DocumentType.PDF)){
+            return pdfGenerator.generateRentDocument(os, rentService.getById(classId));
+        }
         return null;
     }
 }

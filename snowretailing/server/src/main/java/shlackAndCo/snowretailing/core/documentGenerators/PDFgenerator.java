@@ -18,13 +18,25 @@ import java.util.Collection;
 public class PDFGenerator implements IDocumentGenerator {
 
     @Override
-    public OutputStream generateEquipmentsListDocument(OutputStream os, Collection<IEquipmentModel> equipments) throws DocumentException {
-        return null;
+    public OutputStream generateEquipmentsListDocument(OutputStream os, Collection<IEquipmentModel> equipments)
+            throws Exception {
+        Document document = createDocument(os);
+        document.open();
+        document.add(createCenterAlignParagraph("Список гонолыжного оборудования"));
+        addItemsInEquipmentsList(document,equipments);
+        document.close();
+        return os;
     }
 
     @Override
-    public OutputStream generateClientsListDocument(OutputStream os, Collection<ICredentialModel> equipments) {
-        return null;
+    public OutputStream generateClientsListDocument(OutputStream os, Collection<ICredentialModel> credentials) throws
+            Exception {
+        Document document = createDocument(os);
+        document.open();
+        document.add(createCenterAlignParagraph("Клиенты"));
+        addItemsInClientsList(document, credentials);
+        document.close();
+        return os;
     }
 
     @Override
@@ -32,7 +44,7 @@ public class PDFGenerator implements IDocumentGenerator {
             throws Exception {
         Document document = createDocument(os);
         document.open();
-        document.add(new Paragraph("Прейскурант", createFont()));
+        document.add(createCenterAlignParagraph("Прейскурант"));
         addItemsInPriceList(document,equipments);
         document.close();
         return os;
@@ -53,6 +65,110 @@ public class PDFGenerator implements IDocumentGenerator {
         return null;
     }
 
+    private void addItemsInEquipmentsList(Document doc, Collection<IEquipmentModel> equipmentModels)
+            throws Exception {
+        PdfPTable table = new PdfPTable(5);
+        table.setSpacingBefore(5f);
+
+        table.addCell(new PdfPCell(new Paragraph("Бренд", createFont())));
+        table.addCell(new PdfPCell(new Paragraph("Модель", createFont())));
+        table.addCell(new PdfPCell(new Paragraph("Тип", createFont())));
+        table.addCell(new PdfPCell(new Paragraph("Всего", createFont())));
+        table.addCell(new PdfPCell(new Paragraph("Доступно", createFont())));
+
+        for(IEquipmentModel equipmentModel: equipmentModels){
+            PdfPCell brandCell = new PdfPCell();
+            PdfPCell typeCell = new PdfPCell();
+            PdfPCell modelCell = new PdfPCell();
+            PdfPCell allCell = new PdfPCell();
+            PdfPCell freeCell = new PdfPCell();
+
+            brandCell.addElement(new Paragraph(equipmentModel.getBrandName(),createFont()));
+            typeCell.addElement(new Paragraph(String.valueOf(equipmentModel.getName()),createFont()));
+            modelCell.addElement(new Paragraph(equipmentModel.getModel(),createFont()));
+            allCell.addElement(new Paragraph(String.valueOf(equipmentModel.getEquipmentItemCount()),createFont()));
+            freeCell.addElement(new Paragraph(String.valueOf(equipmentModel.getQuantity()),createFont()));
+
+            table.addCell(brandCell);
+            table.addCell(modelCell);
+            table.addCell(typeCell);
+            table.addCell(allCell);
+            table.addCell(freeCell);
+        }
+        doc.add(table);
+    }
+
+    private void addItemsInClientsList(Document doc, Collection<ICredentialModel> credentials)
+            throws Exception {
+        PdfPTable table = new PdfPTable(7);
+        table.setSpacingBefore(7f);
+
+        table.addCell(new PdfPCell(new Paragraph("Ф.И.О.", createFont())));
+        table.addCell(new PdfPCell(new Paragraph("День рождения", createFont())));
+        table.addCell(new PdfPCell(new Paragraph("Тип", createFont())));
+        table.addCell(new PdfPCell(new Paragraph("Серия и номер", createFont())));
+        table.addCell(new PdfPCell(new Paragraph("Личный номер", createFont())));
+        table.addCell(new PdfPCell(new Paragraph("Дата выдачи", createFont())));
+        table.addCell(new PdfPCell(new Paragraph("Агенство", createFont())));
+
+        for(ICredentialModel credential: credentials){
+            PdfPCell nameCell = new PdfPCell();
+            PdfPCell birthdayCell = new PdfPCell();
+            PdfPCell typeCell = new PdfPCell();
+            PdfPCell seriesCell = new PdfPCell();
+            PdfPCell numberCell = new PdfPCell();
+            PdfPCell dateCell = new PdfPCell();
+            PdfPCell agencyCell = new PdfPCell();
+
+            nameCell.addElement(new Paragraph(MessageFormat.format("{0} {1} {2}", credential.getSurname(), credential.getName(),
+                    credential.getPatronymyc()),createFont()));
+            birthdayCell.addElement(new Paragraph(String.valueOf(credential.getBirthday()),createFont()));
+            typeCell.addElement(new Paragraph(credential.getType(),createFont()));
+            seriesCell.addElement(new Paragraph(MessageFormat.format("{0}{1}",credential.getSeries(), credential.getNumber()),createFont()));
+            numberCell.addElement(new Paragraph(String.valueOf(credential.getNumber()),createFont()));
+            dateCell.addElement(new Paragraph(String.valueOf(credential.getDate()),createFont()));
+            agencyCell.addElement(new Paragraph(String.valueOf(credential.getAgency()),createFont()));
+
+            table.addCell(nameCell);
+            table.addCell(birthdayCell);
+            table.addCell(typeCell);
+            table.addCell(seriesCell);
+            table.addCell(numberCell);
+            table.addCell(dateCell);
+            table.addCell(agencyCell);
+        }
+        doc.add(table);
+    }
+
+    private void addItemsInPriceList(Document doc, Collection<IEquipmentModel> equipmentModels)
+            throws Exception {
+        PdfPTable table = new PdfPTable(4);
+        table.setSpacingBefore(4f);
+
+        table.addCell(new PdfPCell(new Paragraph("Бренд", createFont())));
+        table.addCell(new PdfPCell(new Paragraph("Тип", createFont())));
+        table.addCell(new PdfPCell(new Paragraph("Модель", createFont())));
+        table.addCell(new PdfPCell(new Paragraph("Цена", createFont())));
+
+        for(IEquipmentModel equipmentModel: equipmentModels){
+            PdfPCell brandCell = new PdfPCell();
+            PdfPCell typeCell = new PdfPCell();
+            PdfPCell modelCell = new PdfPCell();
+            PdfPCell costCell = new PdfPCell();
+
+            brandCell.addElement(new Paragraph(equipmentModel.getBrandName(),createFont()));
+            typeCell.addElement(new Paragraph(String.valueOf(equipmentModel.getName()),createFont()));
+            modelCell.addElement(new Paragraph(equipmentModel.getModel(),createFont()));
+            costCell.addElement(new Paragraph(String.valueOf(equipmentModel.getCost()),createFont()));
+
+            table.addCell(brandCell);
+            table.addCell(typeCell);
+            table.addCell(modelCell);
+            table.addCell(costCell);
+        }
+        doc.add(table);
+    }
+
     private Font createFont ()
             throws Exception {
         BaseFont baseFont = BaseFont.createFont("c:/Windows/Fonts/arial.ttf", "CP1251", BaseFont.EMBEDDED);
@@ -66,6 +182,13 @@ public class PDFGenerator implements IDocumentGenerator {
         writer.setPageEvent(new Watermark());
         writer.setEncryption("".getBytes(), "".getBytes(), PdfWriter.ALLOW_PRINTING, PdfWriter.ENCRYPTION_AES_128);
         return doc;
+    }
+
+    private Paragraph createCenterAlignParagraph(String text)
+            throws Exception {
+        Paragraph paragraph = new Paragraph(text, createFont());
+        paragraph.setAlignment(Element.ALIGN_CENTER);
+        return paragraph;
     }
 
     private void addWatermarkToDocument(Document doc) throws DocumentException {
@@ -87,28 +210,5 @@ public class PDFGenerator implements IDocumentGenerator {
                 addWatermarkToDocument(document);
             } catch(DocumentException exc) {}
         }
-    }
-
-    private void addItemsInPriceList(Document doc, Collection<IEquipmentModel> equipmentModels)
-            throws Exception {
-        PdfPTable table = new PdfPTable(4);
-        table.setSpacingBefore(4f);
-        for(IEquipmentModel equipmentModel: equipmentModels){
-            PdfPCell brandCell = new PdfPCell();
-            PdfPCell typeCell = new PdfPCell();
-            PdfPCell modelCell = new PdfPCell();
-            PdfPCell costCell = new PdfPCell();
-
-            brandCell.addElement(new Paragraph(MessageFormat.format("Бренд: {0}",equipmentModel.getBrandName()),createFont()));
-            typeCell.addElement(new Paragraph(MessageFormat.format("Тип: {0}",equipmentModel.getName()),createFont()));
-            modelCell.addElement(new Paragraph(MessageFormat.format("Модель: {0}",equipmentModel.getModel()),createFont()));
-            costCell.addElement(new Paragraph(MessageFormat.format("Цена: {0}",equipmentModel.getCost()),createFont()));
-
-            table.addCell(brandCell);
-            table.addCell(typeCell);
-            table.addCell(modelCell);
-            table.addCell(costCell);
-        }
-        doc.add(table);
     }
 }
