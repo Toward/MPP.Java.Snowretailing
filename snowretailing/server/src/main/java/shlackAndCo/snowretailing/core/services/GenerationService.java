@@ -52,6 +52,12 @@ public class GenerationService implements IGenerationService {
         if (documentType.equals(DocumentType.PDF)){
             return pdfGenerator.generateEquipmentsListDocument(os, equipmentService.getAll());
         }
+        if (documentType.equals(DocumentType.CSV)){
+            return csvGenerator.generateEquipmentsListDocument(os, equipmentService.getAll());
+        }
+        if (documentType.equals(DocumentType.XLSX)){
+            return xlsGenerator.generateEquipmentsListDocument(os, equipmentService.getAll());
+        }
         return null;
     }
 
@@ -61,6 +67,12 @@ public class GenerationService implements IGenerationService {
         if (documentType.equals(DocumentType.PDF)){
             return pdfGenerator.generateClientsListDocument(os, credentialService.getAll());
         }
+        if (documentType.equals(DocumentType.CSV)){
+            return csvGenerator.generateClientsListDocument(os, credentialService.getAll());
+        }
+        if (documentType.equals(DocumentType.XLSX)){
+            return xlsGenerator.generateClientsListDocument(os, credentialService.getAll());
+        }
         return null;
     }
 
@@ -68,6 +80,12 @@ public class GenerationService implements IGenerationService {
     public OutputStream generateEquipmentsCostsDocument(OutputStream os, DocumentType documentType) throws Exception {
         if (documentType.equals(DocumentType.PDF)){
             return pdfGenerator.generateEquipmentsCostsDocument(os, equipmentService.getAll());
+        }
+        if (documentType.equals(DocumentType.CSV)){
+            return csvGenerator.generateEquipmentsCostsDocument(os, equipmentService.getAll());
+        }
+        if (documentType.equals(DocumentType.XLSX)){
+            return xlsGenerator.generateEquipmentsCostsDocument(os, equipmentService.getAll());
         }
         return null;
     }
@@ -77,6 +95,12 @@ public class GenerationService implements IGenerationService {
         if (documentType.equals(DocumentType.PDF)){
             return pdfGenerator.generateEquipmentsItemHistoryDocument(os, rentService.getAll());
         }
+        if (documentType.equals(DocumentType.CSV)){
+            return csvGenerator.generateEquipmentsItemHistoryDocument(os, rentService.getAll());
+        }
+        if (documentType.equals(DocumentType.XLSX)){
+            return xlsGenerator.generateEquipmentsItemHistoryDocument(os, rentService.getAll());
+        }
         return null;
     }
 
@@ -85,6 +109,12 @@ public class GenerationService implements IGenerationService {
             throws Exception {
         if (documentType.equals(DocumentType.PDF)){
             return pdfGenerator.generateRentDocument(os, rentService.getById(classId));
+        }
+        if (documentType.equals(DocumentType.XLSX)){
+            return xlsGenerator.generateRentDocument(os, rentService.getById(classId));
+        }
+        if (documentType.equals(DocumentType.CSV)){
+            return csvGenerator.generateRentDocument(os, rentService.getById(classId));
         }
         return null;
     }

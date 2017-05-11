@@ -76,4 +76,107 @@ public class DocumentController
         generationService.generateRentDocument(response.getOutputStream(), DocumentType.PDF,id);
         return new ResponseEntity(HttpStatus.OK);
     }
+
+
+    @RequestMapping(value = "documents/equipmentsCost/csv", method = RequestMethod.GET, produces = "application/csv")
+    @ResponseBody
+    public ResponseEntity getEquipmentsCostCSVDocument(HttpServletRequest request, HttpServletResponse response)
+            throws Exception{
+        response.setContentType("application/csv");
+        response.setHeader("Content-Disposition", "attachment;filename=priceList.csv");
+        generationService.generateEquipmentsCostsDocument(response.getOutputStream(), DocumentType.CSV);
+        return new ResponseEntity(HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "documents/equipmentsCost/xlsx", method = RequestMethod.GET, produces = "application/xlsx")
+    @ResponseBody
+    public ResponseEntity getEquipmentsCostXLSXDocument(HttpServletRequest request, HttpServletResponse response)
+            throws Exception{
+        response.setContentType("application/xlsx");
+        response.setHeader("Content-Disposition", "attachment;filename=priceList.xlsx");
+        generationService.generateEquipmentsCostsDocument(response.getOutputStream(), DocumentType.XLSX);
+        return new ResponseEntity(HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "documents/equipmentsList/csv", method = RequestMethod.GET, produces = "application/csv")
+    @ResponseBody
+    public ResponseEntity getEquipmentsListCSVDocument(HttpServletRequest request, HttpServletResponse response)
+            throws Exception{
+        response.setContentType("application/csv");
+        response.setHeader("Content-Disposition", "attachment;filename=equipmentsList.csv");
+        generationService.generateEquipmentsListDocument(response.getOutputStream(), DocumentType.CSV);
+        return new ResponseEntity(HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "documents/equipmentsList/xlsx", method = RequestMethod.GET, produces = "application/xlsx")
+    @ResponseBody
+    public ResponseEntity getEquipmentsListXLSXDocument(HttpServletRequest request, HttpServletResponse response)
+            throws Exception{
+        response.setContentType("application/xlsx");
+        response.setHeader("Content-Disposition", "attachment;filename=equipmentsList.xlsx");
+        generationService.generateEquipmentsListDocument(response.getOutputStream(), DocumentType.XLSX);
+        return new ResponseEntity(HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "documents/clientsList/csv", method = RequestMethod.GET, produces = "application/csv")
+    @ResponseBody
+    public ResponseEntity getClientsListCSVDocument(HttpServletRequest request, HttpServletResponse response)
+            throws Exception{
+        response.setContentType("application/csv");
+        response.setHeader("Content-Disposition", "attachment;filename=clientsList.csv");
+        generationService.generateClientsListDocument(response.getOutputStream(), DocumentType.CSV);
+        return new ResponseEntity(HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "documents/clientsList/xlsx", method = RequestMethod.GET, produces = "application/xlsx")
+    @ResponseBody
+    public ResponseEntity getClientsListXLSXDocument(HttpServletRequest request, HttpServletResponse response)
+            throws Exception{
+        response.setContentType("application/xlsx");
+        response.setHeader("Content-Disposition", "attachment;filename=clientsList.xlsx");
+        generationService.generateClientsListDocument(response.getOutputStream(), DocumentType.XLSX);
+        return new ResponseEntity(HttpStatus.OK);
+    }
+
+
+    @RequestMapping(value = "documents/equipmentsItemHistory/{id}/csv", method = RequestMethod.GET, produces = "application/csv")
+    @ResponseBody
+    public ResponseEntity getEquipmentsItemHistoryCSVDocument(HttpServletRequest request, HttpServletResponse response, @PathVariable("id") int id)
+            throws Exception{
+        response.setContentType("application/csv");
+        response.setHeader("Content-Disposition", "attachment;filename=equipmentsItemHistory.csv");
+        generationService.generateEquipmentsItemHistoryDocument(response.getOutputStream(), DocumentType.CSV, id);
+        return new ResponseEntity(HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "documents/equipmentsItemHistory/{id}/xlsx", method = RequestMethod.GET, produces = "application/xlsx")
+    @ResponseBody
+    public ResponseEntity getEquipmentsItemHistoryDocument(HttpServletRequest request, HttpServletResponse response, @PathVariable("id") int id)
+            throws Exception{
+        response.setContentType("application/xlsx");
+        response.setHeader("Content-Disposition", "attachment;filename=equipmentsItemHistory.xlsx");
+        generationService.generateEquipmentsItemHistoryDocument(response.getOutputStream(), DocumentType.XLSX, id);
+        return new ResponseEntity(HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "documents/rentDocument/{id}/csv", method = RequestMethod.GET, produces = "application/csv")
+    @ResponseBody
+    public ResponseEntity getRentDocumentCSVDocument(HttpServletRequest request, HttpServletResponse response, @PathVariable("id") int id)
+            throws Exception{
+        response.setContentType("application/csv");
+        response.setHeader("Content-Disposition", "attachment;filename=rentDocument.csv");
+        generationService.generateRentDocument(response.getOutputStream(), DocumentType.CSV, id);
+        return new ResponseEntity(HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "documents/rentDocument/{id}/xlsx", method = RequestMethod.GET, produces = "application/xlsx")
+    @ResponseBody
+    public ResponseEntity getRentDocumentDocument(HttpServletRequest request, HttpServletResponse response, @PathVariable("id") int id)
+            throws Exception{
+        response.setContentType("application/xlsx");
+        response.setHeader("Content-Disposition", "attachment;filename=rentDocument.xlsx");
+        generationService.generateRentDocument(response.getOutputStream(), DocumentType.XLSX, id);
+        return new ResponseEntity(HttpStatus.OK);
+    }
+
 }
