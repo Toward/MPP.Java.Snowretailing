@@ -14,6 +14,6 @@ public interface IGenerationService {
     OutputStream generateEquipmentsListDocument(OutputStream os, DocumentType documentType) throws Exception;
     OutputStream generateClientsListDocument(OutputStream os, DocumentType documentType) throws Exception;
     OutputStream generateEquipmentsCostsDocument(OutputStream os, DocumentType documentType) throws Exception;
-    OutputStream generateEquipmentsItemHistoryDocument(OutputStream os, DocumentType documentType, int classId);
+    OutputStream generateEquipmentsItemHistoryDocument(OutputStream os, DocumentType documentType, int classId) throws Exception;
     OutputStream generateRentDocument(OutputStream os, DocumentType documentType, int classId) throws Exception;
 }
