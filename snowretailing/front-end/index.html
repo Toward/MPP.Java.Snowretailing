@@ -201,7 +201,7 @@
 
             <p class="title-lower">Заказы</p>
 
-            <button class="positive-button create-order">Создать заказ</button>
+            <button class="positive-button edit-order">Создать заказ</button>
 
             <div class="col-lg-offset-1 col-lg-10 col-md-12 col-sm-12 col-xs-12 consister">
 
@@ -211,7 +211,6 @@
                     <td>Дата истечения</td>
                     <td>Дата заказа</td>
                     <td>Номер оборудования</td>
-                    <td>Стоимость</td>
                     <td>Пользователь</td>
                     <td>Документы</td>
                     <td></td>
@@ -530,6 +529,74 @@
         </div>
 
         <button class="positive-button send-new-password-admin">Изменить пароль</button>
+
+        <button class="danger-button goback">Назад</button>
+
+    </div>
+
+    <!--Change Order-->
+
+    <div class="bubble-panel edit-order-admin">
+
+        <span class="goback close" style="color: red">X</span>
+
+        <p class="title">Изменение пароля</p>
+
+        <div class="col-lg-offset-2 col-lg-8">
+            <label for="1">Дата истечения заказа</label><br>
+            <input type="datetime" id="1" autocomplete="off">
+        </div>
+
+        <div class="col-lg-offset-2 col-lg-8">
+            <label for="2">Дата создания заказа</label><br>
+            <input type="datetime" id="2" autocomplete="off">
+        </div>
+
+        <div class="col-lg-offset-2 col-lg-8">
+            <label for="3">Номер оборудования</label><br>
+            <input type="datetime" id="3" autocomplete="off">
+        </div>
+
+        <div class="col-lg-offset-2 col-lg-8">
+            <label for="4">Стоимость</label><br>
+            <input type="datetime" id="4" autocomplete="off">
+        </div>
+
+        <button class="positive-button send-new-password-admin">Изменить</button>
+
+        <button class="danger-button goback">Назад</button>
+
+    </div>
+
+    <!--Create Order-->
+
+    <div class="bubble-panel create-order-admin">
+
+        <span class="goback close" style="color: red">X</span>
+
+        <p class="title">Изменение пароля</p>
+
+        <div class="col-lg-offset-2 col-lg-8">
+            <label for="11">Дата истечения заказа</label><br>
+            <input type="datetime" id="11" autocomplete="off">
+        </div>
+
+        <div class="col-lg-offset-2 col-lg-8">
+            <label for="22">Дата создания заказа</label><br>
+            <input type="datetime" id="22" autocomplete="off">
+        </div>
+
+        <div class="col-lg-offset-2 col-lg-8">
+            <label for="33">Номер оборудования</label><br>
+            <input type="datetime" id="33" autocomplete="off">
+        </div>
+
+        <div class="col-lg-offset-2 col-lg-8">
+            <label for="44">Стоимость</label><br>
+            <input type="datetime" id="44" autocomplete="off">
+        </div>
+
+        <button class="positive-button send-new-password-admin">Создать</button>
 
         <button class="danger-button goback">Назад</button>
 
@@ -1560,7 +1627,7 @@
 
         function getOrdersForAdmin() {
             $.ajax({
-                url: HOST + 'api/orders',
+                url: HOST + 'api/rents',
                 type: 'GET',
                 dataType: 'json',
                 contentType: 'application/json',
@@ -1574,15 +1641,14 @@
                         for (key in data.data) {
                             var item = data.data[key];
                             $('#admin-orders .orders > tbody').append('<tr>');
-                            var ex_date = new Date(item.dateOrderExpire);
-                            var date = new Date(item.dateOrder);
+                            var ex_date = new Date(item.dateExpectedReturn);
+                            var date = new Date(item.dateFactReturn);
 
                             var $item = $('.orders  tbody  tr:last-child');
-                            $item.append('<td>' + ex_date.getDate() + '.' + ex_date.getMonth() + '.' + ex_date.getFullYear() + '</td>');
+                            $item.append('<td>' + date.getDate() + '.' + ex_date.getMonth() + '.' + ex_date.getFullYear() + '</td>');
                             $item.append('<td>' + date.getDate() + '.' + date.getMonth() + '.' + date.getFullYear() + '</td>');
                             $item.append('<td>' + item.equipmentItem.inventory_number + '</td>');
-                            $item.append('<td>' + item.sumPay + '</td>');
-                            $item.append('<td>' + item.userName + '</td>');
+                            $item.append('<td>' + item.credential.name + '</td>');
                             $item.append('<td>' + '<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"> <a href="http://127.0.0.1:8080/documents/rent/' + item.id  + '/xlsx"><button class="document dt">XLS</button></a> <a href="http://127.0.0.1:8080/documents/rent/' + item.id  + '/csv"><button class="document dt">CSV</button></a> <a href="http://127.0.0.1:8080/documents/rent/' + item.id  + '/pdf"><button class="document dt">PDF</button></a> </div>' + '</td>')
                             $item.append('<td><button data-id="' + item.id + '" data-address="api/orders/" class="positive-button edit-order">Редактировать</button></td>');
                             $item.append('<td><button data-id="' + item.id + '" data-address="api/orders/" class="danger-button delete-order">Удалить</button></td>');
@@ -1624,6 +1690,8 @@
                                         }, 2000);
                                     }
                                 });
+                                $('.confirmation').hide();
+                                popupMode = False;
                             });
 
                             $('.confirmation').show();
@@ -1636,9 +1704,6 @@
 
                             var address = $(this).attr('data-address');
                             var id = $(this).attr('data-id');
-
-//                                $('#update-login-root').val($(this).parent().parent().find('td:nth-child(2)').text());
-//                                $('#update-role-root').val(1);
 
                             $('button.update-order').on('click', function () {
 
@@ -1654,10 +1719,7 @@
                                         'Token': window.localStorage.getItem('token')
                                     },
                                     data: JSON.stringify({
-                                        'id': id,
-                                        'login': $('#update-login-root').val(),
-                                        'password': $('#update-password-root').val(),
-                                        'roleId': $('#update-role-root').val()
+                                        'id': item.id
                                     }),
                                     success: function (data) {
                                         if (data.resultStatus == 'OK') {
@@ -1773,6 +1835,8 @@
                                         }, 2000);
                                     }
                                 });
+                                $('.confirmation').hide();
+                                popupMode = False;
                             });
 
                             $('.confirmation').show();
@@ -1946,6 +2010,8 @@
                                         }, 2000);
                                     }
                                 });
+                                $('.confirmation').hide();
+                                popupMode = False;
                             });
 
                             $('.confirmation').show();
@@ -2170,6 +2236,8 @@
                                         }, 2000);
                                     }
                                 });
+                                $('.confirmation').hide();
+                                popupMode = False;
                             });
 
                             $('.confirmation').show();
