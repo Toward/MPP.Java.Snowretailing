@@ -15,7 +15,7 @@ import java.text.MessageFormat;
 import java.util.Collection;
 
 @Service("PDFGenerator")
-public class PDFGenerator implements IDocumentGenerator {
+class PDFGenerator implements IDocumentGenerator {
 
     @Override
     public OutputStream generateEquipmentsListDocument(OutputStream os, Collection<IEquipmentModel> equipments)

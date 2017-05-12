@@ -95,13 +95,13 @@ public class GenerationService implements IGenerationService {
     public OutputStream generateEquipmentsItemHistoryDocument(OutputStream os, DocumentType documentType, int classId)
             throws Exception {
         if (documentType.equals(DocumentType.PDF)){
-            return pdfGenerator.generateEquipmentsItemHistoryDocument(os, getNecessaryRents(rentService.getAll(), classId));
+            return pdfGenerator.generateEquipmentsItemHistoryDocument(os, rentService.getAll());
         }
         if (documentType.equals(DocumentType.CSV)){
-            return csvGenerator.generateEquipmentsItemHistoryDocument(os, getNecessaryRents(rentService.getAll(), classId));
+            return csvGenerator.generateEquipmentsItemHistoryDocument(os, rentService.getAll());
         }
         if (documentType.equals(DocumentType.XLSX)){
-            return xlsGenerator.generateEquipmentsItemHistoryDocument(os, getNecessaryRents(rentService.getAll(), classId));
+            return xlsGenerator.generateEquipmentsItemHistoryDocument(os, rentService.getAll());
         }
         return null;
     }

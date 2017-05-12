@@ -61,6 +61,16 @@ body {
 
 /*Buttons*/
 
+.dt {
+    margin: 0!important;
+}
+
+button.document {
+    border: 1px solid red;
+    border-radius: 4px;
+    background-color: white;
+}
+
 button {
     z-index: 0;
     margin: 11px 10px!important;

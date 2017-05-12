@@ -85,6 +85,14 @@
             <button class="positive-button check-status-button">Состояние брони</button>
             <button class="warning-button change-password">Изменить пароль</button>
 
+            <p style="text-align: center">Можете скачать прайс ниже</p>
+
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <a href="http://127.0.0.1:8080/documents/equipmentsCost/xlsx"><button class="document">XLS</button></a>
+                <a href="http://127.0.0.1:8080/documents/equipmentsCost/csv"><button class="document">CSV</button></a>
+                <a href="http://127.0.0.1:8080/documents/equipmentsCost/pdf"><button class="document">PDF</button></a>
+            </div>
+
         </div>
 
         <div id="user-equipments" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -132,6 +140,38 @@
 
             <button class="warning-button change-password-admin">Изменить пароль</button>
 
+            <p style="text-align: center">Прайс</p>
+
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <a href="http://127.0.0.1:8080/documents/equipmentsCost/xlsx"><button class="document">XLS</button></a>
+                <a href="http://127.0.0.1:8080/documents/equipmentsCost/csv"><button class="document">CSV</button></a>
+                <a href="http://127.0.0.1:8080/documents/equipmentsCost/pdf"><button class="document">PDF</button></a>
+            </div>
+
+            <p style="text-align: center">Оборудование</p>
+
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <a href="http://127.0.0.1:8080/documents/equipmentsList/xlsx"><button class="document">XLS</button></a>
+                <a href="http://127.0.0.1:8080/documents/equipmentsList/csv"><button class="document">CSV</button></a>
+                <a href="http://127.0.0.1:8080/documents/equipmentsList/pdf"><button class="document">PDF</button></a>
+            </div>
+
+            <p style="text-align: center">Клиенты</p>
+
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <a href="http://127.0.0.1:8080/documents/clientsList/xlsx"><button class="document">XLS</button></a>
+                <a href="http://127.0.0.1:8080/documents/clientsList/csv"><button class="document">CSV</button></a>
+                <a href="http://127.0.0.1:8080/documents/clientsList/pdf"><button class="document">PDF</button></a>
+            </div>
+
+            <p style="text-align: center">История аренды</p>
+
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <a href="http://127.0.0.1:8080/documents/equipmentsItemsHistory/1/xlsx"><button class="document">XLS</button></a>
+                <a href="http://127.0.0.1:8080/documents/equipmentsItemsHistory/1/csv"><button class="document">CSV</button></a>
+                <a href="http://127.0.0.1:8080/documents/equipmentsItemsHistory/1/pdf"><button class="document">PDF</button></a>
+            </div>
+
         </div>
 
         <div id="admin-users" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -159,9 +199,9 @@
 
         <div id="admin-orders" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
-            <p class="title-lower">Брони</p>
+            <p class="title-lower">Заказы</p>
 
-            <button class="positive-button create-order">Создать бронь</button>
+            <button class="positive-button create-order">Создать заказ</button>
 
             <div class="col-lg-offset-1 col-lg-10 col-md-12 col-sm-12 col-xs-12 consister">
 
@@ -173,6 +213,7 @@
                     <td>Номер оборудования</td>
                     <td>Стоимость</td>
                     <td>Пользователь</td>
+                    <td>Документы</td>
                     <td></td>
                     <td></td>
                     </thead>
@@ -301,12 +342,25 @@
 
     </div>
 
+    <!--CONFIRMATION-->
 
+    <div class="bubble-panel confirmation">
+
+        <span class="goback close" style="color: red">X</span>
+
+        <p class="title">Вы уверены?</p>
+
+        <button class="positive-button ok">Да</button>
+        <button class="danger-button goback">Отмена</button>
+
+    </div>
 
 
     <!--REGISTRATION GUEST-->
 
     <div class="bubble-panel registration">
+
+        <span class="goback close" style="color: red">X</span>
 
         <p class="title">Регистрация нового пользователя</p>
 
@@ -336,6 +390,8 @@
 
     <div class="bubble-panel autentication">
 
+        <span class="goback close" style="color: red">X</span>
+
         <p class="title">Вход</p>
 
         <div class="col-lg-offset-2 col-lg-8">
@@ -361,6 +417,8 @@
 
     <div class="bubble-panel add-review">
 
+        <span class="goback close" style="color: red">X</span>
+
         <p class="title">Добавление отзыва</p>
 
         <div class="col-lg-offset-2 col-lg-8">
@@ -383,6 +441,8 @@
     <!--CHANGE PASSWORD USER-->
 
     <div class="bubble-panel change-password-panel">
+
+        <span class="goback close" style="color: red">X</span>
 
         <p class="title">Изменение пароля</p>
 
@@ -411,6 +471,8 @@
     <!-- CHECK STATUS USER-->
 
     <div class="bubble-panel check-status-panel">
+
+        <span class="goback close" style="color: red">X</span>
 
         <p class="title">Ваши заказы</p>
 
@@ -447,6 +509,8 @@
 
     <div class="bubble-panel change-password-panel-admin">
 
+        <span class="goback close" style="color: red">X</span>
+
         <p class="title">Изменение пароля</p>
 
         <div class="col-lg-offset-2 col-lg-8">
@@ -478,6 +542,8 @@
 
     <div class="bubble-panel edit-user-root">
 
+        <span class="goback close" style="color: red">X</span>
+
         <p class="title">Редактирование пользователя</p>
 
         <div class="col-lg-offset-2 col-lg-8">
@@ -508,6 +574,8 @@
 
     <div class="bubble-panel create-user-panel">
 
+        <span class="goback close" style="color: red">X</span>
+
         <p class="title">Создание пользователя</p>
 
         <div class="col-lg-offset-2 col-lg-8">
@@ -537,6 +605,8 @@
     <!--CHANGE PASSWORD ROOT-->
 
     <div class="bubble-panel change-password-panel-root">
+
+        <span class="goback close" style="color: red">X</span>
 
         <p class="title">Изменение пароля</p>
 
@@ -1513,47 +1583,53 @@
                             $item.append('<td>' + item.equipmentItem.inventory_number + '</td>');
                             $item.append('<td>' + item.sumPay + '</td>');
                             $item.append('<td>' + item.userName + '</td>');
+                            $item.append('<td>' + '<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"> <a href="http://127.0.0.1:8080/documents/rent/' + item.id  + '/xlsx"><button class="document dt">XLS</button></a> <a href="http://127.0.0.1:8080/documents/rent/' + item.id  + '/csv"><button class="document dt">CSV</button></a> <a href="http://127.0.0.1:8080/documents/rent/' + item.id  + '/pdf"><button class="document dt">PDF</button></a> </div>' + '</td>')
                             $item.append('<td><button data-id="' + item.id + '" data-address="api/orders/" class="positive-button edit-order">Редактировать</button></td>');
                             $item.append('<td><button data-id="' + item.id + '" data-address="api/orders/" class="danger-button delete-order">Удалить</button></td>');
                         }
 
                         // ADMIN DELETE ORDER
-
-                        $('button.delete-order').on('click', function () {
+                        $('button.delete-order').on('click', function() {
                             var address = $(this).attr('data-address');
                             var id = $(this).attr('data-id');
-                            $.ajax({
-                                url: HOST + address + id,
-                                type: 'DELETE',
-                                dataType: 'json',
-                                contentType: 'application/json',
-                                crossDomain: true,
-                                headers: {
-                                    'Token': window.localStorage.getItem('token')
-                                },
-                                success: function () {
-                                    if (data.resultStatus == 'OK') {
-                                        $('#message').show().text('Успешно удален.');
-                                        setTimeout(function () {
-                                            $('#message').hide();
-                                        }, 2000);
-                                        getOrdersForAdmin();
-                                    } else {
-                                        $('#message').show().text('Невозможно удалить связанные объекты.');
+                            $('button.ok').on('click', function () {
+
+                                $.ajax({
+                                    url: HOST + address + id,
+                                    type: 'DELETE',
+                                    dataType: 'json',
+                                    contentType: 'application/json',
+                                    crossDomain: true,
+                                    headers: {
+                                        'Token': window.localStorage.getItem('token')
+                                    },
+                                    success: function () {
+                                        if (data.resultStatus == 'OK') {
+                                            $('#message').show().text('Успешно удален.');
+                                            setTimeout(function () {
+                                                $('#message').hide();
+                                            }, 2000);
+                                            getOrdersForAdmin();
+                                        } else {
+                                            $('#message').show().text('Невозможно удалить связанные объекты.');
+                                            setTimeout(function () {
+                                                $('#message').hide();
+                                            }, 2000);
+                                        }
+                                    },
+                                    error: function () {
+                                        $('#message').show().text('Произошла ошибка при удалении.');
                                         setTimeout(function () {
                                             $('#message').hide();
                                         }, 2000);
                                     }
-                                },
-                                error: function () {
-                                    $('#message').show().text('Произошла ошибка при удалении.');
-                                    setTimeout(function () {
-                                        $('#message').hide();
-                                    }, 2000);
-                                }
+                                });
                             });
-                        });
 
+                            $('.confirmation').show();
+                            popupMode = True;
+
+                        });
                         // ADMIN EDIT ORDER
 
                         $('button.edit-order').on('click', function () {
@@ -1662,39 +1738,45 @@
                         }
                         // ADMIN DELETE ORDER
 
-                        $('button.delete-equipment').on('click', function () {
+                        $('button.delete-equipment').on('click', function() {
                             var address = $(this).attr('data-address');
                             var id = $(this).attr('data-id');
-                            $.ajax({
-                                url: HOST + address + id,
-                                type: 'DELETE',
-                                dataType: 'json',
-                                contentType: 'application/json',
-                                crossDomain: true,
-                                headers: {
-                                    'Token': window.localStorage.getItem('token')
-                                },
-                                success: function (data) {
-                                    if (data.resultStatus == 'OK') {
-                                        $('#message').show().text('Успешно удален.');
-                                        setTimeout(function () {
-                                            $('#message').hide();
-                                        }, 2000);
-                                        getEquipmentsForAdmin();
-                                    } else {
-                                        $('#message').show().text('Нельзя удалить связанные объекты.');
+                            $('button.ok').on('click', function () {
+
+                                $.ajax({
+                                    url: HOST + address + id,
+                                    type: 'DELETE',
+                                    dataType: 'json',
+                                    contentType: 'application/json',
+                                    crossDomain: true,
+                                    headers: {
+                                        'Token': window.localStorage.getItem('token')
+                                    },
+                                    success: function (data) {
+                                        if (data.resultStatus == 'OK') {
+                                            $('#message').show().text('Успешно удален.');
+                                            setTimeout(function () {
+                                                $('#message').hide();
+                                            }, 2000);
+                                            getEquipmentsForAdmin();
+                                        } else {
+                                            $('#message').show().text('Нельзя удалить связанные объекты.');
+                                            setTimeout(function () {
+                                                $('#message').hide();
+                                            }, 2000);
+                                        }
+                                    },
+                                    error: function () {
+                                        $('#message').show().text('Произошла ошибка при удалении.');
                                         setTimeout(function () {
                                             $('#message').hide();
                                         }, 2000);
                                     }
-                                },
-                                error: function () {
-                                    $('#message').show().text('Произошла ошибка при удалении.');
-                                    setTimeout(function () {
-                                        $('#message').hide();
-                                    }, 2000);
-                                }
+                                });
                             });
+
+                            $('.confirmation').show();
+                            popupMode = True;
                         });
 
                         // ADMIN EDIT ORDER
@@ -1830,41 +1912,47 @@
                         }
 
                         // ADMIN DELETE ORDER
-
                         $('button.delete-brand').on('click', function () {
                             var address = $(this).attr('data-address');
                             var id = $(this).attr('data-id');
-                            $.ajax({
-                                url: HOST + address + id,
-                                type: 'DELETE',
-                                dataType: 'json',
-                                contentType: 'application/json',
-                                crossDomain: true,
-                                headers: {
-                                    'Token': window.localStorage.getItem('token')
-                                },
-                                success: function (data) {
-                                    if (data.resultStatus === 'OK') {
-                                        $('#message').show().text('Успешно удален.');
-                                        setTimeout(function () {
-                                            $('#message').hide();
-                                        }, 2000);
-                                        getBrandsForAdmin();
-                                    } else {
-                                        $('#message').show().text('Невозможно удалить связанные объекты.');
+                            $('button.ok').on('click', function () {
+                                $.ajax({
+                                    url: HOST + address + id,
+                                    type: 'DELETE',
+                                    dataType: 'json',
+                                    contentType: 'application/json',
+                                    crossDomain: true,
+                                    headers: {
+                                        'Token': window.localStorage.getItem('token')
+                                    },
+                                    success: function (data) {
+                                        if (data.resultStatus === 'OK') {
+                                            $('#message').show().text('Успешно удален.');
+                                            setTimeout(function () {
+                                                $('#message').hide();
+                                            }, 2000);
+                                            getBrandsForAdmin();
+                                        } else {
+                                            $('#message').show().text('Невозможно удалить связанные объекты.');
+                                            setTimeout(function () {
+                                                $('#message').hide();
+                                            }, 2000);
+                                        }
+                                    },
+                                    error: function () {
+                                        $('#message').show().text('Произошла ошибка при удалении.');
                                         setTimeout(function () {
                                             $('#message').hide();
                                         }, 2000);
                                     }
-                                },
-                                error: function () {
-                                    $('#message').show().text('Произошла ошибка при удалении.');
-                                    setTimeout(function () {
-                                        $('#message').hide();
-                                    }, 2000);
-                                }
+                                });
                             });
+
+                            $('.confirmation').show();
+                            popupMode = True;
+
                         });
+
 
                         // ADMIN EDIT ORDER
 
@@ -2055,33 +2143,37 @@
                         }
 
                         // ROOT DELETE USER
-
-                        $('button.delete-user').on('click', function () {
+                        $('button.delete-user').on('click', function() {
                             var address = $(this).attr('data-address');
                             var id = $(this).attr('data-id');
-                            $.ajax({
-                                url: HOST + address + id,
-                                type: 'DELETE',
-                                dataType: 'json',
-                                contentType: 'application/json',
-                                crossDomain: true,
-                                headers: {
-                                    'Token': window.localStorage.getItem('token')
-                                },
-                                success: function () {
-                                    $('#message').show().text('Успешно удален.');
-                                    setTimeout(function () {
-                                        $('#message').hide();
-                                    }, 2000);
-                                    getUsersForRoot();
-                                },
-                                error: function () {
-                                    $('#message').show().text('Произошла ошибка при удалении.');
-                                    setTimeout(function () {
-                                        $('#message').hide();
-                                    }, 2000);
-                                }
+                            $('button.ok').on('click', function () {
+                                $.ajax({
+                                    url: HOST + address + id,
+                                    type: 'DELETE',
+                                    dataType: 'json',
+                                    contentType: 'application/json',
+                                    crossDomain: true,
+                                    headers: {
+                                        'Token': window.localStorage.getItem('token')
+                                    },
+                                    success: function () {
+                                        $('#message').show().text('Успешно удален.');
+                                        setTimeout(function () {
+                                            $('#message').hide();
+                                        }, 2000);
+                                        getUsersForRoot();
+                                    },
+                                    error: function () {
+                                        $('#message').show().text('Произошла ошибка при удалении.');
+                                        setTimeout(function () {
+                                            $('#message').hide();
+                                        }, 2000);
+                                    }
+                                });
                             });
+
+                            $('.confirmation').show();
+                            popupMode = True;
                         });
 
                         // ROOT EDIT USER
