@@ -1,0 +1,32 @@
+<div class = "container scrollable-table" ng-controller = "HomeController" >
+    <h3 class = "text-center">Наше оборудование</h3>
+    <table class = "table equipment-table">
+        <thead>
+            <tr>
+                <td>Тип</td>
+                <td>Бренд</td>
+                <td>Модель</td>
+                <td>Стоимость</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat = "equipment in equipments">
+                <td>{{equipment.name}}</td>
+                <td>{{equipment.brandName}}</td>
+                <td>{{equipment.model}}</td>
+                <td>{{equipment.cost}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3 class = "text-center">Комментарии</h3>
+    <table class = "table review-table">
+        <tbody>
+        <tr ng-repeat = "review in reviews">
+            <td>{{review.review}}</td>
+            <td>{{review.dateCreate}}</td>
+            <td>{{review.mark}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>

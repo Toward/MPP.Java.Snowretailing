@@ -1,0 +1,11 @@
+.equipment-table{
+    height: 400px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.review-table{
+    height: 200px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}

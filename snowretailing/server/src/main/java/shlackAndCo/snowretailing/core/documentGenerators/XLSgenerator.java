@@ -37,7 +37,7 @@ public class XLSgenerator implements IDocumentGenerator {
         Row headerRow = sheet.createRow(rowNum++);
         headerRow.setHeightInPoints(40);
         Cell cell = headerRow.createCell(0);
-        sheet.addMergedRegion(CellRangeAddress.valueOf("$A$1:$C$1"));
+        sheet.addMergedRegion(CellRangeAddress.valueOf("$A$1:$H$1"));
 
         Font headerFont = workbook.createFont();
         headerFont.setBold(true);
@@ -100,9 +100,12 @@ public class XLSgenerator implements IDocumentGenerator {
             createCellWithValue(row, String.valueOf(equipmentsList.get(i).getQuantity()),5,style);
         }
 
-        sheet.setColumnWidth(0, 256*8);
-        sheet.setColumnWidth(1, 256*40);
-        sheet.setColumnWidth(2, 256*35);
+        sheet.setColumnWidth(0, 256*15);
+        sheet.setColumnWidth(1, 256*15);
+        sheet.setColumnWidth(2, 256*15);
+        sheet.setColumnWidth(3, 256*15);
+        sheet.setColumnWidth(4, 256*15);
+        sheet.setColumnWidth(5, 256*15);
 
         output(os,workbook);
         return os;
@@ -119,7 +122,7 @@ public class XLSgenerator implements IDocumentGenerator {
         Row headerRow = sheet.createRow(rowNum++);
         headerRow.setHeightInPoints(40);
         Cell cell = headerRow.createCell(0);
-        sheet.addMergedRegion(CellRangeAddress.valueOf("$A$1:$C$1"));
+        sheet.addMergedRegion(CellRangeAddress.valueOf("$A$1:$H$1"));
 
         Font headerFont = workbook.createFont();
         headerFont.setBold(true);
@@ -194,9 +197,14 @@ public class XLSgenerator implements IDocumentGenerator {
             createCellWithValue(row,credentialsList.get(i).getAgency()  ,7,style);
         }
 
-        sheet.setColumnWidth(0, 256*8);
-        sheet.setColumnWidth(1, 256*40);
-        sheet.setColumnWidth(2, 256*35);
+        sheet.setColumnWidth(0, 256*15);
+        sheet.setColumnWidth(1, 256*15);
+        sheet.setColumnWidth(2, 256*15);
+        sheet.setColumnWidth(3, 256*15);
+        sheet.setColumnWidth(4, 256*15);
+        sheet.setColumnWidth(5, 256*15);
+        sheet.setColumnWidth(6, 256*15);
+        sheet.setColumnWidth(7, 256*15);
 
         output(os,workbook);
         return os;
@@ -213,7 +221,7 @@ public class XLSgenerator implements IDocumentGenerator {
         Row headerRow = sheet.createRow(rowNum++);
         headerRow.setHeightInPoints(40);
         Cell cell = headerRow.createCell(0);
-        sheet.addMergedRegion(CellRangeAddress.valueOf("$A$1:$C$1"));
+        sheet.addMergedRegion(CellRangeAddress.valueOf("$A$1:$H$1"));
 
         Font headerFont = workbook.createFont();
         headerFont.setBold(true);
@@ -270,9 +278,11 @@ public class XLSgenerator implements IDocumentGenerator {
             createCellWithValue(row, String.valueOf(equipmentsList.get(i).getCost()),4,style);
         }
 
-        sheet.setColumnWidth(0, 256*8);
-        sheet.setColumnWidth(1, 256*40);
-        sheet.setColumnWidth(2, 256*35);
+        sheet.setColumnWidth(0, 256*15);
+        sheet.setColumnWidth(1, 256*15);
+        sheet.setColumnWidth(2, 256*15);
+        sheet.setColumnWidth(3, 256*15);
+        sheet.setColumnWidth(4, 256*15);
 
         output(os,workbook);
         return os;
@@ -289,7 +299,7 @@ public class XLSgenerator implements IDocumentGenerator {
         Row headerRow = sheet.createRow(rowNum++);
         headerRow.setHeightInPoints(40);
         Cell cell = headerRow.createCell(0);
-        sheet.addMergedRegion(CellRangeAddress.valueOf("$A$1:$C$1"));
+        sheet.addMergedRegion(CellRangeAddress.valueOf("$A$1:$H$1"));
 
         Font headerFont = workbook.createFont();
         headerFont.setBold(true);
@@ -341,9 +351,10 @@ public class XLSgenerator implements IDocumentGenerator {
             createCellWithValue(row, formatDate(rentsList.get(i).getDateFactReturn(), DTF_FOR_TIMESTAMP),3,style);
         }
 
-        sheet.setColumnWidth(0, 256*8);
-        sheet.setColumnWidth(1, 256*40);
-        sheet.setColumnWidth(2, 256*35);
+        sheet.setColumnWidth(0, 256*15);
+        sheet.setColumnWidth(1, 256*15);
+        sheet.setColumnWidth(2, 256*15);
+        sheet.setColumnWidth(3, 256*15);
 
         output(os,workbook);
         return os;
@@ -359,7 +370,7 @@ public class XLSgenerator implements IDocumentGenerator {
         Row headerRow = sheet.createRow(rowNum++);
         headerRow.setHeightInPoints(40);
         Cell cell = headerRow.createCell(0);
-        sheet.addMergedRegion(CellRangeAddress.valueOf("$A$1:$C$1"));
+        sheet.addMergedRegion(CellRangeAddress.valueOf("$A$1:$H$1"));
 
         Font headerFont = workbook.createFont();
         headerFont.setBold(true);
@@ -430,9 +441,13 @@ public class XLSgenerator implements IDocumentGenerator {
         setLastTableCellBorder(0, 0,style);
         createCellWithValue(row,formatDate(rent.getDateExpectedReturn(), DTF_FOR_TIMESTAMP),6,style);
 
-        sheet.setColumnWidth(0, 256*8);
-        sheet.setColumnWidth(1, 256*40);
-        sheet.setColumnWidth(2, 256*35);
+        sheet.setColumnWidth(0, 256*15);
+        sheet.setColumnWidth(1, 256*15);
+        sheet.setColumnWidth(2, 256*15);
+        sheet.setColumnWidth(3, 256*15);
+        sheet.setColumnWidth(4, 256*15);
+        sheet.setColumnWidth(5, 256*15);
+        sheet.setColumnWidth(6, 256*15);
 
         output(os,workbook);
         return os;

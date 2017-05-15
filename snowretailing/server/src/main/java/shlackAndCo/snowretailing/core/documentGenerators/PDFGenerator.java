@@ -2,6 +2,7 @@ package shlackAndCo.snowretailing.core.documentGenerators;
 
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.*;
+import org.joda.time.format.DateTimeFormatter;
 import org.springframework.stereotype.Service;
 import shlackAndCo.snowretailing.core.contracts.documents.IDocumentGenerator;
 import shlackAndCo.snowretailing.core.contracts.models.ICredentialModel;
@@ -11,11 +12,13 @@ import shlackAndCo.snowretailing.core.contracts.models.IRentReadModel;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.sql.Timestamp;
 import java.text.MessageFormat;
 import java.util.Collection;
 
 @Service("PDFGenerator")
 class PDFGenerator implements IDocumentGenerator {
+    private final static DateTimeFormatter DTF_FOR_DATE = org.joda.time.format.DateTimeFormat.forPattern("dd.MM.YYYY");
 
     @Override
     public OutputStream generateEquipmentsListDocument(OutputStream os, Collection<IEquipmentModel> equipments)
@@ -133,7 +136,7 @@ class PDFGenerator implements IDocumentGenerator {
             typeCell.addElement(new Paragraph(credential.getType(),createFont()));
             seriesCell.addElement(new Paragraph(MessageFormat.format("{0}{1}",credential.getSeries(), credential.getNumber()),createFont()));
             numberCell.addElement(new Paragraph(String.valueOf(credential.getNumber()),createFont()));
-            dateCell.addElement(new Paragraph(String.valueOf(credential.getDate()),createFont()));
+            dateCell.addElement(new Paragraph(formatDate(credential.getDate(), DTF_FOR_DATE),createFont()));
             agencyCell.addElement(new Paragraph(String.valueOf(credential.getAgency()),createFont()));
 
             table.addCell(nameCell);
@@ -192,8 +195,8 @@ class PDFGenerator implements IDocumentGenerator {
 
             clientCell.addElement(new Paragraph(MessageFormat.format("{0} {1} {2}", rent.getCredential().getSurname(),
                     rent.getCredential().getName(), rent.getCredential().getPatronymyc()),createFont()));
-            receivingDateCell.addElement(new Paragraph(String.valueOf(rent.getDateGet()),createFont()));
-            returnDateCell.addElement(new Paragraph(String.valueOf(rent.getDateFactReturn()), createFont()));
+            receivingDateCell.addElement(new Paragraph(formatDate(rent.getDateGet(), DTF_FOR_DATE),createFont()));
+            returnDateCell.addElement(new Paragraph(formatDate(rent.getDateFactReturn(), DTF_FOR_DATE), createFont()));
 
             table.addCell(clientCell);
             table.addCell(receivingDateCell);
@@ -208,9 +211,13 @@ class PDFGenerator implements IDocumentGenerator {
                 rent.getCredential().getName(), rent.getCredential().getPatronymyc()),createFont()));
         doc.add(new Paragraph(MessageFormat.format("Тип: {0}", rent.getCredential().getType()), createFont()));
         doc.add(new Paragraph(MessageFormat.format("Cерия и номер: {0}{1}",rent.getCredential().getSeries(), rent.getCredential().getNumber()),createFont()));
-        doc.add(new Paragraph(MessageFormat.format("Инвентарный номер оборудования {0}",rent.getEquipmentItem().getInventory_number()), createFont()));
-        doc.add(new Paragraph(MessageFormat.format("Дата выдачи {0}",rent.getDateGet()), createFont()));
-        doc.add(new Paragraph(MessageFormat.format("Дата предполагаемого возврата {0}",rent.getDateFactReturn()),createFont()));
+        doc.add(new Paragraph(MessageFormat.format("Инвентарный номер оборудования: {0}",rent.getEquipmentItem().getInventory_number()), createFont()));
+        doc.add(new Paragraph(MessageFormat.format("Дата выдачи: {0}", formatDate(rent.getDateGet(), DTF_FOR_DATE)), createFont()));
+        doc.add(new Paragraph(MessageFormat.format("Дата предполагаемого возврата: {0}",formatDate(rent.getDateFactReturn(), DTF_FOR_DATE)),createFont()));
+    }
+
+    private String formatDate(Timestamp date, DateTimeFormatter dtf) {
+        return dtf.print(date.getTime());
     }
 
     private Font createFont ()
