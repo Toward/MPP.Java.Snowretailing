@@ -13,6 +13,10 @@
                 localStorage.setItem("User", JSON.stringify(storedParams));
             },
 
+            getCurrentUser : function () {
+                return JSON.parse(localStorage.getItem("User"));
+            },
+
             getToken : function () {
                 var user = JSON.parse(localStorage.getItem("User"));
                 if(user == null)

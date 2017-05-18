@@ -6,7 +6,7 @@
             queryService.asyncPost(constantService.LOGIN_URL, user).then(function (response) {
                 userService.setUser(response);
                 $rootScope.isAuthorized = true;
-                $rootScope.userName = user.login;
+                $rootScope.currentUser = userService.getCurrentUser();
                 $location.path('/');
             });
         }

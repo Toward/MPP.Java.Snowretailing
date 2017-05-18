@@ -3,11 +3,11 @@
 
     function LoginController($rootScope, $scope, $location, userService) {
         $rootScope.isAuthorized = userService.isUserExist();
-        $rootScope.userName = userService.getLogin();
+        $rootScope.currentUser = userService.getCurrentUser();
         $scope.logout = function(){
             userService.removeUser();
             $rootScope.isAuthorized = false;
-            $rootScope.userName = null;
+            $rootScope.currentUser = null;
             $location.path('/');
         }
     };

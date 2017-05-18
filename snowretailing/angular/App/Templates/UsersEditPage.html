@@ -1,0 +1,21 @@
+<div class="container" ng-controller="UserEditController" ng-if="role = ROOT">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Логин</th>
+                <th>Роль</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat = "user in user">
+                <td>{{user.login}}</td>
+                <td>{{user.role}}</td>
+                <td>
+                    <a class="blue-text"><i class="fa fa-user"></i></a>
+                    <a class="teal-text"><i class="fa fa-pencil"></i></a>
+                    <a class="red-text"><i class="fa fa-times"></i></a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
