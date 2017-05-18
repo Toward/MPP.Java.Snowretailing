@@ -5,7 +5,8 @@
            EQUIPMENTS_GET_URL : BASE_URL.concat("equipments"),
            REVIEWS_GET_URL : BASE_URL.concat("reviews"),
            LOGIN_URL : BASE_URL.concat("/auth/login"),
-           REGISTER_URL : BASE_URL.concat("/auth/register")
+           REGISTER_URL : BASE_URL.concat("/auth/register"),
+           USERS_URL : BASE_URL.concat("/api/users")
        };
    });
 })();

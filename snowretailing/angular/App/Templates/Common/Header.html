@@ -21,12 +21,13 @@
                         <li class="dropdown-header">Nav header</li>
                         <li><a href="#">Separated link</a></li>
                         <li><a href="#">One more separated link</a></li>
+                        <li ng-if="currentUser.role == 'ADMIN' || currentUser.role == 'ROOT'"><a href="#!users">Пользователи</a></li>
                     </ul>
                 </li>
             </ul>
             <div ng-if="isAuthorized">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#">{{userName}}</a></li>
+                    <li><a href="#">{{currentUser.login}}</a></li>
                     <li><a href="#" ng-click="logout()">Logout</a></li>
                 </ul>
             </div>

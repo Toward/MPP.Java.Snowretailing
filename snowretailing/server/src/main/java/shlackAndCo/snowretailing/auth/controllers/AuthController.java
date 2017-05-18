@@ -35,7 +35,7 @@ public class AuthController {
 
     @ResponseBody
     @RequestMapping(value = "/auth/register", method = RequestMethod.POST)
-    public IResultModel<ILoginResultModel> Register(@RequestBody @Validated RegisterModel registerModel){
+    public IResultModel<ILoginResultModel> Register (@RequestBody @Validated RegisterModel registerModel){
         IAuthModel user = map(registerModel,Role.USER);
         authService.Register(user);
         ILoginResultModel result = authService.Login(user);
