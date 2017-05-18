@@ -1,11 +1,5 @@
-.equipment-table{
-    height: 400px;
-    overflow-y: auto;
-    overflow-x: hidden;
-}
-
-.review-table{
-    height: 200px;
-    overflow-y: auto;
-    overflow-x: hidden;
+.content {
+    margin: 0!important;
+    padding: 20px 0;
+    min-height: calc(100vh - 110px);
 }
