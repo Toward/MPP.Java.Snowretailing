@@ -12,6 +12,9 @@
            TYPES_GET_URL : BASE_URL.concat("api/types"),
            ORDERS_GET_URL : BASE_URL.concat("api/orders"),
            RENTS_GET_URL : BASE_URL.concat("api/rents"),
+           LOGIN_URL : BASE_URL.concat("/auth/login"),
+           REGISTER_URL : BASE_URL.concat("/auth/register"),
+           USERS_URL : BASE_URL.concat("/api/users")
        };
    });
 })();

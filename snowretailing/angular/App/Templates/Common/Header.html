@@ -1,41 +1,25 @@
-<nav class="navbar navbar-default" ng-controller="HeaderController">
+<nav class="navbar light-blue darken-3" ng-controller="HeaderController">
     <div class="container-fluid">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#!/">Snowretailing</a>
+            <a class="navbar-brand waves-effect waves-light" href="#!/"><strong>SNOWRETAILING</strong></a>
         </div>
-        <div id="navbar" class="navbar-collapse collapse">
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
             <ul class="nav navbar-nav">
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li class="dropdown-header">Nav header</li>
-                        <li><a href="#">Separated link</a></li>
-                        <li><a href="#">One more separated link</a></li>
-                    </ul>
-                </li>
+                <li ng-if="currentUser.role == 'ADMIN' || currentUser.role == 'ROOT'"><a href="#!users">ПОЛЬЗОВАТЕЛИ</a></li>
             </ul>
             <div ng-if="isAuthorized">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#">{{userName}}</a></li>
-                    <li><a href="#" ng-click="logout()">Logout</a></li>
+                    <li><a href="#">{{currentUser.login}}</a></li>
+                    <li><a href="#" ng-click="logout()">ВЫЙТИ</a></li>
                 </ul>
             </div>
             <div ng-if="!isAuthorized">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#!login">Sign in</a></li>
-                    <li><a href="#!register">Register</a></li>
+                    <li><a href="#!login">ВХОД</a></li>
+                    <li><a href="#!register">РЕГИСТРАЦИЯ</a></li>
                 </ul>
             </div>
-        </div><!--/.nav-collapse -->
-    </div><!--/.container-fluid -->
+        </div>
+    </div>
 </nav>
