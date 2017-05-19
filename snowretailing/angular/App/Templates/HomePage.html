@@ -36,8 +36,13 @@
             <small ng-if="review.mark">Оценка: хорошо&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</small>
             <small ng-if="!review.mark">Оценка: плохо&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</small>
             <small>Дата отзыва: {{review.dateCreate | date:'yyyy-MM-dd hh:mm'}}</small>
+            <small ng-if="currentUser.role == 'ROOT'">
+                    <a class="teal-text" ng-click="showModalReview('edit',review)"><i class="fa fa-pencil"></i></a>
+                    <a class="red-text" ng-click="deleteReview(review.id)"><i class="fa fa-times"></i></a>
+            </small>
         </div>
     </div>
+    <button type="button" class="btn btn-info btn-lg" ng-if="isAuthorized" ng-click="showModalReview('create',null)">Create new review</button>
 
     <!--Modal-->
     <div class="modal fade" id="modal" role="dialog">
@@ -53,12 +58,12 @@
                     <input type="text" id="inputModel" class="form-control" placeholder="Model" required autofocus ng-model ="equipment.model">
                     <label for="inputModel" class="sr-only">Role</label>
 
-                    <select ng-model = "equipment.brand" class="form-control" id="inputBrand">
-                        <option ng-repeat="brand in brands" ng-selected="equipment.brand == brand.brandName" value="{{brand.brandName}}">{{brand.brandName}}</option>
+                    <select ng-model = "equipment.brandName" class="form-control" id="inputBrand">
+                        <option ng-repeat="brand in brands" ng-selected="equipment.brandName == brand.brandName" value="{{brand.brandName}}">{{brand.brandName}}</option>
                     </select>
 
                     <label for="inputType" class="sr-only">Type</label>
-                    <select ng-model = "equipment.type" class="form-control" id="inputType">
+                    <select ng-model = "equipment.name" class="form-control" id="inputType">
                         <option ng-repeat="type in types" ng-selected="equipment.type == type.name" value="{{type.name}}">{{type.name}}</option>
                     </select>
 
@@ -72,5 +77,35 @@
         </div>
     </div>
 
+
+
+    <!--ReviewModal-->
+    <div class="modal fade" id="modal-review" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4  ng-if="modalMode == 'edit'" class="modal-title">Edit  review</h4>
+                    <h4  ng-if="modalMode == 'create'" class="modal-title">Create new review</h4>
+                </div>
+                <div class="modal-body">
+                    <label for="inputReview" class="sr-only">inputReview</label>
+                    <textarea type="text" id="inputReview" class="form-control" placeholder="Enter your Review..." required autofocus ng-model ="review.review"></textarea>
+                    <label for="inputMark" class="sr-only">Mark</label>
+
+                    <select ng-model = "review.mark" class="form-control" id="inputMark">
+                        <option ng-selected="review.mark == 1" value="1">Хорошо</option>
+                        <option ng-selected="review.mark == 0" value="0">Плохо</option>
+                    </select>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" ng-if="modalMode == 'edit'" ng-click = "updateReview(review)">Edit</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal" ng-if="modalMode == 'create'" ng-click = "createReview(review)">Create</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </div>
