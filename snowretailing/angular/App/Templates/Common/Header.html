@@ -7,10 +7,21 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
             <ul class="nav navbar-nav">
                 <li ng-if="currentUser.role == 'ADMIN' || currentUser.role == 'ROOT'"><a href="#!users">ПОЛЬЗОВАТЕЛИ</a></li>
+                <li ng-if="currentUser.role == 'ADMIN'"><a href="#!brands">БРЕНДЫ</a></li>
+                <li ng-if="currentUser.role == 'ADMIN'"><a href="#!clients">КЛИЕНТЫ</a></li>
+                <li ng-if="currentUser.role == 'ADMIN'"><a href="#!equipment_items">СНАРЯЖЕНИЯ</a></li>
+                <li ng-if="currentUser.role == 'ADMIN'"><a href="#!types">ТИПЫ СНАРЯЖЕНИЯ</a></li>
+                <li ng-if="currentUser.role == 'ADMIN'"><a href="#!rents">ЗАКАЗЫ</a></li>
+                <li ng-if="currentUser.role == 'ADMIN'"><a href="#!orders">БРОНИ</a></li>
             </ul>
             <div ng-if="isAuthorized">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#">{{currentUser.login}}</a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{currentUser.login}}<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#!editPassword">Изменить пароль</a></li>
+                        </ul>
+                    </li>
                     <li><a href="#" ng-click="logout()">ВЫЙТИ</a></li>
                 </ul>
             </div>
