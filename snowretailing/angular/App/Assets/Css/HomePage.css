@@ -1,5 +1,11 @@
-.content {
-    margin: 0!important;
-    padding: 20px 0;
-    min-height: calc(100vh - 110px);
+td {
+    text-align: center;
+}
+
+.panel-footer {
+    padding: 4px 15px!important;
+}
+
+.panel-footer span {
+    width: 33%;
 }
