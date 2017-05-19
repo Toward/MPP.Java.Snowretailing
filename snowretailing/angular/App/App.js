@@ -13,6 +13,10 @@
                 templateUrl: "App/Templates/RegisterPage.html"
             });
 
+            $routeProvider.when("/editPassword",{
+                templateUrl: "App/Templates/EditPasswordPage.html"
+            });
+
             $routeProvider.when("/users",{
                 templateUrl: "App/Templates/UsersEditPage.html"
             });
