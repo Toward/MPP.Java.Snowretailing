@@ -1,7 +1,7 @@
 <div class = "container scrollable-table" ng-controller="TypeController" >
     <h3 class = "text-center">Наши типы оборудования</h3>
         <div ng-switch on="currentUser.role">
-            <div ng-switch-when="ADMIN">
+            <div ng-switch-when="ROOT">
                 <table class = "table ">
                     <thead>
                         <tr>
@@ -13,9 +13,33 @@
                         <tr ng-repeat = "type in types">
                             <td>{{type.name}}</td>
                             <td>{{type.cost}}</td>
+                            <td ng-if="currentUser.role == 'ROOT'">
+                                <a class="teal-text" ng-click="showModal('edit',type)"><i class="fa fa-pencil"></i></a>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
         </div>
+
+
+    <!--Modal-->
+    <div class="modal fade" id="modal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4  ng-if="modalMode == 'edit'" class="modal-title">Edit type</h4>
+                </div>
+                <div class="modal-body">
+                    <label for="inputCost" class="sr-only">Password</label>
+                    <input type="text" id="inputCost" class="form-control" placeholder="Cost" required ng-model ="type.cost">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" ng-if="modalMode == 'edit'" ng-click = "update(type)">Edit</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

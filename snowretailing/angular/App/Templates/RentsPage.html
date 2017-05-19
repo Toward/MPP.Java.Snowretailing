@@ -1,7 +1,7 @@
 <div class = "container scrollable-table" ng-controller = "RentController" >
     <h3 class = "text-center">Наши заказы</h3>
         <div ng-switch on="currentUser.role">
-            <div ng-switch-when="ADMIN">
+            <div ng-switch-when="ROOT">
                 <table class = "table ">
                     <thead>
                         <tr>
@@ -19,9 +19,44 @@
                             <td>{{rent.dateExpectedReturn | date:'yyyy-MM-dd hh:mm'}}</td>
                             <td>{{rent.dateFactReturn | date:'yyyy-MM-dd hh:mm'}}</td>
                             <td>{{rent.equipmentItem.id}}</td>
+                            <td ng-if="currentUser.role == 'ROOT'">
+                                <a class="teal-text" ng-click="showModal('edit',rent)"><i class="fa fa-pencil"></i></a>
+                                <a class="red-text" ng-click="delete(rent.id)"><i class="fa fa-times"></i></a>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
+                <button type="button" class="btn btn-info btn-lg" ng-if="currentUser.role == 'ROOT'" ng-click="showModal('create',null)">Create new rent</button>
             </div>
         </div>
+
+    <!--Modal-->
+    <div class="modal fade" id="modal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4  ng-if="modalMode == 'edit'" class="modal-title">Edit new user</h4>
+                    <h4  ng-if="modalMode == 'create'" class="modal-title">Create new user</h4>
+                </div>
+                <div class="modal-body">
+                    <label for="inputLogin" class="sr-only">Login</label>
+                    <input type="text" id="inputLogin" class="form-control" placeholder="Login" required autofocus ng-model ="user.login">
+                    <label for="inputPassword" class="sr-only">Password</label>
+                    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required ng-model ="user.password">
+                    <label for="inputRole" class="sr-only">Role</label>
+                    <select ng-model = "user.roleId" class="form-control" id="inputRole">
+                        <option ng-selected="user.roleId == 1" value="1">USER</option>
+                        <option ng-selected="user.roleId == 2" value="2">ADMIN</option>
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" ng-if="modalMode == 'edit'" ng-click = "update(user)">Edit</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal" ng-if="modalMode == 'create'" ng-click = "create(user)">Create</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>

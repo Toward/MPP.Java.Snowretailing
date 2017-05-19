@@ -1,7 +1,7 @@
 <div class = "container scrollable-table" ng-controller = "EquipmentItemController" >
     <h3 class = "text-center">Наше оборудование</h3>
         <div ng-switch on="currentUser.role">
-            <div ng-switch-when="ADMIN">
+            <div ng-switch-when="ROOT">
                 <table class = "table ">
                     <thead>
                         <tr>
@@ -23,9 +23,51 @@
                                 <span ng-if="item.deleted==0">Нет</span>
                             </td>
                             <td>{{item.equipmentId}}</td>
+                            <td ng-if="currentUser.role == 'ROOT'">
+                                <a class="teal-text" ng-click="showModal('edit',item)"><i class="fa fa-pencil"></i></a>
+                                <a class="red-text" ng-click="delete(item.id)"><i class="fa fa-times"></i></a>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
+                <button type="button" class="btn btn-info btn-lg" ng-if="currentUser.role == 'ROOT'" ng-click="showModal('create',null)">Create new Equipment Item</button>
             </div>
         </div>
+
+    <!--Modal-->
+    <div class="modal fade" id="modal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4  ng-if="modalMode == 'edit'" class="modal-title">Edit  EquipmentItem</h4>
+                    <h4  ng-if="modalMode == 'create'" class="modal-title">Create new EquipmentItem</h4>
+                </div>
+                <div class="modal-body">
+                    <label for="inputNumber" class="sr-only">Login</label>
+                    <input type="text" id="inputNumber" class="form-control" placeholder="Inventory Number" required autofocus ng-model ="item.inventory_number">
+                    <label for="inputState" class="sr-only">Состояние</label>
+                    <select ng-model = "item.state" class="form-control" id="inputState">
+                        <option disabled>Состояние</option>
+                        <option ng-selected="item.state == 1" value="1">Доступен</option>
+                        <option ng-selected="item.state == 0" value="0">Не доступен</option>
+                    </select>
+                    <label for="inputDeleted" class="sr-only">Удален</label>
+                    <select ng-model = "user.roleId" class="form-control" id="inputDeleted">
+                        <option disabled>Удален</option>
+                        <option ng-selected="item.deleted == 1" value="1">да</option>
+                        <option ng-selected="item.deleted == 0" value="0">нет</option>
+                    </select>
+                    <label for="inputID" class="sr-only">EquipmentID</label>
+                    <input type="text" id="inputID" class="form-control" placeholder="EquipmentID" required ng-model ="item.equipmentId">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" ng-if="modalMode == 'edit'" ng-click = "update(item)">Edit</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal" ng-if="modalMode == 'create'" ng-click = "create(item)">Create</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
