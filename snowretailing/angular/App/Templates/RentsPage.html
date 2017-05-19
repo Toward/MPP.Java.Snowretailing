@@ -1,0 +1,27 @@
+<div class = "container scrollable-table" ng-controller = "RentController" >
+    <h3 class = "text-center">Наши заказы</h3>
+        <div ng-switch on="currentUser.role">
+            <div ng-switch-when="ADMIN">
+                <table class = "table ">
+                    <thead>
+                        <tr>
+                            <td>Клиент</td>
+                            <td>Дата выдачи</td>
+                            <td>Дата предполагаемог возврата</td>
+                            <td>Дата возврата</td>
+                            <td>id Оборудования</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat = "rent in rents">
+                            <td>{{rent.credential.surname}}&nbsp;{{rent.credential.name}}&nbsp;{{rent.credential.patronymyc}}</td>
+                            <td>{{rent.dateGet | date:'yyyy-MM-dd hh:mm'}}</td>
+                            <td>{{rent.dateExpectedReturn | date:'yyyy-MM-dd hh:mm'}}</td>
+                            <td>{{rent.dateFactReturn | date:'yyyy-MM-dd hh:mm'}}</td>
+                            <td>{{rent.equipmentItem.id}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+</div>

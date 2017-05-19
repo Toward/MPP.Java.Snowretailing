@@ -1,23 +1,23 @@
-<nav class="navbar blue" ng-controller="HeaderController">
+<nav class="navbar light-blue darken-3" ng-controller="HeaderController">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand waves-effect waves-light" href="#!/">SNOWRETAILING</a>
+            <a class="navbar-brand waves-effect waves-light" href="#!/"><strong>SNOWRETAILING</strong></a>
         </div>
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
             <ul class="nav navbar-nav">
-                <li ng-if="currentUser.role == 'ADMIN' || currentUser.role == 'ROOT'"><a href="#!users">Пользователи</a></li>
+                <li ng-if="currentUser.role == 'ADMIN' || currentUser.role == 'ROOT'"><a href="#!users">ПОЛЬЗОВАТЕЛИ</a></li>
             </ul>
             <div ng-if="isAuthorized">
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="#">{{currentUser.login}}</a></li>
-                    <li><a href="#" ng-click="logout()">Logout</a></li>
+                    <li><a href="#" ng-click="logout()">ВЫЙТИ</a></li>
                 </ul>
             </div>
             <div ng-if="!isAuthorized">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#!login">Sign in</a></li>
-                    <li><a href="#!register">Register</a></li>
+                    <li><a href="#!login">ВХОД</a></li>
+                    <li><a href="#!register">РЕГИСТРАЦИЯ</a></li>
                 </ul>
             </div>
         </div>

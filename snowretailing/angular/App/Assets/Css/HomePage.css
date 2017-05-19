@@ -1,11 +1,11 @@
-.equipment-table{
-    height: 400px;
-    overflow-y: auto;
-    overflow-x: hidden;
+.home-page td {
+    text-align: center;
 }
 
-.review-table{
-    height: 200px;
-    overflow-y: auto;
-    overflow-x: hidden;
+.home-page .panel-footer {
+    padding: 4px 15px!important;
+}
+
+.home-page .panel-footer span {
+    width: 33%;
 }
