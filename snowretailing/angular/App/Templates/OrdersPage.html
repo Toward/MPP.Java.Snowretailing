@@ -1,0 +1,28 @@
+<div class = "container scrollable-table" ng-controller = "OrderController" >
+    <h3 class = "text-center">Наши брони</h3>
+        <div ng-if="isAuthorized">
+                <table class = "table ">
+                    <thead>
+                        <tr>
+                            <td>Пользователь</td>
+                            <td>id оборудования</td>
+                            <td>Дата создания</td>
+                            <td>Дата возврата</td>
+                            <td>Состояние</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat = "order in orders">
+                            <td>{{order.userName}}</td>
+                            <td>{{order.equipmentItem.id}}</td>
+                            <td>{{order.dateOrder | date:'yyyy-MM-dd hh:mm'}}</td>
+                            <td>{{order.dateOrderExpire | date:'yyyy-MM-dd hh:mm'}}</td>
+                            <td>
+                                <span ng-if="order.state==1">Активна</span>
+                                <span ng-if="order.state==0">Не активна</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+        </div>
+</div>
