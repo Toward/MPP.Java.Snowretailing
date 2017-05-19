@@ -10,31 +10,47 @@
 
         $scope.showModal = function (modalMode, user) {
             $scope.modalMode = modalMode;
-            if(user != null){
+            if (user !== null) {
                 $scope.user = user;
                 $scope.user.roleId = user.role.id;
             }
             $('#modal').modal('toggle');
-        }
+        };
 
-        $scope.delete = function (id) {
-            queryService.asyncDelete(constantService.USERS_URL.concat("/").concat(id)).then(function () {
-                getUsers();
+        $scope.showDeleteModal = function (user) {
+            $scope.user = user;
+            $('#modal-delete').modal('toggle');
+
+            $scope.delete = function () {
+                queryService.asyncDelete(constantService.USERS_URL.concat("/").concat(user.id)).then(function () {
+                    $scope.user = null;
+                    $('#modal-delete').modal('toggle');
+                    getUsers();
             });
+        };
         };
 
         $scope.create = function (user) {
             queryService.asyncPost(constantService.USERS_URL, user).then(function () {
+                $scope.user = null;
+                $('#modal').modal('toggle');
                 getUsers();
             });
         };
 
         $scope.update = function (user) {
             queryService.asyncPut(constantService.USERS_URL, user).then(function () {
+                $scope.user = null;
+                $('#modal').modal('toggle');
                 getUsers();
             });
         };
 
+        $scope.hideModal = function () {
+            $scope.user = null;
+            getUsers();
+        };
+
         getUsers();
-    };
+    }
 })();
