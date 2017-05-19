@@ -29,6 +29,36 @@
                     deffered.reject("No connection to the server");
                 })
                 return deffered.promise;
+            },
+
+            asyncPut : function (url, data) {
+                var deffered = $q.defer();
+
+                $http.put(url, data, {headers:{"Token":userService.getToken()}}).then(function (response) {
+                    if(response.data.resultStatus == "OK"){
+                        deffered.resolve(response.data.message);
+                    }else{
+                        deffered.reject(response.data.message);
+                    }
+                }, function (responce) {
+                    deffered.reject("No connection to the server");
+                })
+                return deffered.promise;
+            },
+
+            asyncDelete : function (url) {
+                var deffered = $q.defer();
+
+                $http.delete(url,{headers:{"Token":userService.getToken()}}).then(function (response) {
+                    if(response.data.resultStatus == "OK"){
+                        deffered.resolve(response.data.message);
+                    }else{
+                        deffered.reject(response.data.message);
+                    }
+                }, function (responce) {
+                    deffered.reject("No connection to the server");
+                })
+                return deffered.promise;
             }
         };
     });
