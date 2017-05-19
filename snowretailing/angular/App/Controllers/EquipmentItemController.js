@@ -5,7 +5,10 @@
        getEquipmentItems = function () {
            queryService.asyncGet(constantService.EQUIPMENT_ITEMS_URL).then(function (response) {
                $scope.items = response;
-           });
+           },
+                function (message){
+                    toastr.info(message);
+                });
        };
 
        $scope.showModal = function (modalMode, item) {
@@ -34,7 +37,10 @@
                                $scope.item = null;
                 $('#modal').modal('toggle');
                getEquipmentItems();
-           });
+           },
+                function (message){
+                    toastr.info(message);
+                });
        };
 
        $scope.update = function (item) {
@@ -42,7 +48,10 @@
                                $scope.item = null;
                 $('#modal').modal('toggle');
                getEquipmentItems();
-           });
+           },
+                function (message){
+                    toastr.info(message);
+                });
        };
 
        $scope.hideModal = function () {

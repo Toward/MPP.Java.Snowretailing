@@ -5,7 +5,10 @@
        getTypes = function () {
            queryService.asyncGet(constantService.TYPES_URL).then(function (response) {
                $scope.types = response;
-           });
+           },
+                function (message){
+                    toastr.info(message);
+                });
        };
 
        $scope.showModal = function (modalMode, type) {
@@ -19,7 +22,12 @@
         $scope.delete = function (id) {
             queryService.asyncDelete(constantService.TYPES_URL.concat("/").concat(id)).then(function () {
                 getTypes();
-            });
+            },
+                function (message){
+                    toastr.info(message);
+                }
+
+            );
         };
 
         $scope.create = function (type) {
@@ -27,7 +35,11 @@
                                 $scope.type = null;
                 $('#modal').modal('toggle');
                 getTypes();
-            });
+            },
+                function (message){
+                    toastr.info(message);
+                }
+            );
         };
 
         $scope.update = function (type) {
@@ -35,7 +47,11 @@
                                 $scope.type = null;
                 $('#modal').modal('toggle');
                 getTypes();
-            });
+            },
+                function (message){
+                    toastr.info(message);
+                }
+            );
         };
 
                 $scope.hideModal = function () {

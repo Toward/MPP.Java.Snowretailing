@@ -5,7 +5,10 @@
         getUsers = function () {
             queryService.asyncGet(constantService.USERS_URL).then(function (response) {
                 $scope.users = response;
-            });
+            },
+                function (message){
+                    toastr.info(message);
+                });
         };
 
         $scope.showModal = function (modalMode, user) {
@@ -35,7 +38,10 @@
                 $scope.user = null;
                 $('#modal').modal('toggle');
                 getUsers();
-            });
+            },
+                function (message){
+                    toastr.info(message);
+                });
         };
 
         $scope.update = function (user) {
@@ -43,7 +49,10 @@
                 $scope.user = null;
                 $('#modal').modal('toggle');
                 getUsers();
-            });
+            },
+                function (message){
+                    toastr.info(message);
+                });
         };
 
         $scope.hideModal = function () {

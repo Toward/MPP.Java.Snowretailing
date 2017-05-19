@@ -5,7 +5,10 @@
        getBrands = function () {
            queryService.asyncGet(constantService.BRANDS_URL).then(function (response) {
                $scope.brands = response;
-           });
+           },
+                function (message){
+                    toastr.info(message);
+                });
        };
 
 
@@ -35,7 +38,10 @@
                 $scope.brand = null;
                 $('#modal').modal('toggle');
                getBrands();
-           });
+           },
+                function (message){
+                    toastr.info(message);
+                });
        };
 
        $scope.update = function (rent) {
@@ -43,7 +49,10 @@
                 $scope.brand = null;
                 $('#modal').modal('toggle');
                getBrands();
-           });
+           },
+                function (message){
+                    toastr.info(message);
+                });
        };
 
        $scope.hideModal = function () {

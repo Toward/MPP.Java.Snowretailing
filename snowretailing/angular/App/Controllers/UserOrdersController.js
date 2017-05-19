@@ -6,7 +6,10 @@
            $scope.isAuthorized = userService.isUserExist();
            queryService.asyncGet(constantService.ORDERS_URL).then(function (response) {
                $scope.orders = response;
-           });
+           },
+                function (message){
+                    toastr.info(message);
+                });
        };
 
        getOrders();

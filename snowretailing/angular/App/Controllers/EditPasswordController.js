@@ -9,7 +9,10 @@
                 $rootScope.isAuthorized = true;
                 $rootScope.currentUser = userService.getCurrentUser();
                 $location.path('/');
-            });
+            },
+                function (message){
+                    toastr.info(message);
+                });
         }
     }
 })();

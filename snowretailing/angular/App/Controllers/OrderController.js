@@ -6,7 +6,10 @@
            $scope.isAuthorized = userService.isUserExist();
            queryService.asyncGet(constantService.ORDERS_URL).then(function (response) {
                $scope.orders = response;
-           });
+           },
+                function (message){
+                    toastr.info(message);
+                });
        };
      $scope.showModal = function (modalMode, order) {
         $scope.modalMode = modalMode;
@@ -36,12 +39,18 @@
            order.state = 1;
           queryService.asyncGet(constantService.EQUIPMENT_ITEMS_URL.concat("/").concat(order.equipmentItem.id)).then(function (response) {
                $scope.equipmentItem = response;
-           });
+           },
+                function (message){
+                    toastr.info(message);
+                });
                 $scope.order = null;
                 $('#modal').modal('toggle');
            queryService.asyncPost(constantService.ORDERS_URL, order).then(function () {
                getOrders();
-           });
+           },
+                function (message){
+                    toastr.info(message);
+                });
        };
 
        $scope.update = function (order) {
@@ -52,7 +61,10 @@
                 $('#modal').modal('toggle');
            queryService.asyncPut(constantService.ORDERS_URL, order).then(function () {
                getOrders();
-           });
+           },
+                function (message){
+                    toastr.info(message);
+                });
        };
 
                $scope.hideModal = function () {
