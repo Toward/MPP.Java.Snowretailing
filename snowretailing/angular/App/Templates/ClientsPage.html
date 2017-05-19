@@ -1,8 +1,6 @@
-<div class = "container scrollable-table" ng-controller = "ClientController" >
+<div class = "container scrollable-table" ng-if="currentUser.role == 'ROOT' || currentUser.role == 'ADMIN'" ng-controller = "ClientController" >
     <h4 class = "text-center">Наши клиенты</h4>
-        <div ng-switch on="currentUser.role">
-            <div ng-switch-when="ROOT">
-                <table class = "table ">
+                <table class = "table">
                     <thead>
                         <tr>
                             <td>ФИО</td>
@@ -27,7 +25,7 @@
                             <td>{{client.identifier}}</td>
                             <td>{{client.userId}}</td>
 
-                            <td ng-if="currentUser.role == 'ROOT'">
+                            <td ng-if="currentUser.role == 'ROOT' || currentUser.role == 'ADMIN'">
                                 <a class="teal-text" ng-click="showModal('edit',client)"><i class="fa fa-pencil"></i></a>
                                 <a class="red-text" ng-click="delete(client.id)"><i class="fa fa-times"></i></a>
                             </td>
@@ -35,8 +33,6 @@
                     </tbody>
                 </table>
                 <button type="button" class="btn btn-info btn-lg" ng-if="currentUser.role == 'ROOT'" ng-click="showModal('create',null)">Create new client</button>
-            </div>
-        </div>
 
 
     <!--Modal-->

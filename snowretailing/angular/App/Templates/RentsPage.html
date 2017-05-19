@@ -1,7 +1,5 @@
-<div class = "container scrollable-table" ng-controller = "RentController" >
+<div class = "container scrollable-table" ng-if="currentUser.role == 'ROOT' || currentUser.role == 'ADMIN'" ng-controller = "RentController" >
     <h4 class = "text-center">Наши заказы</h4>
-        <div ng-switch on="currentUser.role">
-            <div ng-switch-when="ROOT">
                 <table class = "table ">
                     <thead>
                         <tr>
@@ -19,16 +17,14 @@
                             <td>{{rent.dateExpectedReturn | date:'yyyy-MM-dd hh:mm'}}</td>
                             <td>{{rent.dateFactReturn | date:'yyyy-MM-dd hh:mm'}}</td>
                             <td>{{rent.equipmentItem.id}}</td>
-                            <td ng-if="currentUser.role == 'ROOT'">
+                            <td ng-if="currentUser.role == 'ROOT' || currentUser.role == 'ADMIN'">
                                 <a class="teal-text" ng-click="showModal('edit',rent)"><i class="fa fa-pencil"></i></a>
                                 <a class="red-text" ng-click="delete(rent.id)"><i class="fa fa-times"></i></a>
                             </td>
                         </tr>
                     </tbody>
                 </table>
-                <button type="button" class="btn btn-info btn-lg" ng-if="currentUser.role == 'ROOT'" ng-click="showModal('create',null)">Create new rent</button>
-            </div>
-        </div>
+                <button type="button" class="btn btn-info btn-lg" ng-if="currentUser.role == 'ROOT' || currentUser.role == 'ADMIN'" ng-click="showModal('create',null)">Create new rent</button>
 
     <!--Modal-->
     <div class="modal fade" id="modal" role="dialog">

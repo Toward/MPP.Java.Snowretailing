@@ -1,7 +1,5 @@
-<div class = "container scrollable-table" ng-controller="TypeController" >
+<div class = "container scrollable-table" ng-if="currentUser.role == 'ROOT' || currentUser.role == 'ADMIN'" ng-controller="TypeController" >
     <h4 class = "text-center">Наши типы оборудования</h4>
-        <div ng-switch on="currentUser.role">
-            <div ng-switch-when="ROOT">
                 <table class = "table ">
                     <thead>
                         <tr>
@@ -13,14 +11,12 @@
                         <tr ng-repeat = "type in types">
                             <td>{{type.name}}</td>
                             <td>{{type.cost}}</td>
-                            <td ng-if="currentUser.role == 'ROOT'">
+                            <td ng-if="currentUser.role == 'ROOT' || currentUser.role == 'ADMIN'    ">
                                 <a class="teal-text" ng-click="showModal('edit',type)"><i class="fa fa-pencil"></i></a>
                             </td>
                         </tr>
                     </tbody>
                 </table>
-            </div>
-        </div>
 
 
     <!--Modal-->

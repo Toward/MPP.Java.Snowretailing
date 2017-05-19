@@ -1,7 +1,5 @@
-<div class = "container scrollable-table" ng-controller = "BrandController" >
+<div class = "container scrollable-table" ng-if="currentUser.role == 'ADMIN' || currentUser.role == 'ROOT'" ng-controller = "BrandController" >
     <h4 class = "text-center">Наши бренды</h4>
-        <div ng-switch on="currentUser.role">
-            <div ng-switch-when="ROOT">
                 <table class = "table ">
                     <thead>
                         <tr>
@@ -11,14 +9,14 @@
                     <tbody>
                         <tr ng-repeat = "brand in brands">
                             <td>{{brand.brandName}}</td>
-                            <td ng-if="currentUser.role == 'ROOT'">
+                            <td ng-if="currentUser.role == 'ROOT' || currentUser.role == 'ADMIN'">
                                 <a class="teal-text" ng-click="showModal('edit',brand)"><i class="fa fa-pencil"></i></a>
                                 <a class="red-text" ng-click="delete(brand.id)"><i class="fa fa-times"></i></a>
                             </td>
                         </tr>
                     </tbody>
                 </table>
-                 <button type="button" class="btn btn-info btn-lg" ng-if="currentUser.role == 'ROOT'" ng-click="showModal('create',null)">Create new brand</button>
+                 <button type="button" class="btn btn-info btn-lg" ng-if="currentUser.role == 'ROOT' || currentUser.role == 'ADMIN'" ng-click="showModal('create',null)">Create new brand</button>
                 <!--Modal-->
                 <div class="modal fade" id="modal" role="dialog">
                     <div class="modal-dialog">
@@ -39,7 +37,5 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
         </div>
 </div>

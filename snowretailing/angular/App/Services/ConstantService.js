@@ -1,6 +1,6 @@
 (function () {
    angular.module("Snowretailing").service("constantService", function () {
-       var BASE_URL = "http://192.168.43.216:8080/"
+       var BASE_URL = "http://172.20.10.7:8080/"
        return{
            EQUIPMENTS_GET_URL : BASE_URL.concat("equipments"),
            EQUIPMENTS_POST_URL : BASE_URL.concat("api/equipments"),

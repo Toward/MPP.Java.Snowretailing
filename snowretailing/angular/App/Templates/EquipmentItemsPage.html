@@ -1,7 +1,5 @@
-<div class = "container scrollable-table" ng-controller = "EquipmentItemController" >
+<div class = "container scrollable-table" ng-if="currentUser.role == 'ROOT' || currentUser.role == 'ADMIN'" ng-controller = "EquipmentItemController" >
     <h4 class = "text-center">Наше оборудование</h4>
-        <div ng-switch on="currentUser.role">
-            <div ng-switch-when="ROOT">
                 <table class = "table ">
                     <thead>
                         <tr>
@@ -23,16 +21,14 @@
                                 <span ng-if="item.deleted==0">Нет</span>
                             </td>
                             <td>{{item.equipmentId}}</td>
-                            <td ng-if="currentUser.role == 'ROOT'">
+                            <td ng-if="currentUser.role == 'ROOT' || currentUser.role == 'ADMIN'">
                                 <a class="teal-text" ng-click="showModal('edit',item)"><i class="fa fa-pencil"></i></a>
                                 <a class="red-text" ng-click="delete(item.id)"><i class="fa fa-times"></i></a>
                             </td>
                         </tr>
                     </tbody>
                 </table>
-                <button type="button" class="btn btn-info btn-lg" ng-if="currentUser.role == 'ROOT'" ng-click="showModal('create',null)">Create new Equipment Item</button>
-            </div>
-        </div>
+                <button type="button" class="btn btn-info btn-lg" ng-if="currentUser.role == 'ROOT' || currentUser.role == 'ADMIN'" ng-click="showModal('create',null)">Create new Equipment Item</button>
 
     <!--Modal-->
     <div class="modal fade" id="modal" role="dialog">
