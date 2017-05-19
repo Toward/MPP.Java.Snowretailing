@@ -1,0 +1,31 @@
+<div class = "container scrollable-table" ng-controller = "EquipmentItemController" >
+    <h3 class = "text-center">Наше оборудование</h3>
+        <div ng-switch on="currentUser.role">
+            <div ng-switch-when="ADMIN">
+                <table class = "table ">
+                    <thead>
+                        <tr>
+                            <td>Инвентарный номер</td>
+                            <td>Состояние</td>
+                            <td>Удалено</td>
+                            <td>id Оборудования</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat = "item in items">
+                            <td>{{item.inventory_number}}</td>
+                            <td>
+                                <span ng-if="item.state==1">Доступен</span>
+                                <span ng-if="item.state==0">Не доступен</span>
+                            </td>
+                            <td>
+                                <span ng-if="item.deleted==1">Да</span>
+                                <span ng-if="item.deleted==0">Нет</span>
+                            </td>
+                            <td>{{item.equipmentId}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+</div>

@@ -1,0 +1,21 @@
+<div class = "container scrollable-table" ng-controller="TypeController" >
+    <h3 class = "text-center">Наши типы оборудования</h3>
+        <div ng-switch on="currentUser.role">
+            <div ng-switch-when="ADMIN">
+                <table class = "table ">
+                    <thead>
+                        <tr>
+                            <td>Название</td>
+                            <td>Стоимость</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat = "type in types">
+                            <td>{{type.name}}</td>
+                            <td>{{type.cost}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+</div>

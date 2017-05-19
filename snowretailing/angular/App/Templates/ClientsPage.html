@@ -1,0 +1,33 @@
+<div class = "container scrollable-table" ng-controller = "ClientController" >
+    <h3 class = "text-center">Наши клиенты</h3>
+        <div ng-switch on="currentUser.role">
+            <div ng-switch-when="ADMIN">
+                <table class = "table ">
+                    <thead>
+                        <tr>
+                            <td>ФИО</td>
+                            <td>Тип документа</td>
+                            <td>Серия и номер</td>
+                            <td>День рождения</td>
+                            <td>Дата выдачи</td>
+                            <td>Агенство</td>
+                            <td>Личный номер</td>
+                            <td>Телефоны</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat = "client in clients">
+                            <td>{{client.surname}}&nbsp;{{client.name}}&nbsp;{{client.patronymyc}}</td>
+                            <td>{{client.type}}</td>
+                            <td>{{client.series}}&nbsp;{{client.numbers}}</td>
+                            <td>{{client.birthday}}</td>
+                            <td>{{client.date | date:'yyyy-MM-dd'}}</td>
+                            <td>{{client.agency}}</td>
+                            <td>{{client.identifier}}</td>
+                            <td><span ng-repeat = "tel in client.phoneNumbers">{{tel}}</span></br></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+</div>

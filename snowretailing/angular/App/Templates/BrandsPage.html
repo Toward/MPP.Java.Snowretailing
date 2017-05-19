@@ -1,0 +1,19 @@
+<div class = "container scrollable-table" ng-controller = "BrandController" >
+    <h3 class = "text-center">Наши бренды</h3>
+        <div ng-switch on="currentUser.role">
+            <div ng-switch-when="ADMIN">
+                <table class = "table ">
+                    <thead>
+                        <tr>
+                            <td>Бренд</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat = "brand in brands">
+                            <td>{{brand.brandName}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+</div>
