@@ -1,32 +1,35 @@
-<div class = "container scrollable-table" ng-controller = "HomeController" >
-    <h3 class = "text-center">Наше оборудование</h3>
-    <table class = "table equipment-table">
+<div class="container home-page" ng-controller="HomeController">
+    <h4 class="text-center">Наше оборудование</h4>
+    <table class="table table-hover">
         <thead>
             <tr>
-                <td>Тип</td>
-                <td>Бренд</td>
-                <td>Модель</td>
-                <td>Стоимость</td>
+                <td><strong>Тип</strong></td>
+                <td><strong>Бренд</strong></td>
+                <td><strong>Модель</strong></td>
+                <td><strong>Стоимость</strong></td>
+                <td><strong>Количество</strong></td>
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat = "equipment in equipments">
+            <tr ng-repeat="equipment in equipments">
                 <td>{{equipment.name}}</td>
                 <td>{{equipment.brandName}}</td>
                 <td>{{equipment.model}}</td>
                 <td>{{equipment.cost}}</td>
+                <td>{{equipment.quantity}}</td>
             </tr>
         </tbody>
     </table>
 
-    <h3 class = "text-center">Комментарии</h3>
-    <table class = "table review-table">
-        <tbody>
-        <tr ng-repeat = "review in reviews">
-            <td>{{review.review}}</td>
-            <td>{{review.dateCreate}}</td>
-            <td>{{review.mark}}</td>
-        </tr>
-        </tbody>
-    </table>
+    <h4 class="text-center">Отзывы о нас</h4>
+
+    <div class="panel panel-default" ng-repeat="review in reviews">
+        <div class="panel-body">{{review.review}}</div>
+        <div class="panel-footer">
+            <small>Пользователь: {{review.user.login}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</small>
+            <small ng-if="review.mark">Оценка: хорошо&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</small>
+            <small ng-if="!review.mark">Оценка: плохо&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</small>
+            <small>Дата отзыва: {{review.dateCreate | date:'yyyy-MM-dd hh:mm'}}</small>
+        </div>
+    </div>
 </div>
