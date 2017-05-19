@@ -3,3 +3,7 @@
     padding: 20px 0;
     min-height: calc(100vh - 110px);
 }
+
+table thead td {
+    font-weight: bold;
+}
