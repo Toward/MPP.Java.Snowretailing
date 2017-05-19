@@ -2,12 +2,8 @@
     <form name = "form" class="form-signin col-lg-offset-1 col-lg-10">
         <h4 class="form-signin-heading">Пожалуйста, войдите</h4>
         <label for="inputLogin" class="sr-only">Логин</label>
-<<<<<<< HEAD
-        <input name="login" type="text" id="inputLogin" class="form-control" placeholder="Логин" required autocomplete="off" ng-model="user.login" login>
+        <input name="login" type="text" id="inputLogin" class="form-control" placeholder="Логин" required autofocus autocomplete="off" ng-model="user.login">
         <span ng-show="form.login.$error.length">Длина логина должна составлять от 3 до 20 символов</span>
-=======
-        <input type="text" id="inputLogin" class="form-control" placeholder="Логин" required autofocus autocomplete="off" ng-model="user.login">
->>>>>>> 9492484419805e31ed89adc0b27acfdebe01b7cc
         <label for="inputPassword" class="sr-only">Пароль</label>
         <input name="password" type="password" id="inputPassword" class="form-control" placeholder="Пароль" required autocomplete="off" ng-model="user.password" password>
         <span ng-show="form.password.$error.length">Длина пароля должна составлять от 3 до 20 символов</span>
