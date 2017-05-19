@@ -14,25 +14,42 @@
             $scope.item = item;
         }
             $('#modal').modal('toggle');
-        }
+        };
 
-       $scope.delete = function (id) {
-           queryService.asyncDelete(constantService.EQUIPMENT_ITEMS_URL.concat("/").concat(id)).then(function () {
-               getEquipmentItems();
-           });
-       };
+
+                $scope.showDeleteModal = function (item) {
+            $scope.item = item;
+            $('#modal-delete').modal('toggle');
+
+               $scope.delete = function () {
+                   queryService.asyncDelete(constantService.EQUIPMENT_ITEMS_URL.concat("/").concat(item.id)).then(function () {
+                       getEquipmentItems();
+                   });
+               };
+        };
+
 
        $scope.create = function (item) {
            queryService.asyncPost(constantService.EQUIPMENT_ITEMS_URL, item).then(function () {
+                               $scope.item = null;
+                $('#modal').modal('toggle');
                getEquipmentItems();
            });
        };
 
        $scope.update = function (item) {
            queryService.asyncPut(constantService.EQUIPMENT_ITEMS_URL, item).then(function () {
+                               $scope.item = null;
+                $('#modal').modal('toggle');
                getEquipmentItems();
            });
        };
+
+       $scope.hideModal = function () {
+            $scope.item = null;
+            getEquipmentItems();
+        };
+
        getEquipmentItems();
    };
 })();

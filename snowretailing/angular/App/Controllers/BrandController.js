@@ -15,25 +15,42 @@
             $scope.brand = brand;
         }
             $('#modal').modal('toggle');
-        }
+        };
 
-       $scope.delete = function (id) {
-           queryService.asyncDelete(constantService.BRANDS_URL.concat("/").concat(id)).then(function () {
-               getBrands();
-           });
-       };
+        $scope.showDeleteModal = function (brand) {
+            $scope.brand = brand;
+            $('#modal-delete').modal('toggle');
+
+            $scope.delete = function () {
+                queryService.asyncDelete(constantService.BRANDS_URL.concat("/").concat(brand.id)).then(function () {
+                    $scope.brand = null;
+                    $('#modal-delete').modal('toggle');
+                    getBrands();
+            });
+        };
+        };
 
        $scope.create = function (rent) {
            queryService.asyncPost(constantService.BRANDS_URL, rent).then(function () {
+                $scope.brand = null;
+                $('#modal').modal('toggle');
                getBrands();
            });
        };
 
        $scope.update = function (rent) {
            queryService.asyncPut(constantService.BRANDS_URL, rent).then(function () {
+                $scope.brand = null;
+                $('#modal').modal('toggle');
                getBrands();
            });
        };
+
+       $scope.hideModal = function () {
+            $scope.brand = null;
+            getBrands();
+        };
+
        getBrands();
    };
 })();

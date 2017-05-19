@@ -24,7 +24,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <button type="button" class="close" data-dismiss="modal" ng-click="hideModal()">&times;</button>
                     <h4  ng-if="modalMode == 'edit'" class="modal-title">Edit type</h4>
                 </div>
                 <div class="modal-body">
@@ -33,7 +33,6 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal" ng-if="modalMode == 'edit'" ng-click = "update(type)">Edit</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>

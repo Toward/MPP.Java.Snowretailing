@@ -14,13 +14,22 @@
             $scope.order = order;
         }
             $('#modal').modal('toggle');
-        }
+        };
 
-       $scope.delete = function (id) {
-           queryService.asyncDelete(constantService.ORDERS_URL.concat("/").concat(id)).then(function () {
+
+
+       $scope.showDeleteModal = function (order) {
+            $scope.order = order;
+            $('#modal-delete').modal('toggle');
+
+            $scope.delete = function () {
+            queryService.asyncDelete(constantService.ORDERS_URL.concat("/").concat(order.id)).then(function () {
+               $scope.order = null;
+                $('#modal-delete').modal('toggle');
                getOrders();
            });
        };
+        };
 
        $scope.create = function (order) {
            order.user = $rootScope.currentUser.login;
@@ -28,6 +37,8 @@
           queryService.asyncGet(constantService.EQUIPMENT_ITEMS_URL.concat("/").concat(order.equipmentItem.id)).then(function (response) {
                $scope.equipmentItem = response;
            });
+                $scope.order = null;
+                $('#modal').modal('toggle');
            queryService.asyncPost(constantService.ORDERS_URL, order).then(function () {
                getOrders();
            });
@@ -37,10 +48,18 @@
                      queryService.asyncGet(constantService.EQUIPMENT_ITEMS_URL.concat("/").concat(order.equipmentItem.id)).then(function (response) {
                $scope.equipmentItem = response;
            });
+                 $scope.order = null;
+                $('#modal').modal('toggle');
            queryService.asyncPut(constantService.ORDERS_URL, order).then(function () {
                getOrders();
            });
        };
+
+               $scope.hideModal = function () {
+            $scope.order = null;
+            getOrders();
+        };
+
        getOrders();
 
    }

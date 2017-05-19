@@ -24,14 +24,23 @@
 
         $scope.create = function (type) {
             queryService.asyncPost(constantService.TYPES_URL, type).then(function () {
+                                $scope.type = null;
+                $('#modal').modal('toggle');
                 getTypes();
             });
         };
 
         $scope.update = function (type) {
             queryService.asyncPut(constantService.TYPES_URL, type).then(function () {
+                                $scope.type = null;
+                $('#modal').modal('toggle');
                 getTypes();
             });
+        };
+
+                $scope.hideModal = function () {
+            $scope.type = null;
+            getTypes();
         };
         getTypes();
    };
