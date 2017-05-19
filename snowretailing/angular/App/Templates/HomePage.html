@@ -1,6 +1,6 @@
 <div class="container home-page" ng-controller="HomeController">
     <h4 class="text-center">Наше оборудование</h4>
-    <table class="table table-hover">
+    <table class="table table-hover animated fadeInLeft">
         <thead>
             <tr>
                 <td><strong>Тип</strong></td>
@@ -35,7 +35,7 @@
 
     <h4 class="text-center">Отзывы о нас</h4>
 
-    <div class="panel panel-default" ng-repeat="review in reviews">
+    <div class="panel panel-default animated fadeInLeft" ng-repeat="review in reviews">
         <div class="panel-body">{{review.review}}</div>
         <div class="panel-footer">
             <small>Пользователь: {{review.user.login}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</small>

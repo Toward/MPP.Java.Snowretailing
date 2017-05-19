@@ -1,7 +1,7 @@
 <div class = "container scrollable-table" ng-if="currentUser.role == 'ADMIN' || currentUser.role == 'ROOT'" ng-controller = "BrandController" >
     <h4 class = "text-center">Наши бренды</h4>
     <p class="text-center"><button type="button" class="btn btn-info" ng-if="currentUser.role == 'ROOT' || currentUser.role == 'ADMIN'" ng-click="showModal('create',null)">Создать бренд</button></p>
-                <table class = "table ">
+                <table class = "table animated fadeInLeft">
                     <thead>
                         <tr>
                             <td>Бренд</td>

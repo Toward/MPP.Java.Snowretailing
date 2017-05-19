@@ -11,8 +11,8 @@
         </thead>
         <tbody>
             <tr ng-repeat="order in orders">
-                <td>{{order.dateOrderExpire}}</td>
-                <td>{{order.dateOrder}}</td>
+                <td>{{order.dateOrderExpire | date:'yyyy-MM-dd hh:mm'}}</td>
+                <td>{{order.dateOrder | date:'yyyy-MM-dd hh:mm'}}</td>
                 <td>{{order.equipmentItem.inventory_number}}</td>
                 <td>{{order.sumPay}}</td>
             </tr>
