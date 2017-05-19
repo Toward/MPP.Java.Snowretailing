@@ -7,3 +7,7 @@
 table thead td {
     font-weight: bold;
 }
+
+table button {
+    margin: 0!important;
+}

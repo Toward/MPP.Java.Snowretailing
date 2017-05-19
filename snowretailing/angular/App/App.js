@@ -45,6 +45,11 @@
                 templateUrl: "App/Templates/OrdersPage.html"
             });
 
+            $routeProvider.when("/user-orders",{
+                templateUrl: "App/Templates/UserOrdersPage.html"
+            });
+
+
             $routeProvider.otherwise("/");
         });
 })();

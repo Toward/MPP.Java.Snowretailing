@@ -10,5 +10,5 @@
             $rootScope.currentUser = null;
             $location.path('/');
         }
-    };
+    }
 })();

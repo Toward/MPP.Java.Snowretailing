@@ -7,7 +7,7 @@
                 <td><strong>Бренд</strong></td>
                 <td><strong>Модель</strong></td>
                 <td><strong>Стоимость</strong></td>
-                <td><strong>Количество</strong></td>
+                <td><strong>Количество</strong><td>
             </tr>
         </thead>
         <tbody>
@@ -20,6 +20,12 @@
                 <td ng-if="currentUser.role == 'ROOT'">
                     <a class="teal-text" ng-click="showModal('edit',equipment)"><i class="fa fa-pencil"></i></a>
                     <a class="red-text" ng-click="delete(equipment.id)"><i class="fa fa-times"></i></a>
+                </td>
+                <td ng-if="currentUser.role == 'USER' && equipment.quantity != 0">
+                    <a ng-click="showOrderModal(equipment)"><button type="button" class="btn btn-default btn-sm">Забронировать</button></a>
+                </td>
+                <td ng-if="currentUser.role == 'USER' && equipment.quantity == 0">
+                    <a><button type="button" class="btn btn-danger btn-sm">Нет свободного</button></a>
                 </td>
             </tr>
         </tbody>
@@ -50,7 +56,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4  ng-if="modalMode == 'edit'" class="modal-title">Edit  equipment</h4>
+                    <h4  ng-if="modalMode == 'edit'" class="modal-title">Edit equipment</h4>
                     <h4  ng-if="modalMode == 'create'" class="modal-title">Create new equipment</h4>
                 </div>
                 <div class="modal-body">
@@ -71,7 +77,6 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal" ng-if="modalMode == 'edit'" ng-click = "update(equipment)">Edit</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal" ng-if="modalMode == 'create'" ng-click = "create(equipment)">Create</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
@@ -85,7 +90,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4  ng-if="modalMode == 'edit'" class="modal-title">Edit  review</h4>
+                    <h4  ng-if="modalMode == 'edit'" class="modal-title">Edit review</h4>
                     <h4  ng-if="modalMode == 'create'" class="modal-title">Create new review</h4>
                 </div>
                 <div class="modal-body">
@@ -102,10 +107,23 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal" ng-if="modalMode == 'edit'" ng-click = "updateReview(review)">Edit</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal" ng-if="modalMode == 'create'" ng-click = "createReview(review)">Create</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
     </div>
+
+    <!--OrderModal-->
+    <div class="modal fade" id="order-modal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content text-center">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" ng-click="hideModal()">&times;</button>
+                    <h5 class="modal-title">Вы действительно хотите забронировать?</h5>
+                </div>
+                <button type="button" class="btn btn-default" ng-click="orderEquipment(equipment.id)">Забронировать</button>
+            </div>
+        </div>
+    </div>
+
 
 </div>

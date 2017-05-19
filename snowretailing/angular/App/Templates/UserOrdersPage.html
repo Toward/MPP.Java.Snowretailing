@@ -1,0 +1,21 @@
+<div class="container user-orders" ng-controller="UserOrdersController">
+    <h4 class="text-center">Ваши брони</h4>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <td><strong>Истечение брони</strong></td>
+                <td><strong>Дата создания</strong></td>
+                <td><strong>Номер снаряжения</strong></td>
+                <td><strong>Стоимость</strong></td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="order in orders">
+                <td>{{order.dateOrderExpire}}</td>
+                <td>{{order.dateOrder}}</td>
+                <td>{{order.equipmentItem.inventory_number}}</td>
+                <td>{{order.sumPay}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

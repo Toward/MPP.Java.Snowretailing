@@ -1,35 +1,69 @@
 (function () {
-   angular.module("Snowretailing").controller("HomeController", HomeController);
-   
-   function HomeController($scope,queryService,constantService, userService) {
-       getEquipments = function () {
-           queryService.asyncGet(constantService.EQUIPMENTS_GET_URL).then(function (response) {
-               $scope.equipments = response;
-           });
-       };
+    angular.module("Snowretailing").controller("HomeController", HomeController);
 
-              getTypes = function () {
-           queryService.asyncGet(constantService.TYPES_URL).then(function (response) {
-               $scope.types = response;
-           });
-       };
+    function HomeController($scope, queryService, constantService, userService) {
+        getEquipments = function () {
+            queryService.asyncGet(constantService.EQUIPMENTS_GET_URL).then(function (response) {
+                $scope.equipments = response;
+            });
+        };
 
-                     getBrands = function () {
-           queryService.asyncGet(constantService.BRANDS_URL).then(function (response) {
-               $scope.brands = response;
-           });
-       };
+        getTypes = function () {
+            queryService.asyncGet(constantService.TYPES_URL).then(function (response) {
+                $scope.types = response;
+            });
+        };
 
-       getReviews = function() {
-           $scope.isAuthorized = userService.isUserExist();
-           queryService.asyncGet(constantService.REVIEWS_GET_URL).then(function (response) {
-               $scope.reviews = response;
-           });
-       };
+        getBrands = function () {
+            queryService.asyncGet(constantService.BRANDS_URL).then(function (response) {
+                $scope.brands = response;
+            });
+        };
 
-       $scope.showModal = function (modalMode, equipment) {
+        getReviews = function () {
+            $scope.isAuthorized = userService.isUserExist();
+            queryService.asyncGet(constantService.REVIEWS_GET_URL).then(function (response) {
+                $scope.reviews = response;
+            });
+        };
+
+
+        // ORDER EQUIPMENTS
+        $scope.showOrderModal = function (equipment) {
+            $scope.equipment = equipment;
+            $('#order-modal').modal('toggle');
+        };
+
+        $scope.hideModal = function () {
+            $scope.equipment = null;
+            $('#order-modal').modal('toggle');
+        };
+
+        $scope.orderEquipment = function (id) {
+            queryService.asyncGet(constantService.EQUIPMENTS_GET_URL.concat("/").concat(id).concat('/available_item')).then(function (response) {
+                var equipment_item = response;
+                equipment_item.state = 0;
+                queryService.asyncPut(constantService.EQUIPMENT_ITEMS_URL, equipment_item).then(function (response) {
+                    var order = {};
+                    order.dateOrder = (new Date()).getTime();
+                    order.dateOrderExpire = (new Date()).getTime();
+                    order.sumPay = 4;
+                    order.equipmentItem = equipment_item;
+                    order.state = 0;
+                    order.user = userService.getLogin();
+                    queryService.asyncPost(constantService.ORDERS_URL, order).then(function (response) {
+                        getEquipments();
+                    });
+                });
+            });
+            // $scope.equipment = null;
+            // $('#order-modal').modal('toggle');
+        };
+
+        // EQUIPMENT
+        $scope.showModal = function (modalMode, equipment) {
             $scope.modalMode = modalMode;
-            if(equipment != null){
+            if (equipment != null) {
                 $scope.equipment = equipment;
             }
             $('#modal').modal('toggle');
@@ -56,7 +90,9 @@
         };
 
 
-                $scope.deleteReview = function (id) {
+
+        // REVIEW
+        $scope.deleteReview = function (id) {
             queryService.asyncDelete(constantService.REVIEW_ADMIN_URL.concat("/").concat(id)).then(function () {
                 getReviews();
             });
@@ -76,18 +112,17 @@
 
         $scope.showModalReview = function (modalMode, review) {
             $scope.modalMode = modalMode;
-            if(review != null){
+            if (review != null) {
                 $scope.review = review;
             }
             $('#modal-review').modal('toggle');
         };
 
 
-
         getEquipments();
         getReviews();
-       getTypes();
-       getBrands();
+        getTypes();
+        getBrands();
 
-   };
+    };
 })();
