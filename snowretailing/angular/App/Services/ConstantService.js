@@ -17,6 +17,22 @@
            USERS_URL : BASE_URL.concat("/api/users"),
            REVIEW_USERS_URL : BASE_URL.concat("/api/user_reviews"),
            REVIEW_ADMIN_URL : BASE_URL.concat("/api/reviews"),
+           // DOCUMENTS
+           EQUIPMENT_COST_XLSX : BASE_URL.concat('documents/equipmentsCost/xlsx'),
+           EQUIPMENT_COST_CSV : BASE_URL.concat('documents/equipmentsCost/csv'),
+           EQUIPMENT_COST_PDF : BASE_URL.concat('documents/equipmentsCost/pdf'),
+
+           EQUIPMENT_LIST_XLSX : BASE_URL.concat('documents/equipmentsList/xlsx'),
+           EQUIPMENT_LIST_CSV : BASE_URL.concat('documents/equipmentsList/csv'),
+           EQUIPMENT_LIST_PDF : BASE_URL.concat('documents/equipmentsList/pdf'),
+
+           CLIENTS_LIST_XLSX : BASE_URL.concat('documents/clientsList/xlsx'),
+           CLIENTS_LIST_CSV : BASE_URL.concat('documents/clientsList/csv'),
+           CLIENTS_LIST_PDF : BASE_URL.concat('documents/clientsList/pdf'),
+
+           EQUIPMENTS_ITEMS_HISTORY_XLSX : BASE_URL.concat('documents/equipmentsItemsHistory/1/xlsx'),
+           EQUIPMENTS_ITEMS_HISTORY_CSV : BASE_URL.concat('documents/equipmentsItemsHistory/1/csv'),
+           EQUIPMENTS_ITEMS_HISTORY_PDF : BASE_URL.concat('documents/equipmentsItemsHistory/1/pdf'),
        };
    });
 })();
