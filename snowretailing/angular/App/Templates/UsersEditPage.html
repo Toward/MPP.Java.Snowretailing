@@ -1,49 +1,47 @@
-<div class="container" ng-controller="UsersEditController" ng-if="currentUser.role == 'ADMIN' || currentUser.role == 'ROOT'">
+<div class="container users-edit-page" ng-controller="UsersEditController" ng-if="currentUser.role == 'ADMIN' || currentUser.role == 'ROOT'">
+    <p class="text-center"><button type="button" class="btn btn-info" ng-if="currentUser.role == 'ROOT'" ng-click="showModal('create',null)">Создать пользователя</button></p>
     <table class="table">
         <thead>
             <tr>
                 <th>Логин</th>
                 <th>Роль</th>
+                <th>Действие</th>
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat = "user in users">
+            <tr ng-repeat="user in users">
                 <td>{{user.login}}</td>
                 <td>{{user.role.roleName}}</td>
                 <td ng-if="currentUser.role == 'ROOT'">
-                    <a class="teal-text" ng-click="showModal('edit',user)"><i class="fa fa-pencil"></i></a>
+                    <a class="teal-text" ng-click="showModal('edit',user)"><i class="fa fa-pencil"></i></a>&nbsp;&nbsp;
                     <a class="red-text" ng-click="delete(user.id)"><i class="fa fa-times"></i></a>
                 </td>
             </tr>
         </tbody>
     </table>
-    <button type="button" class="btn btn-info btn-lg" ng-if="currentUser.role == 'ROOT'" ng-click="showModal('create',null)">Create new user</button>
 
     <!--Modal-->
     <div class="modal fade" id="modal" role="dialog">
         <div class="modal-dialog">
-            <div class="modal-content">
+            <div class="modal-content text-center">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4  ng-if="modalMode == 'edit'" class="modal-title">Edit new user</h4>
-                    <h4  ng-if="modalMode == 'create'" class="modal-title">Create new user</h4>
+                    <h5 ng-if="modalMode == 'edit'" class="modal-title">Редактирование пользователя</h5>
+                    <h5 ng-if="modalMode == 'create'" class="modal-title">Создание нового пользователя</h5>
                 </div>
-                <div class="modal-body">
-                    <label for="inputLogin" class="sr-only">Login</label>
-                    <input type="text" id="inputLogin" class="form-control" placeholder="Login" required autofocus ng-model ="user.login">
-                    <label for="inputPassword" class="sr-only">Password</label>
-                    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required ng-model ="user.password">
-                    <label for="inputRole" class="sr-only">Role</label>
-                    <select ng-model = "user.roleId" class="form-control" id="inputRole">
+                <div class="modal-body col-lg-offset-1 col-lg-10 text-left">
+                    <label for="inputLogin" class="sr-only">Логин</label>
+                    <input type="text" id="inputLogin" class="form-control" placeholder="Логин" required autofocus autocomplete="off" ng-model="user.login">
+                    <label for="inputPassword" class="sr-only">Пароль</label>
+                    <input type="password" id="inputPassword" class="form-control" placeholder="Пароль" required autocomplete="off" ng-model="user.password">
+                    <label for="inputRole">Роль</label>
+                    <select ng-model="user.roleId" class="form-control" id="inputRole">
                         <option ng-selected="user.roleId == 1" value="1">USER</option>
                         <option ng-selected="user.roleId == 2" value="2">ADMIN</option>
                     </select>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal" ng-if="modalMode == 'edit'" ng-click = "update(user)">Edit</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal" ng-if="modalMode == 'create'" ng-click = "create(user)">Create</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
+                <button type="button" class="btn btn-default" ng-if="modalMode == 'edit'" ng-click="update(user)">Редактировать</button>
+                <button type="button" class="btn btn-default" ng-if="modalMode == 'create'" ng-click="create(user)">Создать</button>
             </div>
         </div>
     </div>
